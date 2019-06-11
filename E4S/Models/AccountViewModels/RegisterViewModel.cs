@@ -23,5 +23,22 @@ namespace E4S.Models.AccountViewModels
     [Display(Name = "Confirm password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
+
+    [Display(Name = "User Role")]
+    public string UserRole { get; set; }
+
+    [Display(Name = "Employee Name")]
+    public string EmployeeName { get; set; }
+
+    [Display(Name = "Staus")]
+    public string Status { get; set; }
+
+    [Display(Name = "Phone Number")]
+    public string PhoneNumber { get; set; }
+
+    [Display (Name = "Organisation")]
+    public Guid OrganisationId { get; set; }
+
+    
   }
 }
