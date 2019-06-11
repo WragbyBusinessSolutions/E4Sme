@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using E4S.Models;
 using E4S.Models.AccountViewModels;
 using E4S.Services;
+using E4S.Data;
 
 namespace E4S.Controllers
 {
@@ -24,17 +25,20 @@ namespace E4S.Controllers
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IEmailSender _emailSender;
     private readonly ILogger _logger;
+    private readonly ApplicationDbContext _context;
 
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IEmailSender emailSender,
-        ILogger<AccountController> logger)
+        ILogger<AccountController> logger,
+        ApplicationDbContext context)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _emailSender = emailSender;
       _logger = logger;
+      _context = context;
     }
 
     [TempData]
@@ -232,6 +236,20 @@ namespace E4S.Controllers
 
           await _signInManager.SignInAsync(user, isPersistent: false);
           _logger.LogInformation("User created a new account with password.");
+
+          //Create Organisation profile immediately a new user come on board via the registration page.
+          var orgId = Guid.NewGuid();
+          Organisation newOrganisation = new Organisation()
+          {
+            Id = orgId,
+            OrganisationId = orgId,
+            RegistrarId = Guid.Parse(user.Id),
+          };
+
+          _context.Add(newOrganisation);
+          _context.SaveChanges();
+
+
           return RedirectToLocal(returnUrl);
         }
         AddErrors(result);
