@@ -1,0 +1,644 @@
+﻿
+@{
+  ViewData["Title"] = "New Quotation";
+  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+<div class="content">
+
+    <div class="row">
+      @*<div class="col-md-6">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Stacked Form</h4>
+          </div>
+          <div class="card-body ">
+            <form method="#" action="#">
+              <label>Email address</label>
+              <div class="form-group">
+                <input type="email" class="form-control">
+              </div>
+              <label>Password</label>
+              <div class="form-group">
+                <input type="password" class="form-control">
+              </div>
+              <div class="form-check mt-3">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox">
+                  <span class="form-check-sign"></span>
+                  Subscribe to newsletter
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer ">
+            <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Horizontal Form</h4>
+          </div>
+          <div class="card-body ">
+            <form class="form-horizontal">
+              <div class="row">
+                <label class="col-md-3 col-form-label">Username</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Email</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="email" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Password</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="password" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3"></label>
+                <div class="col-md-9">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-sign"></span>
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer ">
+            <div class="row">
+              <label class="col-md-3"></label>
+              <div class="col-md-9">
+                <button type="submit" class="btn btn-fill btn-primary">Sign in</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>*@
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Form Elements</h4>
+          </div>
+          <div class="card-body ">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pull-right text-right">
+                  <address>
+                    @*<h3> &nbsp;<b class="text-danger">@Model.Organisation.OrganisationName</b></h3>*@
+                    <p class="text-muted m-l-5">
+                      @*@Model.Organisation.Address
+                      <br /> @Model.Organisation.City,
+                      <br /> @Model.Organisation.State.*@
+                      @*<br /> @Model.Organisation.Country - @Model.Organisation.ZipCode*@
+                    </p>
+                    <p class="m-t-30">
+
+                      @*<b>Quote Date :</b> <i class="fa fa-calendar"></i> <input asp-for="InvoiceDate" type="date" />
+                      <span asp-validation-for="InvoiceDate" class="text-danger"></span>
+                    </p>*@
+                    @*<p>
+              <b>Due Date :</b> <i class="fa fa-calendar"></i> <input asp-for="DueDate" type="date" />
+              <span asp-validation-for="DueDate" class="text-danger"></span>
+            </p>*@
+
+                  </address>
+                </div>
+                <div class="pull-left ">
+                  <address>
+                    <h4>To:</h4>
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label class="control-label">Customer</label>
+                          <div class="row inline">
+                            @*<select asp-for="CustomerId" class="form-control col-10" asp-items="ViewBag.CustomerId"></select><button href="#" data-toggle="modal" data-target="#longModal" class="btn btn-sm btn-success" data-placement="top" title="Click to add a new Customer">+</button>*@
+                            <input class="form-control" autocomplete="on" id="autocom" type="text" />
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div id="longModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Add A Customer</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          </div>
+                          <div class="modal-body">
+                            <h6 class="card-subtitle">fill in customer information</h6>
+                            <form class="form-horizontal p-t-20" asp-action="UploadImage" asp-controller="Purchase" method="post">
+                              <div asp-validation-summary="All"></div>
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Customer Name*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Customer Name" required>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">E-mail*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter E-mail" required>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Address*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Address" required>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">ZipCode*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter ZipCode" required>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Country*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <select id="country" class="form-control" @*asp-for="Country" *@ required><option value="@null">-- Country --</option></select>
+                                    <span @*asp-validation-for="Country*@ " class="text-danger"></span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">State*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <select id="country" class="form-control" @*asp-for="State" *@ required><option value="@null">-- State --</option></select>
+                                    <span @*asp-validation-for="State" *@ class="text-danger"></span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">City*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <select id="country" class="form-control" @*asp-for="City*@ " required><option value="@null">-- City --</option></select>
+                                    <span @*asp-validation-for="City" *@ class="text-danger"></span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Bank Name*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Bank Name" required>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Account Name*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Account Name" required>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Account Number*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Account Number" required>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Bank Sort Code*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Bank Sort Code" required>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Website*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Website" required>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Mobile Number*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <input type="text" class="form-control" placeholder="Enter Mobile Number" required>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="exampleInputuname3" class="col-sm-3 control-label">Status*</label>
+                                <div class="col-sm-9">
+                                  <div class="input-group">
+                                    <div class="input-group-prepend"></div>
+                                    <select @*asp-for="MaritalStatus" *@ class="form-control">
+                                      <option>-- Select Status --</option>
+
+                                      <option>Active</option>
+                                      <option>Pending</option>
+                                    </select>
+                                    <span @*asp-validation-for="MaritalStatus" *@ class="text-danger"></span>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Save</button>
+                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Close</button>
+                              </div>
+
+                            </form>
+                            @*<div class="modal-footer">
+                      <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
+                      <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                    </div>*@
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                      <!-- /.modal -->
+                    </div>
+
+                    @*<h4 class="font-bold">Gaala & Sons,</h4>
+            <p class="text-muted m-l-30">
+              E 104, Dharti-2,
+              <br /> Nr' Viswakarma Temple,
+              <br /> Talaja Road,
+              <br /> Bhavnagar - 364002
+            </p>*@
+                  </address>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="table-responsive m-t-40" style="clear: both;">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Item/Service</th>
+                        <th>Description</th>
+                        <th class="text-right">Quantity</th>
+                        <th class="text-right">Unit Cost</th>
+                        <th class="text-right">Total</th>
+                        <th class="text-right">+/-</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @*<tr>
+                <td>Air Conditioner</td>
+                <td></td>
+                <td class="text-right"> 3 </td>
+                <td class="text-right"> $500 </td>
+                <td class="text-right"> $1500 </td>
+                <td>
+                  <a asp-action="Delete" class="btn btn-sm btn-danger">-</a>
+                </td>
+              </tr>*@
+                      @*@foreach (var item in Model.ItemsEIRs)
+                      {
+                        <tr>
+                          <td>@item.Item</td>
+                          <td>@item.Description</td>
+                          <td class="text-right">@item.Quantity </td>
+                          <td class="text-right"> ₦ @item.Price </td>
+                          <td class="text-right"> ₦ @item.Amount </td>
+                          <td>
+                            @*<a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">-</a>*@
+                            @*<a asp-action="Delete" class="btn btn-sm btn-danger" asp-route-id="@item.Id">-</a>*@
+                            @*<input id="itemId" value="@item.Id" hidden/>*@
+                            @*<button id="clickDelete" name="@item.Id" value="@item.Id" class="btn btn-sm btn-danger">-</button>*@
+
+                      @*   </td>
+
+                        </tr>
+
+                      }*@
+                      <tr>
+
+                        <td>
+                          <input hidden type="text" id="addEstimateId" name="bdate" class="form-control" value="@*@Model.EstimateId*@">
+                          <input type="text" id="addItem" name="bdate" class="form-control" placeholder="Item/Service">
+                        </td>
+                        <td>
+                          <input type="text" id="addDescription" name="bdate" class="form-control" placeholder="Description">
+                        </td>
+                        <td class="text-right">
+                          <input type="number" id="addQuantity" name="bdate" class="form-control text-right" placeholder="0">
+                        </td>
+                        <td class="text-right">
+                          <input type="number" id="addUnitCost" name="bdate" class="form-control text-right" placeholder="0.00">
+                        </td>
+                        <td class="text-right">
+                          <input disabled type="text" id="addAmount" name="bdate" class="form-control text-right" placeholder="0.00">
+                        </td>
+                        <td>
+                          <button id="clickb" name="clickb" class="btn btn-sm btn-success">+</button>
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="pull-right m-t-30 text-right">
+                  <p>Sub - Total amount:  ₦ @Model.SubTotal</p>
+                  <p><input type="checkbox" checked disabled /> vat (5%) : ₦ @Model.Vat.ToString("N") </p>
+                  <hr>
+                  <h3><b>Total :</b> ₦ @Model.Total</h3>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="text-right">
+                  <button class="btn btn-danger" type="submit"> Done  </button>
+                  @*<button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>*@
+                </div>
+              </div>
+            </div>
+
+            @*<form method="get" action="/" class="form-horizontal">
+      <div class="row">
+        <label class="col-sm-2 col-form-label">With help</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input type="text" class="form-control">
+            <span class="form-text">A block of help text that breaks onto a new line.</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input type="password" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Placeholder</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="placeholder">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Disabled</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <input type="text" class="form-control" value="Disabled input here.." disabled>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Static control</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <p class="form-control-static">hello@creative-tim.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Checkboxes and radios</label>
+        <div class="col-sm-10 checkbox-radios">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox">
+              <span class="form-check-sign"></span>
+              First Checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox">
+              <span class="form-check-sign"></span>
+              Second Checkbox
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+              <span class="form-check-sign"></span>
+              First Radio
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+              <span class="form-check-sign"></span>
+              Second Radio
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-2 col-form-label">Inline checkboxes</label>
+        <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox">
+              <span class="form-check-sign"></span>
+              a
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox">
+              <span class="form-check-sign"></span>
+              b
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox">
+              <span class="form-check-sign"></span>
+              c
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>*@
+          </div>
+        </div>
+      </div>
+
+
+      @*<div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Input Variants</h4>
+          </div>
+          <div class="card-body ">
+            <form method="get" action="/" class="form-horizontal">
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Custom Checkboxes &amp; radios</label>
+                <div class="col-sm-4 col-sm-offset-1 checkbox-radios">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-sign"></span>
+                      Unchecked
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" checked>
+                      <span class="form-check-sign"></span>
+                      Checked
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" disabled>
+                      <span class="form-check-sign"></span>
+                      Disabled Unchecked
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" disabled>
+                      <span class="form-check-sign"></span>
+                      Disabled Checked
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-5 checkbox-radios">
+                  <div class="form-check form-check-radio">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios3" value="option1">
+                      <span class="form-check-sign"></span>
+                      Radio is off
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios4" value="option2" checked>
+                      <span class="form-check-sign"></span>
+                      Radio is on
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadio1" id="exampleRadios5" value="option1" disabled>
+                      <span class="form-check-sign"></span>
+                      Radio is off
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="exampleRadio1" id="exampleRadios6" value="option2" checked disabled>
+                      <span class="form-check-sign"></span>
+                      Radio is on
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Input with success</label>
+                <div class="col-sm-10">
+                  <div class="form-group has-success">
+                    <input type="text" class="form-control" value="Success">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Input with error</label>
+                <div class="col-sm-10">
+                  <div class="form-group has-danger">
+                    <input type="text" class="form-control" value="Error">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Column sizing</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder=".col-md-3">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder=".col-md-4">
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder=".col-md-5">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>*@
+    </div>
+
+</div>
