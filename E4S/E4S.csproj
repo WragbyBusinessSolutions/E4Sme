@@ -19,9 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Shared\_LayoutHumanResouces.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutAccountInventory.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutNew.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\HumanResource\" />
   </ItemGroup>
 
 </Project>

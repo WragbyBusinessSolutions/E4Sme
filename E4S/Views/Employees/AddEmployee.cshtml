@@ -1,0 +1,87 @@
+﻿
+@{
+  ViewData["Title"] = "Add Employee";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+<div class="content">
+  <div class="col-md-10 mr-auto ml-auto">
+    <!--      Wizard container        -->
+    <div class="wizard-container">
+      <div class="card card-wizard" data-color="primary" id="wizardProfile">
+        <form action="" method="">
+          <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+          <div class="card-header text-center" data-background-color="orange">
+            <h3 class="card-title">
+              New Employee
+            </h3>
+            <h3 class="description">
+              On boarding our new employee.</h5>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="about">
+                <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+                <div class="row justify-content-center">
+                  <div class="col-sm-4">
+                    <div class="picture-container">
+                      <div class="picture">
+                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizard-picture">
+                      </div>
+                      <h6 class="description">Choose Picture</h6>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        <i class="now-ui-icons users_circle-08"></i>
+                      </span>
+                      <input type="text" class="form-control" placeholder="First Name (required)" name="firstname">
+                    </div>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        <i class="now-ui-icons text_caps-small"></i>
+                      </span>
+                      <input type="text" placeholder="Middle Name (required)" class="form-control" name="middlename" />
+                    </div>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        <i class="now-ui-icons text_caps-small"></i>
+                      </span>
+                      <input type="text" placeholder="Last Name (required)" class="form-control" name="lastname" />
+                    </div>
+                  </div>
+                  <div class="col-lg-10 mt-3">
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        <i class="now-ui-icons text_caps-small"></i>
+                      </span>
+                      <input type="email" placeholder="Email (required)" class="form-control" name="email" />
+                    </div>
+                  </div>
+                  <div class="col-lg-10 mt-3">
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        <i class="now-ui-icons text_caps-small"></i>
+                      </span>
+                      <input type="text" placeholder="Employee Id (required)" class="form-control" name="email" />
+                    </div>
+                  </div>
+                  <div class="col-lg-10 mt-3 ">
+                    <div class="pull-left">
+                      <button type="submit" class="btn btn-fill btn-success">Save</button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+        </form>
+      </div>
+    </div>
+    <!-- wizard container -->
+  </div>
+</div>
+
