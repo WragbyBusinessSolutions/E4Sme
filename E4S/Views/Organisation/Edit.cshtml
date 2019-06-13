@@ -1,6 +1,6 @@
 ﻿@model E4S.Models.Organisation
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Edit Organisation";
     Layout = "_LayoutNew";
 }
 
@@ -15,7 +15,7 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
             <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                <form action="" method="">
+                <form action="Edit"  method="post">
                     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center" data-background-color="orange">
                         <h3 class="card-title">
@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="col-md-3 col-form-label">Registration Number</label>
+                                        <label class="col-md-3 col-form-label">Registration No</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons users_circle-08"></i>
