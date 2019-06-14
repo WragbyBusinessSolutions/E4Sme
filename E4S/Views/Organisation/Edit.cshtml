@@ -18,10 +18,19 @@
                 <form action="Edit"  method="post">
                     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center" data-background-color="orange">
-                        <h3 class="card-title">
-                            Build Your Profile
-                        </h3>
-                        <h5 class="description"></h5>This information will let us know more about you.</h5>
+                      <h3 class="card-title">
+                        @if (Model.OrganisationName == "")
+                        {
+                          Model.OrganisationName = "Build Your Profile";
+                          @Model.OrganisationName
+                        }
+                        else
+                        {
+                          @Model.OrganisationName
+                        }
+
+                      </h3>
+                        <h5 class="description"><h5>This information will let us know more about you.</h5>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -30,13 +39,16 @@
                                 <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
                                 <div class="row justify-content-center">
                                     <div class="col-sm-4">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                <input type="file" id="wizard-picture">
-                                            </div>
-                                            <h6 class="description">Choose Orginsation Logo</h6>
+                                      <div class="picture-container">
+                                        <div class="picture">
+                                          <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                          <input type="file" id="wizard-picture">
                                         </div>
+                                        <h6 class="description">Choose Orginsation Logo</h6>
+                                        <input asp-for="Id" hidden />
+
+                                      </div>
+
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="col-md-3 col-form-label">Registration No</label>
@@ -117,7 +129,6 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>

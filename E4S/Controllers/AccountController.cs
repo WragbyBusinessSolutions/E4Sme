@@ -224,7 +224,16 @@ namespace E4S.Controllers
       ViewData["ReturnUrl"] = returnUrl;
       if (ModelState.IsValid)
       {
-        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var orgId = Guid.NewGuid();
+
+        Organisation newOrganisation = new Organisation()
+        {
+          Id = orgId,
+          OrganisationId = orgId,
+          //RegistrarId = Guid.Parse(user.Id),
+        };
+
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, OrganisationId = newOrganisation.Id };
         var result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
@@ -238,13 +247,8 @@ namespace E4S.Controllers
           _logger.LogInformation("User created a new account with password.");
 
           //Create Organisation profile immediately a new user come on board via the registration page.
-          var orgId = Guid.NewGuid();
-          Organisation newOrganisation = new Organisation()
-          {
-            Id = orgId,
-            OrganisationId = orgId,
-            RegistrarId = Guid.Parse(user.Id),
-          };
+
+          newOrganisation.RegistrarId = Guid.Parse(user.Id);
 
           _context.Add(newOrganisation);
           _context.SaveChanges();
