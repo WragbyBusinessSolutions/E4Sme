@@ -1,8 +1,113 @@
 ﻿
 @{
-    ViewData["Title"] = "Vacancies";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Vacancies";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>Index</h2>
+
+<div class="content">
+
+
+  <div class="row">
+    <!-- Column -->
+
+    <div class="container-fluid">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="justify-content-end align-items-center pull-right">
+                  <a asp-action="AddVacancy" asp-controller="Recruitments" class="btn btn-info btn-lg">Create New</a>
+                </div>
+
+                <h4 class="card-title">List of Vacancies</h4>
+              </div>
+              <div class="card-body">
+                <br />
+                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Vacancy</th>
+                      <th>Hiring Manager</th>
+                      <th>No. Of Positions</th>
+                      <th>Description</th>
+                      <th class="disabled-sorting text-right">Options</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Vacancy</th>
+                      <th>Hiring Manager</th>
+                      <th>No. Of Positions</th>
+                      <th>Description</th>
+                      <th class="disabled-sorting text-right">Options</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>DevOps</td>
+                      <td>Mr. Ibrahim</td>
+                      <td>2</td>
+                      <td>Learning Position</td>
+                      <td class="text-right">
+                        @*<button class="btn btn-primary btn-sm">Edit</button>
+    <button class="btn btn-info btn-sm">Get Link</button>
+    <button class="btn btn-warning btn-sm">Delete</button>*@
+
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-info btn-icon btn-sm like"><i class="fas fa-globe"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Business Solutions</td>
+                      <td>Mr. Tunji</td>
+                      <td>1</td>
+                      <td>Good Pay</td>
+                      <td class="text-right">
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-info btn-icon btn-sm like"><i class="fas fa-globe"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Sales</td>
+                      <td>Ms. Pam</td>
+                      <td>3</td>
+                      <td>On Commission</td>
+                      <td class="text-right">
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-info btn-icon btn-sm like"><i class="fas fa-globe"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Modern Workplace</td>
+                      <td>Mr. Ajala</td>
+                      <td>1</td>
+                      <td>Good Pay</td>
+                      <td class="text-right">
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-info btn-icon btn-sm like"><i class="fas fa-globe"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- end content-->
+            </div>
+            <!--  end card  -->
+          </div>
+          <!-- end col-md-12 -->
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
