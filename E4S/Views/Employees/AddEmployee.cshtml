@@ -5,83 +5,236 @@
 }
 
 <div class="content">
-  <div class="col-md-10 mr-auto ml-auto">
-    <!--      Wizard container        -->
-    <div class="wizard-container">
-      <div class="card card-wizard" data-color="primary" id="wizardProfile">
-        <form action="" method="">
-          <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-          <div class="card-header text-center" data-background-color="orange">
-            <h3 class="card-title">
-              New Employee
-            </h3>
-            <h3 class="description">
-              On boarding our new employee.</h5>
-          </div>
-          <div class="card-body">
-            <div class="tab-content">
-              <div class="tab-pane fade show active" id="about">
-                <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
-                <div class="row justify-content-center">
-                  <div class="col-sm-4">
-                    <div class="picture-container">
-                      <div class="picture">
-                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                        <input type="file" id="wizard-picture">
-                      </div>
-                      <h6 class="description">Choose Picture</h6>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-group form-control-lg">
-                      <span class="input-group-addon">
-                        <i class="now-ui-icons users_circle-08"></i>
-                      </span>
-                      <input type="text" class="form-control" placeholder="First Name (required)" name="firstname">
-                    </div>
-                    <div class="input-group form-control-lg">
-                      <span class="input-group-addon">
-                        <i class="now-ui-icons text_caps-small"></i>
-                      </span>
-                      <input type="text" placeholder="Middle Name (required)" class="form-control" name="middlename" />
-                    </div>
-                    <div class="input-group form-control-lg">
-                      <span class="input-group-addon">
-                        <i class="now-ui-icons text_caps-small"></i>
-                      </span>
-                      <input type="text" placeholder="Last Name (required)" class="form-control" name="lastname" />
-                    </div>
-                  </div>
-                  <div class="col-lg-10 mt-3">
-                    <div class="input-group form-control-lg">
-                      <span class="input-group-addon">
-                        <i class="now-ui-icons text_caps-small"></i>
-                      </span>
-                      <input type="email" placeholder="Email (required)" class="form-control" name="email" />
-                    </div>
-                  </div>
-                  <div class="col-lg-10 mt-3">
-                    <div class="input-group form-control-lg">
-                      <span class="input-group-addon">
-                        <i class="now-ui-icons text_caps-small"></i>
-                      </span>
-                      <input type="text" placeholder="Employee Id (required)" class="form-control" name="email" />
-                    </div>
-                  </div>
-                  <div class="col-lg-10 mt-3 ">
-                    <div class="pull-left">
-                      <button type="submit" class="btn btn-fill btn-success">Save</button>
-                    </div>
+    <div class="col-md-12 mr-auto ml-auto">
+        <div class="content">
+            <div class="row">
+                @*<div class="col-md-4">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card card-wizard" data-color="primary" id="wizardProfile">
+                            <form action="" method="">
+                                <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                                <div class="card-header text-center" data-background-color="orange">
+                                    <h3 class="card-title">
+                                        New Employee
+                                    </h3>
+                                    <h5 class="description">
+                                        On boarding our new employee.
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="about">
+                                            <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+                                            <div class="row justify-content-center">
+                                                <div class="col-sm-4">
+                                                    <div class="picture-container">
+                                                        <div class="picture">
+                                                            <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                            <input type="file" id="wizard-picture">
+                                                        </div>
+                                                        <h6 class="description">Choose Picture</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
-                  </div>
+                        </div>
+                    </div>
+                    <!-- wizard container -->
+                </div>*@
+                
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header text-center" data-background-color="orange">
+                            <h3 class="card-title">
+                                New Employee
+                            </h3>
+                            <h5 class="description">
+                                On boarding our new employee.
+                            </h5>
+                        </div>
+                        
+                        <div class="card-header ">
+                            <h4 class="card-title">
+                                Navigation Pills -
+                                <small class="description">Vertical Tabs</small>
+                            </h4>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul class="nav nav-pills nav-pills-primary flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#link4" role="tablist">
+                                                Profile Details
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link5" role="tablist">
+                                                Contact Details
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link6" role="tablist">
+                                                Emergency Contact
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link1" role="tablist">
+                                                Dependents
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                                                Job
+                                            </a>
+                                        </li>
 
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+                                                Salary
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#link7" role="tablist">
+                                                Qaalification
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="link4">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-md-4 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Surname</label>
+                                                            <input type="text" class="form-control"  placeholder="Company" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Middle name</label>
+                                                            <input type="text" class="form-control" placeholder="Username" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 pl-1">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Last Name</label>
+                                                            <input type="email" class="form-control" placeholder="Email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <hr />
+                                                <div class="row">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Employye ID</label>
+                                                            <input type="text" class="form-control" disabled placeholder="Employee ID" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Other ID </label>
+                                                            <input type="text" class="form-control" placeholder="Last Name" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Address</label>
+                                                            <input type="text" class="form-control" placeholder="Home Address" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 pr-1">
+                                                        <div class="form-group">
+                                                            <label>City</label>
+                                                            <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Country</label>
+                                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Postal Code</label>
+                                                            <input type="number" class="form-control" placeholder="ZIP Code">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>About Me</label>
+                                                            <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form> Dramatically visualize customer directed convergence without revolutionary ROI.
+                                        </div>
+                                        <div class="tab-pane" id="link5">
+                                            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                                            <br>
+                                            <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                        </div>
+                                        <div class="tab-pane" id="link6">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link1">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link2">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link3">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamica the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link7">
+                                            Completely synergizionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link4">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br> innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                        <div class="tab-pane" id="link6">
+                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                            <br>
+                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-        </form>
-      </div>
+            </div>
+        </div>
     </div>
-    <!-- wizard container -->
-  </div>
 </div>
 
+            <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+            <script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+            <script src="~/assets/js/plugins/bootstrap-switch.js"></script>
