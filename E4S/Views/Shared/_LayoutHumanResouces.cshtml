@@ -86,7 +86,7 @@
 
         <ul class="nav">
           <li class="active">
-            <a href="../examples/dashboard.html">
+            <a asp-action="Index" asp-controller="Home">
               <i class="now-ui-icons design_app"></i>
               <p>Home</p>
             </a>
@@ -96,6 +96,9 @@
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
+
+            @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
+
           </li>
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
@@ -128,44 +131,85 @@
               </ul>
             </div>
           </li>
-
-          <li class="">
-            <a href="../examples/dashboard.html">
-              <i class="now-ui-icons design_app"></i>
-              <p>Invoice</p>
-            </a>
-          </li>
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="now-ui-icons design_image"></i>
               <p>
-                ACCOUNT
+                RECRUITMENT
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse " id="pagesExamples">
               <ul class="nav">
                 <li>
-                  <a href="../organisation">
-                    <span class="sidebar-mini-icon">OD</span>
-                    <span class="sidebar-normal"> Organisation Details </span>
+                  <a asp-action="Index" asp-controller="Recruitments">
+                    <span class="sidebar-mini-icon">V</span>
+                    <span class="sidebar-normal"> VACANCIES</span>
                   </a>
                 </li>
                 <li>
-                  <a href="../organisation/branch">
-                    <span class="sidebar-mini-icon">B</span>
-                    <span class="sidebar-normal"> Branch </span>
+                  <a asp-action="Candidates" asp-controller="Recruitments">
+                    <span class="sidebar-mini-icon">C</span>
+                    <span class="sidebar-normal"> CANDIDATES </span>
                   </a>
                 </li>
+                @*<li>
+            <a href="#">
+              <span class="sidebar-mini-icon">R</span>
+              <span class="sidebar-normal">Report </span>
+            </a>
+          </li>*@
               </ul>
             </div>
           </li>
           <li class="">
-            <a href="../examples/dashboard.html">
-              <i class="now-ui-icons users_circle-08"></i>
-              <p>Users</p>
+            <a asp-action="Index" asp-controller="Leaves">
+              <i class="now-ui-icons design_app"></i>
+              <p>Dashboard</p>
+            </a>
+
+            @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
+
+          </li>
+
+
+          @*<li class="">
+      <a href="../examples/dashboard.html">
+        <i class="now-ui-icons design_app"></i>
+        <p>Invoice</p>
+      </a>
+    </li>
+    <li>
+      <a data-toggle="collapse" href="#pagesExamples">
+        <i class="now-ui-icons design_image"></i>
+        <p>
+          ACCOUNT
+          <b class="caret"></b>
+        </p>
+      </a>
+      <div class="collapse " id="pagesExamples">
+        <ul class="nav">
+          <li>
+            <a href="../organisation">
+              <span class="sidebar-mini-icon">OD</span>
+              <span class="sidebar-normal"> Organisation Details </span>
             </a>
           </li>
+          <li>
+            <a href="../organisation/branch">
+              <span class="sidebar-mini-icon">B</span>
+              <span class="sidebar-normal"> Branch </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="">
+      <a href="../examples/dashboard.html">
+        <i class="now-ui-icons users_circle-08"></i>
+        <p>Users</p>
+      </a>
+    </li>*@
           <li class="">
             <a href="../examples/dashboard.html">
               <i class="now-ui-icons users_circle-08"></i>
