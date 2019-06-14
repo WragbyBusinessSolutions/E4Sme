@@ -13,16 +13,14 @@ namespace E4S.Controllers.HumanResource
             return View();
         }
     
-    public IActionResult AddEmployee()
-    {
-      return View();
+        public IActionResult AddEmployee()
+        {
+            return View();
+        }
+
+        public IActionResult EmployeeDetails()
+        {
+          return View();
+        }
     }
-
-    public IActionResult EmployeeDetails()
-    {
-      return View();
-    }
-
-
-  }
 }
