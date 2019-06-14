@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using E4S.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,21 @@ namespace E4S.Controllers
       return View();
     }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
+    public IActionResult Edit()
+    {
+       return View();
+    }
 
-        public IActionResult createbranch()
-        {
-            return View();
-        }
+
+    [HttpPost]
+    public IActionResult Edit(Organisation organisation)
+    {
+
+      return View();
+    }
+    public IActionResult createbranch()
+    {
+        return View();
+    }
     }
 }
