@@ -1,5 +1,6 @@
 ﻿using E4S.Data;
 using E4S.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace E4S.Controllers
 {
+  [Authorize]
   public class OrganisationController : Controller
   {
     private readonly ApplicationDbContext _context;
@@ -28,7 +30,11 @@ namespace E4S.Controllers
 
     public IActionResult Index()
     {
-      return View();
+      var orgId = getOrg();
+
+      var org = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+      return View(org);
     }
 
     public IActionResult Branch()
@@ -54,6 +60,15 @@ namespace E4S.Controllers
     [HttpPost]
     public IActionResult Edit(Organisation organisation)
     {
+
+      if (organisation != null)
+      {
+
+        _context.Update(organisation);
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+      }
 
       return View();
     }
