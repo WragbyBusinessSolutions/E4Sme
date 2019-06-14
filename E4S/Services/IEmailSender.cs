@@ -8,5 +8,8 @@ namespace E4S.Services
   public interface IEmailSender
   {
     Task SendEmailAsync(string email, string subject, string message);
+    string SendPlainEmailAsync(string emailAdd, string subject, string message);
+
+    Task SendGridEmailAsync(string emailAdd, string subject, string message);
   }
 }
