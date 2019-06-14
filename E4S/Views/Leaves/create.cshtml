@@ -4,7 +4,6 @@
     Layout = "_LayoutNew";
 }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 @*<!-- End Navbar -->
     <!-- End Navbar -->
@@ -29,15 +28,6 @@
                             <div class="tab-pane fade show active" id="about">
                                 <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
                                 <div class="row justify-content-center">
-                                    <div class="col-sm-4">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                <input type="file" id="wizard-picture">
-                                            </div>
-                                            <h6 class="description">Choose Orginsation Logo</h6>
-                                        </div>
-                                    </div>
                                     <div class="col-sm-6">
                                         <label class="col-md-3 col-form-label">Registration No</label>
                                         <div class="input-group form-control-lg">
@@ -94,21 +84,7 @@
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
                                             <input type="text" placeholder="Last Name (required)" asp-for="Address" class="form-control" />
-                                        </div>
-                                        <label>Country</label>
-                                        <div class="form-group">
-                                            <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
-                                        </div>
-
-                                        <label>State</label>
-                                        <div class="form-group">
-                                            <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
-                                        </div>
-
-                                        <label>City</label>
-                                        <div class="form-group">
-                                            <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
-                                        </div>
+                                        </div>                                        
                                         <div class="card-footer ">
                                             <button type="submit" class="btn btn-fill btn-primary" >Submit</button>
                                         </div>
@@ -127,107 +103,5 @@
 <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
 <script src="~/assets/js/plugins/bootstrap-selectpicker.js"></script>
 
-<script>
-    $(document).ready(function () {
-        //-------------------------------SELECT CASCADING-------------------------//
-        var selectedCountry = selectedRegion = selectedCity = countryCode = "";
-        // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
-        var BATTUTA_KEY = "00000000000000000000000000000000";
-        // Populate country select box from battuta API
-        url =
-            "https://geo-battuta.net/api/country/all/?key=" +
-            BATTUTA_KEY +
-            "&callback=?";
-        // EXTRACT JSON DATA.
-        $.getJSON(url, function (data) {
-            $.each(data, function (index, value) {
-                // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
-                $("#country").append(
-                    '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
-                );
-            });
-        });
-        // Country selected --> update region list .
-        $("#country").change(function () {
-            selectedCountry = this.options[this.selectedIndex].text;
-            countryCode = $(this).children(":selected").attr("id");
-            url =
-                "https://geo-battuta.net/api/region/" +
-                countryCode +
-                "/all/?key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#region option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#region").append(
-                        '<option value="' + value.region + '">' + value.region + "</option>"
-                    );
-                });
-            });
-        });
-        // Region selected --> updated city list
-        $("#region").on("change", function () {
-            selectedRegion = this.options[this.selectedIndex].text;
-            // Populate country select box from battuta API
-            region = $("#region").val();
-            url =
-                "https://geo-battuta.net/api/city/" +
-                countryCode +
-                "/search/?region=" +
-                region +
-                "&key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#city option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#city").append(
-                        '<option value="' + value.city + '">' + value.city + "</option>"
-                    );
-                });
-            });
-        });
-        // city selected --> update location string
-        $("#city").on("change", function () {
-            selectedCity = this.options[this.selectedIndex].text;
-            $("#location").html(
-                "Locatation: Country: " +
-                selectedCountry +
-                ", Region: " +
-                selectedRegion +
-                ", City: " +
-                selectedCity
-            );
-        });
-
-    });
-    // process form
-    function processForm() {
-        var username = password = country = region = city = '';
-        username = $('#username').val();
-        password = $('#password').val();
-        country = $('#country').val();
-        region = $('#region').val();
-        city = $('#city').val();
-        if (username != '' && password != '' && country != '' && region != '' && city != '') {
-            $("#location").html(
-                "Username: " + username +
-                " /Password: " + password +
-                " /Locatation: Country: " +
-                country +
-                ", Region: " +
-                region +
-                ", City: " +
-                city
-            );
-        } else {
-            $("#location").html('Complete Form 1st');
-            return false;
-        }
-    }
-</script>
 
 
