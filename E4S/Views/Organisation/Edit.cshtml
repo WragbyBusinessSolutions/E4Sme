@@ -44,56 +44,56 @@
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons users_circle-08"></i>
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Registration (required)" name="firstname">
+                                            <input type="text" class="form-control" asp-for="RegistrationNo" placeholder="Registration (required)">
                                         </div>
                                         <label class="col-md-3 col-form-label">Organisation Name</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Organisation Name (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Organisation Name (required)" class="form-control" asp-for="OrganisationName" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Phone Number</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Phone Number (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Phone Number (required)" class="form-control" asp-for="PhoneNumber" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Email</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Email Address (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Email Address (required)" class="form-control" asp-for="Email" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Zip Code</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Zip Code (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Zip Code (required)" class="form-control" asp-for="ZipCode" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Tax ID</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Tax ID (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Tax ID (required)" asp-for="TaxId" class="form-control" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Organisation Prefix</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Organisation Prefix (required)" class="form-control" name="lastname" />
+                                            <input type="text" placeholder="Organisation Prefix (required)" asp-for="OrganisationPrefix" class="form-control" />
                                         </div>
                                         <label class="col-md-3 col-form-label">Address</label>
                                         <div class="input-group form-control-lg">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </span>
-                                            <input type="text" placeholder="Last Name (required)" class="form-control" />
+                                            <input type="text" placeholder="Last Name (required)" asp-for="Address" class="form-control" />
                                         </div>
                                         <label>Country</label>
                                         <div class="form-group">
@@ -110,7 +110,7 @@
                                             <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
                                         </div>
                                         <div class="card-footer ">
-                                            <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-fill btn-primary" >Submit</button>
                                         </div>
                                     </div>
                                 </div>
