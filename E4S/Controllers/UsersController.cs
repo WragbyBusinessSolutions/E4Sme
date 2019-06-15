@@ -4,8 +4,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
+using E4S.Models;
+using E4S.Services;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E4S.Controllers
@@ -14,10 +17,15 @@ namespace E4S.Controllers
   public class UsersController : Controller
     {
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailSender _emailSender;
 
-    public UsersController(ApplicationDbContext context)
+
+    public UsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
       _context = context;
+      _userManager = userManager;
+      _emailSender = emailSender;
 
     }
     private Guid getOrg()
@@ -43,12 +51,42 @@ namespace E4S.Controllers
     }
 
     [HttpPost]
-    public IActionResult AddUser(UsersViewModel user)
+    public async Task<IActionResult> AddUser(UsersViewModel newuser)
     {
       var orgId = getOrg();
 
+      var user = new ApplicationUser
+      {
+        Id = Guid.NewGuid().ToString(),
+        UserName = newuser.Email,
+        Email = newuser.Email,
+        OrganisationId = orgId,
+        PhoneNumber = newuser.PhoneNumber,
+        UserRole = newuser.UserRole,
+        EmployeeName = newuser.Username
+        
+      };
 
-      return View();
+      var result = await _userManager.CreateAsync(user);
+      if (result.Succeeded)
+      {
+        await _userManager.AddToRoleAsync(user, user.UserRole);
+
+        var Email = user.Email;
+        string Code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+        var response = _emailSender.SendGridEmailAsync(user.Email, "Reset Password",
+           $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+        //if(response == "Success")
+        //{
+          return RedirectToAction("Index");
+      //  }
+      }
+
+
+      return View(newuser);
     }
 
   }

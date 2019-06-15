@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<E4S.Models.ApplicationUser>
 @{
   ViewData["Title"] = "User Management";
 }
@@ -44,47 +44,21 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>info@TigerNixon.com</td>
-                      <td>Super Admin</td>
-                      <td>Active</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>info@GatterrWinters.com</td>
-                      <td>Admin</td>
-                      <td>Pending</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Ashton Cox</td>
-                      <td>ArthurCox@mail.com</td>
-                      <td>Employee</td>
-                      <td>Active</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Cedric Kelly</td>
-                      <td>cedrickelly@mail.com</td>
-                      <td>Accountant</td>
-                      <td>Active</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
 
+                    @foreach (var item in Model)
+                    {
+                      <tr>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.Email</td>
+                        <td>@item.UserRole</td>
+                        <td>@item.EmailConfirmed</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                        </td>
+                      </tr>
+
+                    }
                   </tbody>
                 </table>
               </div>
