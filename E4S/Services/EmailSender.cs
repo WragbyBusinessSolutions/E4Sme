@@ -76,6 +76,7 @@ namespace E4S.Services
       };
       msg.AddTo(new EmailAddress(emailAdd, emailAdd));
       var response = await client.SendEmailAsync(msg);
+      
 
     }
   }
