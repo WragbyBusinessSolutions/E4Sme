@@ -1,52 +1,54 @@
 ﻿
 @{
-  ViewData["Title"] = "Add Employee";
-  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+    ViewData["Title"] = "Add Employee";
+    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="content">
     <div class="col-md-12 mr-auto ml-auto">
         <div class="content">
             <div class="row">
                 @*<div class="col-md-4">
-                    <!--      Wizard container        -->
-                    <div class="wizard-container">
-                        <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                            <form action="" method="">
-                                <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                                <div class="card-header text-center" data-background-color="orange">
-                                    <h3 class="card-title">
-                                        New Employee
-                                    </h3>
-                                    <h5 class="description">
-                                        On boarding our new employee.
-                                    </h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="about">
-                                            <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
-                                            <div class="row justify-content-center">
-                                                <div class="col-sm-4">
-                                                    <div class="picture-container">
-                                                        <div class="picture">
-                                                            <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                            <input type="file" id="wizard-picture">
+                        <!--      Wizard container        -->
+                        <div class="wizard-container">
+                            <div class="card card-wizard" data-color="primary" id="wizardProfile">
+                                <form action="" method="">
+                                    <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                                    <div class="card-header text-center" data-background-color="orange">
+                                        <h3 class="card-title">
+                                            New Employee
+                                        </h3>
+                                        <h5 class="description">
+                                            On boarding our new employee.
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="about">
+                                                <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-sm-4">
+                                                        <div class="picture-container">
+                                                            <div class="picture">
+                                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                                <input type="file" id="wizard-picture">
+                                                            </div>
+                                                            <h6 class="description">Choose Picture</h6>
                                                         </div>
-                                                        <h6 class="description">Choose Picture</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
 
+                            </div>
                         </div>
-                    </div>
-                    <!-- wizard container -->
-                </div>*@
-                
+                        <!-- wizard container -->
+                    </div>*@
+
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header text-center" data-background-color="orange">
@@ -57,7 +59,7 @@
                                 On boarding our new employee.
                             </h5>
                         </div>
-                        
+
                         <div class="card-header ">
                             <h4 class="card-title">
                                 Navigation Pills -
@@ -101,7 +103,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#link7" role="tablist">
-                                                Qaalification
+                                                Qualification
                                             </a>
                                         </li>
                                     </ul>
@@ -115,13 +117,13 @@
                                                     <div class="col-md-4 pr-1">
                                                         <div class="form-group">
                                                             <label>Surname</label>
-                                                            <input type="text" class="form-control"  placeholder="Company" >
+                                                            <input type="text" class="form-control" placeholder="Company">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
                                                             <label>Middle name</label>
-                                                            <input type="text" class="form-control" placeholder="Username" >
+                                                            <input type="text" class="form-control" placeholder="Username">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1">
@@ -131,18 +133,63 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <hr />
+                                                <hr />
                                                 <div class="row">
                                                     <div class="col-md-6 pr-1">
                                                         <div class="form-group">
                                                             <label>Employye ID</label>
-                                                            <input type="text" class="form-control" disabled placeholder="Employee ID" >
+                                                            <input type="text" class="form-control" disabled placeholder="Employee ID">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 pl-1">
                                                         <div class="form-group">
                                                             <label>Other ID </label>
-                                                            <input type="text" class="form-control" placeholder="Last Name" >
+                                                            <input type="text" class="form-control" placeholder="Other ID">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Driver's Licence</label>
+                                                            <input type="text" class="form-control" placeholder="Driver's Licence">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Expiry Date </label>
+                                                            <input type="date" class="form-control" placeholder="Expiry Date">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-4 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Gender</label>
+                                                            <select type="text" class="form-control" placeholder="Username">
+                                                                <option selected> Select Gender</option>
+                                                                <option>Male </option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Marital Status</label>
+                                                            <select type="text" class="form-control" placeholder="Username">
+                                                                <option> Select Marital Status </option>
+                                                                <option>Single </option>
+                                                                <option>Married</option>
+                                                                <option>Engaged</option>
+                                                                <option>Widow</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 pl-1">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Date of Birth</label>
+                                                            <input type="Date" class="form-control" placeholder="date">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,50 +201,264 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <hr />
+                                                @*<div class="row">
                                                     <div class="col-md-4 pr-1">
                                                         <div class="form-group">
-                                                            <label>City</label>
-                                                            <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                            <label>Country</label>
+                                                            <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
-                                                            <label>Country</label>
-                                                            <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                            <label>State</label>
+                                                            <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1">
                                                         <div class="form-group">
-                                                            <label>Postal Code</label>
-                                                            <input type="number" class="form-control" placeholder="ZIP Code">
+                                                            <label>City</label>
+                                                            <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
                                                         </div>
                                                     </div>
+                                                </div>*@
+                                                <div class="card-footer ">
+                                                    <button type="submit" class="btn btn-fill btn-primary">Submit</button>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>About Me</label>
-                                                            <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form> Dramatically visualize customer directed convergence without revolutionary ROI.
+                                            </form>
                                         </div>
                                         <div class="tab-pane" id="link5">
-                                            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-                                            <br>
+                                            <div class="card-body">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Address 1</label>
+                                                                <input type="text" class="form-control" placeholder="Home Address" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Address 2</label>
+                                                                <input type="text" class="form-control" placeholder="Home Address" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Company (disabled)</label>
+                                                                <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 px-1">
+                                                            <div class="form-group">
+                                                                <label>Username</label>
+                                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Email address</label>
+                                                                <input type="email" class="form-control" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>First Name</label>
+                                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Last Name</label>
+                                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Address</label>
+                                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 pr-1">
+                                                            <div class="form-group">
+                                                                <label>City</label>
+                                                                <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 px-1">
+                                                            <div class="form-group">
+                                                                <label>Country</label>
+                                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Postal Code</label>
+                                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>About Me</label>
+                                                                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                             <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
                                         </div>
                                         <div class="tab-pane" id="link6">
-                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                                            <br>
-                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                            <div class="card-header">
+                                                <div class="justify-content-end align-items-center ">
+                                                    <a class="btn btn-fill btn-primary">Create New</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <br />
+                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Name</th>
+                                                            <th>Relationship</th>
+                                                            <th>Home Telephone</th>
+                                                            <th>Address</th>
+                                                            <th class="disabled-sorting text-right">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th> Name</th>
+                                                            <th>Relationship</th>
+                                                            <th>Home Telephone</th>
+                                                            <th>Address</th>
+                                                            <th class="disabled-sorting text-right">Actions</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Tiger Nixon</td>
+                                                            <td>info@TigerNixon.com</td>
+                                                            <td>Super Admin</td>
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Garrett Winters</td>
+                                                            <td>info@GatterrWinters.com</td>
+                                                            <td>Admin</td>
+                                                            <td>Pending</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Ashton Cox</td>
+                                                            <td>ArthurCox@mail.com</td>
+                                                            <td>Employee</td>
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cedric Kelly</td>
+                                                            <td>cedrickelly@mail.com</td>
+                                                            <td>Accountant</td>
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" id="link1">
-                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                                            <br>
-                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                                            <div class="card-header">
+                                                <div class="justify-content-end align-items-center ">
+                                                    <a class="btn btn-fill btn-primary">Create New</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <br />
+                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Name</th>
+                                                            <th>Relationship</th>
+                                                            <th>Date of Birth</th>
+                                                            <th class="disabled-sorting text-right">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th> Name</th>
+                                                            <th>Relationship</th>
+                                                            <th>Date of Birth</th>
+                                                            <th class="disabled-sorting text-right">Actions</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Tiger Nixon</td>
+                                                            <td>info@TigerNixon.com</td>
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Garrett Winters</td>
+                                                            <td>info@GatterrWinters.com</td>
+                                                            <td>Admin</td>                                                           
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Ashton Cox</td>
+                                                            <td>ArthurCox@mail.com</td>                                                           
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cedric Kelly</td>
+                                                            <td>cedrickelly@mail.com</td>                                                            
+                                                            <td>Active</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" id="link2">
                                             Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
@@ -235,6 +496,109 @@
     </div>
 </div>
 
-            <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-            <script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-            <script src="~/assets/js/plugins/bootstrap-switch.js"></script>
+
+<script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/assets/js/plugins/bootstrap-switch.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //-------------------------------SELECT CASCADING-------------------------//
+        var selectedCountry = selectedRegion = selectedCity = countryCode = "";
+        // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
+        var BATTUTA_KEY = "00000000000000000000000000000000";
+        // Populate country select box from battuta API
+        url =
+            "https://geo-battuta.net/api/country/all/?key=" +
+            BATTUTA_KEY +
+            "&callback=?";
+        // EXTRACT JSON DATA.
+        $.getJSON(url, function (data) {
+            $.each(data, function (index, value) {
+                // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
+                $("#country").append(
+                    '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
+                );
+            });
+        });
+        // Country selected --> update region list .
+        $("#country").change(function () {
+            selectedCountry = this.options[this.selectedIndex].text;
+            countryCode = $(this).children(":selected").attr("id");
+            url =
+                "https://geo-battuta.net/api/region/" +
+                countryCode +
+                "/all/?key=" +
+                BATTUTA_KEY +
+                "&callback=?";
+            $.getJSON(url, function (data) {
+                $("#region option").remove();
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $("#region").append(
+                        '<option value="' + value.region + '">' + value.region + "</option>"
+                    );
+                });
+            });
+        });
+        // Region selected --> updated city list
+        $("#region").on("change", function () {
+            selectedRegion = this.options[this.selectedIndex].text;
+            // Populate country select box from battuta API
+            region = $("#region").val();
+            url =
+                "https://geo-battuta.net/api/city/" +
+                countryCode +
+                "/search/?region=" +
+                region +
+                "&key=" +
+                BATTUTA_KEY +
+                "&callback=?";
+            $.getJSON(url, function (data) {
+                $("#city option").remove();
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $("#city").append(
+                        '<option value="' + value.city + '">' + value.city + "</option>"
+                    );
+                });
+            });
+        });
+        // city selected --> update location string
+        $("#city").on("change", function () {
+            selectedCity = this.options[this.selectedIndex].text;
+            $("#location").html(
+                "Locatation: Country: " +
+                selectedCountry +
+                ", Region: " +
+                selectedRegion +
+                ", City: " +
+                selectedCity
+            );
+        });
+
+    });
+    // process form
+    function processForm() {
+        var username = password = country = region = city = '';
+        username = $('#username').val();
+        password = $('#password').val();
+        country = $('#country').val();
+        region = $('#region').val();
+        city = $('#city').val();
+        if (username != '' && password != '' && country != '' && region != '' && city != '') {
+            $("#location").html(
+                "Username: " + username +
+                " /Password: " + password +
+                " /Locatation: Country: " +
+                country +
+                ", Region: " +
+                region +
+                ", City: " +
+                city
+            );
+        } else {
+            $("#location").html('Complete Form 1st');
+            return false;
+        }
+    }
+</script>
