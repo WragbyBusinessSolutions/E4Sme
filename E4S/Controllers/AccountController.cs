@@ -417,7 +417,7 @@ namespace E4S.Controllers
       {
         throw new ApplicationException("A code must be supplied for password reset.");
       }
-      var model = new ResetPasswordViewModel { Code = code };
+      var model = new ResetPasswordViewModel { Code = code, };
       return View(model);
     }
 
