@@ -100,7 +100,7 @@
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
 
           </li>
-          
+
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="now-ui-icons design_image"></i>
@@ -174,35 +174,28 @@
               <div class="collapse " id="jobs">
                   <ul class="nav">
                       <li>
-                          <a asp-action="JobTitle" asp-controller="Jobs">
+                          <a href="../Employees">
                               <span class="sidebar-mini-icon"> J T</span>
                               <span class="sidebar-normal"> Job Title</span>
                           </a>
                       </li>
                       <li>
-                          <a asp-action="JobCategory" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> J C</span>
-                              <span class="sidebar-normal"> Job Category </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="PayGrade" asp-controller="Jobs">
+                          <a href="#">
                               <span class="sidebar-mini-icon"> P G</span>
                               <span class="sidebar-normal"> Pay Grade </span>
                           </a>
                       </li>
                       <li>
-                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> E T</span>
-                              <span class="sidebar-normal"> Employement Status </span>
+                          <a href="#">
+                              <span class="sidebar-mini-icon">R</span>
+                              <span class="sidebar-normal">Report </span>
                           </a>
                       </li>
-
                   </ul>
               </div>
           </li>
           <li class="">
-            <a asp-action="ResetPassword" asp-controller="Account">
+            <a asp-action="Index" asp-controller="Leaves">
               <i class="now-ui-icons design_app"></i>
               <p>Leave</p>
             </a>
@@ -255,6 +248,10 @@
               <p>Log Out</p>
             </a>
           </li>
+
+
+
+
         </ul>
       </div>
     </div>
