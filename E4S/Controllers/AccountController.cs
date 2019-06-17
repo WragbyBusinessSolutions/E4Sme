@@ -409,6 +409,8 @@ namespace E4S.Controllers
       return View();
     }
 
+
+   
     [HttpGet]
     [AllowAnonymous]
     public IActionResult ResetPassword(string code = null)
@@ -417,7 +419,7 @@ namespace E4S.Controllers
       {
         throw new ApplicationException("A code must be supplied for password reset.");
       }
-      var model = new ResetPasswordViewModel { Code = code };
+      var model = new ResetPasswordViewModel { Code = code, };
       return View(model);
     }
 
