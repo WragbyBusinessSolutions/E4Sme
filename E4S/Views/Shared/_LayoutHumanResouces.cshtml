@@ -100,7 +100,7 @@
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
 
           </li>
-          
+
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="now-ui-icons design_image"></i>
@@ -164,45 +164,38 @@
             </div>
           </li>
           <li>
-              <a data-toggle="collapse" href="#jobs">
-                  <i class="now-ui-icons business_briefcase-24"></i>
-                  <p>
-                      Job
-                      <b class="caret"></b>
-                  </p>
-              </a>
-              <div class="collapse " id="jobs">
-                  <ul class="nav">
-                      <li>
-                          <a asp-action="JobTitle" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> J T</span>
-                              <span class="sidebar-normal"> Job Title</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="JobCategory" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> J C</span>
-                              <span class="sidebar-normal"> Job Category </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="PayGrade" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> P G</span>
-                              <span class="sidebar-normal"> Pay Grade </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> E T</span>
-                              <span class="sidebar-normal"> Employement Status </span>
-                          </a>
-                      </li>
-
-                  </ul>
-              </div>
+            <a data-toggle="collapse" href="#jobs">
+              <i class="now-ui-icons business_briefcase-24"></i>
+              <p>
+                Job
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse " id="jobs">
+              <ul class="nav">
+                <li>
+                  <a href="../Employees">
+                    <span class="sidebar-mini-icon"> J T</span>
+                    <span class="sidebar-normal"> Job Title</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="sidebar-mini-icon"> P G</span>
+                    <span class="sidebar-normal"> Pay Grade </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="sidebar-mini-icon">R</span>
+                    <span class="sidebar-normal">Report </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="">
-            <a asp-action="ResetPassword" asp-controller="Account">
+            <a asp-action="Index" asp-controller="Leaves">
               <i class="now-ui-icons design_app"></i>
               <p>Leave</p>
             </a>
@@ -255,6 +248,27 @@
               <p>Log Out</p>
             </a>
           </li>
+
+
+          @if (SignInManager.IsSignedIn(User))
+          {
+
+
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+              <li>
+
+                <a class="" aria-expanded="false">
+              <i class="now-ui-icons users_circle-08"></i>
+              <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
+                </a>
+
+              </li>
+
+            </form>
+          }
+
+
+
         </ul>
       </div>
     </div>
@@ -435,6 +449,11 @@
   <script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
   @*<script>
       $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js
@@ -445,8 +464,68 @@
       });
     </script>*@
 
-  <script>
+  <script type="text/javascript">
+
     $(document).ready(function () {
+
+      $("#submitNewEmployee").click(function (event) {
+
+      event.preventDefault();
+
+      var Employee = {
+        FirstName: $("#firstName").val(),
+        LastName: $("#lastName").val(),
+        PersonalEmail: $("#personalEmail").val(),
+        PhoneNumber: $("#phoneNumber").val(),
+      };
+
+
+      // console.log(Items);
+      console.log(Employee);
+
+      $.ajax({
+        type: "POST",
+        url: "/Employees/postNewEmployee",
+        data: JSON.stringify(Employee),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+            demo.showSwal('success-message');
+
+          } else if (r.msg == "Fail") {
+
+         alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+                     alert(r.msg);
+
+          } else {
+                     alert(r.msg);
+          }
+         //alert(r.msg);
+         // window.location.reload();
+
+        },
+        error: function () {
+         alert(r.msg);
+        }
+      });
+    });
+
+
+    });
+
+  </script>
+  <script >
+    $(document).ready(function () {
+
       $('#datatable').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
@@ -493,6 +572,12 @@
         $('.card.card-wizard').addClass('active');
       }, 600);
     });
+
+  $(document).ready(function() {
+    // Initialise Sweet Alert library
+    demo.showSwal();
+  });
+
   </script>
 
 

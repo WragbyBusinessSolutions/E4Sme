@@ -29,5 +29,6 @@ namespace E4S.Data
     public DbSet<EmploymentStatus> EmploymentStatuses { get; set; }
     public DbSet<JobCategory> JobCategories { get; set; }
     public DbSet<PayGrade> PayGrades { get; set; }
+    public DbSet<EmployeeDetail> EmployeeDetails { get; set; }
   }
 }

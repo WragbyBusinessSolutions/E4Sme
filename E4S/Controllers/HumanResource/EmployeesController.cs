@@ -1,16 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using E4S.Data;
+using E4S.Models;
+using E4S.Models.HumanResource;
+using E4S.Services;
+using E4S.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E4S.Controllers.HumanResource
 {
+  [Authorize]
     public class EmployeesController : Controller
     {
-        public IActionResult Index()
+    private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailSender _emailSender;
+
+    public EmployeesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+    {
+      _context = context;
+      _userManager = userManager;
+      _emailSender = emailSender;
+
+    }
+
+    private Guid getOrg()
+    {
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
+
+      return orgId;
+    }
+
+    public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+
+      var employeeListDb = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
+
+      EmployeeListViewModel singleEmployee;
+
+      foreach (var item in employeeListDb)
+      {
+
+
+      }
+
+      return View();
         }
     
         public IActionResult AddEmployee()
@@ -22,5 +64,79 @@ namespace E4S.Controllers.HumanResource
         {
           return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> postNewEmployee([FromBody]PostNewEmployee postNewEmployee)
+        {
+      if (postNewEmployee == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.OrganisationId == orgId).FirstOrDefault();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+      EmployeeDetail newEmployee = new EmployeeDetail()
+      {
+        Id = Guid.NewGuid(),
+        FirstName = postNewEmployee.FirstName,
+        LastName = postNewEmployee.LastName,
+        Email = postNewEmployee.PersonalEmail,
+        PhoneNumber = postNewEmployee.PhoneNumber, 
+        EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+        OrganisationId = orgId,
+
+      };
+
+      _context.Add(newEmployee);
+      _context.SaveChanges();
+
+      var user = new ApplicationUser
+      {
+        Id = Guid.NewGuid().ToString(),
+        UserName = newEmployee.Email,
+        Email = newEmployee.Email,
+        OrganisationId = orgId,
+        PhoneNumber = newEmployee.PhoneNumber,
+        UserRole = "Employee",
+        EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
+      };
+
+      var result = await _userManager.CreateAsync(user);
+      if (result.Succeeded)
+      {
+        await _userManager.AddToRoleAsync(user, user.UserRole);
+
+        var Email = user.Email;
+        string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+        var response = _emailSender.SendPlainEmailAsync(user.Email, "Reset Password",
+           $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+       );
+
+
+      }
+
+
+
+
+      return Json(new
+      {
+        msg = "Fail"
+      }
+     );
+
     }
+  }
 }

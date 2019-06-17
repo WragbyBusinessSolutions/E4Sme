@@ -911,12 +911,16 @@ demo = {
 
     	}else if(type == 'success-message'){
         	swal({
-                title: "Good job!",
-                text: "You clicked the button!",
+                title: "Success!",
+                text: "Added Successfully!",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop);
+            type: "success"
+          }).then(function () {
+
+            window.location.reload();
+
+          }).catch(swal.noop);
 
     	}else if(type == 'warning-message-and-confirmation'){
             swal({

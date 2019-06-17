@@ -73,7 +73,7 @@ namespace E4S.Controllers
         await _userManager.AddToRoleAsync(user, user.UserRole);
 
         var Email = user.Email;
-        string Code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
         var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
         var response = _emailSender.SendPlainEmailAsync(user.Email, "Reset Password",
