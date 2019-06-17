@@ -39,7 +39,20 @@ namespace E4S.Controllers.HumanResource
 
     public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+
+      var employeeListDb = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
+
+      EmployeeListViewModel singleEmployee;
+
+      foreach (var item in employeeListDb)
+      {
+
+
+      }
+
+      return View();
         }
     
         public IActionResult AddEmployee()
@@ -75,7 +88,9 @@ namespace E4S.Controllers.HumanResource
         LastName = postNewEmployee.LastName,
         Email = postNewEmployee.PersonalEmail,
         PhoneNumber = postNewEmployee.PhoneNumber, 
-        EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString()
+        EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+        OrganisationId = orgId,
+
       };
 
       _context.Add(newEmployee);
