@@ -48,11 +48,22 @@ namespace E4S.Controllers.HumanResource
 
       foreach (var item in employeeListDb)
       {
+        singleEmployee = new EmployeeListViewModel()
+        {
+          Id = item.Id,
+          EmployeeName = item.FirstName + " " + item.LastName,
+          Department = "",
+          EmployeeStatus = "",
+          JobTitle = "",
+          Supervisor = ""
+        };
 
-
+        employeeList.Add(singleEmployee);
       }
 
-      return View();
+
+
+      return View(employeeList);
         }
     
         public IActionResult AddEmployee()
@@ -78,57 +89,61 @@ namespace E4S.Controllers.HumanResource
       }
 
       var orgId = getOrg();
-      var organisationDetails = _context.Organisations.Where(x => x.OrganisationId == orgId).FirstOrDefault();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
       int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
-      EmployeeDetail newEmployee = new EmployeeDetail()
+      try
       {
-        Id = Guid.NewGuid(),
-        FirstName = postNewEmployee.FirstName,
-        LastName = postNewEmployee.LastName,
-        Email = postNewEmployee.PersonalEmail,
-        PhoneNumber = postNewEmployee.PhoneNumber, 
-        EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
-        OrganisationId = orgId,
-
-      };
-
-      _context.Add(newEmployee);
-      _context.SaveChanges();
-
-      var user = new ApplicationUser
-      {
-        Id = Guid.NewGuid().ToString(),
-        UserName = newEmployee.Email,
-        Email = newEmployee.Email,
-        OrganisationId = orgId,
-        PhoneNumber = newEmployee.PhoneNumber,
-        UserRole = "Employee",
-        EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
-      };
-
-      var result = await _userManager.CreateAsync(user);
-      if (result.Succeeded)
-      {
-        await _userManager.AddToRoleAsync(user, user.UserRole);
-
-        var Email = user.Email;
-        string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
-        var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
-
-        var response = _emailSender.SendPlainEmailAsync(user.Email, "Reset Password",
-           $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
-
-        return Json(new
+        EmployeeDetail newEmployee = new EmployeeDetail()
         {
-          msg = "Success"
-        }
-       );
+          Id = Guid.NewGuid(),
+          FirstName = postNewEmployee.FirstName,
+          LastName = postNewEmployee.LastName,
+          Email = postNewEmployee.PersonalEmail,
+          PhoneNumber = postNewEmployee.PhoneNumber,
+          EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+          OrganisationId = orgId
+        };
 
+        _context.Add(newEmployee);
+        _context.SaveChanges();
+
+        var user = new ApplicationUser
+        {
+          Id = Guid.NewGuid().ToString(),
+          UserName = newEmployee.Email,
+          Email = newEmployee.Email,
+          OrganisationId = orgId,
+          PhoneNumber = newEmployee.PhoneNumber,
+          UserRole = "Employee",
+          EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
+        };
+
+        var result = await _userManager.CreateAsync(user);
+        if (result.Succeeded)
+        {
+          await _userManager.AddToRoleAsync(user, user.UserRole);
+
+          var Email = user.Email;
+          string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+          var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+          var response = _emailSender.SendPlainEmailAsync(user.Email, "Reset Password",
+             $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+          return Json(new
+          {
+            msg = "Success"
+          }
+         );
+
+
+        }
+      }
+      catch(Exception ee)
+      {
 
       }
-
-
 
 
       return Json(new
