@@ -40,12 +40,15 @@ namespace E4S.Services
 
     public string SendPlainEmailAsync(string emailAdd, string subject, string message)
     {
-      SmtpServer.Credentials = new System.Net.NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19");
+      SmtpServer.Credentials = new System.Net.NetworkCredential("spoc@wragbysolutions.com", "@$Wbst@m!n18");
+
+      //SmtpServer.Credentials = new System.Net.NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19");
       try
       {
         MailMessage mailMessage = new MailMessage();
         MailMessage mail = mailMessage;
-        mail.From = new MailAddress("Wragbydev@wragbysolutions.com");
+        //mail.From = new MailAddress("Wragbydev@wragbysolutions.com");
+        mail.From = new MailAddress("spoc@wragbysolutions.com");
         mail.To.Add(emailAdd);
         mail.Subject = subject;
         mail.Body = message;

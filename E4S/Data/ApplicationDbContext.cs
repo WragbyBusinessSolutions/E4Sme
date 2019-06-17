@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using E4S.Models;
+using E4S.Models.HumanResource;
 
 namespace E4S.Data
 {
@@ -24,6 +25,9 @@ namespace E4S.Data
     }
 
     public DbSet<Organisation> Organisations { get; set; }
-
+    public DbSet<JobTitle> JobTitles { get; set; }
+    public DbSet<EmploymentStatus> EmploymentStatuses { get; set; }
+    public DbSet<JobCategory> JobCategories { get; set; }
+    public DbSet<PayGrade> PayGrades { get; set; }
   }
 }
