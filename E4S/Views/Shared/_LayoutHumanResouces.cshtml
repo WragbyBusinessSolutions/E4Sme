@@ -100,7 +100,7 @@
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
 
           </li>
-
+          
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="now-ui-icons design_image"></i>
@@ -164,38 +164,45 @@
             </div>
           </li>
           <li>
-            <a data-toggle="collapse" href="#jobs">
-              <i class="now-ui-icons business_briefcase-24"></i>
-              <p>
-                Job
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse " id="jobs">
-              <ul class="nav">
-                <li>
-                  <a href="../Employees">
-                    <span class="sidebar-mini-icon"> J T</span>
-                    <span class="sidebar-normal"> Job Title</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon"> P G</span>
-                    <span class="sidebar-normal"> Pay Grade </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">R</span>
-                    <span class="sidebar-normal">Report </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+              <a data-toggle="collapse" href="#jobs">
+                  <i class="now-ui-icons business_briefcase-24"></i>
+                  <p>
+                      Job
+                      <b class="caret"></b>
+                  </p>
+              </a>
+              <div class="collapse " id="jobs">
+                  <ul class="nav">
+                      <li>
+                          <a asp-action="JobTitle" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> J T</span>
+                              <span class="sidebar-normal"> Job Title</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="JobCategory" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> J C</span>
+                              <span class="sidebar-normal"> Job Category </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="PayGrade" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> P G</span>
+                              <span class="sidebar-normal"> Pay Grade </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> E T</span>
+                              <span class="sidebar-normal"> Employement Status </span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </div>
           </li>
           <li class="">
-            <a asp-action="Index" asp-controller="Leaves">
+            <a asp-action="ResetPassword" asp-controller="Account">
               <i class="now-ui-icons design_app"></i>
               <p>Leave</p>
             </a>
@@ -242,44 +249,13 @@
         <p>Users</p>
       </a>
     </li>*@
-
-          @*@if (SignInManager.IsSignedIn(User))
-          {
-
-
-            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-              <li>
-
-                <a class="" aria-expanded="false">
-                  @*<i class="far fa-circ<i class="now-ui-icons design_app"></i>
-                  <button type="submit" class="btn btn-link">LOG OUT</button>
-
-                </a>
-
-              </li>
-
-            </form>le text-success"></i>*@
-                  
-          @*}*@
-
-
-
-          @if (SignInManager.IsSignedIn(User))
-          {
-
-
-            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-              <li class="">
-                <a asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                  <i class="now-ui-icons users_circle-08"></i>
-                  <button type="submit" class="btn btn-link">Log Out</button>
-                </a>
-              </li>         
-              </form>
-          }
-
-
-          </ul>
+          <li class="">
+            <a href="../examples/dashboard.html">
+              <i class="now-ui-icons users_circle-08"></i>
+              <p>Log Out</p>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 

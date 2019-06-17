@@ -4,5 +4,255 @@
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>JobCategory</h2>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+                        Add Job Category
+                    </button>
+                    <!-- notice modal -->
+                    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                    <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="instruction">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Job Category</label>
+                                                        <input type="text" class="form-control" placeholder="Job Category" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <input type="email" class="form-control" placeholder="Home Address">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr />
+                                            <div class="card-footer ">
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end notice modal -->
+                    @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="text-primary">
+                            <th class="text-center">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th>
+                                Employee Name
+                            </th>
+                            <th>
+                                Job Title
+                            </th>
+                            <th>
+                                Employee Status
+                            </th>
+                            <th>
+                                Department
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                            </thead>
+                            <tbody>
+
+                                @for (int i = 1; i < 10; i++)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            @i
+                                        </td>
+
+                                        <td>
+                                            Moleskine Agenda
+                                        </td>
+                                        <td>
+                                            Office
+                                        </td>
+                                        <td>
+                                            25
+                                        </td>
+                                        <td>
+                                            € 49
+                                        </td>
+
+                                        <th>
+                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                        </th>
+                                    </tr>
+
+                                }
+                                @*<tr>
+                                      <td class="text-center">
+                                        2
+                                      </td>
+                                      <td class="text-center">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox">
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        Stabilo Pen
+                                      </td>
+                                      <td>
+                                        Office
+                                      </td>
+                                      <td class="text-center">
+                                        30
+                                      </td>
+                                      <td class="text-right">
+                                        € 10
+                                      </td>
+                                      <td class="text-right">
+                                        € 300
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="text-center">
+                                        3
+                                      </td>
+                                      <td class="text-center">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" checked>
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        A4 Paper Pack
+                                      </td>
+                                      <td>
+                                        Office
+                                      </td>
+                                      <td class="text-center">
+                                        50
+                                      </td>
+                                      <td class="text-right">
+                                        € 10.99
+                                      </td>
+                                      <td class="text-right">
+                                        € 109
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="text-center">
+                                        4
+                                      </td>
+                                      <td class="text-center">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox">
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        Apple iPad
+                                      </td>
+                                      <td>
+                                        Meeting
+                                      </td>
+                                      <td class="text-center">
+                                        10
+                                      </td>
+                                      <td class="text-right">
+                                        € 499.00
+                                      </td>
+                                      <td class="text-right">
+                                        € 4,990
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="text-center">
+                                        5
+                                      </td>
+                                      <td class="text-center">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" checked>
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        Apple iPhone
+                                      </td>
+                                      <td>
+                                        Communication
+                                      </td>
+                                      <td class="text-center">
+                                        10
+                                      </td>
+                                      <td class="text-right">
+                                        € 599.00
+                                      </td>
+                                      <td class="text-right">
+                                        € 5,999
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="5"></td>
+                                      <td class="td-total">Total</td>
+                                      <td class="td-price">€ 35,999</td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
