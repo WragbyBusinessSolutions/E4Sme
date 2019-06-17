@@ -432,6 +432,11 @@
   <script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
   @*<script>
       $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js
@@ -442,8 +447,68 @@
       });
     </script>*@
 
-  <script>
+  <script type="text/javascript">
+
     $(document).ready(function () {
+
+      $("#submitNewEmployee").click(function (event) {
+
+      event.preventDefault();
+
+      var Employee = {
+        FirstName: $("#firstName").val(),
+        LastName: $("#lastName").val(),
+        PersonalEmail: $("#personalEmail").val(),
+        PhoneNumber: $("#phoneNumber").val(),
+      };
+
+
+      // console.log(Items);
+      console.log(Employee);
+
+      $.ajax({
+        type: "POST",
+        url: "/Employees/postNewEmployee",
+        data: JSON.stringify(Employee),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+            demo.showSwal('success-message');
+
+          } else if (r.msg == "Fail") {
+
+         alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+                     alert(r.msg);
+
+          } else {
+                     alert(r.msg);
+          }
+         alert(r.msg);
+         // window.location.reload();
+
+        },
+        error: function () {
+         alert(r.msg);
+        }
+      });
+    });
+
+
+    });
+
+  </script>
+  <script >
+    $(document).ready(function () {
+
       $('#datatable').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
@@ -490,6 +555,12 @@
         $('.card.card-wizard').addClass('active');
       }, 600);
     });
+
+  $(document).ready(function() {
+    // Initialise Sweet Alert library
+    demo.showSwal();
+  });
+
   </script>
 
 

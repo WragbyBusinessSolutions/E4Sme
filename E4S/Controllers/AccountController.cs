@@ -237,6 +237,18 @@ namespace E4S.Controllers
         var result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
+
+          await _userManager.AddToRoleAsync(user, "Super Admin");
+
+          //Create Organisation profile immediately a new user come on board via the registration page.
+
+          newOrganisation.RegistrarId = Guid.Parse(user.Id);
+
+          _context.Add(newOrganisation);
+          _context.SaveChanges();
+
+
+
           _logger.LogInformation("User created a new account with password.");
 
           var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -245,13 +257,6 @@ namespace E4S.Controllers
 
           await _signInManager.SignInAsync(user, isPersistent: false);
           _logger.LogInformation("User created a new account with password.");
-
-          //Create Organisation profile immediately a new user come on board via the registration page.
-
-          newOrganisation.RegistrarId = Guid.Parse(user.Id);
-
-          _context.Add(newOrganisation);
-          _context.SaveChanges();
 
 
           return RedirectToLocal(returnUrl);
