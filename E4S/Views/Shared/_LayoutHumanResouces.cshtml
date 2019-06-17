@@ -174,23 +174,30 @@
               <div class="collapse " id="jobs">
                   <ul class="nav">
                       <li>
-                          <a href="../Employees">
+                          <a asp-action="JobTitle" asp-controller="Jobs">
                               <span class="sidebar-mini-icon"> J T</span>
                               <span class="sidebar-normal"> Job Title</span>
                           </a>
                       </li>
                       <li>
-                          <a href="#">
+                          <a asp-action="JobCategory" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> J C</span>
+                              <span class="sidebar-normal"> Job Category </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="PayGrade" asp-controller="Jobs">
                               <span class="sidebar-mini-icon"> P G</span>
                               <span class="sidebar-normal"> Pay Grade </span>
                           </a>
                       </li>
                       <li>
-                          <a href="#">
-                              <span class="sidebar-mini-icon">R</span>
-                              <span class="sidebar-normal">Report </span>
+                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> E T</span>
+                              <span class="sidebar-normal"> Employement Status </span>
                           </a>
                       </li>
+
                   </ul>
               </div>
           </li>
@@ -248,10 +255,6 @@
               <p>Log Out</p>
             </a>
           </li>
-
-
-
-
         </ul>
       </div>
     </div>
