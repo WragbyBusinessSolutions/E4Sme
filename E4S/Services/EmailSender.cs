@@ -63,6 +63,33 @@ namespace E4S.Services
       return MailerResponse;
     }
 
+    public string SendLinkEmailAsync(string emailAdd, string subject, string message)
+    {
+      SmtpServer.Credentials = new System.Net.NetworkCredential("spoc@wragbysolutions.com", "@$Wbst@m!n18");
+
+      //SmtpServer.Credentials = new System.Net.NetworkCredential("Wragbydev@wragbysolutions.com", "@Devops19");
+      try
+      {
+        MailMessage mailMessage = new MailMessage();
+        MailMessage mail = mailMessage;
+        //mail.From = new MailAddress("Wragbydev@wragbysolutions.com");
+        mail.From = new MailAddress("spoc@wragbysolutions.com");
+        mail.To.Add(emailAdd);
+        mail.Subject = subject;
+        mail.Body = message;
+        mail.IsBodyHtml = true;
+        SmtpServer.Send(mail);
+        MailerResponse = "Success";
+      }
+      catch (Exception ex)
+      {
+        MailerResponse = "Failure";
+        var ErrorMessage = ex.Message;
+      }
+      return MailerResponse;
+    }
+
+
     async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message)
     {
       var apiKey = "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";
