@@ -140,7 +140,7 @@
                 <b class="caret"></b>
               </p>
             </a>
-            <div class="collapse " id="pagesExamples">
+            <div class="collapse " id="Recruitment">
               <ul class="nav">
                 <li>
                   <a asp-action="Index" asp-controller="Recruitments">
@@ -172,26 +172,32 @@
               </p>
             </a>
             <div class="collapse " id="jobs">
-              <ul class="nav">
-                <li>
-                  <a href="../Employees">
-                    <span class="sidebar-mini-icon"> J T</span>
-                    <span class="sidebar-normal"> Job Title</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon"> P G</span>
-                    <span class="sidebar-normal"> Pay Grade </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">R</span>
-                    <span class="sidebar-normal">Report </span>
-                  </a>
-                </li>
-              </ul>
+                <ul class="nav">
+                    <li>
+                        <a asp-action="JobTitle" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> J T</span>
+                            <span class="sidebar-normal"> Job Title</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="PayGrade" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> P G</span>
+                            <span class="sidebar-normal"> Pay Grade </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="JobCategory" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> P G</span>
+                            <span class="sidebar-normal"> Job Category </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon">R</span>
+                            <span class="sidebar-normal"> Employment Status </span>
+                        </a>
+                    </li>
+                </ul>
             </div>
           </li>
           <li class="">
@@ -409,176 +415,406 @@
 </body>
 
 <environment include="Development">
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <script src="../assets/js/plugins/moment.min.js"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="../assets/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for Sweet Alert -->
-  <script src="../assets/js/plugins/sweetalert2.min.js"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="../assets/js/plugins/jquery.validate.min.js"></script>
-  <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="../assets/js/plugins/bootstrap-datetimepicker.js"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-  <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="../assets/js/plugins/fullcalendar.min.js"></script>
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="../assets/js/plugins/jquery-jvectormap.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../assets/js/plugins/nouislider.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
-  <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../assets/js/plugins/moment.min.js"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="../assets/js/plugins/sweetalert2.min.js"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="../assets/js/plugins/jquery.validate.min.js"></script>
+    <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="../assets/js/plugins/bootstrap-datetimepicker.js"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+    <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="../assets/js/plugins/fullcalendar.min.js"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="../assets/js/plugins/jquery-jvectormap.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="../assets/js/plugins/nouislider.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
+    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../assets/demo/demo.js"></script>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-  @*<script>
-      $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+    @*<script>
+          $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
 
-        demo.initVectorMap();
+            demo.initVectorMap();
 
-      });
-    </script>*@
+          });
+        </script>*@
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-      $("#submitNewEmployee").click(function (event) {
+            $("#submitNewEmployee").click(function (event) {
 
-      event.preventDefault();
+                event.preventDefault();
 
-      var Employee = {
-        FirstName: $("#firstName").val(),
-        LastName: $("#lastName").val(),
-        PersonalEmail: $("#personalEmail").val(),
-        PhoneNumber: $("#phoneNumber").val(),
-      };
-
-
-      // console.log(Items);
-      console.log(Employee);
-
-      $.ajax({
-        type: "POST",
-        url: "/Employees/postNewEmployee",
-        data: JSON.stringify(Employee),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          RequestVerificationToken:
-            $('input:hidden[name="__RequestVerificationToken"]').val()
-        },
-        success: function (r) {
-
-          if (r.msg == "Success") {
-
-            demo.showSwal('success-message');
-
-          } else if (r.msg == "Fail") {
-
-         alert(r.msg);
-
-          } else if (r.msg == "No Data") {
-                     alert(r.msg);
-
-          } else {
-                     alert(r.msg);
-          }
-         //alert(r.msg);
-         // window.location.reload();
-
-        },
-        error: function () {
-         alert(r.msg);
-        }
-      });
-    });
+                var Employee = {
+                    FirstName: $("#firstName").val(),
+                    LastName: $("#lastName").val(),
+                    PersonalEmail: $("#personalEmail").val(),
+                    PhoneNumber: $("#phoneNumber").val(),
+                };
 
 
-    });
+                // console.log(Items);
+                console.log(Employee);
 
-  </script>
-  <script >
-    $(document).ready(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/postNewEmployee",
+                    data: JSON.stringify(Employee),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
 
-      $('#datatable').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
+                        if (r.msg == "Success") {
 
-      });
+                            demo.showSwal('success-message');
 
-      var table = $('#datatable').DataTable();
+                        } else if (r.msg == "Fail") {
 
-      // Edit record
-      table.on('click', '.edit', function () {
-        $tr = $(this).closest('tr');
+                            alert(r.msg);
 
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
 
-      // Delete a record
-      table.on('click', '.remove', function (e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
 
-      //Like record
-      table.on('click', '.like', function () {
-        alert('You clicked on Like button');
-      });
-    });
-  </script>
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
 
-  <script>
-    $(document).ready(function () {
-      // Initialise the wizard
-      demo.initNowUiWizard();
-      setTimeout(function () {
-        $('.card.card-wizard').addClass('active');
-      }, 600);
-    });
 
-  $(document).ready(function() {
-    // Initialise Sweet Alert library
-    demo.showSwal();
-  });
+        });
 
-  </script>
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SubmitNewPayGrade").click(function (event) {
+
+                event.preventDefault();
+
+                var PayGrade = {
+                    PayGradeName: $("#PayGradeName").val(),
+                    Currency: $("#Currency").val(),
+                    MinimumSalary: $("#MinimumSalary").val(),
+                    MaximumSalary: $("#MaximumSalary").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PayGrade);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Jobs/postNewPayGrade",
+                    data: JSON.stringify(PayGrade),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SubmitNewJobTitle").click(function (event) {
+
+                event.preventDefault();
+
+                var JobTitle = {
+                    JobTitle: $("#JobTitle").val(),
+                    Description: $("#Description").val(),
+                    Note: $("#Note").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(JobTitle);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Jobs/postNewJobTitle",
+                    data: JSON.stringify(JobTitle),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SubmitNewJobCategory").click(function (event) {
+
+                event.preventDefault();
+
+                var JobCategory = {
+                    JobCategory: $("#JobCategory").val(),
+                    Description: $("#Description").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(JobCategory);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Jobs/postNewJobCategory",
+                    data: JSON.stringify(JobCategory),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SubmitNewEmploymentStatus").click(function (event) {
+
+                event.preventDefault();
+
+                var EmploymentStatus = {
+                    EmploymentStatusName: $("#EmploymentStatusName").val(),
+                    Description: $("#Description").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(EmploymentStatus);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Jobs/postNewEmploymentStatus",
+                    data: JSON.stringify(EmploymentStatus),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+
+            });
+
+            var table = $('#datatable').DataTable();
+
+            // Edit record
+            table.on('click', '.edit', function () {
+                $tr = $(this).closest('tr');
+
+                var data = table.row($tr).data();
+                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            });
+
+            // Delete a record
+            table.on('click', '.remove', function (e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
+
+            //Like record
+            table.on('click', '.like', function () {
+                alert('You clicked on Like button');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialise the wizard
+            demo.initNowUiWizard();
+            setTimeout(function () {
+                $('.card.card-wizard').addClass('active');
+            }, 600);
+        });
+
+        $(document).ready(function () {
+            // Initialise Sweet Alert library
+            demo.showSwal();
+        });
+
+    </script>
 
 
 </environment>
