@@ -133,7 +133,7 @@
             </div>
           </li>
           <li>
-            <a data-toggle="collapse" href="#pagesExamples">
+            <a data-toggle="collapse" href="#Recruitment">
               <i class="now-ui-icons design_image"></i>
               <p>
                 RECRUITMENT
@@ -172,38 +172,48 @@
               </p>
             </a>
             <div class="collapse " id="jobs">
-                <ul class="nav">
-                    <li>
-                        <a asp-action="JobTitle" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> J T</span>
-                            <span class="sidebar-normal"> Job Title</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="PayGrade" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> P G</span>
-                            <span class="sidebar-normal"> Pay Grade </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="JobCategory" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> P G</span>
-                            <span class="sidebar-normal"> Job Category </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">R</span>
-                            <span class="sidebar-normal"> Employment Status </span>
-                        </a>
-                    </li>
-                </ul>
+              <ul class="nav">
+                <li>
+                  <a asp-action="JobTitle" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> J T</span>
+                    <span class="sidebar-normal"> Job Title</span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="PayGrade" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> P G</span>
+                    <span class="sidebar-normal"> Pay Grade </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="JobCategory" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> P G</span>
+                    <span class="sidebar-normal"> Job Category </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">R</span>
+                    <span class="sidebar-normal"> Employment Status </span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </li>
           <li class="">
             <a asp-action="Index" asp-controller="Leaves">
               <i class="now-ui-icons design_app"></i>
-              <p>Leave</p>
+              <p>Leaves</p>
+            </a>
+
+            @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
+
+          </li>
+
+          <li class="">
+            <a asp-action="Index" asp-controller="Appraisal">
+              <i class="now-ui-icons design_app"></i>
+              <p>Appraisals</p>
             </a>
 
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
@@ -264,8 +274,8 @@
               <li>
 
                 <a class="" aria-expanded="false">
-              <i class="now-ui-icons users_circle-08"></i>
-              <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
+                  <i class="now-ui-icons users_circle-08"></i>
+                  <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
                 </a>
 
               </li>
