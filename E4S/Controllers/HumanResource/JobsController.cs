@@ -38,7 +38,9 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult JobTitle()
         {
-          return View();
+      var orgId = getOrg();
+      var jobTitles = _context.JobTitles.Where(x => x.OrganisationId == orgId).ToList();
+          return View(jobTitles);
         }
 
         [HttpPost]
@@ -91,11 +93,12 @@ namespace E4S.Controllers.HumanResource
         }
 
 
-
-
         public IActionResult EmploymentStatus()
         {
-          return View();
+      var orgId = getOrg();
+      var employmentStatuses = _context.EmploymentStatuses.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(employmentStatuses);
         }
 
         [HttpPost]
