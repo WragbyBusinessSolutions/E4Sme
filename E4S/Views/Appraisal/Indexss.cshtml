@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Leaves";
+    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+<div class="content">
+
+
+    <div class="row">
+        <!-- Column -->
+
+        <div class="container-fluid">
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="justify-content-end align-items-center pull-right">
+                                    <a asp-action="create" asp-controller="Leaves" class="btn btn-info btn-lg">Create New</a>
+                                </div>
+
+                                <h4 class="card-title">List of Leave Application</h4>
+                            </div>
+                            <div class="card-body">
+                                <br />
+                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Leave</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Approved Date</th>
+                                            <th>Status</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Leave</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Approved Date</th>
+                                            <th>Status</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>info@TigerNixon.com</td>
+                                            <td>Super Admin</td>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>info@GatterrWinters.com</td>
+                                            <td>Admin</td>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <td>Pending</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>ArthurCox@mail.com</td>
+                                            <td>Employee</td>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>cedrickelly@mail.com</td>
+                                            <td>Accountant</td>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end content-->
+                        </div>
+                        <!--  end card  -->
+                    </div>
+                    <!-- end col-md-12 -->
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </div>
+</div>
+
+

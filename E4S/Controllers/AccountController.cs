@@ -68,6 +68,17 @@ namespace E4S.Controllers
         var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
         if (result.Succeeded)
         {
+          var user = await _signInManager.UserManager.FindByEmailAsync(model.Email);
+          var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
+
+          if (userRoles.Contains("Employee"))
+          {
+            return RedirectToAction("Index", "EmployeeProfile");
+          }else if (userRoles.Contains("Accountant"))
+          {
+
+          }
+
           _logger.LogInformation("User logged in.");
           return RedirectToLocal(returnUrl);
         }

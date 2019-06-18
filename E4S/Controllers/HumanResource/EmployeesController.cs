@@ -79,78 +79,78 @@ namespace E4S.Controllers.HumanResource
         [HttpPost]
         public async Task<IActionResult> postNewEmployee([FromBody]PostNewEmployee postNewEmployee)
         {
-          if (postNewEmployee == null)
-          {
-            return Json(new
-            {
-              msg = "No Data"
-            }
-           );
-          }
+      if (postNewEmployee == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
 
-          var orgId = getOrg();
-          var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
-          int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+      var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
-          try
-          {
-            EmployeeDetail newEmployee = new EmployeeDetail()
-            {
-              Id = Guid.NewGuid(),
-              FirstName = postNewEmployee.FirstName,
-              LastName = postNewEmployee.LastName,
-              Email = postNewEmployee.PersonalEmail,
-              PhoneNumber = postNewEmployee.PhoneNumber,
-              EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
-              OrganisationId = orgId
-            };
+      try
+      {
+        EmployeeDetail newEmployee = new EmployeeDetail()
+        {
+          Id = Guid.NewGuid(),
+          FirstName = postNewEmployee.FirstName,
+          LastName = postNewEmployee.LastName,
+          Email = postNewEmployee.PersonalEmail,
+          PhoneNumber = postNewEmployee.PhoneNumber,
+          EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+          OrganisationId = orgId
+        };
 
-            _context.Add(newEmployee);
-            _context.SaveChanges();
+        _context.Add(newEmployee);
+        _context.SaveChanges();
 
-            var user = new ApplicationUser
-            {
-              Id = Guid.NewGuid().ToString(),
-              UserName = newEmployee.Email,
-              Email = newEmployee.Email,
-              OrganisationId = orgId,
-              PhoneNumber = newEmployee.PhoneNumber,
-              UserRole = "Employee",
-              EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
-            };
+        var user = new ApplicationUser
+        {
+          Id = Guid.NewGuid().ToString(),
+          UserName = newEmployee.Email,
+          Email = newEmployee.Email,
+          OrganisationId = orgId,
+          PhoneNumber = newEmployee.PhoneNumber,
+          UserRole = "Employee",
+          EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
+        };
 
-            var result = await _userManager.CreateAsync(user);
-            if (result.Succeeded)
-            {
-              await _userManager.AddToRoleAsync(user, user.UserRole);
+        var result = await _userManager.CreateAsync(user);
+        if (result.Succeeded)
+        {
+          await _userManager.AddToRoleAsync(user, user.UserRole);
 
-              var Email = user.Email;
-              string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
-              var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+          var Email = user.Email;
+          string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+          var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
-              var response = _emailSender.SendPlainEmailAsync(user.Email, "Reset Password",
-                 $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
-
-              return Json(new
-              {
-                msg = "Success"
-              }
-             );
-
-
-            }
-          }
-          catch(Exception ee)
-          {
-
-          }
-
+          var response = _emailSender.SendLinkEmailAsync(user.Email, "Reset Password",
+             $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
 
           return Json(new
           {
-            msg = "Fail"
+            msg = "Success"
           }
          );
+
+
+        }
+      }
+      catch(Exception ee)
+      {
+
+      }
+
+
+      return Json(new
+      {
+        msg = "Fail"
+      }
+     );
 
     }
   }
