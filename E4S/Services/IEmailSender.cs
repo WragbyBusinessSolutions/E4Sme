@@ -13,5 +13,7 @@ namespace E4S.Services
     string SendLinkEmailAsync(string emailAdd, string subject, string message);
 
     Task SendGridEmailAsync(string emailAdd, string subject, string message);
+
+    Task GmailSendEmail(string email, string CallbackUrl, string role);
   }
 }

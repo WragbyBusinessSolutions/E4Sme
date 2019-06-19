@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-E4S-1AC132EA-C349-4461-8C28-F4856E935438</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Shared\_LayoutHumanResouces1.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
@@ -21,9 +25,6 @@
 
   <ItemGroup>
     <Content Update="Views\Shared\_LayoutEmployee.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Shared\_LayoutHumanResouces.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_LayoutAccountInventory.cshtml">

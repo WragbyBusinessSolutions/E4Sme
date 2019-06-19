@@ -76,14 +76,19 @@ namespace E4S.Controllers
         string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
         var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
-        var response = _emailSender.SendGridEmailAsync(user.Email, "Reset Password",
-           $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+        //var response = _emailSender.SendLinkEmailAsync(user.Email, "Reset Password",
+        //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
 
-        //if(response == "Success")
-        //{
+        var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+    
+
+          //if(response == "Success")
+          //{
           return RedirectToAction("Index");
       //  }
       }
+
+      
 
 
       return View(newuser);

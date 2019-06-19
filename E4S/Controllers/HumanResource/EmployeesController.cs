@@ -94,6 +94,7 @@ namespace E4S.Controllers.HumanResource
 
       try
       {
+        var userId = Guid.NewGuid();
         EmployeeDetail newEmployee = new EmployeeDetail()
         {
           Id = Guid.NewGuid(),
@@ -102,7 +103,8 @@ namespace E4S.Controllers.HumanResource
           Email = postNewEmployee.PersonalEmail,
           PhoneNumber = postNewEmployee.PhoneNumber,
           EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
-          OrganisationId = orgId
+          OrganisationId = orgId,
+          UserId = userId
         };
 
         _context.Add(newEmployee);
@@ -110,7 +112,7 @@ namespace E4S.Controllers.HumanResource
 
         var user = new ApplicationUser
         {
-          Id = Guid.NewGuid().ToString(),
+          Id = userId.ToString(),
           UserName = newEmployee.Email,
           Email = newEmployee.Email,
           OrganisationId = orgId,
@@ -128,8 +130,11 @@ namespace E4S.Controllers.HumanResource
           string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
           var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
-          var response = _emailSender.SendLinkEmailAsync(user.Email, "Reset Password",
-             $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+          //var response = _emailSender.SendLinkEmailAsync(user.Email, "Reset Password",
+          //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+          var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+
 
           return Json(new
           {

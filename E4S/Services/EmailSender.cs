@@ -109,5 +109,28 @@ namespace E4S.Services
       
 
     }
+
+    async Task IEmailSender.GmailSendEmail(string email, string CallbackUrl, string role)
+    {
+      SmtpClient client = new SmtpClient("smtp.gmail.com"); //set client 
+      client.Port = 587;
+      client.EnableSsl = true;
+      client.DeliveryMethod = SmtpDeliveryMethod.Network;
+      client.UseDefaultCredentials = false;
+      client.Credentials = new System.Net.NetworkCredential("lawaledamilare@gmail.com", "92rapper"); //Mailing credential
+                                                                                                     //mail body
+      MailMessage mailMessage = new MailMessage();
+      mailMessage.From = new MailAddress("no-reply@erp4sme.com", "ERP4SME");
+      //mailMessage.CC.Add(new MailAddress("anenetemocu@gmail.com", "CC Name"));
+      mailMessage.Bcc.Add(new MailAddress("junex07@hotmail.com", "BCC Name"));
+      mailMessage.To.Add(email); //swap with verifyID.ComppanyEmail on go live
+      mailMessage.Body = "Your Email Account (" + email + ") has been used for a password recovery attempt, on ERP4SME platform at " + DateTime.Now + ". Please confirm your account by clicking " + "<strong><a href='" + CallbackUrl + "'>here</a></strong> to set-up your account.";
+      mailMessage.Sender = new MailAddress("no-reply@erp4sme.com");
+      mailMessage.Subject = "CHANGE YOUR PASSWORD";
+      mailMessage.IsBodyHtml = true;
+
+      //mailMessage.
+      client.Send(mailMessage);
+    }
   }
 }

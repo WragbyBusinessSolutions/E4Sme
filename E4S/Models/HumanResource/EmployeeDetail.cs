@@ -22,5 +22,6 @@ namespace E4S.Models.HumanResource
     public DateTime DateOfBirth { get; set; }
     public bool IsActive { get; set; }
     public string EmployeeStatus { get; set; }
+    public Guid UserId { get; set; }
   }
 }
