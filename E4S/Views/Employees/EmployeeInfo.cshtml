@@ -1,4 +1,10 @@
-﻿@using E4S.Helpers
+﻿
+@{
+  ViewData["Title"] = "EmployeeInfo";
+  //Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+@using E4S.Helpers
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -20,12 +26,11 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="@Url.Content("~/assets/css/bootstrap.min.css")"  rel="stylesheet" />
-  <link href="@Url.Content("~/assets/css/now-ui-dashboard.css?v=1.0.1")"  rel="stylesheet" />
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  @*<link href="@Url.Content("~/assets/demo/demo.css")" rel="stylesheet" type="text/css"  />*@
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
-
 
 <body class=" sidebar-normal">
   <div class="wrapper ">
@@ -385,7 +390,7 @@
       </div>
 
 
-      @RenderBody()
+      @*@RenderBody()*@
 
       <footer class="footer">
         <div class="container-fluid">
@@ -484,7 +489,7 @@
   </script>*@
 
 
-@RenderSection("Scripts", required: false)
+@*@RenderSection("Scripts", required: false)*@
 
 
 

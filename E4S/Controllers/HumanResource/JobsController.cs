@@ -152,7 +152,10 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult JobCategory()
         {
-          return View();
+      var orgId = getOrg();
+      var jobCategory = _context.JobCategories.Where(x => x.OrganisationId == orgId).ToList();
+
+          return View(jobCategory);
         }
 
         [HttpPost]
@@ -204,9 +207,11 @@ namespace E4S.Controllers.HumanResource
         }
 
         public IActionResult PayGrade()
-        {           
+        {
+      var orgId = getOrg();
+      var payGrades = _context.PayGrades.Where(x => x.OrganisationId == orgId).ToList();
 
-            return View();
+      return View(payGrades);
         }
          [HttpPost]
          public async Task<IActionResult> PostNewPayGrade([FromBody]PostNewPayGrade postNewPayGrade)

@@ -228,7 +228,8 @@
                     </td>
 
                     <td>
-                      @item.EmployeeName
+                      <a asp-action="EmployeeDetails" asp-route-id="@item.Id">@item.EmployeeName</a>
+                      @*<a href="#"></a>*@
                     </td>
                     <td>
                       @item.JobTitle
