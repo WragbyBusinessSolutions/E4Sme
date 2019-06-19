@@ -9,6 +9,7 @@ using E4S.Models.HumanResource;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
@@ -54,7 +55,7 @@ namespace E4S.Controllers.HumanResource
             }
 
             var orgId = getOrg();
-            var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
             int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
             try
@@ -91,8 +92,6 @@ namespace E4S.Controllers.HumanResource
         }
 
 
-
-
         public IActionResult EmploymentStatus()
         {
           return View();
@@ -111,7 +110,7 @@ namespace E4S.Controllers.HumanResource
             }
 
             var orgId = getOrg();
-            var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
             int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
             try
@@ -164,7 +163,7 @@ namespace E4S.Controllers.HumanResource
             }
 
             var orgId = getOrg();
-            var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
             int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
             try
@@ -217,7 +216,7 @@ namespace E4S.Controllers.HumanResource
             }
 
             var orgId = getOrg();
-            var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
             int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
             try
