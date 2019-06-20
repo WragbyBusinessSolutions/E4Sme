@@ -13,20 +13,39 @@ namespace E4S.Controllers.Employee
             return View();
         }
 
-    public IActionResult PersonalDetails()
-    {
-      return View();
-    }
+        public IActionResult PersonalDetails()
+        {
+          return View();
+        }
 
-    public IActionResult ContactDetails()
-    {
-      return View();
-    }
+        public IActionResult ContactDetails()
+        {
+          return View();
+        }
 
-    public IActionResult EmergencyContacts()
-    {
-      return View();
-    }
+        public IActionResult EmergencyContacts()
+        {
+          return View();
+        }
 
-  }
+        public IActionResult Dependents()
+        {
+            return View();
+        }
+
+        public IActionResult jobs()
+        {
+            return View();
+        }
+
+        public IActionResult Salary()
+        {
+            return View();
+        }
+
+        public IActionResult Qualification()
+        {
+            return View();
+        }
+    }
 }

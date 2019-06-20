@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "jobs";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+
+
+    <div class="content">
+        <div class="card">
+            <div class="card-header text-center" data-background-color="orange">
+                <h3 class="card-title">
+                    Employee Jobs
+                </h3>
+                <h5 class="description">
+                    On boarding our new employee.
+                </h5>
+            </div>
+            @*<h4 class="card-title"> Employee Jobs</h4>*@
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+
+                        <div class="card-body ">
+
+                            <!-- Start of the Jobs tabs-->
+
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>Job Title</label>
+                                                <select type="text" class="form-control" placeholder="Country">
+                                                    <option> -- Select Job Title -- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>Job Specification</label>
+                                                <input type="text" class="form-control" disabled placeholder="Job Specification">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>Job Title</label>
+                                                <select type="text" class="form-control" placeholder="Country">
+                                                    <option> -- Select Job Employement Status -- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>Job Specification</label>
+                                                <select type="text" class="form-control" placeholder="Country">
+                                                    <option> -- Select Job Category -- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Joined date </label>
+                                                <input type="date" class="form-control" placeholder="Company">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Sub Unit</label>
+                                                <select type="text" class="form-control" placeholder="Country">
+                                                    <option> -- Select Job Employement Status -- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Location</label>
+                                                <select type="text" class="form-control" placeholder="Country">
+                                                    <option> -- Select Job Employement Status -- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <h5>Employment Contract</h5>
+
+                                    <div class="row">
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>Start Date</label>
+                                                <input type="date" class="form-control" placeholder="Country">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label>End Date</label>
+                                                <input type="date" class="form-control" placeholder="ZIP Code">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Contract Details</label>
+                                                <input type="text" class="form-control" disabled placeholder="Home Address" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- the End of Jobs Tabs-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
