@@ -4,35 +4,252 @@
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 
-    <div class="content">
-        <div class="card">
-            <div class="card-header text-center" data-background-color="orange">
-                <h3 class="card-title">
-                    Personal Details
-                </h3>
-                <h5 class="description">
-                    On boarding our new employee.
-                </h5>
-            </div>
-            @*<h4 class="card-title"> Employee Jobs</h4>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card ">
-                        <div class="card-body ">
-                            <!-- Start of the Emergency Contact tabs-->
+<div class="content">
+    <div class="card">
+        <div class="card-header text-center" data-background-color="orange">
+            <h3 class="card-title">
+                Personal Details
+            </h3>
+            <h5 class="description">
+                On boarding our new employee.
+            </h5>
+        </div>
+        @*<h4 class="card-title"> Employee Jobs</h4>*@
 
-                            <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-body ">
+                        <!-- Start of the Emergency Contact tabs-->
 
-
-
-
-                            </div>
-                            <!-- the End of Emergency Contact Tabs-->
-
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Surname</label>
+                                            <input type="text" class="form-control" placeholder="Company">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Middle name</label>
+                                            <input type="text" class="form-control" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Last Name</label>
+                                            <input type="email" class="form-control" placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Employye ID</label>
+                                            <input type="text" class="form-control" disabled placeholder="Employee ID">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label>Other ID </label>
+                                            <input type="text" class="form-control" placeholder="Other ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Driver's Licence</label>
+                                            <input type="text" class="form-control" placeholder="Driver's Licence">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label>Expiry Date </label>
+                                            <input type="date" class="form-control" placeholder="Expiry Date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select type="text" class="form-control" placeholder="Username">
+                                                <option selected> Select Gender</option>
+                                                <option>Male </option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Marital Status</label>
+                                            <select type="text" class="form-control" placeholder="Username">
+                                                <option selected> Select Marital Status </option>
+                                                <option>Single </option>
+                                                <option>Married</option>
+                                                <option>Engaged</option>
+                                                <option>Widow</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Date of Birth</label>
+                                            <input type="Date" class="form-control" placeholder="date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" placeholder="Home Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                @*<div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+                                </div>
+                            </form>
                         </div>
+                        <!-- the End of Emergency Contact Tabs-->
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        //-------------------------------SELECT CASCADING-------------------------//
+        var selectedCountry = selectedRegion = selectedCity = countryCode = "";
+        // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
+        var BATTUTA_KEY = "00000000000000000000000000000000";
+        // Populate country select box from battuta API
+        url =
+            "https://geo-battuta.net/api/country/all/?key=" +
+            BATTUTA_KEY +
+            "&callback=?";
+        // EXTRACT JSON DATA.
+        $.getJSON(url, function (data) {
+            $.each(data, function (index, value) {
+                // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
+                $("#country").append(
+                    '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
+                );
+            });
+        });
+        // Country selected --> update region list .
+        $("#country").change(function () {
+            selectedCountry = this.options[this.selectedIndex].text;
+            countryCode = $(this).children(":selected").attr("id");
+            url =
+                "https://geo-battuta.net/api/region/" +
+                countryCode +
+                "/all/?key=" +
+                BATTUTA_KEY +
+                "&callback=?";
+            $.getJSON(url, function (data) {
+                $("#region option").remove();
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $("#region").append(
+                        '<option value="' + value.region + '">' + value.region + "</option>"
+                    );
+                });
+            });
+        });
+        // Region selected --> updated city list
+        $("#region").on("change", function () {
+            selectedRegion = this.options[this.selectedIndex].text;
+            // Populate country select box from battuta API
+            region = $("#region").val();
+            url =
+                "https://geo-battuta.net/api/city/" +
+                countryCode +
+                "/search/?region=" +
+                region +
+                "&key=" +
+                BATTUTA_KEY +
+                "&callback=?";
+            $.getJSON(url, function (data) {
+                $("#city option").remove();
+                $.each(data, function (index, value) {
+                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                    $("#city").append(
+                        '<option value="' + value.city + '">' + value.city + "</option>"
+                    );
+                });
+            });
+        });
+        // city selected --> update location string
+        $("#city").on("change", function () {
+            selectedCity = this.options[this.selectedIndex].text;
+            $("#location").html(
+                "Locatation: Country: " +
+                selectedCountry +
+                ", Region: " +
+                selectedRegion +
+                ", City: " +
+                selectedCity
+            );
+        });
+
+    });
+    // process form
+    function processForm() {
+        var username = password = country = region = city = '';
+        username = $('#username').val();
+        password = $('#password').val();
+        country = $('#country').val();
+        region = $('#region').val();
+        city = $('#city').val();
+        if (username != '' && password != '' && country != '' && region != '' && city != '') {
+            $("#location").html(
+                "Username: " + username +
+                " /Password: " + password +
+                " /Locatation: Country: " +
+                country +
+                ", Region: " +
+                region +
+                ", City: " +
+                city
+            );
+        } else {
+            $("#location").html('Complete Form 1st');
+            return false;
+        }
+    }
+</script>
