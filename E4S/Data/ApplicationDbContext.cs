@@ -30,5 +30,15 @@ namespace E4S.Data
     public DbSet<JobCategory> JobCategories { get; set; }
     public DbSet<PayGrade> PayGrades { get; set; }
     public DbSet<EmployeeDetail> EmployeeDetails { get; set; }
+
+    public DbSet<ContactDetail> ContactDetails { get; set; }
+    public DbSet<Dependant> Dependants { get; set; }
+    public DbSet<EmergencyContact> EmergencyContacts { get; set; }
+    public DbSet<Job> Jobs { get; set; }
+    public DbSet<Salary> Salaries { get; set; }
+
+
+    public DbSet<Branch> Branches { get; set; }
+    public DbSet<Department> Departments { get; set; }
   }
 }
