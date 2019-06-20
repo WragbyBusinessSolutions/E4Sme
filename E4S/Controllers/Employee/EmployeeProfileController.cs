@@ -47,5 +47,15 @@ namespace E4S.Controllers.Employee
         {
             return View();
         }
+
+    public IActionResult EmployeeAssets()
+    {
+      return View();
     }
+
+    public IActionResult Appraisal()
+    {
+      return View();
+    }
+  }
 }
