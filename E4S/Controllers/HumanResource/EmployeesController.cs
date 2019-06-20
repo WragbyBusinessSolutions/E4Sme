@@ -71,10 +71,20 @@ namespace E4S.Controllers.HumanResource
             return View();
         }
 
-        public IActionResult EmployeeDetails()
+        public IActionResult EmployeeDetails(Guid id)
         {
-          return View();
+      var singleEmployee = _context.EmployeeDetails.Where(x => x.Id == id).FirstOrDefault();
+          return View(singleEmployee);
         }
+    [HttpGet]
+    public async Task<IActionResult> EmployeeInfo (Guid id)
+    {
+      if (id == null)
+      {
+        return NotFound();
+      }
+      return View();
+    }
 
         [HttpPost]
         public async Task<IActionResult> postNewEmployee([FromBody]PostNewEmployee postNewEmployee)

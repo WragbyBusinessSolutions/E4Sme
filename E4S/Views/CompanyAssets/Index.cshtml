@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<E4S.ViewModel.EmployeeListViewModel>
 @{
-  ViewData["Title"] = "Employees";
+  ViewData["Title"] = "Assets";
   Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 <div class="content">
 
-  <div class="row">
+  @*<div class="row">
     <div class="col-md-12">
       <div class="card ">
         <div class="card-header">
-          <h4 class="card-title"> Employee List</h4>
+          <h4 class="card-title"> Company Assets</h4>
         </div>
         <div class="card-body ">
           <form method="#" action="#">
@@ -82,15 +82,17 @@
       </div>
     </div>
 
-  </div>
+  </div>*@
 
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+          <h4 class="card-title"> Company Assets</h4>
+
           @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
           <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-            Add New Employee
+            Add New Asset
           </button>
           <!-- notice modal -->
           <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -100,7 +102,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
                   </button>
-                  <h5 class="modal-title" id="myModalLabel">Enter New Employee Details</h5>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
                 </div>
                 <div class="modal-body">
                   <div class="instruction">
@@ -108,32 +110,40 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name" id="firstName" value="" required>
+                            <label>Device Name</label>
+                            <input type="text" class="form-control" placeholder="Device Name" id="firstName" value="" required>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" placeholder="Last Name" id="lastName" value="" required>
+                            <label>Brand</label>
+                            <input type="text" class="form-control" placeholder="Brand" id="lastName" value="" required>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" placeholder="Personal Email" id="personalEmail" value="" required>
+                            <label>Model</label>
+                            <input type="email" class="form-control" placeholder="Model" id="personalEmail" value="" required>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="tel" class="form-control" placeholder="Phone Number" id="phoneNumber" value="" required>
+                            <label>Serial Number</label>
+                            <input type="tel" class="form-control" placeholder="Serial Number" id="phoneNumber" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Employee Id.</label>
+                            <input type="tel" class="form-control" placeholder="Serial Number" id="phoneNumber" value="" required>
                           </div>
                         </div>
                       </div>
@@ -146,8 +156,8 @@
                   </div>
                 </div>
                 @*<div class="modal-footer justify-content-center">
-                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                  </div>*@
+              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+          </div>*@
               </div>
             </div>
           </div>
@@ -171,19 +181,19 @@
                 #
               </th>
               <th>
-                Employee Name
+                Device Name
               </th>
               <th>
-                Job Title
+                Brand
               </th>
               <th>
-                Employee Status
+                Model
               </th>
               <th>
-                Department
+                Serial No.
               </th>
               <th>
-                Supervisor
+                Employee Id.
               </th>
               <th>
                 Action
@@ -194,11 +204,11 @@
 
               <tbody>
 
-                @{
+                @*@{
                   int i = 1;
 
                   @if (Model.Count() < 1)
-                            {
+                            {*@
                 <td></td>
                 <td></td>
                 <td></td>
@@ -208,11 +218,11 @@
                 <td></td>
                 <td></td>
 
-                          }
+                          @*}
 
 
                   foreach (var item in Model)
-                  {
+                  {*@
 
                   <tr>
                     <td class="text-center">
@@ -224,31 +234,25 @@
                       </div>
                     </td>
                     <td class="text-center">
-                      @i
+                      
                     </td>
 
                     <td>
-                      <a asp-action="EmployeeDetails" asp-route-id="@item.Id">@item.EmployeeName</a>
-                      @*<a href="#"></a>*@
                     </td>
                     <td>
-                      @item.JobTitle
                     </td>
                     <td>
-                      @item.EmployeeStatus
                     </td>
                     <td>
-                      @item.Department
                     </td>
                     <td>
-                      @item.Supervisor
                     </td>
                     <td></td>
                   </tr>
 
-                    {i = i + 1;}
+                    @*{i = i + 1;}
                   }
-                }
+                }*@
 
                 </tbody>
               </table>
