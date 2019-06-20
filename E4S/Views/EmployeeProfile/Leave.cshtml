@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewData["Title"] = "Leave";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+    <div class="content">
+        <div class="card">
+            <div class="card-header text-center" data-background-color="orange">
+                <h3 class="card-title">
+                    Leave Application
+                </h3>
+                <h5 class="description">
+                    Enter the Correct information.
+                </h5>
+            </div>
+            @*<h4 class="card-title"> Employee Jobs</h4>*@
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+
+                        <div class="card-body ">
+
+                            <!-- Start of the Emergency Contact tabs-->
+
+
+                            <div class="card-header">
+                                <div class="justify-content-end align-items-center ">
+                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
+                                </div>
+                            </div>
+                            <!-- notice modal -->
+                            <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-notice">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </button>
+                                            <h5 class="modal-title" id="myModalLabel">Enter New Dependents</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="instruction">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Name</label>
+                                                                <select type="text" class="form-control" placeholder="Home Relationship">
+                                                                    <option>-- Select Leave --</option>
+                                                                    <option>Annual Leave</option>
+                                                                    <option>Casual Leave</option>
+                                                                    <option>Sick Leave</option>
+                                                                    <option>Compassionate Leave</option>
+                                                                    <option>Study Leave</option>
+                                                                    <option>Maternity Leave</option>
+                                                                    <option>Paternity Leave</option>
+                                                                    <option>Other</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Description</label>
+                                                                <input type="text" class="form-control" placeholder="Description" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Start Date</label>
+                                                                <input type="date" class="form-control" placeholder="Start Date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>End Date</label>
+                                                                <input type="date" class="form-control" placeholder="End Date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <hr />
+                                                    <div class="card-footer ">
+                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end notice modal -->
+
+                            <div class="card-body">
+                                <br />
+                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th> Name</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th> Name</th>
+                                            <th>Relationship</th>
+                                            <th>Home Telephone</th>
+                                            <th>Address</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>info@TigerNixon.com</td>
+                                            <td>Super Admin</td>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>info@GatterrWinters.com</td>
+                                            <td>Admin</td>
+                                            <td>Pending</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>ArthurCox@mail.com</td>
+                                            <td>Employee</td>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>cedrickelly@mail.com</td>
+                                            <td>Accountant</td>
+                                            <td>Active</td>
+                                            <td class="text-right">
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- the End of Emergency Contact Tabs-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
