@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<E4S.Models.HumanResource.EmergencyContact>
+
 @{
     ViewData["Title"] = "Emergency Contacts";
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
@@ -27,7 +28,7 @@
                         <div class="card-body">
                             <div class="card-header">
                                 <div class="justify-content-end align-items-center ">
-                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
+                                    <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal">Add New Contact</a>
                                 </div>
                             </div>
                             <!-- notice modal -->
@@ -112,46 +113,51 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+
+                                      @foreach (var item in Model)
+                                      {
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>info@TigerNixon.com</td>
-                                            <td>Super Admin</td>
-                                            <td>Active</td>
-                                            <td class="text-right">
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                            </td>
+                                          <td>@item.Name</td>
+                                          <td>@item.Relationship</td>
+                                          <td>@item.HomeTelephone</td>
+                                          <td>@item.Address</td>
+                                          <td class="text-right">
+                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                          </td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>info@GatterrWinters.com</td>
-                                            <td>Admin</td>
-                                            <td>Pending</td>
-                                            <td class="text-right">
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>ArthurCox@mail.com</td>
-                                            <td>Employee</td>
-                                            <td>Active</td>
-                                            <td class="text-right">
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>cedrickelly@mail.com</td>
-                                            <td>Accountant</td>
-                                            <td>Active</td>
-                                            <td class="text-right">
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                            </td>
-                                        </tr>
+
+                                      }
+                                      @*<tr>
+                                        <td>Garrett Winters</td>
+                                        <td>info@GatterrWinters.com</td>
+                                        <td>Admin</td>
+                                        <td>Pending</td>
+                                        <td class="text-right">
+                                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>ArthurCox@mail.com</td>
+                                        <td>Employee</td>
+                                        <td>Active</td>
+                                        <td class="text-right">
+                                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>cedrickelly@mail.com</td>
+                                        <td>Accountant</td>
+                                        <td>Active</td>
+                                        <td class="text-right">
+                                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                        </td>
+                                      </tr>*@
 
                                     </tbody>
                                 </table>

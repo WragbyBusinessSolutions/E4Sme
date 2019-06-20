@@ -1,0 +1,323 @@
+﻿@model IEnumerable<E4S.ViewModel.EmployeeListViewModel>
+@{
+  ViewData["Title"] = "Contact Details";
+  Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+
+<div class="content">
+
+  @*<div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> Company Assets</h4>
+          </div>
+          <div class="card-body ">
+            <form method="#" action="#">
+              <div class="row">
+                <div class="col-md-4">
+
+                  <label>Employee Name</label>
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                  <label>Supervisor Name</label>
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                  <label class="col-md-3"></label>
+                  <div class="col-md-9">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input checked class="form-check-input" type="checkbox">
+                        <span class="form-check-sign"></span>
+                        Current Employee Only
+                      </label>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                  <label>Id</label>
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                  <label>Job Title</label>
+                  <div class="col">
+                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
+                      <option disabled selected>Job Title</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+
+                  <label>Employment Status</label>
+                  <div class="col">
+                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
+                      <option disabled selected>Employment Status</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
+                    </select>
+                  </div>
+                  <label>Department</label>
+                  <div class="col">
+                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
+                      <option disabled selected>Department</option>
+                      <option value="2">Foobar</option>
+                      <option value="3">Is great</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer ">
+            <button type="submit" class="btn btn-fill btn-success">Search</button>
+          </div>
+        </div>
+      </div>
+
+    </div>*@
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Employee Assets</h4>
+
+          @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+            Add New Asset
+          </button>
+          <!-- notice modal -->
+          <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Device Name</label>
+                            <input type="text" class="form-control" placeholder="Device Name" id="firstName" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Brand</label>
+                            <input type="text" class="form-control" placeholder="Brand" id="lastName" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Model</label>
+                            <input type="email" class="form-control" placeholder="Model" id="personalEmail" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="tel" class="form-control" placeholder="Serial Number" id="phoneNumber" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Employee Id.</label>
+                            <input type="tel" class="form-control" placeholder="Serial Number" id="phoneNumber" value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitNewEmployee">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                @*<div class="modal-footer justify-content-center">
+                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                  </div>*@
+              </div>
+            </div>
+          </div>
+          <!-- end notice modal -->
+          @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="text-primary">
+              <th class="text-center">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+                  </label>
+                </div>
+              </th>
+              <th class="text-center">
+                #
+              </th>
+              <th>
+                Device Name
+              </th>
+              <th>
+                Brand
+              </th>
+              <th>
+                Model
+              </th>
+              <th>
+                Serial No.
+              </th>
+              <th>
+                Employee Id.
+              </th>
+              <th>
+                Action
+              </th>
+
+              </thead>
+
+
+              <tbody>
+
+                @*@{
+                  int i = 1;
+
+                  @if (Model.Count() < 1)
+                            {*@
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>No Data to Display</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              @*}
+
+
+                foreach (var item in Model)
+                {*@
+
+              <tr>
+                <td class="text-center">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox">
+                      <span class="form-check-sign"></span>
+                    </label>
+                  </div>
+                </td>
+                <td class="text-center"></td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              @*{i = i + 1;}
+                  }
+                }*@
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+@section Scripts {
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+      $("#submitNewEmployee").click(function (event) {
+
+        event.preventDefault();
+
+        var Employee = {
+          FirstName: $("#firstName").val(),
+          LastName: $("#lastName").val(),
+          PersonalEmail: $("#personalEmail").val(),
+          PhoneNumber: $("#phoneNumber").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(Employee);
+
+        $.ajax({
+          type: "POST",
+          url: "/Employees/postNewEmployee",
+          data: JSON.stringify(Employee),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+
+    });
+
+  </script>
+
+}

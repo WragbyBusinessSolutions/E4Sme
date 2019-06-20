@@ -1,4 +1,5 @@
-﻿
+﻿@model E4S.Models.HumanResource.ContactDetail
+
 @{
     ViewData["Title"] = "Contact Details";
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
@@ -8,10 +9,10 @@
     <div class="card">
         <div class="card-header text-center" data-background-color="orange">
             <h3 class="card-title">
-                Employee Jobs
+                Contact Details
             </h3>
             <h5 class="description">
-                On boarding our new employee.
+                <b>@Model.EmployeeDetail.FirstName @Model.EmployeeDetail.LastName</b>
             </h5>
         </div>
         @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -25,92 +26,93 @@
                         <!-- Start of the Contact Details tabs-->
 
                         <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Address 1</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" required>
-                                        </div>
-                                    </div>
+                          <form method="post" asp-action="ContactDetails" asp-controller="EmployeeProfile">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <input asp-for="Id" hidden />
+                                <div class="form-group">
+                                  <label>Address 1</label>
+                                  <input asp-for="AddressOne" type="text" class="form-control" placeholder="Address" required>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Address 2</label>
-                                            <input type="text" class="form-control" placeholder="Home Address">
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Address 2</label>
+                                  <input asp-for="AddressTwo" type="text" class="form-control" placeholder="Address">
                                 </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-md-5 pr-1">
-                                        <div class="form-group">
-                                            <label>Country </label>
-                                            <input type="text" class="form-control" placeholder="Company">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 px-1">
-                                        <div class="form-group">
-                                            <label>State</label>
-                                            <input type="text" class="form-control" placeholder="Username">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label>Local Govt</label>
-                                            <input type="text" class="form-control" placeholder="Local Govt">
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Zip/Postal Code</label>
+                                  <input asp-for="Zip" type="text" class="form-control" placeholder="Zip/Postal Code" required>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Zip/Postal Code</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" required>
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                  <label>Country </label>
+                                  <input asp-for="Country" type="text" class="form-control" placeholder="Country" required>
                                 </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-md-4 pr-1">
-                                        <div class="form-group">
-                                            <label>Home Telephone</label>
-                                            <input type="text" class="form-control" placeholder="City">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Mobile</label>
-                                            <input type="text" class="form-control" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label>Work Telephone</label>
-                                            <input type="number" class="form-control" placeholder="ZIP Code">
-                                        </div>
-                                    </div>
+                              </div>
+                              <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                  <label>State</label>
+                                  <input asp-for="State" type="text" class="form-control" placeholder="State" required>
                                 </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label>Local Govt</label>
+                                  <input asp-for="City" type="text" class="form-control" placeholder="Local Govt">
+                                </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                              <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                  <label>Home Telephone</label>
+                                  <input asp-for="HomeTelephone" type="tel" class="form-control" placeholder="+234xxxx">
+                                </div>
+                              </div>
+                              <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                  <label>Mobile</label>
+                                  <input asp-for="Mobile" type="tel" class="form-control" placeholder="+234xxxx">
+                                </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label>Work Telephone</label>
+                                  <input asp-for="WorkTelephone" type="tel" class="form-control" placeholder="+234xxxx">
+                                </div>
+                              </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Work Email</label>
-                                            <input type="text" class="form-control" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Personal Email</label>
-                                            <input type="text" class="form-control" placeholder="ZIP Code">
-                                        </div>
-                                    </div>
+                            <div class="row">
+                              <div class="col-md-6 ">
+                                <div class="form-group">
+                                  <label>Work Email</label>
+                                  <input asp-for="WorkEmail" type="email" class="form-control" placeholder="Work Email">
                                 </div>
-                                <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+                              </div>
+                              <div class="col-md-6 ">
+                                <div class="form-group">
+                                  <label>Personal Email</label>
+                                  <input asp-for="OtherEmail" type="email" class="form-control" placeholder="Personal Email">
                                 </div>
-                            </form>
+                              </div>
+                            </div>
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary">Update</button>
+                            </div>
+                          </form>
                         </div>
                         <!-- the End of Contact Details Tabs-->
 
