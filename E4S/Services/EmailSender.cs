@@ -92,7 +92,7 @@ namespace E4S.Services
 
     async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message)
     {
-      var apiKey = "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";
+     var apiKey = "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";
 
       //new code
 

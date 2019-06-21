@@ -78,7 +78,17 @@ namespace E4S.Controllers.Employee
 
       if (contactDetails == null)
       {
-        return View();
+        contactDetails = new ContactDetail()
+        {
+          Id = Guid.NewGuid(),
+          EmployeeDetailId = employeeDetails.Id,
+          OrganisationId = orgId,
+          IsActive = true
+        };
+        _context.Add(contactDetails);
+        _context.SaveChanges();
+
+        return View(contactDetails);
       }
 
 
