@@ -1,0 +1,195 @@
+﻿@model IEnumerable<E4S.Models.HumanResource.Dependant>
+
+@{
+  ViewData["Title"] = "Dependents";
+  Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<div class="content">
+  <div class="card">
+    <div class="card-header text-center" data-background-color="orange">
+      <h3 class="card-title">
+        Dependents
+      </h3>
+      <h5 class="description">
+        Fill information correctly.
+      </h5>
+    </div>
+    @*<h4 class="card-title"> Employee Jobs</h4>*@
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+
+          <div class="card-body ">
+
+            <!-- Start of the Emergency Contact tabs-->
+
+
+            <div class="card-header">
+              <div class="justify-content-end align-items-center ">
+                <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
+              </div>
+            </div>
+            <!-- notice modal -->
+            <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Enter New Dependents</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="instruction">
+                      <form>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Name</label>
+                              <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Relationship</label>
+                              <input id="Relationship" name="Relationship" type="text" class="form-control" placeholder="Relationship">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Address</label>
+                              <input id="Address" name="Address" type="text" class="form-control" placeholder="Address">
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr />
+                        <div class="card-footer ">
+                          <button type="button" class="btn btn-fill btn-primary btn-round" id="submitDependent">Submit</button>
+                          <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end notice modal -->
+
+            <div class="card-body">
+              <br />
+              <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                <thead>
+                  <tr>
+                    <th> Name</th>
+                    <th>Relationship</th>
+                    <th class="disabled-sorting text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th> Name</th>
+                    <th>Relationship</th>
+                    <th>Address</th>
+                    <th class="disabled-sorting text-right">Actions</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+
+                  @foreach (var item in Model)
+                  {
+                  <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Relationship</td>
+                    <td>@item.Address</td>
+                    <td class="text-right">
+                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                    </td>
+                  </tr>
+
+                  }
+
+                </tbody>
+              </table>
+            </div>
+            <!-- the End of Emergency Contact Tabs-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+@section Scripts {
+
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+      $("#submitDependent").click(function (event) {
+
+        event.preventDefault();
+
+        var PostEmergencyContact = {
+          Name: $("#Name").val(),
+          Relationship: $("#Relationship").val(),
+          Address: $("#Address").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(PostEmergencyContact);
+
+        $.ajax({
+          type: "POST",
+          url: "/EmployeeProfile/PostDependent",
+          data: JSON.stringify(PostEmergencyContact),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+
+    });
+
+  </script>
+
+}
