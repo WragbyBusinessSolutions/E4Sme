@@ -45,7 +45,7 @@ namespace E4S.Controllers
 
       if (userRoles.Contains("Employee"))
       {
-        return RedirectToAction("Index", "EmployeeProfiel");
+        return RedirectToAction("Index", "EmployeeProfile");
       }
 
       return View();
