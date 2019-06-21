@@ -119,12 +119,7 @@
                     <span class="sidebar-normal"> Employee List</span>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">AE</span>
-                    <span class="sidebar-normal"> Add Employee </span>
-                  </a>
-                </li>
+                
                 <li>
                   <a href="#">
                     <span class="sidebar-mini-icon">R</span>
@@ -174,32 +169,38 @@
               </p>
             </a>
             <div class="collapse " id="jobs">
-              <ul class="nav">
-                <li>
-                  <a asp-action="JobTitle" asp-controller="Jobs">
-                    <span class="sidebar-mini-icon"> J T</span>
-                    <span class="sidebar-normal"> Job Title</span>
-                  </a>
-                </li>
-                <li>
-                  <a asp-action="PayGrade" asp-controller="Jobs">
-                    <span class="sidebar-mini-icon"> P G</span>
-                    <span class="sidebar-normal"> Pay Grade </span>
-                  </a>
-                </li>
-                <li>
-                  <a asp-action="JobCategory" asp-controller="Jobs">
-                    <span class="sidebar-mini-icon"> P G</span>
-                    <span class="sidebar-normal"> Job Category </span>
-                  </a>
-                </li>
-                <li>
-                  <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                    <span class="sidebar-mini-icon">R</span>
-                    <span class="sidebar-normal"> Employment Status </span>
-                  </a>
-                </li>
-              </ul>
+                <ul class="nav">
+                    <li>
+                        <a asp-action="Department" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon">D</span>
+                            <span class="sidebar-normal"> Departments </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="JobTitle" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> J T</span>
+                            <span class="sidebar-normal"> Job Title</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="PayGrade" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> P G</span>
+                            <span class="sidebar-normal"> Pay Grade </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="JobCategory" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon"> P G</span>
+                            <span class="sidebar-normal"> Job Category </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                            <span class="sidebar-mini-icon">R</span>
+                            <span class="sidebar-normal"> Employment Status </span>
+                        </a>
+                    </li>
+                </ul>
             </div>
           </li>
           <li class="">
@@ -224,6 +225,14 @@
             <a asp-action="Index" asp-controller="CompanyAssets">
               <i class="now-ui-icons design_app"></i>
               <p>Company Assets</p>
+            </a>
+
+          </li>
+
+          <li class="">
+            <a asp-action="Index" asp-controller="Invoice">
+              <i class="now-ui-icons design_app"></i>
+              <p>Invoices</p>
             </a>
 
           </li>

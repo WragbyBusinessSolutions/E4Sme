@@ -262,5 +262,62 @@ namespace E4S.Controllers.HumanResource
                 msg = "Fail"
             });
          }
+
+        public IActionResult Department()
+        {
+            var orgId = getOrg();
+            var department = _context.Departments.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(department);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Department([FromBody]PostNewDepartment postNewDepartment)
+        {
+            if (postNewDepartment == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                Department newDepartment = new Department()
+                {
+                    Id = Guid.NewGuid(),
+                    DepartmentName = postNewDepartment.DepartmentName,
+                    Description = postNewDepartment.Description,
+                    IsActive = postNewDepartment.IsActive,                   
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newDepartment);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
     }
 }
