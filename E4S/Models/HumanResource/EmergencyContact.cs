@@ -16,6 +16,7 @@ namespace E4S.Models.HumanResource
     public string HomeTelephone { get; set; }
     public string Mobile { get; set; }
     public string WorkTelephone { get; set; }
+    public string Address { get; set; }
     public bool IsActive { get; set; }
 
 

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Dependents";
+    ViewData["Title"] = "Leave";
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 
@@ -8,10 +8,10 @@
         <div class="card">
             <div class="card-header text-center" data-background-color="orange">
                 <h3 class="card-title">
-                    Dependents
+                    Leave Application
                 </h3>
                 <h5 class="description">
-                    On boarding our new employee.
+                    Enter the Correct information.
                 </h5>
             </div>
             @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -47,7 +47,18 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Name</label>
-                                                                <input type="text" class="form-control" placeholder="Name" required>
+                                                                <select type="text" class="form-control" placeholder="Home Relationship">
+                                                                    <option>-- Select Leave --</option>
+                                                                    <option>Annual Leave</option>
+                                                                    <option>Casual Leave</option>
+                                                                    <option>Sick Leave</option>
+                                                                    <option>Compassionate Leave</option>
+                                                                    <option>Study Leave</option>
+                                                                    <option>Maternity Leave</option>
+                                                                    <option>Paternity Leave</option>
+                                                                    <option>Other</option>
+                                                                </select>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,27 +66,28 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Relationship</label>
-                                                                <input type="text" class="form-control" placeholder="Home Relationship">
+                                                                <label>Description</label>
+                                                                <input type="text" class="form-control" placeholder="Description" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Home Telephone</label>
-                                                                <input type="text" class="form-control" placeholder="Home Telephone">
+                                                                <label>Start Date</label>
+                                                                <input type="date" class="form-control" placeholder="Start Date">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Address</label>
-                                                                <input type="text" class="form-control" placeholder="Address">
+                                                                <label>End Date</label>
+                                                                <input type="date" class="form-control" placeholder="End Date">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
 
                                                     <hr />
                                                     <div class="card-footer ">
@@ -96,9 +108,9 @@
                                     <thead>
                                         <tr>
                                             <th> Name</th>
-                                            <th>Relationship</th>
-                                            <th>Home Telephone</th>
-                                            <th>Address</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
