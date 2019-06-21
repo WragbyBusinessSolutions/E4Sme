@@ -13,6 +13,7 @@ namespace E4S.Models.HumanResource
 
     public string Name { get; set; }
     public string Relationship { get; set; }
+    public string Address { get; set; }
     public DateTime DateOfBirth { get; set; }
     public bool IsActive { get; set; }
 

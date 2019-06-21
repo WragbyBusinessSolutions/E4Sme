@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.Models.HumanResource;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -115,20 +116,136 @@ namespace E4S.Controllers.Employee
 
       var emergencyContacts = _context.EmergencyContacts.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
 
-      //if(emergencyContacts == null)
-      //{
-      //  return View(emergencyContacts);
-      //}
+      if (emergencyContacts == null)
+      {
+        return View();
+      }
 
       return View(emergencyContacts);
         }
 
-        public IActionResult Dependents()
+    [HttpPost]
+    public async Task<IActionResult> PostEmergencyContact([FromBody]PostEmergencyContact postEmergencyContact)
+    {
+      if (postEmergencyContact == null)
+      {
+        return Json(new
         {
-            return View();
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      try
+      {
+        EmergencyContact emergencyContact = new EmergencyContact()
+        {
+          Id = Guid.NewGuid(),
+          Name = postEmergencyContact.Name,
+          Relationship = postEmergencyContact.Relationship,
+          HomeTelephone = postEmergencyContact.HomeTelephone,
+          Address = postEmergencyContact.Address,
+          OrganisationId = orgId,
+          EmployeeDetailId = employeeDetails.Id,
+          
+        };
+
+        _context.Add(emergencyContact);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+    public IActionResult Dependents()
+        {
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var dependants = _context.Dependants.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+
+      if (dependants == null)
+      {
+        return View();
+      }
+
+      return View(dependants);
+
         }
 
-        public IActionResult jobs()
+    public async Task<IActionResult> PostDependent([FromBody]PostEmergencyContact postEmergencyContact)
+    {
+      if (postEmergencyContact == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      try
+      {
+        Dependant dependant = new Dependant()
+        {
+          Id = Guid.NewGuid(),
+          Name = postEmergencyContact.Name,
+          Relationship = postEmergencyContact.Relationship,
+          Address = postEmergencyContact.Address,
+          OrganisationId = orgId,
+          EmployeeDetailId = employeeDetails.Id,
+
+        };
+
+        _context.Add(dependant);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    public IActionResult Jobs()
         {
             return View();
         }
