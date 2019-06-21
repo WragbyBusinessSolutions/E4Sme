@@ -1,6 +1,7 @@
-﻿
+﻿@model IEnumerable<E4S.Models.HumanResource.Dependant>
+
 @{
-  ViewData["Title"] = "Leave";
+  ViewData["Title"] = "Dependents";
   Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 
@@ -102,19 +103,19 @@
                 </tfoot>
                 <tbody>
 
-                  @*@foreach (var item in Model)
+                  @foreach (var item in Model)
                   {
-                    <tr>
-                      <td>@item.Name</td>
-                      <td>@item.Relationship</td>
-                      <td>@item.Address</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Relationship</td>
+                    <td>@item.Address</td>
+                    <td class="text-right">
+                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                    </td>
+                  </tr>
 
-                  }*@
+                  }
 
                 </tbody>
               </table>
@@ -192,4 +193,3 @@
   </script>
 
 }
-

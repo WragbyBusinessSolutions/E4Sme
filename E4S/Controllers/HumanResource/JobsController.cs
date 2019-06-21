@@ -294,7 +294,6 @@ namespace E4S.Controllers.HumanResource
                     Id = Guid.NewGuid(),
                     DepartmentName = postNewDepartment.DepartmentName,
                     Description = postNewDepartment.Description,
-                    IsActive = postNewDepartment.IsActive,                   
                     OrganisationId = orgId
                 };
 

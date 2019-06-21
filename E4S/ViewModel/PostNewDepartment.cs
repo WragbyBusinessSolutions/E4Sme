@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace E4S.ViewModel
 {
-    public class PostNewDepartment
-    {
-        public string DepartmentName { get; set; }
+  public class PostNewDepartment
+  {
+    public string DepartmentName { get; set; }
 
-        public string Description { get; set; }
+    public string Description { get; set; }
 
-        public bool IsActive { get; set; }
-    }
+  }    
 }
