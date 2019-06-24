@@ -9,6 +9,8 @@ namespace E4S.ViewModel
   {
     public Guid Id { get; set; }
     public string EmployeeName { get; set; }
+    public string Email { get; set; }
+
     public string JobTitle { get; set; }
     public string EmployeeStatus { get; set; }
     public string Department { get; set; }

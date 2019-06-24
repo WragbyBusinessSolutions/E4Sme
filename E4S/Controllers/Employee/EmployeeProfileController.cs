@@ -110,6 +110,7 @@ namespace E4S.Controllers.Employee
       contactDetail.EmployeeDetailId = employeeDetails.Id;
       contactDetail.OrganisationId = orgId;
       contactDetail.IsActive = true;
+      //contactDetail.EmployeeDetail = null;
 
       _context.Update(contactDetail);
       await _context.SaveChangesAsync();
