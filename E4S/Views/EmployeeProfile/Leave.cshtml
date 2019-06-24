@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.HumanResource.Leave>
+
 @{
   ViewData["Title"] = "Leave";
   Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
@@ -8,10 +9,10 @@
   <div class="card">
     <div class="card-header text-center" data-background-color="orange">
       <h3 class="card-title">
-        Dependents
+        Leaves
       </h3>
       <h5 class="description">
-        On boarding our new employee.
+        Apply For A New Leave.
       </h5>
     </div>
     @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -38,16 +39,37 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                       <i class="now-ui-icons ui-1_simple-remove"></i>
                     </button>
-                    <h5 class="modal-title" id="myModalLabel">Enter New Dependents</h5>
+                    <h5 class="modal-title" id="myModalLabel">Enter New Leave</h5>
                   </div>
                   <div class="modal-body">
                     <div class="instruction">
                       <form>
+                        @*<div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Employee Name</label>
+                              <input id="EmployeeName" name="EmployeeName" type="text" class="form-control" placeholder="Employee Name" required>
+                            </div>
+                          </div>
+                        </div>*@
+
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Name</label>
-                              <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>
+                              <label>Leave</label>
+                              @*<input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>*@
+                            <select id="LeaveTitle" name="LeaveTitle" class="form-control">
+                              <option value="Annual">Annual</option>
+                              <option value="Casual">Casual</option>
+                              <option value="Sick">Sick</option>
+                              <option value="Compassionate">Compassionate</option>
+                              <option value="Study">Study</option>
+                              <option value="Maternity">Maternity</option>
+                              <option value="Paternity">Paternity</option>
+                              <option value="Other">Other</option>
+
+
+                            </select>
                             </div>
                           </div>
                         </div>
@@ -55,23 +77,34 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Relationship</label>
-                              <input id="Relationship" name="Relationship" type="text" class="form-control" placeholder="Relationship">
+                              <label>Description</label>
+                              <input id="Description" name="Description" type="text" class="form-control" placeholder="Description" required>
                             </div>
                           </div>
                         </div>
+
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Address</label>
-                              <input id="Address" name="Address" type="text" class="form-control" placeholder="Address">
+                              <label>Start Date</label>
+                              <input id="LeaveStartDate" name="LeaveStartDate" type="date" class="form-control" placeholder="Name" required>
                             </div>
                           </div>
                         </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>End Date</label>
+                              <input id="LeaveEndDate" name="LeaveEndDate" type="date" class="form-control" placeholder="Relationship">
+                            </div>
+                          </div>
+                        </div>
+                        
 
                         <hr />
                         <div class="card-footer ">
-                          <button type="button" class="btn btn-fill btn-primary btn-round" id="submitDependent">Submit</button>
+                          <button type="button" class="btn btn-fill btn-primary btn-round" id="submitNewLeave">Submit</button>
                           <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                         </div>
                       </form>
@@ -87,34 +120,45 @@
               <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                 <thead>
                   <tr>
-                    <th> Name</th>
-                    <th>Relationship</th>
+                    <th>Leave</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Approved Date</th>
+                    <th>Status</th>
+
                     <th class="disabled-sorting text-right">Actions</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th> Name</th>
-                    <th>Relationship</th>
-                    <th>Address</th>
+                    <th>Leave</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Approved Date</th>
+                    <th>Status</th>
                     <th class="disabled-sorting text-right">Actions</th>
                   </tr>
                 </tfoot>
                 <tbody>
 
-                  @*@foreach (var item in Model)
+                  @foreach (var item in Model)
                   {
-                    <tr>
-                      <td>@item.Name</td>
-                      <td>@item.Relationship</td>
-                      <td>@item.Address</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td>@item.LeaveTitle</td>
+                    <td>@item.Description</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.ApproveDate</td>
+                    <td>@item.Status</td>
+                    <td class="text-right">
+                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                    </td>
+                  </tr>
 
-                  }*@
+                  }
 
                 </tbody>
               </table>
@@ -136,24 +180,25 @@
 
     $(document).ready(function () {
 
-      $("#submitDependent").click(function (event) {
+      $("#submitNewLeave").click(function (event) {
 
         event.preventDefault();
 
-        var PostEmergencyContact = {
-          Name: $("#Name").val(),
-          Relationship: $("#Relationship").val(),
-          Address: $("#Address").val(),
+        var NewLeave = {
+          LeaveTitle: $("#LeaveTitle").val(),
+          Description: $("#Description").val(),
+          StartDate: $("#LeaveStartDate").val(),
+          EndDate: $("#LeaveEndDate").val(),
         };
 
 
         // console.log(Items);
-        console.log(PostEmergencyContact);
+        console.log(NewLeave);
 
         $.ajax({
           type: "POST",
-          url: "/EmployeeProfile/PostDependent",
-          data: JSON.stringify(PostEmergencyContact),
+          url: "/EmployeeProfile/PostNewLeave",
+          data: JSON.stringify(NewLeave),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {

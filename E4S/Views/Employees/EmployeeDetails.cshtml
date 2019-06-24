@@ -1,4 +1,4 @@
-﻿@model E4S.Models.HumanResource.EmployeeDetail
+﻿@model E4S.ViewModel.EmployeeDetailsViewModel
 @{
   ViewData["Title"] = "Employee Details";
   Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
@@ -9,44 +9,6 @@
   <div class="col-md-12 mr-auto ml-auto">
     <div class="content">
       <div class="row">
-        @*<div class="col-md-4">
-              <!--      Wizard container        -->
-              <div class="wizard-container">
-                  <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                      <form action="" method="">
-                          <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                          <div class="card-header text-center" data-background-color="orange">
-                              <h3 class="card-title">
-                                  New Employee
-                              </h3>
-                              <h5 class="description">
-                                  On boarding our new employee.
-                              </h5>
-                          </div>
-                          <div class="card-body">
-                              <div class="tab-content">
-                                  <div class="tab-pane fade show active" id="about">
-                                      <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
-                                      <div class="row justify-content-center">
-                                          <div class="col-sm-4">
-                                              <div class="picture-container">
-                                                  <div class="picture">
-                                                      <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                      <input type="file" id="wizard-picture">
-                                                  </div>
-                                                  <h6 class="description">Choose Picture</h6>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-
-                  </div>
-              </div>
-              <!-- wizard container -->
-          </div>*@
 
         <div class="col-md-12">
           <div class="card ">
@@ -55,8 +17,10 @@
                 Employee
               </h3>
               <h5 class="description">
-                <b>@Model.FirstName @Model.LastName</b>
+                <b>@Model.EmployeeDetail.FirstName @Model.EmployeeDetail.LastName</b>
               </h5>
+              <input hidden asp-for="Id" />
+
             </div>
 
             <div class="card-header ">
@@ -79,7 +43,11 @@
                         Job
                       </a>
                     </li>
-
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+                        Salary
+                      </a>
+                    </li>
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#link5" role="tablist">
                         Contact Details
@@ -93,12 +61,6 @@
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#link1" role="tablist">
                         Dependents
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
-                        Salary
                       </a>
                     </li>
                     <li class="nav-item">
@@ -116,20 +78,20 @@
                         <div class="row">
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
-                              <label>Surname</label>
-                              <input type="text" class="form-control" placeholder="Company">
+                              <label>First Name</label>
+                              <input asp-for="EmployeeDetail.FirstName" type="text" class="form-control" placeholder="Company">
                             </div>
                           </div>
                           <div class="col-md-4 px-1">
                             <div class="form-group">
-                              <label>Middle name</label>
-                              <input type="text" class="form-control" placeholder="Username">
+                              <label>Middle Name</label>
+                              <input asp-for="EmployeeDetail.MiddleName" type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Last Name</label>
-                              <input type="email" class="form-control" placeholder="Email">
+                              <input asp-for="EmployeeDetail.LastName" type="text" class="form-control" placeholder="Email">
                             </div>
                           </div>
                         </div>
@@ -138,27 +100,13 @@
                           <div class="col-md-6 pr-1">
                             <div class="form-group">
                               <label>Employye ID</label>
-                              <input type="text" class="form-control" disabled placeholder="Employee ID">
+                              <input asp-for="EmployeeDetail.EmployeeId" type="text" class="form-control" disabled placeholder="Employee ID">
                             </div>
                           </div>
                           <div class="col-md-6 pl-1">
                             <div class="form-group">
                               <label>Other ID </label>
-                              <input type="text" class="form-control" placeholder="Other ID">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Driver's Licence</label>
-                              <input type="text" class="form-control" placeholder="Driver's Licence">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Expiry Date </label>
-                              <input type="date" class="form-control" placeholder="Expiry Date">
+                              <input asp-for="EmployeeDetail.OtherId" type="text" class="form-control" placeholder="Other ID">
                             </div>
                           </div>
                         </div>
@@ -167,8 +115,7 @@
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
                               <label>Gender</label>
-                              <select type="text" class="form-control" placeholder="Username">
-                                <option selected> Select Gender</option>
+                              <select asp-for="EmployeeDetail.Gender" type="text" class="form-control" placeholder="Username">
                                 <option>Male </option>
                                 <option>Female</option>
                               </select>
@@ -177,8 +124,7 @@
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Marital Status</label>
-                              <select type="text" class="form-control" placeholder="Username">
-                                <option selected> Select Marital Status </option>
+                              <select asp-for="EmployeeDetail.MaritalStatus" type="text" class="form-control" placeholder="Username">
                                 <option>Single </option>
                                 <option>Married</option>
                                 <option>Engaged</option>
@@ -189,7 +135,7 @@
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Date of Birth</label>
-                              <input type="Date" class="form-control" placeholder="date">
+                              <input asp-for="EmployeeDetail.DateOfBirth" type="Date" class="form-control" placeholder="date">
                             </div>
                           </div>
                         </div>
@@ -197,7 +143,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Address</label>
-                              <input type="text" class="form-control" placeholder="Home Address">
+                              <input asp-for="EmployeeDetail.Nationality" type="text" class="form-control" placeholder="Home Address">
                             </div>
                           </div>
                         </div>
@@ -228,7 +174,98 @@
                       </form>
                     </div>
                     <div class="tab-pane" id="link5">
+
                       <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-md-12">
+                              @*<input asp-for="Id" hidden />*@
+                              <div class="form-group">
+                                <label>Address 1</label>
+                                <input asp-for="ContactDetail.AddressOne" type="text" class="form-control" placeholder="Address" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Address 2</label>
+                                <input asp-for="ContactDetail.AddressTwo" type="text" class="form-control" placeholder="Address">
+                              </div>
+                            </div>
+                          </div>
+                          <hr />
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Zip/Postal Code</label>
+                                <input asp-for="ContactDetail.Zip" type="text" class="form-control" placeholder="Zip/Postal Code" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4 pr-1">
+                              <div class="form-group">
+                                <label>Country </label>
+                                <input asp-for="ContactDetail.Country" type="text" class="form-control" placeholder="Country" required>
+                              </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                              <div class="form-group">
+                                <label>State</label>
+                                <input asp-for="ContactDetail.State" type="text" class="form-control" placeholder="State" required>
+                              </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                              <div class="form-group">
+                                <label>Local Govt</label>
+                                <input asp-for="ContactDetail.City" type="text" class="form-control" placeholder="Local Govt">
+                              </div>
+                            </div>
+                          </div>
+                          <hr />
+                          <div class="row">
+                            <div class="col-md-4 pr-1">
+                              <div class="form-group">
+                                <label>Home Telephone</label>
+                                <input asp-for="ContactDetail.HomeTelephone" type="tel" class="form-control" placeholder="+234xxxx">
+                              </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                              <div class="form-group">
+                                <label>Mobile</label>
+                                <input asp-for="ContactDetail.Mobile" type="tel" class="form-control" placeholder="+234xxxx">
+                              </div>
+                            </div>
+                            <div class="col-md-4 pl-1">
+                              <div class="form-group">
+                                <label>Work Telephone</label>
+                                <input asp-for="ContactDetail.WorkTelephone" type="tel" class="form-control" placeholder="+234xxxx">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Work Email</label>
+                                <input asp-for="ContactDetail.WorkEmail" type="email" class="form-control" placeholder="Work Email">
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Personal Email</label>
+                                <input asp-for="ContactDetail.OtherEmail" type="email" class="form-control" placeholder="Personal Email">
+                              </div>
+                            </div>
+                          </div>
+                          @*<div class="card-footer ">
+                            <button type="submit" class="btn btn-fill btn-primary">Update</button>
+                          </div>*@
+                        </form>
+                      </div>
+
+                      @*<div class="card-body">
                         <form>
                           <div class="row">
                             <div class="col-md-12">
@@ -315,10 +352,10 @@
                             <button type="submit" class="btn btn-fill btn-primary">Submit</button>
                           </div>
                         </form>
-                      </div>
+                      </div>*@
                     </div>
                     <div class="tab-pane" id="link6">
-                      <div class="card-header">
+                      @*<div class="card-header">
                         <div class="justify-content-end align-items-center ">
                           <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
                         </div>
@@ -381,7 +418,7 @@
                           </div>
                         </div>
                       </div>
-                      <!-- end notice modal -->
+                      <!-- end notice modal -->*@
 
                       <div class="card-body">
                         <br />
@@ -405,17 +442,21 @@
                             </tr>
                           </tfoot>
                           <tbody>
+                            @foreach (var item in Model.EmergencyContacts)
+                    {
                             <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td>Super Admin</td>
-                              <td>Active</td>
+                              <td>@item.Name</td>
+                              <td>@item.Relationship</td>
+                              <td>@item.HomeTelephone</td>
+                              <td>@item.Address</td>
                               <td class="text-right">
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                               </td>
                             </tr>
-                            <tr>
+
+                    }
+                            @*<tr>
                               <td>Garrett Winters</td>
                               <td>info@GatterrWinters.com</td>
                               <td>Admin</td>
@@ -444,21 +485,21 @@
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                               </td>
-                            </tr>
+                            </tr>*@
 
                           </tbody>
                         </table>
                       </div>
                     </div>
                     <div class="tab-pane" id="link1">
-                      <div class="card-header">
+                      @*<div class="card-header">
                         <div class="justify-content-end align-items-center ">
                           <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal1">Create New</a>
                         </div>
-                      </div>
+                      </div>*@
 
                       <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      @*<div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -506,7 +547,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div>*@
                       <!-- end notice modal -->
 
                       <div class="card-body">
@@ -529,42 +570,19 @@
                             </tr>
                           </tfoot>
                           <tbody>
-                            <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td>Admin</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
+                            @foreach (var item in Model.Dependants)
+                            {
+                              <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Relationship</td>
+                                <td>@item.Address</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
+
+                            }
 
                           </tbody>
                         </table>
@@ -579,32 +597,34 @@
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>Job Title</label>
-                                <select type="text" class="form-control" placeholder="Country">
+                                <select asp-for="JobTitleId" type="text" asp-items="ViewBag.JobTitle" class="form-control" placeholder="Country">
                                   <option> -- Select Job Title -- </option>
                                 </select>
                               </div>
                             </div>
                             <div class="col-md-6 ">
                               <div class="form-group">
-                                <label>Job Specification</label>
-                                <input type="text" class="form-control" disabled placeholder="Job Specification">
+                                <label>Department</label>
+                                <select asp-for="DepartmentId" type="text" asp-items="ViewBag.Department" class="form-control">
+                                  <option> -- Select Job Employement Status -- </option>
+                                </select>
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6 ">
                               <div class="form-group">
-                                <label>Job Title</label>
-                                <select type="text" class="form-control" placeholder="Country">
+                                <label>Employment Status</label>
+                                <select asp-for="EmploymentStatusId" type="text" asp-items="ViewBag.EmploymentStatus" class="form-control" >
                                   <option> -- Select Job Employement Status -- </option>
                                 </select>
                               </div>
                             </div>
                             <div class="col-md-6 ">
                               <div class="form-group">
-                                <label>Job Specification</label>
-                                <select type="text" class="form-control" placeholder="Country">
-                                  <option> -- Select Job Category -- </option>
+                                <label>Job Category</label>
+                                <select asp-for="JobCategoryId" type="text" asp-items="ViewBag.JobCategory" class="form-control">
+                                  <option> -- Select Job Employement Status -- </option>
                                 </select>
                               </div>
                             </div>
@@ -614,22 +634,14 @@
                             <div class="col-md-5 pr-1">
                               <div class="form-group">
                                 <label>Joined date </label>
-                                <input type="date" class="form-control" placeholder="Company">
-                              </div>
-                            </div>
-                            <div class="col-md-3 px-1">
-                              <div class="form-group">
-                                <label>Sub Unit</label>
-                                <select type="text" class="form-control" placeholder="Country">
-                                  <option> -- Select Job Employement Status -- </option>
-                                </select>
+                                <input asp-for="JoinDate" type="date" class="form-control" placeholder="Company">
                               </div>
                             </div>
                             <div class="col-md-4 pl-1">
                               <div class="form-group">
-                                <label>Location</label>
-                                <select type="text" class="form-control" placeholder="Country">
-                                  <option> -- Select Job Employement Status -- </option>
+                                <label>Branch</label>
+                                <select asp-for="BranchId" type="text" asp-items="ViewBag.Branch" class="form-control" >
+                                  <option> -- Select Branch -- </option>
                                 </select>
                               </div>
                             </div>
@@ -642,13 +654,13 @@
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>Start Date</label>
-                                <input type="date" class="form-control" placeholder="Country">
+                                <input asp-for="StartDate" type="date" class="form-control" placeholder="Country">
                               </div>
                             </div>
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>End Date</label>
-                                <input type="date" class="form-control" placeholder="ZIP Code">
+                                <input asp-for="EndDate" type="date" class="form-control" placeholder="ZIP Code">
                               </div>
                             </div>
                           </div>
@@ -657,12 +669,12 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Contract Details</label>
-                                <input type="text" class="form-control" disabled placeholder="Home Address" required>
+                                <input type="text" class="form-control" asp-for="ContractDetails"  placeholder="Comtract Details" required>
                               </div>
                             </div>
                           </div>
                           <div class="card-footer">
-                            <button type="submit" class="btn btn-fill btn-primary">Submit</button>
+                            <button type="button" class="btn btn-fill btn-primary" id="btnJob">Save</button>
                             <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
                           </div>
                         </form>
@@ -671,161 +683,63 @@
                     </div>
 
                     <div class="tab-pane" id="link3">
-                      <!-- End of the End of Jobs Tabs-->
-                      <div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal2">Create New</a>
-                        </div>
-                      </div>
 
-                      <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Salary</h5>
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Pay Grade</label>
+                                <select asp-for="PayGradeId" type="text" asp-items="ViewBag.PayGrade" class="form-control" placeholder="Country">
+                                  <option> -- Select Pay Grade -- </option>
+                                </select>
+                              </div>
                             </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Compensation step</label>
-                                        <select type="text" class="form-control" placeholder="Name" required>
-                                          <option> -- Select Compensation step -- </option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Salary Element</label>
-                                        <input type="text" class="form-control" placeholder="Salary Element">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Payroll frequency</label>
-                                        <select type="text" class="form-control" placeholder="Payroll frequency" required>
-                                          <option> -- Select Payroll frequency -- </option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Currency</label>
-                                        <select type="text" class="form-control" placeholder="Currency" required>
-                                          <option> -- Select Currency -- </option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Amount</label>
-                                        <input type="text" class="form-control" placeholder="Amount">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Comments</label>
-                                        <input type="text" class="form-control" placeholder="Comments">
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Pay Frequency</label>
+                                <select asp-for="PayFrequency" type="text" class="form-control">
+                                  <option> -- Select Pay Frequency -- </option>
+                                  <option value="Monthly">Monthly</option>
+                                  <option value="Bi Monthly">Bi Monthly</option>
+                                  <option value="Weekly">Weekly</option>
+                                </select>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <!-- end notice modal -->
 
-                      <div class="card-body">
-                        <br />
-                        <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                          <thead>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th>Home Telephone</th>
-                              <th>Address</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </thead>
-                          <tfoot>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th>Home Telephone</th>
-                              <th>Address</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
-                          <tbody>
-                            <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td>Super Admin</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td>Admin</td>
-                              <td>Pending</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td>Employee</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
-                              <td>Accountant</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
 
-                          </tbody>
-                        </table>
+                          <hr />
+
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Amount</label>
+                                <input asp-for="Amount" type="number" class="form-control" placeholder="Amount">
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Currency</label>
+                                <input asp-for="Currency" type="text" class="form-control" placeholder="Currency">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Comments</label>
+                                <input type="text" class="form-control" asp-for="Comments" placeholder="Comments" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <button type="button" class="btn btn-fill btn-primary" name="btnSalary" id="btnSalary">Save</button>
+                          </div>
+                        </form>
                       </div>
+
                     </div>
                     <div class="tab-pane" id="link7">
                       <!-- Start of Qualifaction-->
@@ -1229,12 +1143,17 @@
                       </div>
 
                     </div>
-                    <div class="tab-pane" id="link4">
+
+
+
+
+
+                    <div class="tab-pane" id="#">
                       Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
                       <br>
                       <br> innovate resource-leveling customer service for state of the art customer service.
                     </div>
-                    <div class="tab-pane" id="link6">
+                    <div class="tab-pane" id="#">
                       Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
                       <br>
                       <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
@@ -1254,7 +1173,120 @@
 
 
   <script>
+
+
     $(document).ready(function () {
+
+                  $("#btnSalary").click(function (event) {
+
+                event.preventDefault();
+
+                var PostSalary = {
+                    EmployeeId: $("#Id").val(),
+                    PayGrade: $("#PayGradeId").val(),
+                    PayFrequency: $("#PayFrequency").val(),
+                    Currency: $("#Currency").val(),
+                    Amount: $("#Amount").val(),
+                    Comments: $("#Comments").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostSalary);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/SaveSalary",
+                    data: JSON.stringify(PostSalary),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+                        $("#btnJob").click(function (event) {
+
+                event.preventDefault();
+
+                var PostJob = {
+                    EmployeeId: $("#Id").val(),
+                    JobTitleId: $("#JobTitleId").val(),
+                    DepartmentId: $("#DepartmentId").val(),
+                    EmploymentStatusId: $("#EmploymentStatusId").val(),
+                    JobCategoryId: $("#JobCategoryId").val(),
+                    JoinDate: $("#JoinDate").val(),
+                    BranchId: $("#BranchId").val(),
+                    StartDate: $("#StartDate").val(),
+                    EndDate: $("#EndDate").val(),
+                    ContractDetails: $("#ContractDetails").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostJob);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/SaveJob",
+                    data: JSON.stringify(PostJob),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
       //-------------------------------SELECT CASCADING-------------------------//
       var selectedCountry = selectedRegion = selectedCity = countryCode = "";
       // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
@@ -1273,6 +1305,8 @@
           );
         });
       });
+
+
       // Country selected --> update region list .
       $("#country").change(function () {
         selectedCountry = this.options[this.selectedIndex].text;
@@ -1293,6 +1327,8 @@
           });
         });
       });
+
+
       // Region selected --> updated city list
       $("#region").on("change", function () {
         selectedRegion = this.options[this.selectedIndex].text;
@@ -1316,6 +1352,8 @@
           });
         });
       });
+
+
       // city selected --> update location string
       $("#city").on("change", function () {
         selectedCity = this.options[this.selectedIndex].text;
@@ -1330,6 +1368,8 @@
       });
 
     });
+
+
     // process form
     function processForm() {
       var username = password = country = region = city = '';
@@ -1354,6 +1394,9 @@
         return false;
       }
     }
+
+
+
   </script>
 
 }

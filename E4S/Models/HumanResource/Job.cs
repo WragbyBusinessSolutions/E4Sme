@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace E4S.Models.HumanResource
 {
-  public class Job
+  public class Job : BaseClass
   {
     public Guid Id { get; set; }
     public Guid EmployeeDetailId { get; set; }

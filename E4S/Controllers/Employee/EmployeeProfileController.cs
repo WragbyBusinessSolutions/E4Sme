@@ -12,6 +12,7 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.Employee
 {
@@ -341,7 +342,19 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Jobs()
         {
-            return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var empJob = _context.Jobs
+        .Where(x => x.EmployeeDetailId == employeeDetails.Id)
+        .Include(x => x.Branch)
+        .Include(x => x.JobCategory)
+        .Include(x => x.JobTitle)
+        .Include(x => x.EmploymentStatus)
+        .Include(x => x.Department)
+        .FirstOrDefault();
+      return View(empJob);
         }
 
         public IActionResult Salary()
@@ -366,7 +379,65 @@ namespace E4S.Controllers.Employee
 
         public IActionResult Leave()
         {
-            return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+      var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
+      return View(leaveList);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> PostNewLeave([FromBody]PostNewLeave postLeave)
+    {
+      if (postLeave == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      try
+      {
+        Leave leave = new Leave()
+        {
+          Id = Guid.NewGuid(),
+          LeaveTitle = postLeave.LeaveTitle,
+          Description = postLeave.Description,
+          StartDate = postLeave.StartDate,
+          EndDate = postLeave.EndDate,
+          OrganisationId = orgId,
+          Status = "Pending",
+          EmployeeDetailId = employeeDetails.Id
+
+        };
+
+        _context.Add(leave);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
+  }
 }
