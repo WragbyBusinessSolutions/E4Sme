@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
@@ -49,12 +50,13 @@ namespace E4S.Controllers.HumanResource
 
       foreach (var item in employeeListDb)
       {
+        var empDetails = _context.Jobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
         singleEmployee = new EmployeeListViewModel()
         {
           Id = item.Id,
           EmployeeName = item.FirstName + " " + item.LastName,
-          Department = "",
-          EmployeeStatus = "",
+          Department = empDetails.Department.DepartmentName,
+          EmployeeStatus = empDetails.EmploymentStatus.EmploymentStatusName,
           JobTitle = "",
           Supervisor = ""
         };

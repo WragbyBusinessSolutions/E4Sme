@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.HumanResource.Leave>
+
 @{
   ViewData["Title"] = "Leave";
   Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
@@ -43,14 +44,14 @@
                   <div class="modal-body">
                     <div class="instruction">
                       <form>
-                        <div class="row">
+                        @*<div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Employee Name</label>
                               <input id="EmployeeName" name="EmployeeName" type="text" class="form-control" placeholder="Employee Name" required>
                             </div>
                           </div>
-                        </div>
+                        </div>*@
 
                         <div class="row">
                           <div class="col-md-12">
@@ -58,14 +59,14 @@
                               <label>Leave</label>
                               @*<input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>*@
                             <select id="LeaveTitle" name="LeaveTitle" class="form-control">
-                              <option>Annual</option>
-                              <option>Casual</option>
-                              <option>Sick</option>
-                              <option>Compassionate</option>
-                              <option>Study</option>
-                              <option>Maternity</option>
-                              <option>Paternity</option>
-                              <option>Other</option>
+                              <option value="Annual">Annual</option>
+                              <option value="Casual">Casual</option>
+                              <option value="Sick">Sick</option>
+                              <option value="Compassionate">Compassionate</option>
+                              <option value="Study">Study</option>
+                              <option value="Maternity">Maternity</option>
+                              <option value="Paternity">Paternity</option>
+                              <option value="Other">Other</option>
 
 
                             </select>
@@ -99,26 +100,6 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Approved Date</label>
-                              <input id="LeaveApprovedDate" name="LeaveApprovedDate" type="date" class="form-control" placeholder="Address">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label>Status</label>
-                              <select id="Status" name="Status" class="form-control">
-                                <option>Active</option>
-                                <option>Pending</option>
-                              </select>
-                              @*<input id="Address" name="Address" type="text" class="form-control" placeholder="Address">*@
-                            </div>
-                          </div>
-                        </div>
                         
 
                         <hr />
@@ -139,7 +120,6 @@
               <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                 <thead>
                   <tr>
-                    <th>Employee Name</th>
                     <th>Leave</th>
                     <th>Description</th>
                     <th>Start Date</th>
@@ -152,7 +132,6 @@
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Employee Name</th>
                     <th>Leave</th>
                     <th>Description</th>
                     <th>Start Date</th>
@@ -164,19 +143,22 @@
                 </tfoot>
                 <tbody>
 
-                  @*@foreach (var item in Model)
+                  @foreach (var item in Model)
                   {
-                    <tr>
-                      <td>@item.Name</td>
-                      <td>@item.Relationship</td>
-                      <td>@item.Address</td>
-                      <td class="text-right">
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                      </td>
-                    </tr>
+                  <tr>
+                    <td>@item.LeaveTitle</td>
+                    <td>@item.Description</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.ApproveDate</td>
+                    <td>@item.Status</td>
+                    <td class="text-right">
+                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                    </td>
+                  </tr>
 
-                  }*@
+                  }
 
                 </tbody>
               </table>
@@ -203,13 +185,10 @@
         event.preventDefault();
 
         var NewLeave = {
-          Name: $("#EmployeeName").val(),
           LeaveTitle: $("#LeaveTitle").val(),
           Description: $("#Description").val(),
-          LeaveStartDate: $("#LeaveStartDate").val(),
-          LeaveEndDate: $("#LeaveEndDate").val(),
-          LeaveApprovedDate: $("#LeaveApprovedDate").val(),
-          Status: $("#Status").val(),
+          StartDate: $("#LeaveStartDate").val(),
+          EndDate: $("#LeaveEndDate").val(),
         };
 
 
