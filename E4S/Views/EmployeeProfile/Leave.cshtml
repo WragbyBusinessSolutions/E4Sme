@@ -8,10 +8,10 @@
   <div class="card">
     <div class="card-header text-center" data-background-color="orange">
       <h3 class="card-title">
-        Dependents
+        Leaves
       </h3>
       <h5 class="description">
-        On boarding our new employee.
+        Apply For A New Leave.
       </h5>
     </div>
     @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -38,7 +38,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                       <i class="now-ui-icons ui-1_simple-remove"></i>
                     </button>
-                    <h5 class="modal-title" id="myModalLabel">Enter New Dependents</h5>
+                    <h5 class="modal-title" id="myModalLabel">Enter New Leave</h5>
                   </div>
                   <div class="modal-body">
                     <div class="instruction">
@@ -46,8 +46,8 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Name</label>
-                              <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>
+                              <label>Employee Name</label>
+                              <input id="EmployeeName" name="EmployeeName" type="text" class="form-control" placeholder="Employee Name" required>
                             </div>
                           </div>
                         </div>
@@ -55,23 +55,75 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Relationship</label>
-                              <input id="Relationship" name="Relationship" type="text" class="form-control" placeholder="Relationship">
+                              <label>Leave</label>
+                              @*<input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>*@
+                            <select id="LeaveTitle" name="LeaveTitle" class="form-control">
+                              <option>Annual</option>
+                              <option>Casual</option>
+                              <option>Sick</option>
+                              <option>Compassionate</option>
+                              <option>Study</option>
+                              <option>Maternity</option>
+                              <option>Paternity</option>
+                              <option>Other</option>
+
+
+                            </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Description</label>
+                              <input id="Description" name="Description" type="text" class="form-control" placeholder="Description" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Start Date</label>
+                              <input id="LeaveStartDate" name="LeaveStartDate" type="date" class="form-control" placeholder="Name" required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>End Date</label>
+                              <input id="LeaveEndDate" name="LeaveEndDate" type="date" class="form-control" placeholder="Relationship">
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label>Address</label>
-                              <input id="Address" name="Address" type="text" class="form-control" placeholder="Address">
+                              <label>Approved Date</label>
+                              <input id="LeaveApprovedDate" name="LeaveApprovedDate" type="date" class="form-control" placeholder="Address">
                             </div>
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Status</label>
+                              <select id="Status" name="Status" class="form-control">
+                                <option>Active</option>
+                                <option>Pending</option>
+                              </select>
+                              @*<input id="Address" name="Address" type="text" class="form-control" placeholder="Address">*@
+                            </div>
+                          </div>
+                        </div>
+                        
 
                         <hr />
                         <div class="card-footer ">
-                          <button type="button" class="btn btn-fill btn-primary btn-round" id="submitDependent">Submit</button>
+                          <button type="button" class="btn btn-fill btn-primary btn-round" id="submitNewLeave">Submit</button>
                           <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                         </div>
                       </form>
@@ -87,16 +139,26 @@
               <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                 <thead>
                   <tr>
-                    <th> Name</th>
-                    <th>Relationship</th>
+                    <th>Employee Name</th>
+                    <th>Leave</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Approved Date</th>
+                    <th>Status</th>
+
                     <th class="disabled-sorting text-right">Actions</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th> Name</th>
-                    <th>Relationship</th>
-                    <th>Address</th>
+                    <th>Employee Name</th>
+                    <th>Leave</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Approved Date</th>
+                    <th>Status</th>
                     <th class="disabled-sorting text-right">Actions</th>
                   </tr>
                 </tfoot>
@@ -136,24 +198,28 @@
 
     $(document).ready(function () {
 
-      $("#submitDependent").click(function (event) {
+      $("#submitNewLeave").click(function (event) {
 
         event.preventDefault();
 
-        var PostEmergencyContact = {
-          Name: $("#Name").val(),
-          Relationship: $("#Relationship").val(),
-          Address: $("#Address").val(),
+        var NewLeave = {
+          Name: $("#EmployeeName").val(),
+          LeaveTitle: $("#LeaveTitle").val(),
+          Description: $("#Description").val(),
+          LeaveStartDate: $("#LeaveStartDate").val(),
+          LeaveEndDate: $("#LeaveEndDate").val(),
+          LeaveApprovedDate: $("#LeaveApprovedDate").val(),
+          Status: $("#Status").val(),
         };
 
 
         // console.log(Items);
-        console.log(PostEmergencyContact);
+        console.log(NewLeave);
 
         $.ajax({
           type: "POST",
-          url: "/EmployeeProfile/PostDependent",
-          data: JSON.stringify(PostEmergencyContact),
+          url: "/EmployeeProfile/PostNewLeave",
+          data: JSON.stringify(NewLeave),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {
