@@ -11,6 +11,7 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace E4S.Controllers.HumanResource
 {
@@ -71,11 +72,218 @@ namespace E4S.Controllers.HumanResource
             return View();
         }
 
+
         public IActionResult EmployeeDetails(Guid id)
         {
       var singleEmployee = _context.EmployeeDetails.Where(x => x.Id == id).FirstOrDefault();
-          return View(singleEmployee);
+      var orgId = getOrg();
+      EmployeeDetailsViewModel employeeDetailsVM = new EmployeeDetailsViewModel();
+      employeeDetailsVM.Id = id;
+      employeeDetailsVM.EmployeeDetail = singleEmployee;
+      employeeDetailsVM.ContactDetail = _context.ContactDetails.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
+      employeeDetailsVM.EmergencyContacts = _context.EmergencyContacts.Where(x => x.EmployeeDetailId == id).ToList();
+      employeeDetailsVM.Dependants = _context.Dependants.Where(x => x.EmployeeDetailId == id).ToList();
+
+
+      var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
+      var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
+
+      if (jobEmployee != null)
+      {
+        employeeDetailsVM.BranchId = jobEmployee.BranchId;
+        employeeDetailsVM.JobTitleId = jobEmployee.JobTitleId;
+        employeeDetailsVM.DepartmentId = jobEmployee.DepartmentId;
+        employeeDetailsVM.EmploymentStatusId = jobEmployee.EmploymentStatusId;
+        employeeDetailsVM.JobCategoryId = jobEmployee.JobCategoryId;
+        employeeDetailsVM.JoinDate = jobEmployee.JoinedDate;
+        employeeDetailsVM.StartDate = jobEmployee.StartDate;
+        employeeDetailsVM.EndDate = jobEmployee.EndDate;
+        employeeDetailsVM.ContractDetails = jobEmployee.ContractDetail;
+
+      }
+
+      if (salaryEmployee != null)
+      {
+        employeeDetailsVM.Amount = salaryEmployee.Amount;
+        employeeDetailsVM.PayGradeId = salaryEmployee.PayGradeId;
+        employeeDetailsVM.PayFrequency = salaryEmployee.PayFrequency;
+        employeeDetailsVM.Comments = salaryEmployee.Comment;
+        employeeDetailsVM.Currency = salaryEmployee.Currency;
+      }
+
+      ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId) , "Id", "JobTitleName", employeeDetailsVM.JobTitleId);
+      ViewData["EmploymentStatus"] = new SelectList(_context.EmploymentStatuses.Where(x => x.OrganisationId == orgId), "Id", "EmploymentStatusName", employeeDetailsVM.EmploymentStatusId);
+      ViewData["Department"] = new SelectList(_context.Departments.Where(x => x.OrganisationId == orgId), "Id", "DepartmentName", employeeDetailsVM.DepartmentId);
+      ViewData["JobCategory"] = new SelectList(_context.JobCategories.Where(x => x.OrganisationId == orgId), "Id", "JobCategoryName", employeeDetailsVM.JobCategoryId);
+      ViewData["Branch"] = new SelectList(_context.Branches.Where(x => x.OrganisationId == orgId), "Id", "BranchName", employeeDetailsVM.BranchId);
+      ViewData["PayGrade"] = new SelectList(_context.PayGrades.Where(x => x.OrganisationId == orgId), "Id", "PayGradeName", employeeDetailsVM.PayGradeId);
+
+      return View(employeeDetailsVM);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> SaveSalary([FromBody]PostSalary postSalary)
+    {
+      if (postSalary == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var employeeSalary = _context.Salaries.FirstOrDefault(x => x.EmployeeDetailId == postSalary.EmployeeId);
+
+      if (employeeSalary != null)
+      {
+        employeeSalary.OrganisationId = orgId;
+        employeeSalary.PayFrequency = postSalary.PayFrequency;
+        employeeSalary.Amount = postSalary.Amount;
+        employeeSalary.Currency = postSalary.Currency;
+        employeeSalary.PayGradeId = postSalary.PayGrade;
+        employeeSalary.Comment = postSalary.Comments;
+
+        _context.Update(employeeSalary);
+        await _context.SaveChangesAsync();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+
+
+      try
+      {
+        var newEmployeeSalary = new Salary()
+        {
+          Id = Guid.NewGuid(),
+          Amount = postSalary.Amount,
+          OrganisationId = orgId,
+          PayGradeId = postSalary.PayGrade,
+          EmployeeDetailId = postSalary.EmployeeId,
+          Currency = postSalary.Currency,
+          PayFrequency = postSalary.PayFrequency,
+          Comment = postSalary.Comments,
+          IsActive = true
+          
+        };
+
+        _context.Add(newEmployeeSalary);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+    [HttpPost]
+    public async Task<IActionResult> SaveJob([FromBody]PostJob postJob)
+    {
+      if (postJob == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var employeeJob = _context.Jobs.FirstOrDefault(x => x.EmployeeDetailId == postJob.EmployeeId);
+
+      if (employeeJob != null)
+      {
+        employeeJob.OrganisationId = orgId;
+        employeeJob.BranchId = postJob.BranchId;
+        employeeJob.JobTitleId = postJob.JobTitleId;
+        employeeJob.DepartmentId = postJob.DepartmentId;
+        employeeJob.EmploymentStatusId = postJob.EmploymentStatusId;
+        employeeJob.JobCategoryId = postJob.JobCategoryId;
+        employeeJob.JoinedDate = postJob.JoinDate;
+        employeeJob.StartDate = postJob.StartDate;
+        employeeJob.EndDate = postJob.EndDate;
+        employeeJob.ContractDetail = postJob.ContractDetails;
+
+        _context.Update(employeeJob);
+        await _context.SaveChangesAsync();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+
+
+      try
+      {
+        var newEmployeeJob = new Job()
+        {
+          Id = Guid.NewGuid(),
+          OrganisationId = orgId,
+          EmployeeDetailId = postJob.EmployeeId,
+          BranchId = postJob.BranchId,
+          ContractDetail = postJob.ContractDetails,
+          DepartmentId = postJob.DepartmentId,
+          EmploymentStatusId = postJob.EmploymentStatusId,
+          EndDate = postJob.EndDate,
+          JobCategoryId = postJob.JobCategoryId, 
+          JobTitleId = postJob.JobTitleId,
+          JoinedDate = postJob.JoinDate,
+          StartDate = postJob.StartDate,
+
+          IsActive = true
+
+        };
+
+        _context.Add(newEmployeeJob);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
     [HttpGet]
     public async Task<IActionResult> EmployeeInfo (Guid id)
     {

@@ -39,7 +39,11 @@ namespace E4S.Controllers
 
     public IActionResult Branch()
     {
-      return View();
+      var orgId = getOrg();
+
+      var branchList = _context.Branches.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(branchList);
     }
 
     public IActionResult Edit()
@@ -76,5 +80,25 @@ namespace E4S.Controllers
     {
         return View();
     }
+
+    [HttpPost]
+    public IActionResult createbranch(Branch branch)
+    {
+      var orgId = getOrg();
+
+      if (branch == null)
+      {
+        return View();
+      }
+
+      branch.OrganisationId = orgId;
+      branch.Id = Guid.NewGuid();
+
+      _context.Add(branch);
+      _context.SaveChanges();
+
+      return RedirectToAction("Branch");
     }
+
+  }
 }
