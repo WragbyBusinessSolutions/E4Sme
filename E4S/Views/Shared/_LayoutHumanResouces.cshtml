@@ -100,7 +100,55 @@
             </a>
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
           </li>
-
+          <li>
+              <a data-toggle="collapse" href="#jobs">
+                  <i class="now-ui-icons business_briefcase-24"></i>
+                  <p>
+                      Configuration
+                      <b class="caret"></b>
+                  </p>
+              </a>
+              <div class="collapse " id="jobs">
+                  <ul class="nav">
+                      <li>
+                          <a asp-action="Department" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon">D</span>
+                              <span class="sidebar-normal"> Departments </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="JobTitle" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> J T</span>
+                              <span class="sidebar-normal"> Job Title</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="PayGrade" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> P G</span>
+                              <span class="sidebar-normal"> Pay Grade </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="JobCategory" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon"> P G</span>
+                              <span class="sidebar-normal"> Job Category </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon">R</span>
+                              <span class="sidebar-normal"> Employment Status </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a asp-action="LeaveConfiguration" asp-controller="Jobs">
+                              <span class="sidebar-mini-icon">L C </span>
+                              <span class="sidebar-normal"> Leave Configuration </span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
               <i class="now-ui-icons design_image"></i>
@@ -158,49 +206,7 @@
               </ul>
             </div>
           </li>
-          <li>
-            <a data-toggle="collapse" href="#jobs">
-              <i class="now-ui-icons business_briefcase-24"></i>
-              <p>
-                Job
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse " id="jobs">
-                <ul class="nav">
-                    <li>
-                        <a asp-action="Department" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">D</span>
-                            <span class="sidebar-normal"> Departments </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="JobTitle" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> J T</span>
-                            <span class="sidebar-normal"> Job Title</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="PayGrade" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> P G</span>
-                            <span class="sidebar-normal"> Pay Grade </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="JobCategory" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> P G</span>
-                            <span class="sidebar-normal"> Job Category </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">R</span>
-                            <span class="sidebar-normal"> Employment Status </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-          </li>
+          
           <li class="">
             <a asp-action="Index" asp-controller="Leaves">
               <i class="now-ui-icons design_app"></i>
