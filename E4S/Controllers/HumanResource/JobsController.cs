@@ -318,5 +318,14 @@ namespace E4S.Controllers.HumanResource
                 msg = "Fail"
             });
         }
+
+        public IActionResult LeaveConfiguration()
+        {
+            var orgId = getOrg();
+            var department = _context.Departments.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View();
+        }
     }
+
 }

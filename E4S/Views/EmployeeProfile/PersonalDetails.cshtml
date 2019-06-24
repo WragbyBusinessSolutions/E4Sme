@@ -18,21 +18,21 @@
             </h5>
         </div>
         @*<h4 class="card-title"> Employee Jobs</h4>*@
-    <form method="post" asp-action="PersonalDetails" asp-controller="EmployeeProfile">
+
         <div class="row">
             <div class="col-md-3">
                 <div class="col-md-8 content-center">
                     <h5 class="card-title">Employee Image</h5>
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail">
-                            <img src="../../assets/img/image_placeholder.jpg ~/@Html.DisplayFor(model =>model.ImageUrl)"  alt="..." >
+                            <img src="../../assets/img/image_placeholder.jpg" id="imageUploadForm" name="image" multiple="multiple" alt="...">
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
                         <div>
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">Select image</span>
                                 <span class="fileinput-exists">Change</span>
-                                <input type="file" name="..." asp-for="ImageUrl" />
+                                <input type="file" name="..." />
                             </span>
                             <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                         </div>
@@ -44,79 +44,80 @@
                     <div class="card-body ">
                         <!-- Start of the Emergency Contact tabs-->
                         <div class="card-body">
+                            <form method="post" asp-action="PersonalDetails" asp-controller="EmployeeProfile">
+                                <div class="row">
+                                    <input asp-for="Id" hidden>
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Middle name</label>
+                                            <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Last Name</label>
+                                            <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Employye ID</label>
+                                            <input asp-for="EmployeeId" type="text" class="form-control" readonly placeholder="Employee ID">
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <input asp-for="Id" hidden>
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label>Other ID </label>
+                                            <input asp-for="OtherId" type="text" class="form-control" placeholder="Other ID">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 px-1">
-                                    <div class="form-group">
-                                        <label>Middle name</label>
-                                        <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name">
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select asp-for="Gender" type="text" class="form-control" placeholder="Username">
+                                                <option selected>-- Select Gender</option>
+                                                <option>Male </option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Marital Status</label>
+                                            <select asp-for="MaritalStatus" type="text" class="form-control" placeholder="Username">
+                                                <option selected> -- Select Marital Status -- </option>
+                                                <option>Single </option>
+                                                <option>Married</option>
+                                                <option>Engaged</option>
+                                                <option>Widow</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Date of Birth</label>
+                                            <input asp-for="DateOfBirth" type="Date" class="form-control" placeholder="date">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 pl-1">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Last Name</label>
-                                        <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
-                                    </div>
+                                <hr />
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary">Update</button>
                                 </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-6 pr-1">
-                                    <div class="form-group">
-                                        <label>Employye ID</label>
-                                        <input asp-for="EmployeeId" type="text" class="form-control" readonly placeholder="Employee ID">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 pl-1">
-                                    <div class="form-group">
-                                        <label>Other ID </label>
-                                        <input asp-for="OtherId" type="text" class="form-control" placeholder="Other ID">
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <select asp-for="Gender" type="text" class="form-control" placeholder="Username">
-                                            <option selected>-- Select Gender</option>
-                                            <option>Male </option>
-                                            <option>Female</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 px-1">
-                                    <div class="form-group">
-                                        <label>Marital Status</label>
-                                        <select asp-for="MaritalStatus" type="text" class="form-control" placeholder="Username">
-                                            <option>Single </option>
-                                            <option>Married</option>
-                                            <option>Engaged</option>
-                                            <option>Widow</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 pl-1">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Date of Birth</label>
-                                        <input asp-for="DateOfBirth" type="Date" class="form-control" placeholder="date">
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-primary">Update</button>
-                            </div>
-
+                            </form>
                         </div>
                         <!-- the End of Emergency Contact Tabs-->
 
@@ -124,7 +125,6 @@
                 </div>
             </div>
         </div>
-    </form>
     </div>
 </div>
 
@@ -231,4 +231,38 @@
             return false;
         }
     }
+</script>
+
+
+@*uploading fo images*@ 
+<script>
+    $(document).ready(function() {
+       $("#imageUploadForm").change(function() {
+         var formData = new FormData();
+         var totalFiles = document.getElementById("imageUploadForm").files.length;
+         for (var i = 0; i < totalFiles; i++) {
+           var file = document.getElementById("imageUploadForm").files[i];
+           formData.append("imageUploadForm", file);
+         }
+         $.ajax({
+           type: "POST",
+           url: '/Home/Upload',
+           data: formData,
+           dataType: 'json',
+           contentType: false,
+           processData: false
+             //success: function(response) {
+             //    alert('succes!!');
+             //},
+             //error: function(error) {
+             //    alert("errror");
+             //}
+         }).done(function() {
+           alert('success');
+         }.fail(function( xhr, status, errorThrown ) {
+             alert('fail');
+           };
+         });
+       });
+
 </script>

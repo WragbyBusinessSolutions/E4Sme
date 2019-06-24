@@ -40,5 +40,6 @@ namespace E4S.Data
 
     public DbSet<Branch> Branches { get; set; }
     public DbSet<Department> Departments { get; set; }
+    public DbSet<Leave> Leaves { get; set; }
   }
 }

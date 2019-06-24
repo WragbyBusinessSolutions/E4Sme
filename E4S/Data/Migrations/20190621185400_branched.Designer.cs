@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190621185400_branched")]
+    partial class branched
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,12 +345,6 @@ namespace E4S.Data.Migrations
 
                     b.Property<string>("ContractDetail");
 
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
                     b.Property<Guid>("DepartmentId");
 
                     b.Property<Guid>("EmployeeDetailId");
@@ -360,8 +355,6 @@ namespace E4S.Data.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<bool>("IsDeleted");
-
                     b.Property<Guid>("JobCategoryId");
 
                     b.Property<string>("JobSpecification");
@@ -369,8 +362,6 @@ namespace E4S.Data.Migrations
                     b.Property<Guid>("JobTitleId");
 
                     b.Property<DateTime>("JoinedDate");
-
-                    b.Property<Guid>("OrganisationId");
 
                     b.Property<DateTime>("StartDate");
 
@@ -439,42 +430,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("JobTitles");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.Leave", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("ApproveDate");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("Description");
-
-                    b.Property<Guid>("EmployeeDetailId");
-
-                    b.Property<DateTime>("EndDate");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LeaveTitle");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<DateTime>("StartDate");
-
-                    b.Property<string>("Status");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeDetailId");
-
-                    b.ToTable("Leaves");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.PayGrade", b =>
@@ -755,14 +710,6 @@ namespace E4S.Data.Migrations
                     b.HasOne("E4S.Models.HumanResource.JobTitle", "JobTitle")
                         .WithMany()
                         .HasForeignKey("JobTitleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.Leave", b =>
-                {
-                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
-                        .WithMany()
-                        .HasForeignKey("EmployeeDetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
@@ -10,6 +12,7 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.Employee
 {
@@ -67,6 +70,88 @@ namespace E4S.Controllers.Employee
       return View(employeeDetail);
     }
 
+
+        //[HttpPost]
+        //public void Upload()
+        //{
+        //    for (int i = 0; i < Request.Files.Count; i++)
+        //    {
+        //        var file = Request.Files[i];
+
+        //        var fileName = Path.GetFileName(file.FileName);
+
+        //        var path = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
+        //        file.SaveAs(path);
+        //    }
+
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> UploadLogo(string name, Organisation organisation)
+        //{
+        //    var newFileName = string.Empty;
+
+        //    if (HttpContext.Request.Form.Files != null)
+        //    {
+        //        var fileName = string.Empty;
+        //        string PathDB = string.Empty;
+
+        //        var files = HttpContext.Request.Form.Files;
+
+        //        //var organisation = new Organisation();
+
+        //        var userId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+
+
+        //        foreach (var file in files)
+        //        {
+        //            if (file.Length > 0)
+        //            {
+        //                //Getting FileName
+        //                fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+        //                /// fileName = userId  + "logo";
+        //                //Assigning Unique Filename (Guid)
+        //                var myUniqueFileName = Convert.ToString(Guid.NewGuid());
+
+        //                //Getting file Extension
+        //                var FileExtension = Path.GetExtension(fileName);
+
+        //                // concating  FileName + FileExtension
+        //                newFileName = userId + FileExtension;
+
+        //                // Combines two strings into a path.
+        //                fileName = Path.Combine(_env.WebRootPath, "demoImages") + $@"\{newFileName}";
+
+        //                // if you want to store path of folder in database
+        //                PathDB = "demoImages/" + newFileName;
+
+        //                using (FileStream fs = System.IO.File.Create(fileName))
+        //                {
+        //                    file.CopyTo(fs);
+        //                    fs.Flush();
+        //                }
+
+        //                var organ = _context.employeeDetail.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+        //                organ.ImageUrl = PathDB;
+
+        //                _context.Update(organ);
+        //                await _context.SaveChangesAsync();
+
+        //                var test = organ;
+        //                var another = test;
+
+
+
+        //            }
+        //        }
+
+
+        //    }
+        //    return View(nameof(Edit));
+        //}
+
         public IActionResult ContactDetails()
         {
 
@@ -109,6 +194,7 @@ namespace E4S.Controllers.Employee
       contactDetail.EmployeeDetailId = employeeDetails.Id;
       contactDetail.OrganisationId = orgId;
       contactDetail.IsActive = true;
+      //contactDetail.EmployeeDetail = null;
 
       _context.Update(contactDetail);
       await _context.SaveChangesAsync();
@@ -257,7 +343,19 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Jobs()
         {
-            return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var empJob = _context.Jobs
+        .Where(x => x.EmployeeDetailId == employeeDetails.Id)
+        .Include(x => x.Branch)
+        .Include(x => x.JobCategory)
+        .Include(x => x.JobTitle)
+        .Include(x => x.EmploymentStatus)
+        .Include(x => x.Department)
+        .FirstOrDefault();
+      return View(empJob);
         }
 
         public IActionResult Salary()
@@ -282,7 +380,65 @@ namespace E4S.Controllers.Employee
 
         public IActionResult Leave()
         {
-            return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+      var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
+      return View(leaveList);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> PostNewLeave([FromBody]PostNewLeave postLeave)
+    {
+      if (postLeave == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      try
+      {
+        Leave leave = new Leave()
+        {
+          Id = Guid.NewGuid(),
+          LeaveTitle = postLeave.LeaveTitle,
+          Description = postLeave.Description,
+          StartDate = postLeave.StartDate,
+          EndDate = postLeave.EndDate,
+          OrganisationId = orgId,
+          Status = "Pending",
+          EmployeeDetailId = employeeDetails.Id
+
+        };
+
+        _context.Add(leave);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
+  }
 }
