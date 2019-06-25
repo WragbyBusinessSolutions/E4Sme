@@ -6,14 +6,7 @@
 
 <div class="content">
     <div class="card">
-        <div class="card-header text-center" data-background-color="orange">
-            <h3 class="card-title">
-                Leaves
-            </h3>
-            <h5 class="description">
-                Leave Configuration
-            </h5>
-        </div>
+        
         @*<h4 class="card-title"> Employee Jobs</h4>*@
 
         <div class="row">
@@ -23,7 +16,9 @@
                         <!-- Start of the Emergency Contact tabs-->
                         <div class="card-header">
                             <div class="justify-content-end align-items-center ">
-                                <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+                                    Add Job Category
+                                </button>
                             </div>
                         </div>
                         <!-- notice modal -->
@@ -88,45 +83,84 @@
                         <!-- end notice modal -->
 
                         <div class="card-body">
-                            <br />
-                            <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Leave</th>
-                                        <th>Description</th>
-                                        <th>Leave Duration</th>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead class="text-primary">
+                                        <th class="text-center">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox">
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th>
+                                            Job Category
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Actions
+                                        </th>
+                                        </thead>
+                                        <tbody>
 
-                                        <th class="disabled-sorting text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Title Leave</th>
-                                        <th>Description</th>
-                                        <th>Leave Duration</th>
-                                        <th class="disabled-sorting text-right">Actions</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
+                                            @*@{
+                  int i = 1;
 
-                                    @*@foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>@item.LeaveTitle</td>
-                                                <td>@item.Description</td>
-                                                <td>@item.StartDate</td>
+                                                @if (Model.Count() < 1)
+                  {
+                                            <td></td>
+                                            <td></td>
+                                            <td>No Data to Display</td>
+                                            <td></td>
+                                            <td></td>
 
-                                                <td class="text-right">
-                                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                    <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                </td>
-                                            </tr>
+                }
 
-                                        }*@
+                                                @foreach (var item in Model)
+                  {
 
-                                </tbody>
-                            </table>
-                        </div>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" type="checkbox">
+                                                                <span class="form-check-sign"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @i
+                                                    </td>
+
+                                                    <td>
+                                                        @item.JobCategoryName
+                                                    </td>
+                                                    <td>
+                                                        @item.Description
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Edit"><i class="far fa-calendar-alt"></i></a>
+                                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Delete"><i class="fas fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+
+                    { i = i + 1; }
+                  }
+                                            }
+
+                                            </tbody>*@
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
                         <!-- the End of Emergency Contact Tabs-->
                     </div>
                 </div>
@@ -136,8 +170,6 @@
 </div>
 
 
-
-@section Scripts {
 
 
     <script type="text/javascript">
