@@ -58,16 +58,7 @@
                             <div class="form-group">
                               <label>Leave</label>
                               @*<input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>*@
-                            <select id="LeaveTitle" name="LeaveTitle" class="form-control">
-                              <option value="Annual">Annual</option>
-                              <option value="Casual">Casual</option>
-                              <option value="Sick">Sick</option>
-                              <option value="Compassionate">Compassionate</option>
-                              <option value="Study">Study</option>
-                              <option value="Maternity">Maternity</option>
-                              <option value="Paternity">Paternity</option>
-                              <option value="Other">Other</option>
-
+                            <select id="LeaveTitle" name="LeaveTitle" asp-items="ViewBag.LeaveTitle" class="form-control">
 
                             </select>
                             </div>
@@ -148,9 +139,9 @@
                   <tr>
                     <td>@item.LeaveTitle</td>
                     <td>@item.Description</td>
-                    <td>@item.StartDate</td>
-                    <td>@item.EndDate</td>
-                    <td>@item.ApproveDate</td>
+                    <td>@item.StartDate.ToString("MMMM dd, yyyy")</td>
+                    <td>@item.EndDate.ToString("MMMM dd, yyyy")</td>
+                    <td>@item.ApproveDate.ToString("MMMM dd, yyyy")</td>
                     <td>@item.Status</td>
                     <td class="text-right">
                       <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
