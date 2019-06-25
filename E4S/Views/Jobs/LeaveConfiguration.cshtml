@@ -6,7 +6,7 @@
 
 <div class="content">
     <div class="card">
-        
+
         @*<h4 class="card-title"> Employee Jobs</h4>*@
 
         <div class="row">
@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <div class="justify-content-end align-items-center ">
                                 <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                                    Add Job Category
+                                    Create Leave Title
                                 </button>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                             #
                                         </th>
                                         <th>
-                                            Job Category
+                                            Leave Title
                                         </th>
                                         <th>
                                             Description
@@ -111,56 +111,55 @@
                                         <tbody>
 
                                             @*@{
-                  int i = 1;
+                                                  int i = 1;
 
-                                                @if (Model.Count() < 1)
-                  {
-                                            <td></td>
-                                            <td></td>
-                                            <td>No Data to Display</td>
-                                            <td></td>
-                                            <td></td>
+                                                                                @if (Model.Count() < 1)
+                                                  {
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>No Data to Display</td>
+                                                                            <td></td>
+                                                                            <td></td>
 
-                }
+                                                }
 
-                                                @foreach (var item in Model)
-                  {
+                                                                                @foreach (var item in Model)
+                                                  {
 
-                                                <tr>
-                                                    <td class="text-center">
-                                                        <div class="form-check">
-                                                            <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox">
-                                                                <span class="form-check-sign"></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @i
-                                                    </td>
+                                                                                <tr>
+                                                                                    <td class="text-center">
+                                                                                        <div class="form-check">
+                                                                                            <label class="form-check-label">
+                                                                                                <input class="form-check-input" type="checkbox">
+                                                                                                <span class="form-check-sign"></span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="text-center">
+                                                                                        @i
+                                                                                    </td>
 
-                                                    <td>
-                                                        @item.JobCategoryName
-                                                    </td>
-                                                    <td>
-                                                        @item.Description
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Edit"><i class="far fa-calendar-alt"></i></a>
-                                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Delete"><i class="fas fa-times"></i></a>
-                                                    </td>
-                                                </tr>
+                                                                                    <td>
+                                                                                        @item.JobCategoryName
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @item.Description
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Edit"><i class="far fa-calendar-alt"></i></a>
+                                                                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Delete"><i class="fas fa-times"></i></a>
+                                                                                    </td>
+                                                                                </tr>
 
-                    { i = i + 1; }
-                  }
-                                            }
+                                                    { i = i + 1; }
+                                                  }
+                                                                            }
 
-                                            </tbody>*@
-                                        </table>
-                                    </div>
+                                                                            </tbody>*@
+                                    </table>
                                 </div>
-
                             </div>
+                        </div>
                         <!-- the End of Emergency Contact Tabs-->
                     </div>
                 </div>
@@ -171,64 +170,61 @@
 
 
 
+@section Scripts {
 
     <script type="text/javascript">
 
-    $(document).ready(function () {
+  $(document).ready(function () {
 
-      $("#submitNewLeave").click(function (event) {
+    $("#SubmitNewLeaveTitle").click(function (event) {
 
-        event.preventDefault();
+      event.preventDefault();
 
-        var NewLeave = {
-          LeaveTitle: $("#LeaveTitle").val(),
-          Description: $("#Description").val(),
-          StartDate: $("#LeaveStartDate").val(),
-          EndDate: $("#LeaveEndDate").val(),
-        };
+      var JobCategory = {
+        JobCategory: $("#JobCategory").val(),
+        Description: $("#Description").val(),
+      };
 
 
-        // console.log(Items);
-        console.log(NewLeave);
+      // console.log(Items);
+      console.log(JobCategory);
 
-        $.ajax({
-          type: "POST",
-          url: "/EmployeeProfile/PostNewLeave",
-          data: JSON.stringify(NewLeave),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+      $.ajax({
+        type: "POST",
+        url: "/Jobs/postNewJobCategory",
+        data: JSON.stringify(JobCategory),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
 
-            if (r.msg == "Success") {
+          if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+            demo.showSwal('success-message');
 
-            } else if (r.msg == "Fail") {
+          } else if (r.msg == "Fail") {
 
-              alert(r.msg);
+            alert(r.msg);
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+          } else if (r.msg == "No Data") {
+            alert(r.msg);
 
-            } else {
-              alert(r.msg);
-            }
-            //alert(r.msg);
-            // window.location.reload();
-
-          },
-          error: function () {
+          } else {
             alert(r.msg);
           }
-        });
+          //alert(r.msg);
+          // window.location.reload();
+
+        },
+        error: function () {
+          alert(r.msg);
+        }
       });
-
-
     });
+  });
 
     </script>
 
