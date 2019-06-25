@@ -12,7 +12,9 @@ namespace E4S.ViewModel
     public int PendingLeave { get; set; }
     public int TotalEmployee { get; set; }
 
-
+    public List<LatestEmployeeVM> LatestEmployeeVMs { get; set; }
+    public List<LeaveDashVM> LeaveDashVMs { get; set; }
+    public List<RecentApplication> RecentApplications { get; set; }
   }
 
   public class LatestEmployeeVM

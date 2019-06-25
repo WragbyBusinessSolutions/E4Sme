@@ -1,4 +1,5 @@
-﻿
+﻿@model E4S.ViewModel.HRDashboardViewModel
+
 @{
     ViewData["Title"] = "Dashboard HR";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
@@ -108,23 +109,27 @@
                       <a href="#" class="btn btn-sm btn-info">Profile</a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-right">
-                      $23,789
-                    </td>
-                    <td class="text-right">
-                      <a href="#" class="btn btn-sm btn-info">Profile</a>
-                    </td>
-                  </tr>
+                  @foreach (var item in Model.LatestEmployeeVMs)
+                  {
+                    <tr>
+                      <td>
+                        @item.EmployeeName
+                      </td>
+                      <td>
+                        @item.Department
+                      </td>
+                      <td>
+                        @item.JobTitle
+                      </td>
+                      <td>
+                        @item.IsActive
+                      </td>
+                      <td class="text-right">
+                        <a href="#" class="btn btn-sm btn-info">Profile</a>
+                      </td>
+                    </tr>
+
+                  }
                   <tr>
                     <td>
                       Sage Rodriguez
@@ -227,23 +232,6 @@
                     </td>
                     <td>
                       <a class="btn btn-sm btn-success">Approved</a>
-                    </td>
-                    <td class="text-right">
-                      <a href="#" class="btn btn-sm btn-info">Profile</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-right">
-                      $23,789
                     </td>
                     <td class="text-right">
                       <a href="#" class="btn btn-sm btn-info">Profile</a>
