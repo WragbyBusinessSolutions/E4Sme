@@ -321,8 +321,60 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult LeaveConfiguration()
         {
-           
-            return View();
+            var orgId = getOrg();
+            var LeaveConfiguration = _context.LeaveConfiguration.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(LeaveConfiguration);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LeaveConfiguration([FromBody]PostNewLeaveConfiguration postNewLeaveConfiguration)
+        {
+            if (postNewLeaveConfiguration == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                LeaveConfiguration newLeaveConfiguration = new LeaveConfiguration()
+                {
+                    Id = Guid.NewGuid(),
+                    LeaveTitle = postNewLeaveConfiguration.LeaveTitle,
+                    Description = postNewLeaveConfiguration.Description,
+                    MaxDuration = postNewLeaveConfiguration.MaxDuration,
+                    MaxApplication = postNewLeaveConfiguration.MaxApplication,                   
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newLeaveConfiguration);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
         }
     }
 
