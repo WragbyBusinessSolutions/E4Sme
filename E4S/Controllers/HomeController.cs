@@ -10,6 +10,7 @@ using System.Security.Claims;
 using E4S.Data;
 using Microsoft.AspNetCore.Identity;
 using E4S.Services;
+using E4S.ViewModel;
 
 namespace E4S.Controllers
 {
@@ -72,7 +73,52 @@ namespace E4S.Controllers
 
     public IActionResult DashboardHR()
     {
-      return View();
+      HRDashboardViewModel HRDVM = new HRDashboardViewModel();
+      List<LatestEmployeeVM> lastestEmployeeVM = new List<LatestEmployeeVM>();
+      List<LeaveDashVM> leaveDashVM = new List<LeaveDashVM>();
+      List<RecentApplication> recentAppVM = new List<RecentApplication>();
+
+      LatestEmployeeVM latestEmployee;
+      LeaveDashVM leaveDash;
+      RecentApplication recentApp;
+
+      var orgId = getOrg();
+      var empList = _context.Users.Where(x => x.OrganisationId == orgId).ToList();
+      var empDetails = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var jobs = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
+
+        foreach (var item in empList)
+        {
+          var empdet = empDetails.Where(x => x.UserId == Guid.Parse(item.Id)).FirstOrDefault();
+          if (empdet != null)
+          {
+          //try
+          //{
+            latestEmployee = new LatestEmployeeVM()
+            {
+              Id = empdet.Id,
+              EmployeeName = empdet.FirstName + " " + empdet.LastName,
+              //Department = jobs.Where(x => x.EmployeeDetailId == empdet.Id).FirstOrDefault().Department.DepartmentName,
+              //JobTitle = jobs.Where(x => x.EmployeeDetailId == empdet.Id).FirstOrDefault().JobTitle.JobTitleName,
+              //IsActive = item.Status
+            };
+
+            lastestEmployeeVM.Add(latestEmployee);
+
+          //}
+          //catch
+          //{
+
+          //}
+
+          }
+        }
+
+
+      HRDVM.LatestEmployeeVMs = lastestEmployeeVM;
+
+
+      return View(HRDVM);
     }
   }
 }

@@ -16,6 +16,7 @@ namespace E4S.Models.HumanResource
     public string Description { get; set; }
     public string Status { get; set; }
     public string ApplicationLink { get; set; }
+    public DateTime VacancyCloseDate { get; set; }
     public bool IsActive { get; set; }
 
   }
