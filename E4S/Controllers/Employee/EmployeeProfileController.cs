@@ -12,6 +12,7 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.Employee
@@ -384,6 +385,9 @@ namespace E4S.Controllers.Employee
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
       var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
+      ViewData["LeaveTitle"] = new SelectList(_context.LeaveConfigurations.Where(x => x.OrganisationId == orgId), "LeaveTitle", "LeaveTitle");
+
+
       return View(leaveList);
         }
 

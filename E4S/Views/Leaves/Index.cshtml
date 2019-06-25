@@ -19,8 +19,84 @@
                         <div class="card">
                             <div class="card-header">
                                 @*<div class="justify-content-end align-items-center pull-right">
-                                    <a asp-action="create" asp-controller="Leaves" class="btn btn-info btn-lg">Create New</a>
-                                </div>*@
+            <a asp-action="create" asp-controller="Leaves" class="btn btn-info btn-lg">Create New</a>
+        </div>*@
+                                <!-- notice modal -->
+                                <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-notice">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                </button>
+                                                <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="instruction">
+                                                    <form>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Employee Name</label>
+                                                                    <input type="text" class="form-control" placeholder="Job Category" id="EmployeeName" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Leave</label>
+                                                                    <input type="text" class="form-control" placeholder="Leave" id="Leave" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Description</label>
+                                                                    <input type="text" class="form-control" placeholder="Description" id="Description">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Start Date</label>
+                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>End Date</label>
+                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Approved Date</label>
+                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="card-footer ">
+                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
+                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Decline</button>
+                                                            @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end notice modal -->
+
 
                                 <h4 class="card-title">List of Leave Application</h4>
                             </div>
@@ -84,7 +160,7 @@
                                             }
                                           </td>
                                           <td class="text-right">
-                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="paidbtn" data-toggle="modal" data-target="#noticeModal"><i class="far fa-calendar-alt"></i></a>
                                             <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                                           </td>
                                         </tr>
