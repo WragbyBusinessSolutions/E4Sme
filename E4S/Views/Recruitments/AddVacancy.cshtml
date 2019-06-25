@@ -1,4 +1,4 @@
-﻿@model E4S.ViewModel.UsersViewModel
+﻿@model E4S.Models.HumanResource.Vacancy
 
 @{
   ViewData["Title"] = "AddVacancy";
@@ -36,7 +36,7 @@
         </div>
         <div class="card-body ">
           <form class="form-horizontal">
-            <div class="row">
+            @*<div class="row">
               <label class="col-md-3 col-form-label">Job Title</label>
               <div class="col-md-3">
                 <div class="form-group">
@@ -47,12 +47,20 @@
                   </select>
                 </div>
               </div>
+            </div>*@
+            <div class="row">
+              <label class="col-md-3 col-form-label">Vacancy Name</label>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.JobTitleId"></select>
+                </div>
+              </div>
             </div>
             <div class="row">
               <label class="col-md-3 col-form-label">Hiring Manager</label>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control">
+                  <select @*asp-for="EmployeeDetailId"*@ class="form-control" asp-items="ViewBag.EmployeeDetailId"></select>
                 </div>
               </div>
             </div>
@@ -60,7 +68,7 @@
               <label class="col-md-3 col-form-label">No. Of Positions</label>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" asp-for="NumberOfPosition">
                 </div>
               </div>
             </div>
@@ -68,7 +76,7 @@
               <label class="col-md-3 col-form-label">Description</label>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" asp-for="Description">
                 </div>
               </div>
             </div>
