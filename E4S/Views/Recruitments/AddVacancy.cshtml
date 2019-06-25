@@ -1,4 +1,4 @@
-﻿@model E4S.ViewModel.UsersViewModel
+﻿@model E4S.Models.HumanResource.Vacancy
 
 @{
   ViewData["Title"] = "AddVacancy";
@@ -18,16 +18,6 @@
      
            
              
-              @*<div class="d-flex justify-content-end align-items-center">*@
-              @*<div class="float-right col-md-offset-10">*@
-
-              @*<div class="row">
-                <div class="col-md-11 align-self-end text-right">
-                  <div class="d-flex justify-content-end align-items-center">
-                    <a asp-action="AddUser" asp-controller="Users" class="btn btn-primary btn-lg">Create New</a>
-                  </div>
-                </div>
-              </div>*@
 
     <div class="col-md-12">
       <div class="card ">
@@ -35,44 +25,69 @@
           <h4 class="card-title">Add New Vacancy</h4>
         </div>
         <div class="card-body ">
-          <form class="form-horizontal">
+          <form asp-action="AddVacancy" method="post" asp-controller="Recruitments" class="form-horizontal">
+            @*<div class="row">
+      <label class="col-md-3 col-form-label">Job Title</label>
+      <div class="col-md-3">
+        <div class="form-group">
+          <select class="form-control">
+            <option>Manager</option>
+            <option>Sales</option>
+            <option>Business Analyst</option>
+          </select>
+        </div>
+      </div>
+    </div>*@
             <div class="row">
-              <label class="col-md-3 col-form-label">Job Title</label>
-              <div class="col-md-3">
+              <label class="col-md-6 col-form-label">Vacancy Title</label>
+              <div class="col-md-6">
                 <div class="form-group">
-                  <select class="form-control">
-                    <option>Manager</option>
-                    <option>Sales</option>
-                    <option>Business Analyst</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">Hiring Manager</label>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <input type="text" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">No. Of Positions</label>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <input type="text" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">Description</label>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" asp-for="VacancyName" required>
                 </div>
               </div>
             </div>
 
+            <div class="row">
+              <label class="col-md-6 col-form-label">Job Title</label>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.JobTitleId"></select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-6 col-form-label">Hiring Manager</label>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select asp-for="HiringManager" class="form-control" asp-items="ViewBag.HiringManager"></select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-6 col-form-label">No. Of Positions</label>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="number" class="form-control" asp-for="NumberOfPosition">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-6 col-form-label">Description</label>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" asp-for="Description">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <label class="col-md-6 col-form-label">Application Closing Date</label>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="date" class="form-control" asp-for="VacancyCloseDate">
+                </div>
+              </div>
+            </div>
 
             <div class="row">
               <label class="col-md-3 col-form-label"></label>

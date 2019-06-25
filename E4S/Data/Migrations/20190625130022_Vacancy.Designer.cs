@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190625130022_Vacancy")]
+    partial class Vacancy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -475,38 +476,6 @@ namespace E4S.Data.Migrations
                     b.HasIndex("EmployeeDetailId");
 
                     b.ToTable("Leaves");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.LeaveConfiguration", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LeaveTitle");
-
-                    b.Property<int>("MaxApplication");
-
-                    b.Property<int>("MaxDuration");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<string>("Status");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LeaveConfigurations");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.PayGrade", b =>
