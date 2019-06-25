@@ -34,11 +34,12 @@
                                             <div class="modal-body">
                                                 <div class="instruction">
                                                     <form>
+                                                        <input type="hidden" name="Id" id="Id" />
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>Employee Name</label>
-                                                                    <input type="text" class="form-control" placeholder="Job Category" id="EmployeeName" required>
+                                                                    <input type="text" class="form-control" placeholder="Job Category" id="EmployeeName" name="Employee Name" disabled required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -46,7 +47,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>Leave</label>
-                                                                    <input type="text" class="form-control" placeholder="Leave" id="Leave" required>
+                                                                    <input type="text" class="form-control" placeholder="Leave" id="Leave" name="Leave" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -54,7 +55,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>Description</label>
-                                                                    <input type="text" class="form-control" placeholder="Description" id="Description">
+                                                                    <input type="text" class="form-control" placeholder="Description" id="Description" name="Description">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -62,7 +63,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>Start Date</label>
-                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                    <input type="date" class="form-control" placeholder="Start Date" id="StartDate" name="StartDate" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -70,7 +71,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>End Date</label>
-                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                    <input type="date" class="form-control" placeholder="End Date" id="EndStart" name="End Date" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -78,14 +79,14 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label>Approved Date</label>
-                                                                    <input type="date" class="form-control" placeholder="Leave" id="JobCategory" required>
+                                                                    <input type="date" class="form-control" placeholder="Approved Date" id="ApprovedDate" name="Approved Date" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr />
                                                         <div class="card-footer ">
                                                             <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
-                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Decline</button>
+                                                            <button type="submit" class="btn btn-info btn-primary btn-round" id="SubmitNewJobCategory">Decline</button>
                                                             @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
                                                         </div>
                                                     </form>
@@ -160,8 +161,8 @@
                                             }
                                           </td>
                                           <td class="text-right">
-                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="paidbtn" data-toggle="modal" data-target="#noticeModal"><i class="far fa-calendar-alt"></i></a>
-                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" asp-route-id="@item.Id" Select-Decription="@item.Description"  Selected-Leave="@item.LeaveTitle" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                                           </td>
                                         </tr>
 
@@ -233,5 +234,50 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    var delLeaveId;
+
+    $(document).delegate('#Approvebtn',
+      'click',
+      function (e) {
+          delLeaveId = $(this).attr('account-id');
+          EmployeeName = $(this).attr('Selected-EmployeeName');
+          Leave = $(this).attr('Selected-Leave');
+          Description = $(this).attr('Selected-Description');
+          StartDate = $(this).attr('Selected-StartDate');
+          EndDate = $(this).attr('Selected-EndDate');
+          ApprovedDate = $(this).attr('Selected-ApprovedDate');
+
+          $('input[name=Id]').val(delAccountId);
+          $('input[name=EmployeeName]').val(employeeName);
+          $('input[name=Leave]').val(Leave);         
+          $('input[name=Description]').val(Description);
+          $('input[name=StartDate]').val(StartDate);
+          $('input[name=EndDate]').val(EndDate);
+
+      });
+
+    $(document).delegate('#btn-yes',
+      'click',
+      function (e) {
+        var data = {
+          accountId: delLeaveId
+        };
+        //$.ajax({
+        //  url: '/controller/action',
+        //  type: 'POST',
+        //  data: data,
+        //  success: function (returnvalue) {
+        //    //what you want on success
+        //  },
+        //  error: function (error) {
+        //    //what you want on error
+        //  }
+        //});
+      });
+
+</script>
 
 
