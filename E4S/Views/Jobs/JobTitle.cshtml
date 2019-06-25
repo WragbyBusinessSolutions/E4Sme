@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<E4S.Models.HumanResource.JobTitle>
 @{
-    ViewData["Title"] = "Job Title";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Job Title";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 
@@ -23,6 +23,10 @@
                   </button>
                   <h5 class="modal-title" id="myModalLabel">Enter New Job Title</h5>
                 </div>
+                <div id="loading-overlay">
+                  <div class="loading-icon"></div>
+                </div>
+
                 <div class="modal-body">
                   <div class="instruction">
                     <form>
@@ -99,52 +103,52 @@
 
               <tbody>
                 @{
-                            int i = 1;
+                  int i = 1;
 
                   @if (Model.Count() < 1)
-                            {
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>No Data to Display</td>
-                <td></td>
-                <td></td>
+                  {
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>No Data to Display</td>
+                  <td></td>
+                  <td></td>
 
-                          }
+                }
 
-                            @foreach (var item in Model)
-                            {
+                  @foreach (var item in Model)
+                  {
 
-                  <tr>
-                    <td class="text-center">
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox">
-                          <span class="form-check-sign"></span>
-                        </label>
-                      </div>
-                    </td>
-                    <td class="text-center">
-                      @i
-                    </td>
+                    <tr>
+                      <td class="text-center">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        @i
+                      </td>
 
-                    <td>
-                      @item.JobTitleName
-                    </td>
-                    <td>
-                      @item.Description
-                    </td>
-                    <td>
-                      @item.Note
-                    </td>
-                    <td>
-                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                    </td>
-                  </tr>
+                      <td>
+                        @item.JobTitleName
+                      </td>
+                      <td>
+                        @item.Description
+                      </td>
+                      <td>
+                        @item.Note
+                      </td>
+                      <td>
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
 
-                              { i = i + 1; }
-                            }
+                    { i = i + 1; }
+                  }
                 }
 
                 </tbody>
@@ -156,9 +160,17 @@
 
     </div>
   </div>
+  <div id="loading-overlay">
+    <div class="loading-icon"></div>
+  </div>
 
+
+  <link href="@Url.Content("~/css/ajaxoverlay.css")" rel="stylesheet" />
 
   @section Scripts {
+
+
+
     <script type="text/javascript">
 
       $(document).ready(function () {
@@ -166,6 +178,8 @@
         $("#SubmitNewJobTitle").click(function (event) {
 
           event.preventDefault();
+
+          $("#loading-overlay").show();
 
           var JobTitle = {
             JobTitle: $("#JobTitle").val(),
@@ -190,17 +204,19 @@
             success: function (r) {
 
               if (r.msg == "Success") {
-
+                $("#loading-overlay").hide();
                 demo.showSwal('success-message');
 
               } else if (r.msg == "Fail") {
-
+                $("#loading-overlay").hide();
                 alert(r.msg);
 
               } else if (r.msg == "No Data") {
+                $("#loading-overlay").hide();
                 alert(r.msg);
 
               } else {
+                $("#loading-overlay").hide();
                 alert(r.msg);
               }
               //alert(r.msg);
@@ -208,6 +224,7 @@
 
             },
             error: function () {
+              $("#loading-overlay").hide();
               alert(r.msg);
             }
           });
