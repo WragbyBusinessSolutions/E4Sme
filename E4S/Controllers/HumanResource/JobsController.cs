@@ -322,7 +322,7 @@ namespace E4S.Controllers.HumanResource
         public IActionResult LeaveConfiguration()
         {
             var orgId = getOrg();
-            var LeaveConfiguration = _context.LeaveConfiguration.Where(x => x.OrganisationId == orgId).ToList();
+            var LeaveConfiguration = _context.LeaveConfigurations.Where(x => x.OrganisationId == orgId).ToList();
 
             return View(LeaveConfiguration);
         }
