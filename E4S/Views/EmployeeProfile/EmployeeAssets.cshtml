@@ -178,65 +178,68 @@
   </div>
 </div>
 
+
+
+
 @*@section Scripts {
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    $(document).ready(function () {
+      $(document).ready(function () {
 
-      $("#submitNewEmployee").click(function (event) {
+        $("#submitNewEmployee").click(function (event) {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        var Employee = {
-          FirstName: $("#firstName").val(),
-          LastName: $("#lastName").val(),
-          PersonalEmail: $("#personalEmail").val(),
-          PhoneNumber: $("#phoneNumber").val(),
-        };
+          var Employee = {
+            FirstName: $("#firstName").val(),
+            LastName: $("#lastName").val(),
+            PersonalEmail: $("#personalEmail").val(),
+            PhoneNumber: $("#phoneNumber").val(),
+          };
 
 
-        // console.log(Items);
-        console.log(Employee);
+          // console.log(Items);
+          console.log(Employee);
 
-        $.ajax({
-          type: "POST",
-          url: "/Employees/postNewEmployee",
-          data: JSON.stringify(Employee),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+          $.ajax({
+            type: "POST",
+            url: "/Employees/postNewEmployee",
+            data: JSON.stringify(Employee),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
 
-            if (r.msg == "Success") {
+              if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+                demo.showSwal('success-message');
 
-            } else if (r.msg == "Fail") {
+              } else if (r.msg == "Fail") {
 
-              alert(r.msg);
+                alert(r.msg);
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
 
-            } else {
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
               alert(r.msg);
             }
-            //alert(r.msg);
-            // window.location.reload();
-
-          },
-          error: function () {
-            alert(r.msg);
-          }
+          });
         });
+
+
       });
 
+    </script>
 
-    });
-
-  </script>
-
-}*@
+  }*@

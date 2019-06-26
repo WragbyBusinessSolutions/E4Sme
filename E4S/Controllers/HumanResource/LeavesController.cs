@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,5 +39,99 @@ namespace E4S.Controllers.HumanResource
             return View(leaveList);
         }
 
+    [HttpPost]
+    public async Task<IActionResult> ApproveLeave([FromBody]PostApproveLeave postApprove)
+    {
+      if (postApprove == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+
+
+
+
+      try
+      {
+        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
+        leave.Comment = postApprove.Comment;
+        leave.ApproveDate = DateTime.Now;
+        leave.Status = "Approved";
+
+        _context.Update(leave);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
+    [HttpPost]
+    public async Task<IActionResult> DeclineLeave([FromBody]PostApproveLeave postApprove)
+    {
+      if (postApprove == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+
+
+
+
+      try
+      {
+        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
+        leave.Comment = postApprove.Comment;
+        leave.ApproveDate = DateTime.Now;
+        leave.Status = "Declined";
+
+        _context.Update(leave);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+  }
 }
