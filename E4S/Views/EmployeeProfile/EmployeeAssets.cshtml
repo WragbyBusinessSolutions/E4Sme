@@ -13,9 +13,9 @@
           <h4 class="card-title"> Employee Assets</h4>
 
           @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+          @*<button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
             Add New Asset
-          </button>
+          </button>*@
           <!-- notice modal -->
           <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notice">
@@ -114,12 +114,12 @@
               <th>
                 Serial No.
               </th>
-              <th>
+              @*<th>
                 Employee Id.
               </th>
               <th>
                 Action
-              </th>
+              </th>*@
 
               </thead>
 
@@ -131,14 +131,14 @@
 
                   @if (Model.Count() < 1)
                             {*@
+              
               <td></td>
               <td></td>
               <td></td>
               <td>No Data to Display</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              
 
               @*}
 
@@ -157,8 +157,7 @@
                 </td>
                 <td class="text-center"></td>
 
-                <td></td>
-                <td></td>
+                
                 <td></td>
                 <td></td>
                 <td></td>
