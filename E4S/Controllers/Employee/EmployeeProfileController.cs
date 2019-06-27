@@ -10,6 +10,7 @@ using E4S.Models;
 using E4S.Models.HumanResource;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -53,6 +54,36 @@ namespace E4S.Controllers.Employee
 
           return View(employeeDetails);
         }
+
+    public async Task<IActionResult> UploadProfile(IFormFile file)
+    {
+      if (file == null || file.Length == 0)
+        return Content("file not selected");
+
+      //var path = Path.Combine(
+      //            Directory.GetCurrentDirectory(), "wwwroot",
+      //            file.FileName);
+      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employeeImage", file.FileName);
+      var path2 = Path.Combine("images", "employeeImage", file.FileName);
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+
+      using (var stream = new FileStream(path, FileMode.Create))
+      {
+        await file.CopyToAsync(stream);
+        employeeDetails.ImageUrl = path2;
+
+        _context.Update(employeeDetails);
+        _context.SaveChanges();
+
+      }
+
+      return RedirectToAction("PersonalDetails");
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> PersonalDetails(EmployeeDetail employeeDetail)
@@ -368,8 +399,54 @@ namespace E4S.Controllers.Employee
         {
             return View();
         }
+    
 
-        public IActionResult EmployeeAssets()
+    public async Task<IActionResult> UploadDocument(IFormFile file, PostQualification postQualification)
+    {
+      if (file == null || file.Length == 0)
+        return Content("file not selected");
+
+      //var path = Path.Combine(
+      //            Directory.GetCurrentDirectory(), "wwwroot",
+      //            file.FileName);
+      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "qualificationImage", file.FileName);
+      var path2 = Path.Combine("images", "qualificationImage", file.FileName);
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      InstitutionQualification institutionQualification = new InstitutionQualification()
+      {
+        Id = Guid.NewGuid(),
+        OrganisationId = orgId,
+        EmployeeDetailId = employeeDetails.Id,
+        Degree = postQualification.Degree,
+        Grade = postQualification.Grade,
+        CourseOfStudy = postQualification.CourseOfStudy,
+        Institution = postQualification.Institution,
+        YearCompleted = postQualification.YearCompleted,
+
+      };
+
+
+      using (var stream = new FileStream(path, FileMode.Create))
+      {
+        await file.CopyToAsync(stream);
+        employeeDetails.ImageUrl = path2;
+
+        institutionQualification.ImageURL = path2;
+
+
+        _context.Update(employeeDetails);
+        _context.SaveChanges();
+
+      }
+
+      return RedirectToAction("PersonalDetails");
+    }
+
+    public IActionResult EmployeeAssets()
         {
             return View();
         }

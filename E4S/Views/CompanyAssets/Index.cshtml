@@ -88,159 +88,160 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-          <div class="card-header">
-              <h4 class="card-title"> Company Assets</h4>
+        <div class="card-header">
+          <h4 class="card-title"> Company Assets</h4>
 
-              @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-              <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                  Add New Asset
-              </button>
-              <!-- notice modal -->
-              <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-notice">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
+          @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+            Add New Asset
+          </button>
+          <!-- notice modal -->
+          <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Device Name</label>
+                            <input type="text" class="form-control" placeholder="Device Name" id="DeviceName" required>
                           </div>
-                          <div class="modal-body">
-                              <div class="instruction">
-                                  <form>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Device Name</label>
-                                                  <input type="text" class="form-control" placeholder="Device Name" id="DeviceName"  required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Brand</label>
-                                                  <input type="text" class="form-control" placeholder="Brand" id="Brand"  required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Model</label>
-                                                  <input type="text" class="form-control" placeholder="Model" id="Model"  required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Serial Number</label>
-                                                  <input type="text" class="form-control" placeholder="Serial Number" id="SerialNo"  required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Assign To</label>
-                                                  <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                      <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                  </select>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <hr />
-                                      <div class="card-footer ">
-                                          <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                                          <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                  </form>
-                              </div>
-                          </div>
-                          @*<div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                    </div>*@
+                        </div>
                       </div>
-                  </div>
-              </div>
-              <!-- end notice modal -->
-              <!-- notice Edit modal -->
-              <div class="modal fade" id="noticeModal1"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-notice">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter Edit Asset Details</h5>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Brand</label>
+                            <input type="text" class="form-control" placeholder="Brand" id="Brand" required>
                           </div>
-                          <div class="modal-body">
-                              <div class="instruction">
-                                  <form>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Device Name</label>
-                                                  <input type="text" class="form-control" placeholder="Device Name" id="DeviceName" name="DeviceName" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Brand</label>
-                                                  <input type="text" class="form-control" placeholder="Brand" id="Brand" name="Brand" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Model</label>
-                                                  <input type="text" class="form-control" placeholder="Model" id="Model" name="Model" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Serial Number</label>
-                                                  <input type="text" class="form-control" placeholder="Serial Number" id="SerialNo" name="SerialNo" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  <label>Assign To</label>
-                                                  <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                      <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                  </select>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <hr />
-                                      <div class="card-footer ">
-                                          <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                                          <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                  </form>
-                              </div>
-                          </div>
-                          @*<div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                    </div>*@
+                        </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Model</label>
+                            <input type="text" class="form-control" placeholder="Model" id="Model" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text" class="form-control" placeholder="Serial Number" id="SerialNo" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Assign To</label>
+                            <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                              <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
                   </div>
+                </div>
+                @*<div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+            </div>*@
               </div>
-              <!-- end notice Edit modal -->
-              @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+            </div>
           </div>
+          <!-- end notice modal -->
+          <!-- notice Edit modal -->
+          <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Device Name</label>
+                            <input type="text" class="form-control" placeholder="Device Name" id="eDeviceName" name="eDeviceName" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Brand</label>
+                            <input type="text" class="form-control" placeholder="Brand" id="eBrand" name="eBrand" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Model</label>
+                            <input type="text" class="form-control" placeholder="Model" id="eModel" name="eModel" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Serial Number</label>
+                            <input type="text" class="form-control" placeholder="Serial Number" id="eSerialNo" name="eSerialNo" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Assign To</label>
+                            <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
+                              <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="editAsset">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                @*<div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+            </div>*@
+              </div>
+            </div>
+          </div>
+          <!-- end notice Edit modal -->
+          @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+        </div>
+        <input id="AssetId" name="AssetId" hidden />
 
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped" id="datatable"  cellspacing="10" width="100%">
+            <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
               <thead class="text-primary">
               <th class="text-center">
                 #
@@ -273,58 +274,58 @@
                   int i = 1;
 
                   @if (Model.Count() < 1)
-                            {
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>No Data to Display</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                  {
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>No Data to Display</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
 
-                          }
+                }
 
 
                   foreach (var item in Model)
                   {
 
-                  <tr>
-                    <td class="text-center">
-                      @i
-                    </td>
+                    <tr>
+                      <td class="text-center">
+                        @i
+                      </td>
 
-                    <td>
-                      @item.DeviceName
-                    </td>
-                    <td>
-                      @item.Brand
-                    </td>
-                    <td>
-                      @item.Model
-                    </td>
-                    <td>
-                      @item.SerialNumber
-                    </td>
-                    <td>
-                      @item.EmployeeName
-                    </td>
-                    <td>
-                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn"  data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber" ><i class="far fa-calendar-alt"></i></a>
-                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      <td>
+                        @item.DeviceName
+                      </td>
+                      <td>
+                        @item.Brand
+                      </td>
+                      <td>
+                        @item.Model
+                      </td>
+                      <td>
+                        @item.SerialNumber
+                      </td>
+                      <td>
+                        @item.EmployeeName
+                      </td>
+                      <td>
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
 
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                    {i = i + 1;}
+                    { i = i + 1; }
                   }
                 }
 
                 </tbody>
               </table>
+            </div>
           </div>
         </div>
-      </div>
     </div>
 
   </div>
@@ -391,13 +392,13 @@
 
 
       //Code for pulling the Records on the Table  
-     var EditAssetId;
+     var aEditAssetId;
 
       $(document).delegate('#Editbtn',
         'click',
         function (e) {
 
-            EditAssetId = $(this).attr('EditAssetId');
+            aEditAssetId = $(this).attr('EditAssetId');
             deviceName = $(this).attr('select-DeviceName');
             brand = $(this).attr('Selected-Brand');
             model = $(this).attr('Selected-Model');
@@ -405,13 +406,13 @@
             
 
           //console.log(varstartDate, varendDate);
+        //  console.log(aEditAssetId);
 
-
-            $('input[name=Id]').val(EditAssetId);
-            $('input[name=DeviceName]').val(deviceName);
-            $('input[name=Brand]').val(brand);
-            $('input[name=Model]').val(model);
-            $('input[name=SerialNo]').val(serialNo);
+            $('input[name=AssetId]').val(aEditAssetId);
+            $('input[name=eDeviceName]').val(deviceName);
+            $('input[name=eBrand]').val(brand);
+            $('input[name=eModel]').val(model);
+            $('input[name=eSerialNo]').val(serialNo);
             
           });
 
@@ -419,16 +420,17 @@
 
       $(document).ready(function () {
 
-      $("#submitAsset").click(function (event) {
+      $("#editAsset").click(function (event) {
 
         event.preventDefault();
 
         var PostOrganisationAsset = {
-        EmployeeDetailId: $("#employeeId").val(),
-        DeviceName: $("#DeviceName").val(),
-        Brand: $("#Brand").val(),
-        Model: $("#Model").val(),
-        SerialNumber: $("#SerialNo").val(),
+        AId: $("#AssetId").val(),
+        EmployeeDetailId: $("#eemployeeId").val(),
+        DeviceName: $("#eDeviceName").val(),
+        Brand: $("#eBrand").val(),
+        Model: $("#eModel").val(),
+        SerialNumber: $("#eSerialNo").val(),
         };
 
 
@@ -437,7 +439,7 @@
 
         $.ajax({
           type: "POST",
-          url: "/CompanyAssets/postCompanyAssets",
+          url: "/CompanyAssets/editCompanyAssets",
           data: JSON.stringify(PostOrganisationAsset),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',

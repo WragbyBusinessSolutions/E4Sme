@@ -38,4 +38,9 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\employeeImage\" />
+    <Folder Include="wwwroot\images\qualificationImage\" />
+  </ItemGroup>
+
 </Project>
