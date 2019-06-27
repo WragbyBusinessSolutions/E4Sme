@@ -7,6 +7,7 @@ namespace E4S.ViewModel
 {
   public class PostOrganisationAsset
   {
+    public string AId { get; set; }
     public Guid EmployeeDetailId { get; set; }
     public string DeviceName { get; set; }
     public string Brand { get; set; }
