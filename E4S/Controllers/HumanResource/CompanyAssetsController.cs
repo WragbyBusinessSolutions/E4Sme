@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace E4S.Controllers.HumanResource
 {
-    public class CompanyAssetsController : Controller
-    {
+  public class CompanyAssetsController : Controller
+  {
 
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -35,15 +35,28 @@ namespace E4S.Controllers.HumanResource
     }
 
     public IActionResult Index()
-        {
+    {
       var ordId = getOrg();
       ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "LastName");
-          List<OrganisationAsset> orgAss = new List<OrganisationAsset>();
+      List<OrganisationAsset> orgAss = new List<OrganisationAsset>();
 
       var orgAssetList = _context.OrganisationAssets.Where(x => x.OrganisationId == ordId).ToList();
 
-            return View(orgAssetList);
+      foreach (var item in orgAssetList)
+      {
+        var employee = _context.EmployeeDetails.Where(x => x.Id == item.EmployeeDetailId).FirstOrDefault();
+
+        if (employee != null)
+        {
+          item.EmployeeName = employee.FirstName + " " + employee.LastName;
         }
+
+        orgAss.Add(item);
+
+      }
+
+      return View(orgAss);
+    }
 
     [HttpPost]
     public async Task<IActionResult> postCompanyAssets([FromBody]PostOrganisationAsset postOrganisationAsset)
@@ -64,7 +77,7 @@ namespace E4S.Controllers.HumanResource
       {
         isAssign = false;
       }
-      
+
       try
       {
         OrganisationAsset orgAsset = new OrganisationAsset()
@@ -102,5 +115,61 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
+
+    [HttpPost]
+    public async Task<IActionResult> editCompanyAssets([FromBody]PostOrganisationAsset postOrganisationAsset)
+    {
+      if (postOrganisationAsset == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      bool isAssign = true;
+
+      if (postOrganisationAsset.EmployeeDetailId == Guid.Empty)
+      {
+        isAssign = false;
+      }
+
+      try
+      {
+
+        var orgAsset = _context.OrganisationAssets.Where(x => x.Id == Guid.Parse(postOrganisationAsset.AId)).FirstOrDefault();
+        orgAsset.DeviceName = postOrganisationAsset.DeviceName;
+        orgAsset.Brand = postOrganisationAsset.Brand;
+        orgAsset.Model = postOrganisationAsset.Model;
+        orgAsset.SerialNumber = postOrganisationAsset.SerialNumber;
+
+
+
+        orgAsset.EmployeeDetailId = postOrganisationAsset.EmployeeDetailId;
+
+        _context.Update(orgAsset);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
   }
-}
+  }
