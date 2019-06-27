@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190627135924_institutionqualification")]
+    partial class institutionqualification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -651,36 +652,6 @@ namespace E4S.Data.Migrations
                     b.ToTable("Salaries");
                 });
 
-            modelBuilder.Entity("E4S.Models.HumanResource.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("Description");
-
-                    b.Property<Guid>("EmployeeDetailId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<string>("SkillName");
-
-                    b.Property<string>("YearsOfExperience");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeDetailId");
-
-                    b.ToTable("Skills");
-                });
-
             modelBuilder.Entity("E4S.Models.HumanResource.Vacancy", b =>
                 {
                     b.Property<Guid>("Id")
@@ -719,40 +690,6 @@ namespace E4S.Data.Migrations
                     b.HasIndex("JobTitleId");
 
                     b.ToTable("Vacancies");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.WorkExperience", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<Guid>("EmployeeDetailId");
-
-                    b.Property<DateTime>("EndDate");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("JobTitle");
-
-                    b.Property<string>("Organisation");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<DateTime>("StartDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeDetailId");
-
-                    b.ToTable("WorkExperiences");
                 });
 
             modelBuilder.Entity("E4S.Models.Organisation", b =>
@@ -997,27 +934,11 @@ namespace E4S.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("E4S.Models.HumanResource.Skill", b =>
-                {
-                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
-                        .WithMany()
-                        .HasForeignKey("EmployeeDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("E4S.Models.HumanResource.Vacancy", b =>
                 {
                     b.HasOne("E4S.Models.HumanResource.JobTitle", "JobTitle")
                         .WithMany()
                         .HasForeignKey("JobTitleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.WorkExperience", b =>
-                {
-                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
-                        .WithMany()
-                        .HasForeignKey("EmployeeDetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

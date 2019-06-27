@@ -95,6 +95,7 @@ namespace E4S.Services
       var apiKey = "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";
       //new code
 
+
       var client = new SendGridClient(apiKey);
       var msg = new SendGridMessage()
       {
