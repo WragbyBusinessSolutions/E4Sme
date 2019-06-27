@@ -93,8 +93,10 @@ namespace E4S.Controllers.Employee
         return NotFound();
       }
 
+      var orgId = getOrg();
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       employeeDetail.UserId = Guid.Parse(userId);
+      employeeDetail.OrganisationId = orgId;
       _context.Update(employeeDetail);
       await _context.SaveChangesAsync();
 
@@ -397,9 +399,107 @@ namespace E4S.Controllers.Employee
 
         public IActionResult Qualification()
         {
-            return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+      var employeeQualification = _context.InstitutionQualifications.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+      var employeeSkill = _context.Skills.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+      var employeeWorkExperience = _context.WorkExperiences.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+
+
+      EmployeeQualificationViewModel EQVM = new EmployeeQualificationViewModel();
+      EQVM.InstitutionQualifications = employeeQualification;
+      EQVM.Skills = employeeSkill;
+      EQVM.WorkExperiences = employeeWorkExperience;
+
+
+      return View(EQVM);
         }
     
+    public async Task<IActionResult> skillsUpload(PostSkill postSkill)
+    {
+      if(postSkill == null)
+      {
+        return NoContent();
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+
+      try
+      {
+        Skill skill = new Skill()
+        {
+          Id = Guid.NewGuid(),
+          EmployeeDetailId = employeeDetails.Id,
+          SkillName = postSkill.qSkill,
+          Description = postSkill.qDescription,
+          YearsOfExperience = postSkill.qYearOfExperience,
+          OrganisationId = orgId
+
+        };
+
+        _context.Add(skill);
+        _context.SaveChanges();
+
+
+      }
+      catch
+      {
+
+      }
+
+
+      return RedirectToAction("Qualification");
+
+
+    }
+
+    public async Task<IActionResult> workUpload(PostWorkExperience postWorkExperience)
+    {
+      if (postWorkExperience == null)
+      {
+        return NoContent();
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+
+      try
+      {
+        WorkExperience workExperience = new WorkExperience()
+        {
+          Id = Guid.NewGuid(),
+          EmployeeDetailId = employeeDetails.Id,
+          Organisation = postWorkExperience.WOrganisation,
+          JobTitle = postWorkExperience.WJobTitle,
+          StartDate = postWorkExperience.WStartDate,
+          EndDate = postWorkExperience.WEndDate,
+          Comment = postWorkExperience.WComment,
+          OrganisationId = orgId
+
+        };
+
+        _context.Add(workExperience);
+        _context.SaveChanges();
+
+
+      }
+      catch
+      {
+
+      }
+
+
+      return RedirectToAction("Qualification");
+
+
+    }
+
 
     public async Task<IActionResult> UploadDocument(IFormFile file, PostQualification postQualification)
     {
@@ -433,17 +533,17 @@ namespace E4S.Controllers.Employee
       using (var stream = new FileStream(path, FileMode.Create))
       {
         await file.CopyToAsync(stream);
-        employeeDetails.ImageUrl = path2;
+       // employeeDetails.ImageUrl = path2;
 
         institutionQualification.ImageURL = path2;
 
 
-        _context.Update(employeeDetails);
+        _context.Add(institutionQualification);
         _context.SaveChanges();
 
       }
 
-      return RedirectToAction("PersonalDetails");
+      return RedirectToAction("Qualification");
     }
 
     public IActionResult EmployeeAssets()
