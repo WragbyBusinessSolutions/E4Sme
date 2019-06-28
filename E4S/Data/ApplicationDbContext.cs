@@ -45,5 +45,8 @@ namespace E4S.Data
     public DbSet<Vacancy> Vacancies { get; set; }
     public DbSet<LeaveConfiguration> LeaveConfigurations { get; set; }
     public DbSet<OrganisationAsset> OrganisationAssets { get; set; }
+    public DbSet<InstitutionQualification> InstitutionQualifications { get; set; }
+    public DbSet<Skill> Skills { get; set; }
+    public DbSet<WorkExperience> WorkExperiences { get; set; }
   }
 }
