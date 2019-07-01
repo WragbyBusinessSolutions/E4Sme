@@ -39,22 +39,29 @@
                         </div>
                       </div>
 
+
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label> Description </label>
-                            <input type="text" class="form-control" placeholder="Description" id="Description" required>
+                            <label>Description</label>
+                            <textarea rows="5" cols="60">
+                            </textarea>
                           </div>
                         </div>
                       </div>
+
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Note</label>
-                            <input type="text" class="form-control" placeholder="Note" id="Note" required>
+                            <textarea rows="4" cols="60">
+                            </textarea>
                           </div>
                         </div>
                       </div>
+
+
+                      
 
                       <hr />
                       <div class="card-footer ">
@@ -91,12 +98,6 @@
                 Job Title
               </th>
               <th>
-                Description
-              </th>
-              <th>
-                Note
-              </th>
-              <th>
                 Actions
               </th>
               </thead>
@@ -108,10 +109,9 @@
                   @if (Model.Count() < 1)
                   {
                   <td></td>
-                  <td></td>
+                  
                   <td></td>
                   <td>No Data to Display</td>
-                  <td></td>
                   <td></td>
 
                 }
@@ -135,12 +135,7 @@
                       <td>
                         @item.JobTitleName
                       </td>
-                      <td>
-                        @item.Description
-                      </td>
-                      <td>
-                        @item.Note
-                      </td>
+                      
                       <td>
                         <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                         <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
