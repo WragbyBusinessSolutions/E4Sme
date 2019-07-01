@@ -1,1359 +1,355 @@
 ﻿
 @{
-    ViewData["Title"] = "Add Employee";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Add Employee";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <div class="content">
-    <div class="col-md-12 mr-auto ml-auto">
-        <div class="content">
-            <div class="row">
-                @*<div class="col-md-4">
-                        <!--      Wizard container        -->
-                        <div class="wizard-container">
-                            <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                                <form action="" method="">
-                                    <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                                    <div class="card-header text-center" data-background-color="orange">
-                                        <h3 class="card-title">
-                                            New Employee
-                                        </h3>
-                                        <h5 class="description">
-                                            On boarding our new employee.
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="about">
-                                                <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
-                                                <div class="row justify-content-center">
-                                                    <div class="col-sm-4">
-                                                        <div class="picture-container">
-                                                            <div class="picture">
-                                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                                <input type="file" id="wizard-picture">
-                                                            </div>
-                                                            <h6 class="description">Choose Picture</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+  <div class="col-md-10 mr-auto ml-auto">
+    <!--      Wizard container        -->
+    <div class="wizard-container">
+      <div class="card card-wizard" data-color="primary" id="wizardProfile">
+        <form action="AddNewEmployee" method="post">
+          <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+          <div class="card-header text-center" data-background-color="orange">
+            <h3 class="card-title">
+              Onboarding New Employee
+            </h3>
+            <h5 class="description">
+              This information will let us know more about you.</h5>
+              <div class="wizard-navigation">
+                <ul>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#about" data-toggle="tab">
+                      <i class="now-ui-icons users_circle-08"></i> Profile Details
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#account" data-toggle="tab">
+                      <i class="now-ui-icons ui-1_settings-gear-63"></i> Job
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#address" data-toggle="tab">
+                      <i class="now-ui-icons ui-1_email-85"></i> Salary
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="about">
+                @*<h5 class="info-text"> Let's start with the basic information.</h5>*@
+                <div class="row justify-content-center">
+                  <div class="col-sm-4">
 
-                            </div>
-                        </div>
-                        <!-- wizard container -->
-                    </div>*@
-
-                <div class="col-md-12">
-                    <div class="card ">
-                        <div class="card-header text-center" data-background-color="orange">
-                            <h3 class="card-title">
-                                New Employee
-                            </h3>
-                            <h5 class="description">
-                                On boarding our new employee.
-                            </h5>
-                        </div>
-
-                        <div class="card-header ">
-                            <h4 class="card-title">
-                                Navigation Pills -
-                                <small class="description">Vertical Tabs</small>
-                            </h4>
-                        </div>
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <ul class="nav nav-pills nav-pills-primary flex-column" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#link4" role="tablist">
-                                                Profile Details
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link5" role="tablist">
-                                                Contact Details
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link6" role="tablist">
-                                                Emergency Contact
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link1" role="tablist">
-                                                Dependents
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
-                                                Job
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
-                                                Salary
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#link7" role="tablist">
-                                                Qualification
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="link4">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-4 pr-1">
-                                                        <div class="form-group">
-                                                            <label>Surname</label>
-                                                            <input type="text" class="form-control" placeholder="Company">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 px-1">
-                                                        <div class="form-group">
-                                                            <label>Middle name</label>
-                                                            <input type="text" class="form-control" placeholder="Username">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 pl-1">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Last Name</label>
-                                                            <input type="email" class="form-control" placeholder="Email">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div class="row">
-                                                    <div class="col-md-6 pr-1">
-                                                        <div class="form-group">
-                                                            <label>Employye ID</label>
-                                                            <input type="text" class="form-control" disabled placeholder="Employee ID">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pl-1">
-                                                        <div class="form-group">
-                                                            <label>Other ID </label>
-                                                            <input type="text" class="form-control" placeholder="Other ID">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 pr-1">
-                                                        <div class="form-group">
-                                                            <label>Driver's Licence</label>
-                                                            <input type="text" class="form-control" placeholder="Driver's Licence">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pl-1">
-                                                        <div class="form-group">
-                                                            <label>Expiry Date </label>
-                                                            <input type="date" class="form-control" placeholder="Expiry Date">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div class="row">
-                                                    <div class="col-md-4 pr-1">
-                                                        <div class="form-group">
-                                                            <label>Gender</label>
-                                                            <select type="text" class="form-control" placeholder="Username">
-                                                                <option selected> Select Gender</option>
-                                                                <option>Male </option>
-                                                                <option>Female</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 px-1">
-                                                        <div class="form-group">
-                                                            <label>Marital Status</label>
-                                                            <select type="text" class="form-control" placeholder="Username">
-                                                                <option selected> Select Marital Status </option>
-                                                                <option>Single </option>
-                                                                <option>Married</option>
-                                                                <option>Engaged</option>
-                                                                <option>Widow</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 pl-1">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Date of Birth</label>
-                                                            <input type="Date" class="form-control" placeholder="date">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Address</label>
-                                                            <input type="text" class="form-control" placeholder="Home Address" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                @*<div class="row">
-                                                    <div class="col-md-4 pr-1">
-                                                        <div class="form-group">
-                                                            <label>Country</label>
-                                                            <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 px-1">
-                                                        <div class="form-group">
-                                                            <label>State</label>
-                                                            <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 pl-1">
-                                                        <div class="form-group">
-                                                            <label>City</label>
-                                                            <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
-                                                        </div>
-                                                    </div>
-                                                </div>*@
-                                                <div class="card-footer ">
-                                                    <button type="submit" class="btn btn-fill btn-primary">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="tab-pane" id="link5">
-                                            <div class="card-body">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Address 1</label>
-                                                                <input type="text" class="form-control" placeholder="Home Address" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Address 2</label>
-                                                                <input type="text" class="form-control" placeholder="Home Address">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr />
-                                                    <div class="row">
-                                                        <div class="col-md-5 pr-1">
-                                                            <div class="form-group">
-                                                                <label>Country </label>
-                                                                <input type="text" class="form-control" placeholder="Company">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3 px-1">
-                                                            <div class="form-group">
-                                                                <label>State</label>
-                                                                <input type="text" class="form-control" placeholder="Username">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 pl-1">
-                                                            <div class="form-group">
-                                                                <label>Local Govt</label>
-                                                                <input type="text" class="form-control" placeholder="Local Govt">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Zip/Postal Code</label>
-                                                                <input type="text" class="form-control" placeholder="Home Address" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr />
-                                                    <div class="row">
-                                                        <div class="col-md-4 pr-1">
-                                                            <div class="form-group">
-                                                                <label>Home Telephone</label>
-                                                                <input type="text" class="form-control" placeholder="City">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 px-1">
-                                                            <div class="form-group">
-                                                                <label>Mobile</label>
-                                                                <input type="text" class="form-control" placeholder="Country">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 pl-1">
-                                                            <div class="form-group">
-                                                                <label>Work Telephone</label>
-                                                                <input type="number" class="form-control" placeholder="ZIP Code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="row">                     
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Work Email</label>
-                                                                <input type="text" class="form-control" placeholder="Country" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Personal Email</label>
-                                                                <input type="text" class="form-control" placeholder="ZIP Code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer ">
-                                                        <button type="submit" class="btn btn-fill btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>                                           
-                                        </div>
-                                        <div class="tab-pane" id="link6">
-                                            <div class="card-header">
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
-                                                </div>
-                                            </div>
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Name</label>
-                                                                                <input type="text" class="form-control" placeholder="Name" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Relationship</label>
-                                                                                <input type="text" class="form-control" placeholder="Home Relationship">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Home Telephone</label>
-                                                                                <input type="text" class="form-control" placeholder="Home Telephone">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Address</label>
-                                                                                <input type="text" class="form-control" placeholder="Address">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Home Telephone</th>
-                                                            <th>Address</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Home Telephone</th>
-                                                            <th>Address</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td>Super Admin</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td>Admin</td>
-                                                            <td>Pending</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td>Employee</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td>Accountant</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="link1">
-                                            <div class="card-header">
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal1">Create New</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Dependent</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Name</label>
-                                                                                <input type="text" class="form-control" placeholder="Name" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Relationship</label>
-                                                                                <input type="text" class="form-control" placeholder="Home Relationship">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Birth Date</label>
-                                                                                <input type="date" class="form-control" placeholder="Birth Date">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Date of Birth</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Date of Birth</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td>Admin</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="link2">
-                                            <!-- Start of the Jobs tabs-->
-                                            
-                                            <div class="card-body">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Job Title</label>
-                                                                <select type="text" class="form-control" placeholder="Country">
-                                                                    <option> -- Select Job Title -- </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Job Specification</label>
-                                                                <input type="text" class="form-control" disabled placeholder="Job Specification">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Job Title</label>
-                                                                <select type="text" class="form-control" placeholder="Country">
-                                                                    <option> -- Select Job Employement Status -- </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Job Specification</label>
-                                                                <select type="text" class="form-control" placeholder="Country">
-                                                                    <option> -- Select Job Category -- </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-5 pr-1">
-                                                            <div class="form-group">
-                                                                <label>Joined date </label>
-                                                                <input type="date" class="form-control" placeholder="Company">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3 px-1">
-                                                            <div class="form-group">
-                                                                <label>Sub Unit</label>
-                                                                <select type="text" class="form-control" placeholder="Country">
-                                                                    <option> -- Select Job Employement Status -- </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4 pl-1">
-                                                            <div class="form-group">
-                                                                <label>Location</label>
-                                                                <select type="text" class="form-control" placeholder="Country">
-                                                                    <option> -- Select Job Employement Status -- </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <hr />
-                                                    <h5>Employment Contract</h5>
-
-                                                    <div class="row">
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>Start Date</label>
-                                                                <input type="date" class="form-control" placeholder="Country">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 ">
-                                                            <div class="form-group">
-                                                                <label>End Date</label>
-                                                                <input type="date" class="form-control" placeholder="ZIP Code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Contract Details</label>
-                                                                <input type="text" class="form-control" disabled placeholder="Home Address" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-fill btn-primary">Submit</button>
-                                                        <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- the End of Jobs Tabs-->                                  
-                                        </div>
-
-                                        <div class="tab-pane" id="link3">
-                                            <!-- End of the End of Jobs Tabs-->
-                                            <div class="card-header">
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal2">Create New</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Salary</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Compensation step</label>
-                                                                                <select type="text" class="form-control" placeholder="Name" required>
-                                                                                    <option> -- Select Compensation step -- </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Salary Element</label>
-                                                                                <input type="text" class="form-control" placeholder="Salary Element">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Payroll frequency</label>
-                                                                                <select type="text" class="form-control" placeholder="Payroll frequency" required>
-                                                                                    <option> -- Select Payroll frequency -- </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Currency</label>
-                                                                                <select type="text" class="form-control" placeholder="Currency" required>
-                                                                                    <option> -- Select Currency -- </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Amount</label>
-                                                                                <input type="text" class="form-control" placeholder="Amount">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Comments</label>
-                                                                                <input type="text" class="form-control" placeholder="Comments">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Home Telephone</th>
-                                                            <th>Address</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Home Telephone</th>
-                                                            <th>Address</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td>Super Admin</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td>Admin</td>
-                                                            <td>Pending</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td>Employee</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td>Accountant</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="link7">
-                                            <!-- Start of Qualifaction-->
-                                            <!-- Education Page-->
-                                            <div class="card-header">
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal3">Create New</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Education</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Level</label>
-                                                                                <select type="text" class="form-control" placeholder="Name" required>
-                                                                                    <option> -- Select Level -- </option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Institute</label>
-                                                                                <input type="text" class="form-control" placeholder="Institute">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Major/Specailiazation</label>
-                                                                                <input type="text" class="form-control" placeholder="Major/Specailiazation">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Year</label>
-                                                                                <input type="text" class="form-control" placeholder="Year">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>GPA/Score</label>
-                                                                                <input type="text" class="form-control" placeholder="Year">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Start Date</label>
-                                                                                <input type="date" class="form-control" placeholder="Year">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>End Date</label>
-                                                                                <input type="date" class="form-control" placeholder="Year">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Date of Birth</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th>Date of Birth</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td>Admin</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!-- work Experience End-->
-
-                                            <!-- Skills-->
-                                            <div class="card-header">
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal4">Create New</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Skill</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Skill</label>
-                                                                                <input type="text" class="form-control" placeholder="Skill" required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Year of Experience</label>
-                                                                                <input type="text" class="form-control" placeholder="Year of Experience">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Comments</label>
-                                                                                <input type="text" class="form-control" placeholder="Comments">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Skill</th>
-                                                            <th>Year of Experience</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th> Name</th>
-                                                            <th>Relationship</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!--End Skills-->
-                                            
-                                            <div class="card-header">                                               
-                                                <div class="justify-content-end align-items-center ">
-                                                    <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal5">Create New</a>
-                                                </div>
-                                            </div>
-
-                                            <!-- notice modal -->
-                                            <div class="modal fade" id="noticeModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                            </button>
-                                                            <h5 class="modal-title" id="myModalLabel">Enter New Language</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="instruction">
-                                                                <form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>language</label>
-                                                                                <select type="text" class="form-control" placeholder="Name" required>
-                                                                                    <option> -- Select --</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Fluency</label>
-                                                                                <select type="text" class="form-control" placeholder="Name" required>
-                                                                                    <option> -- Select --</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Competency</label>
-                                                                                <select type="text" class="form-control" placeholder="Name" required>
-                                                                                    <option> -- Select --</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Comments</label>
-                                                                                <input type="text" class="form-control" placeholder="Comments">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <hr />
-                                                                    <div class="card-footer ">
-                                                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end notice modal -->
-
-                                            <div class="card-body">
-                                                <br />
-                                                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Language</th>
-                                                            <th>Fluency</th>
-                                                            <th>Comtency</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Language</th>
-                                                            <th>Fluency</th>
-                                                            <th>Comtency</th>
-                                                            <th class="disabled-sorting text-right">Actions</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>info@TigerNixon.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>info@GatterrWinters.com</td>
-                                                            <td>Admin</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ashton Cox</td>
-                                                            <td>ArthurCox@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cedric Kelly</td>
-                                                            <td>cedrickelly@mail.com</td>
-                                                            <td>Active</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                        <div class="tab-pane" id="link4">
-                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                                            <br>
-                                            <br> innovate resource-leveling customer service for state of the art customer service.
-                                        </div>
-                                        <div class="tab-pane" id="link6">
-                                            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                                            <br>
-                                            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="picture-container">
+                      <div class="picture">
+                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizardpicture" name="wizardpicture">
+                      </div>
+                      <h6 class="description">Choose Picture</h6>
                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons users_circle-08"></i>*@
+                      </span>
+                      <input type="text" class="form-control" placeholder="First Name (required)" name="firstname" id="firstname">
+                    </div>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="text" placeholder="Last Name (required)" class="form-control" name="lastname" id="lastname" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4 mt-3">
+                    <label>Phone Number</label>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="tel" placeholder="Phone No (required)" class="form-control" name="phoneNo" id="phoneNo"/>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mt-3">
+                    <label>Employee Email</label>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="email" placeholder="Employee Email (required)" class="form-control" id="email" name="email" />
+                    </div>
+                  </div>
                 </div>
+                <div class="row justify-content-center">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <select type="text" data-style="btn btn-round" class="selectpicker"  id="Gender" name="Gender">
+                        <option> -- Select Gender -- </option>
+                        <option>Male </option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label>Marital Status</label>
+                      <select  type="text" data-style="btn btn-round" class="selectpicker"  id="maritalStatus" name="maritalStatus" >
+                        <option> -- Select Marital -- </option>
+                        <option>Single </option>
+                        <option>Married</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Date of Birth</label>
+                      <input  type="Date" class="form-control" placeholder="date" id="DateOfBirth" name="DateOfBirth">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              
+              <div class="tab-pane fade" id="account">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div class="row">
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Job Title</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
+                            <option> -- Select Job Title -- </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Department</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
+                            <option> -- Select Department -- </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Job Category</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
+                            <option> -- Select Job Category -- </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Employment Status</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
+                            <option> -- Select Job Employement Status -- </option>
+                          </select>
+                        </div>
+                      </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Branch</label>
+                            <select type="text" class="form-control" asp-items="ViewBag.Branch" id="Branch" name="Branch">
+                              <option> -- Select Branch -- </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Joined date </label>
+                            <input type="date" class="form-control" id="JoinedDate" name="JoinedDate" >
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" id="StartDate" name="StartDate" >
+                          </div>
+                        </div>
+                        @*<div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" >
+                          </div>
+                        </div>*@
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="tab-pane fade" id="address">
+                <div class="row justify-content-center">
+                  @*<div class="col-sm-12">
+      <h5 class="info-text"> Are you living in a nice area? </h5>
+    </div>*@
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label>Pay Frequency</label>
+                      <select type="text" class="form-control" id="payFrequency" name="payFrequency">
+                        <option> -- Select Pay Frequency -- </option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Bi Monthly">Bi Monthly</option>
+                        <option value="Weekly">Weekly</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label>Amount</label>
+                      <input type="number" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
+                    </div>
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="form-group">
+                      <label>Currency</label>
+                      <input type="text" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+          <div class="card-footer">
+            <div class="pull-right">
+              <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
+              <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+            </div>
+            <div class="pull-left">
+              <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </form>
+      </div>
     </div>
+    <!-- wizard container -->
+  </div>
 </div>
-
-
-<script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <script src="~/assets/js/plugins/bootstrap-switch.js"></script>
 
 <script>
-    $(document).ready(function () {
-        //-------------------------------SELECT CASCADING-------------------------//
-        var selectedCountry = selectedRegion = selectedCity = countryCode = "";
-        // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
-        var BATTUTA_KEY = "00000000000000000000000000000000";
-        // Populate country select box from battuta API
-        url =
-            "https://geo-battuta.net/api/country/all/?key=" +
-            BATTUTA_KEY +
-            "&callback=?";
-        // EXTRACT JSON DATA.
-        $.getJSON(url, function (data) {
-            $.each(data, function (index, value) {
-                // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
-                $("#country").append(
-                    '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
-                );
-            });
-        });
-        // Country selected --> update region list .
-        $("#country").change(function () {
-            selectedCountry = this.options[this.selectedIndex].text;
-            countryCode = $(this).children(":selected").attr("id");
-            url =
-                "https://geo-battuta.net/api/region/" +
-                countryCode +
-                "/all/?key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#region option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#region").append(
-                        '<option value="' + value.region + '">' + value.region + "</option>"
-                    );
-                });
-            });
-        });
-        // Region selected --> updated city list
-        $("#region").on("change", function () {
-            selectedRegion = this.options[this.selectedIndex].text;
-            // Populate country select box from battuta API
-            region = $("#region").val();
-            url =
-                "https://geo-battuta.net/api/city/" +
-                countryCode +
-                "/search/?region=" +
-                region +
-                "&key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#city option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#city").append(
-                        '<option value="' + value.city + '">' + value.city + "</option>"
-                    );
-                });
-            });
-        });
-        // city selected --> update location string
-        $("#city").on("change", function () {
-            selectedCity = this.options[this.selectedIndex].text;
-            $("#location").html(
-                "Locatation: Country: " +
-                selectedCountry +
-                ", Region: " +
-                selectedRegion +
-                ", City: " +
-                selectedCity
-            );
-        });
 
+    $(document).ready(function() {
+    // Initialise the wizard
+    demo.initNowUiWizard();
+    setTimeout(function() {
+      $('.card.card-wizard').addClass('active');
+    }, 600);
+  });
+
+  $(document).ready(function () {
+    //-------------------------------SELECT CASCADING-------------------------//
+    var selectedCountry = selectedRegion = selectedCity = countryCode = "";
+    // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
+    var BATTUTA_KEY = "00000000000000000000000000000000";
+    // Populate country select box from battuta API
+    url =
+      "https://geo-battuta.net/api/country/all/?key=" +
+      BATTUTA_KEY +
+      "&callback=?";
+    // EXTRACT JSON DATA.
+    $.getJSON(url, function (data) {
+      $.each(data, function (index, value) {
+        // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
+        $("#country").append(
+          '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
+        );
+      });
     });
-    // process form
-    function processForm() {
-        var username = password = country = region = city = '';
-        username = $('#username').val();
-        password = $('#password').val();
-        country = $('#country').val();
-        region = $('#region').val();
-        city = $('#city').val();
-        if (username != '' && password != '' && country != '' && region != '' && city != '') {
-            $("#location").html(
-                "Username: " + username +
-                " /Password: " + password +
-                " /Locatation: Country: " +
-                country +
-                ", Region: " +
-                region +
-                ", City: " +
-                city
-            );
-        } else {
-            $("#location").html('Complete Form 1st');
-            return false;
-        }
+    // Country selected --> update region list .
+    $("#country").change(function () {
+      selectedCountry = this.options[this.selectedIndex].text;
+      countryCode = $(this).children(":selected").attr("id");
+      url =
+        "https://geo-battuta.net/api/region/" +
+        countryCode +
+        "/all/?key=" +
+        BATTUTA_KEY +
+        "&callback=?";
+      $.getJSON(url, function (data) {
+        $("#region option").remove();
+        $.each(data, function (index, value) {
+          // APPEND OR INSERT DATA TO SELECT ELEMENT.
+          $("#region").append(
+            '<option value="' + value.region + '">' + value.region + "</option>"
+          );
+        });
+      });
+    });
+    // Region selected --> updated city list
+    $("#region").on("change", function () {
+      selectedRegion = this.options[this.selectedIndex].text;
+      // Populate country select box from battuta API
+      region = $("#region").val();
+      url =
+        "https://geo-battuta.net/api/city/" +
+        countryCode +
+        "/search/?region=" +
+        region +
+        "&key=" +
+        BATTUTA_KEY +
+        "&callback=?";
+      $.getJSON(url, function (data) {
+        $("#city option").remove();
+        $.each(data, function (index, value) {
+          // APPEND OR INSERT DATA TO SELECT ELEMENT.
+          $("#city").append(
+            '<option value="' + value.city + '">' + value.city + "</option>"
+          );
+        });
+      });
+    });
+    // city selected --> update location string
+    $("#city").on("change", function () {
+      selectedCity = this.options[this.selectedIndex].text;
+      $("#location").html(
+        "Locatation: Country: " +
+        selectedCountry +
+        ", Region: " +
+        selectedRegion +
+        ", City: " +
+        selectedCity
+      );
+    });
+
+  });
+  // process form
+  function processForm() {
+    var username = password = country = region = city = '';
+    username = $('#username').val();
+    password = $('#password').val();
+    country = $('#country').val();
+    region = $('#region').val();
+    city = $('#city').val();
+    if (username != '' && password != '' && country != '' && region != '' && city != '') {
+      $("#location").html(
+        "Username: " + username +
+        " /Password: " + password +
+        " /Locatation: Country: " +
+        country +
+        ", Region: " +
+        region +
+        ", City: " +
+        city
+      );
+    } else {
+      $("#location").html('Complete Form 1st');
+      return false;
     }
+  }
 </script>

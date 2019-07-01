@@ -1,4 +1,5 @@
-﻿using SendGrid;
+﻿using E4S.Helpers;
+using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
@@ -90,11 +91,19 @@ namespace E4S.Services
     }
 
 
-    async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message)
+    async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message, string firstname, string template)
     {
       var apiKey = "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";
       //new code
 
+
+      string domain = "http://erp4smes.azurewebsites.net";
+
+      EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
+
+      var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", message).Replace("#HostDomain", domain);
+
+      //string 
 
       var client = new SendGridClient(apiKey);
       var msg = new SendGridMessage()
@@ -102,11 +111,43 @@ namespace E4S.Services
         From = new EmailAddress("no-reply@erp4sme.ng", "ERP4SME"),
         Subject = "Set Up Your Account on ERP4SME.",
         PlainTextContent = "You have been registered on ERP4SME platform. Kindly use the link below to create your account.",
-        HtmlContent = "<strong> " + message + "</strong>",
+        HtmlContent = body
+        
+        
       };
       msg.AddTo(new EmailAddress(emailAdd, emailAdd));
       var response = await client.SendEmailAsync(msg);
       
+
+    }
+
+    async Task IEmailSender.SendGridEmailConfrimationAsync(string emailAdd, string subject, string message, string firstname)
+    {
+      var apiKey = "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";
+      //new code
+
+
+      string domain = "http://erp4smes.azurewebsites.net";
+      
+      EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
+
+      var body = EmailHelper.GetTemplate("accoutConfirmation").Replace("#FirstName", firstname).Replace("#ResetLink", message).Replace("#HostDomain", domain);
+
+      //string 
+
+      var client = new SendGridClient(apiKey);
+      var msg = new SendGridMessage()
+      {
+        From = new EmailAddress("no-reply@erp4sme.ng", "ERP4SME"),
+        Subject = "Account Confirmationon ERP4SME.",
+        PlainTextContent = "You have are registered on ERP4SME platform. Kindly confrim your account.",
+        HtmlContent = body
+
+
+      };
+      msg.AddTo(new EmailAddress(emailAdd, emailAdd));
+      var response = await client.SendEmailAsync(msg);
+
 
     }
 

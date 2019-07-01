@@ -394,7 +394,13 @@ namespace E4S.Controllers.Employee
 
         public IActionResult Salary()
         {
-            return View();
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var empSalary = _context.Salaries.Where(x => x.EmployeeDetailId == employeeDetails.Id).FirstOrDefault();
+      return View(empSalary);
         }
 
         public IActionResult Qualification()

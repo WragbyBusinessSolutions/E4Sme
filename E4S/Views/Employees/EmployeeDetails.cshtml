@@ -139,10 +139,16 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-6">
                             <div class="form-group">
-                              <label>Address</label>
-                              <input asp-for="EmployeeDetail.Nationality" type="text" class="form-control" placeholder="Home Address">
+                              <label>Email</label>
+                              <input asp-for="EmployeeDetail.Email" type="email" class="form-control" placeholder="Email">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>Phone No</label>
+                              <input asp-for="EmployeeDetail.PhoneNumber" type="tel" class="form-control" placeholder="Phone No">
                             </div>
                           </div>
                         </div>
@@ -664,14 +670,14 @@
                             </div>
                           </div>
 
-                          <div class="row">
+                          @*<div class="row">
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Contract Details</label>
                                 <input type="text" class="form-control" asp-for="ContractDetails"  placeholder="Comtract Details" required>
                               </div>
                             </div>
-                          </div>
+                          </div>*@
                           <div class="card-footer">
                             <button type="button" class="btn btn-fill btn-primary" id="btnJob">Save</button>
                             <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
@@ -686,14 +692,14 @@
                       <div class="card-body">
                         <form>
                           <div class="row">
-                            <div class="col-md-6 ">
-                              <div class="form-group">
-                                <label>Pay Grade</label>
-                                <select asp-for="PayGradeId" type="text" asp-items="ViewBag.PayGrade" class="form-control" placeholder="Country">
-                                  <option> -- Select Pay Grade -- </option>
-                                </select>
-                              </div>
-                            </div>
+                            @*<div class="col-md-6 ">
+      <div class="form-group">
+        <label>Pay Grade</label>
+        <select asp-for="PayGradeId" type="text" asp-items="ViewBag.PayGrade" class="form-control" placeholder="Country">
+          <option> -- Select Pay Grade -- </option>
+        </select>
+      </div>
+    </div>*@
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>Pay Frequency</label>
@@ -705,18 +711,19 @@
                                 </select>
                               </div>
                             </div>
-                          </div>
-
-
-                          <hr />
-
-                          <div class="row">
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>Amount</label>
                                 <input asp-for="Amount" type="number" class="form-control" placeholder="Amount">
                               </div>
                             </div>
+
+                          </div>
+
+
+                          <hr />
+                          
+                          @*<div class="row">
                             <div class="col-md-6 ">
                               <div class="form-group">
                                 <label>Currency</label>
@@ -732,7 +739,7 @@
                                 <input type="text" class="form-control" asp-for="Comments" placeholder="Comments" >
                               </div>
                             </div>
-                          </div>
+                          </div>*@
                           <div class="card-footer">
                             <button type="button" class="btn btn-fill btn-primary" name="btnSalary" id="btnSalary">Save</button>
                           </div>

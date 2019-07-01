@@ -50,38 +50,55 @@
       <div class="sidebar-wrapper">
         <div class="user">
           <div class="photo">
-            <img src="@Url.Content("~/assets/img/james.jpg")" />
+
+            @if (ViewBag.OrganisationImage == null)
+            {
+              <img src="~/assets/img/placeholder.jpg" />
+            }
+            else
+            {
+              <img src="~/@ViewBag.OrganisationImage" id="imageUploadForm">
+
+            }
+
+            @*<img src="~/@{ @ViewBag.OrganisationImage ?? "assets/img/placeholder.jpg"; }" />*@
+
+
+            @*<img src="../assets/img/james.jpg" />*@
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
               <span>
-                @UserManager.GetUserName(User)
-                <b class="caret"></b>
+                @ViewBag.OrganisationName
+
+                @*@UserManager.GetUserName(User)*@
+
+                @*<b class="caret"></b>*@
               </span>
             </a>
             <div class="clearfix"></div>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">EP</span>
-                    <span class="sidebar-normal">Edit Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">S</span>
-                    <span class="sidebar-normal">Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            @*<div class="collapse" id="collapseExample">
+          <ul class="nav">
+            <li>
+              <a href="#">
+                <span class="sidebar-mini-icon">MP</span>
+                <span class="sidebar-normal">My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="sidebar-mini-icon">EP</span>
+                <span class="sidebar-normal">Edit Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="sidebar-mini-icon">S</span>
+                <span class="sidebar-normal">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>*@
           </div>
         </div>
 
@@ -101,53 +118,53 @@
             @*<a asp-action="Index" asp-controller="Estimates" class="btn btn-round btn-primary">Go to Dashboard</a>*@
           </li>
           <li>
-              <a data-toggle="collapse" href="#jobs">
-                  <i class="now-ui-icons business_briefcase-24"></i>
-                  <p>
-                      Configuration
-                      <b class="caret"></b>
-                  </p>
-              </a>
-              <div class="collapse " id="jobs">
-                  <ul class="nav">
-                      <li>
-                          <a asp-action="Department" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon">D</span>
-                              <span class="sidebar-normal"> Departments </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="JobTitle" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> J T</span>
-                              <span class="sidebar-normal"> Job Title</span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="PayGrade" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> P G</span>
-                              <span class="sidebar-normal"> Pay Grade </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="JobCategory" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon"> P G</span>
-                              <span class="sidebar-normal"> Job Category </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon">R</span>
-                              <span class="sidebar-normal"> Employment Status </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a asp-action="LeaveConfiguration" asp-controller="Jobs">
-                              <span class="sidebar-mini-icon">L C </span>
-                              <span class="sidebar-normal"> Leave Configuration </span>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
+            <a data-toggle="collapse" href="#jobs">
+              <i class="now-ui-icons business_briefcase-24"></i>
+              <p>
+                Configuration
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse " id="jobs">
+              <ul class="nav">
+                <li>
+                  <a asp-action="Department" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">D</span>
+                    <span class="sidebar-normal"> Departments </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="JobTitle" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> J T</span>
+                    <span class="sidebar-normal"> Job Title</span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="PayGrade" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> P G</span>
+                    <span class="sidebar-normal"> Pay Grade </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="JobCategory" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> P G</span>
+                    <span class="sidebar-normal"> Job Category </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">R</span>
+                    <span class="sidebar-normal"> Employment Status </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="LeaveConfiguration" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">L C </span>
+                    <span class="sidebar-normal"> Leave Configuration </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li>
             <a data-toggle="collapse" href="#pagesExamples">
@@ -160,12 +177,12 @@
             <div class="collapse " id="pagesExamples">
               <ul class="nav">
                 <li>
-                  <a href="../Employees">
+                  <a asp-action="Index" asp-controller="Employees">
                     <span class="sidebar-mini-icon">EL</span>
                     <span class="sidebar-normal"> Employee List</span>
                   </a>
                 </li>
-                
+
                 <li>
                   <a href="#">
                     <span class="sidebar-mini-icon">R</span>
@@ -198,15 +215,15 @@
                   </a>
                 </li>
                 @*<li>
-                    <a href="#">
-                      <span class="sidebar-mini-icon">R</span>
-                      <span class="sidebar-normal">Report </span>
-                    </a>
-                  </li>*@
+              <a href="#">
+                <span class="sidebar-mini-icon">R</span>
+                <span class="sidebar-normal">Report </span>
+              </a>
+            </li>*@
               </ul>
             </div>
           </li>
-          
+
           <li class="">
             <a asp-action="Index" asp-controller="Leaves">
               <i class="now-ui-icons design_app"></i>
@@ -233,70 +250,70 @@
 
           </li>
 
-          
+
 
 
           @*<li class="">
-              <a href="../examples/dashboard.html">
-                <i class="now-ui-icons design_app"></i>
-                <p>Invoice</p>
+        <a href="../examples/dashboard.html">
+          <i class="now-ui-icons design_app"></i>
+          <p>Invoice</p>
+        </a>
+      </li>
+      <li>
+        <a data-toggle="collapse" href="#pagesExamples">
+          <i class="now-ui-icons design_image"></i>
+          <p>
+            ACCOUNT
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse " id="pagesExamples">
+          <ul class="nav">
+            <li>
+              <a href="../organisation">
+                <span class="sidebar-mini-icon">OD</span>
+                <span class="sidebar-normal"> Organisation Details </span>
               </a>
             </li>
             <li>
-              <a data-toggle="collapse" href="#pagesExamples">
-                <i class="now-ui-icons design_image"></i>
-                <p>
-                  ACCOUNT
-                  <b class="caret"></b>
-                </p>
+              <a href="../organisation/branch">
+                <span class="sidebar-mini-icon">B</span>
+                <span class="sidebar-normal"> Branch </span>
               </a>
-              <div class="collapse " id="pagesExamples">
-                <ul class="nav">
-                  <li>
-                    <a href="../organisation">
-                      <span class="sidebar-mini-icon">OD</span>
-                      <span class="sidebar-normal"> Organisation Details </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="../organisation/branch">
-                      <span class="sidebar-mini-icon">B</span>
-                      <span class="sidebar-normal"> Branch </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
-            <li class="">
-              <a href="../examples/dashboard.html">
-                <i class="now-ui-icons users_circle-08"></i>
-                <p>Users</p>
-              </a>
-            </li>*@
+          </ul>
+        </div>
+      </li>
+      <li class="">
+        <a href="../examples/dashboard.html">
+          <i class="now-ui-icons users_circle-08"></i>
+          <p>Users</p>
+        </a>
+      </li>*@
           @*<li class="">
-            <a href="../examples/dashboard.html">
+        <a href="../examples/dashboard.html">
+          <i class="now-ui-icons users_circle-08"></i>
+          <p>Log Out</p>
+        </a>
+      </li>
+
+
+      @if (SignInManager.IsSignedIn(User))
+      {
+
+
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+          <li>
+
+            <a class="" aria-expanded="false">
               <i class="now-ui-icons users_circle-08"></i>
-              <p>Log Out</p>
+              <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
             </a>
+
           </li>
 
-
-          @if (SignInManager.IsSignedIn(User))
-          {
-
-
-            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-              <li>
-
-                <a class="" aria-expanded="false">
-                  <i class="now-ui-icons users_circle-08"></i>
-                  <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
-                </a>
-
-              </li>
-
-            </form>
-          }*@
+        </form>
+      }*@
 
 
 

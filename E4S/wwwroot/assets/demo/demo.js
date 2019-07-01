@@ -1122,7 +1122,7 @@ demo = {
 
 
         // Prepare the preview for profile picture
-        $("#wizard-picture").change(function(){
+        $("#wizardpicture").change(function(){
             readURL(this);
         });
 

@@ -30,31 +30,27 @@
                       <th>Name</th>
                       <th>E-mail</th>
                       <th>Role</th>
-                      <th>Status</th>
                       <th class="disabled-sorting text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tfoot>
+                  @*<tfoot>
                     <tr>
                       <th>Name</th>
                       <th>E-mail</th>
                       <th>Role</th>
-                      <th>Status</th>
                       <th class="disabled-sorting text-right">Actions</th>
                     </tr>
-                  </tfoot>
+                  </tfoot>*@
                   <tbody>
 
                     @foreach (var item in Model)
                     {
                       <tr>
-                        <td>@item.EmployeeName</td>
+                        <td>@item.FirstName @item.LastName</td>
                         <td>@item.Email</td>
                         <td>@item.UserRole</td>
-                        <td>@item.EmailConfirmed</td>
                         <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm send"><i class="far fa-circle-thin"  ></i></a>
+                          <a  asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                           <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                         </td>
                       </tr>
