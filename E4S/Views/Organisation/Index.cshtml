@@ -17,151 +17,127 @@
             <div class="card card-wizard" data-color="primary" id="wizardProfile">
                 @*<form action="" method="">*@
                     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                    <div class="card-header text-center" data-background-color="orange">
-                      <h3 class="card-title">
-                        @if (Model.OrganisationName == "")
-                        {
-                          Model.OrganisationName = "Build Your Profile";
-                          @Model.OrganisationName
-                        }
-                        else
-                        {
-                          @Model.OrganisationName
-                        }
+                <div class="card-header text-center" data-background-color="orange">
+                    <h3 class="card-title">
+                    @if (Model.OrganisationName == "")
+                    {
+                        Model.OrganisationName = "Build Your Profile";
+                        @Model.OrganisationName
+                    }
+                    else
+                    {
+                        @Model.OrganisationName
+                    }
 
-                      </h3>
-                        <h5 class="description"></h5>This information will let us know more about you.</h5>
-                        </h5>
-                      <input asp-for="Id" hidden />
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="about">
-                                <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
-                                <div class="row justify-content-center">
-                                  <div class="col-sm-4">
+                    </h3>
+                    <h5 class="description"></h5>This information will let us know more about you.</h5>
+                    </h5>
+                    <input asp-for="Id" hidden />
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="about">
+                            <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+                            <div class="row justify-content-center">
+                                <div class="col-sm-4">
 
-                                    <form enctype="multipart/form-data" asp-action="UploadProfile" method="post">
-                                      <h5 class="description">Choose Orginsation Logo</h5>
+                                <form enctype="multipart/form-data" asp-action="UploadProfile" method="post">
+                                    <h5 class="description">Choose Orginsation Logo</h5>
 
-                                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                        <div class="fileinput-new thumbnail">
-                                          @if (Model.ImageUrl == null || Model.ImageUrl == "")
-                                          {
-                                            <img src="../../assets/img/image_placeholder.jpg" id="imageUploadForm" name="image" multiple="multiple" alt="...">
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail">
+                                        @if (Model.ImageUrl == null || Model.ImageUrl == "")
+                                        {
+                                        <img src="../../assets/img/image_placeholder.jpg" id="imageUploadForm" name="image" multiple="multiple" alt="...">
 
-                                          }
-                                          else
-                                          {
-                                            <img src="~/@Model.ImageUrl" id="imageUploadForm" name="image" multiple="multiple" alt="...">
+                                        }
+                                        else
+                                        {
+                                        <img src="~/@Model.ImageUrl" id="imageUploadForm" name="image" multiple="multiple" alt="...">
 
-                                          }
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                        <div>
-                                          <span class="btn btn-rose btn-round btn-file">
-                                            <span class="fileinput-new">Select image</span>
-                                            <span class="fileinput-exists">Change</span>
-                                            <input type="file" name="file" id="file" />
-                                          </span>
-                                          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                        </div>
-                                        <div class="form-group">
-                                          <button type="submit" class="btn btn-success btn-md fileinput-exists">Upload</button>
-                                        </div>
+                                        }
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                    <div>
+                                        <span class="btn btn-rose btn-round btn-file">
+                                        <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="file" id="file" />
+                                        </span>
+                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-md fileinput-exists">Upload</button>
+                                    </div>
 
-                                      </div>
+                                    </div>
 
-                                    </form>
+                                </form>
 
 
-                                    @*<div class="picture-container">
-                                      <div class="picture">
-                                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                        <input type="file" id="wizard-picture">
-                                      </div>
-                                      <h6 class="description">Choose Orginsation Logo</h6>
+                                @*<div class="picture-container">
+                                    <div class="picture">
+                                    <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                    <input type="file" id="wizard-picture">
+                                    </div>
+                                    <h6 class="description">Choose Orginsation Logo</h6>
+                                </div>*@
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-md-3 col-form-label">Registration No</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled class="form-control" asp-for="RegistrationNo" placeholder="Registration (required)">
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Organisation Name</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled placeholder="Organisation Name (required)" class="form-control" asp-for="OrganisationName" />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Phone Number</label>
+                                    <div class="input-group form-control-lg">                                           
+                                        <input type="text" disabled placeholder="Phone Number (required)" class="form-control" asp-for="PhoneNumber" />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Email</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled placeholder="Email Address (required)" class="form-control" asp-for="Email" />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Zip Code</label>
+                                    <div class="input-group form-control-lg">                                           
+                                        <input type="text" disabled placeholder="Zip Code (required)" class="form-control" asp-for="ZipCode" />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Tax ID</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled placeholder="Tax ID (required)" asp-for="TaxId" class="form-control"  />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Organisation Prefix</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled placeholder="Organisation Prefix (required)" asp-for="OrganisationPrefix" class="form-control"  />
+                                    </div>
+                                    <label class="col-md-3 col-form-label">Address</label>
+                                    <div class="input-group form-control-lg">                                            
+                                        <input type="text" disabled placeholder="Last Name (required)" asp-for="Address" class="form-control" />
+                                    </div>
+                                    @*<label>Country</label>
+                                    <div class="form-group">
+                                        <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
+                                    </div>
+
+                                    <label>State</label>
+                                    <div class="form-group">
+                                        <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
+                                    </div>
+
+                                    <label>City</label>
+                                    <div class="form-group">
+                                        <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
                                     </div>*@
-                                  </div>
-                                    <div class="col-sm-6">
-                                        <label class="col-md-3 col-form-label">Registration No</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons users_circle-08"></i>
-                                            </span>
-                                            <input type="text" disabled class="form-control" asp-for="RegistrationNo" placeholder="Registration (required)">
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Organisation Name</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Organisation Name (required)" class="form-control" asp-for="OrganisationName" />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Phone Number</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Phone Number (required)" class="form-control" asp-for="PhoneNumber" />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Email</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Email Address (required)" class="form-control" asp-for="Email" />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Zip Code</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Zip Code (required)" class="form-control" asp-for="ZipCode" />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Tax ID</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Tax ID (required)" asp-for="TaxId" class="form-control"  />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Organisation Prefix</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Organisation Prefix (required)" asp-for="OrganisationPrefix" class="form-control"  />
-                                        </div>
-                                        <label class="col-md-3 col-form-label">Address</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                <i class="now-ui-icons text_caps-small"></i>
-                                            </span>
-                                            <input type="text" disabled placeholder="Last Name (required)" asp-for="Address" class="form-control" />
-                                        </div>
-                                        @*<label>Country</label>
-                                        <div class="form-group">
-                                            <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
-                                        </div>
-
-                                        <label>State</label>
-                                        <div class="form-group">
-                                            <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
-                                        </div>
-
-                                        <label>City</label>
-                                        <div class="form-group">
-                                            <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
-                                        </div>*@
-                                        <div class="form-group">
-                                            <a  class="btn btn-fill btn-primary" asp-action="Edit" asp-controller="Organisation">Edit</a>
-                                        </div>
+                                    <div class="form-group">
+                                        <a  class="btn btn-fill btn-primary" asp-action="Edit" asp-controller="Organisation">Edit</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 @*</form>*@
             </div>

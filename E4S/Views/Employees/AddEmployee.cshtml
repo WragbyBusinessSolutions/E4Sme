@@ -39,12 +39,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- All the modal Pages -->
 
-
-
-
-                    <!-- End of all the modal pages-->
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="about">
@@ -135,23 +130,14 @@
                                                         <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
                                                             <option> -- Select Job Title -- </option>
                                                         </select>
-                                                        
+
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title">+</button>
+                                                            <button class="btn btn-success" type="button" title="Click to add Job Title" data-toggle="modal" data-target="#noticeModal">+</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @*<div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="input-group mb-3">                                
-                                                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-success" type="button">Love It</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>*@
+                                            
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Department</label>
@@ -159,11 +145,10 @@
                                                         <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
                                                             <option> -- Select Department -- </option>
                                                         </select>
-                                                        <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title">+</button>
+                                                        <div class="input-group-append " style="position:relative; top:-10px;" data-toggle="modal" data-target="#noticeModal1">
+                                                            <button class="btn btn-success" type="button" title="Click to add Department">+</button>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
 
@@ -175,9 +160,9 @@
                                                             <option> -- Select Job Category -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title">+</button>
+                                                            <button class="btn btn-success" type="button" title="Click to add Job Category" data-toggle="modal" data-target="#noticeModal2">+</button>
                                                         </div>
-                                                    </div>                                                   
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -189,9 +174,9 @@
                                                             <option> -- Select Job Employement Status -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title">+</button>
+                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
                                                         </div>
-                                                    </div>                                                   
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -203,9 +188,9 @@
                                                             <option> -- Select Branch -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title">+</button>
+                                                            <button class="btn btn-success" type="button" title="Click to add Branch" data-toggle="modal" data-target="#noticeModal4">+</button>
                                                         </div>
-                                                    </div>                                                   
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -223,13 +208,11 @@
                                                 </div>
                                             </div>
                                             @*<div class="col-md-6 ">
-                                                  <div class="form-group">
-                                                    <label>End Date</label>
-                                                    <input type="date" class="form-control" >
-                                                  </div>
-                                                </div>*@
-
-
+                                              <div class="form-group">
+                                                <label>End Date</label>
+                                                <input type="date" class="form-control" >
+                                              </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -239,8 +222,8 @@
                             <div class="tab-pane fade" id="address">
                                 <div class="row justify-content-center">
                                     @*<div class="col-sm-12">
-                                          <h5 class="info-text"> Are you living in a nice area? </h5>
-                                        </div>*@
+                                      <h5 class="info-text"> Are you living in a nice area? </h5>
+                                    </div>*@
                                     <div class="col-sm-10">
                                         <div class="form-group">
                                             <label>Pay Frequency</label>
@@ -268,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card-footer">
                         <div class="pull-right">
                             <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
@@ -283,6 +266,257 @@
             </div>
         </div>
         <!-- wizard container -->
+        <!-- All the modal Pages -->
+        <!-- notice modal -->
+
+        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Job Title</h5>
+                    </div>
+                    <div id="loading-overlay">
+                        <div class="loading-icon"></div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="instruction">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Job Title</label>
+                                            <input type="text" class="form-control" placeholder="Job Title" id="JobTitle" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Note</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobTitle">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end job Title modal -->
+        <!-- Begin Department modal -->
+        <!-- notice modal -->
+        <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Department</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="instruction">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Department Name</label>
+                                            <input type="text" class="form-control" placeholder="Department Name" id="DepartmentName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer ">
+                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                        @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end notice modal -->
+        <!-- end Department modal -->
+        <!-- Begin Job Category modal -->
+        <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="instruction">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Job Category</label>
+                                            <input type="text" class="form-control" placeholder="Job Category" id="JobCategory" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Job Category modal -->
+        <!-- Begin Employment Status modal -->
+        <!-- notice modal -->
+        <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Employement Status</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="instruction">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Employment Status Name</label>
+                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label> Description </label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end notice modal -->
+        <!-- end Employment Status modal -->
+        <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Branch</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="instruction">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Employment Status Name</label>
+                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" placeholder="Email" id="Email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control" placeholder="Phone Number" id="Phone Number" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label> City </label>
+                                            <input type="text" class="form-control" placeholder="City" id="City" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label> Country </label>
+                                            <input type="text" class="form-control" placeholder="country" id="country" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Begin Employment Status modal -->
+        <!-- end Employment Status modal -->
+        <!-- End of all the modal pages-->
+
     </div>
 </div>
 <script src="~/assets/js/plugins/bootstrap-switch.js"></script>
