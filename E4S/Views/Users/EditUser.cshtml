@@ -1,0 +1,141 @@
+﻿@model E4S.Models.ApplicationUser
+
+@{
+  ViewData["Title"] = "Edit User";
+  Layout = "~/Views/Shared/_LayoutNew.cshtml";
+}
+
+
+<div class="content">
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <h4 class="card-title">Edit User</h4>
+        </div>
+        <div class="card-body ">
+          <form asp-action="EditUser" asp-controller="Users" method="post" class="form-horizontal">
+            <input asp-for="Id" hidden />
+            <div class="row">
+              <label class="col-md-3 col-form-label">First Name</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" asp-for="FirstName" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Last Name</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" asp-for="LastName" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Email</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="email" readonly asp-for="Email" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Phone Number</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" asp-for="PhoneNumber" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">User Role</label>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select id="region" class="form-control" asp-for="UserRole" required>
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Accountant">Accountant</option>
+                    <option value="Customer Service">Customer Service</option>
+                    <option value="Employee">Employee</option>
+                  </select>
+                </div>
+
+                @*<div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="SuperAdmin">
+            <span class="form-check-sign"></span>
+            SuperAdmin
+          </label>
+        </div>
+        <div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Admin">
+            <span class="form-check-sign"></span>
+            Admin
+          </label>
+        </div>
+        <div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="HR">
+            <span class="form-check-sign"></span>
+            Human Resources
+          </label>
+        </div>
+        <div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="Accountant">
+            <span class="form-check-sign"></span>
+            Accountant
+          </label>
+        </div>
+        <div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="CS">
+            <span class="form-check-sign"></span>
+            Customer Service
+          </label>
+        </div>
+        <div class="form-check form-check-radio">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="Employee">
+            <span class="form-check-sign"></span>
+            Employee
+          </label>
+        </div>*@
+              </div>
+            </div>
+
+            <div class="row">
+              <label class="col-md-3 col-form-label"></label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-fill btn-primary">Edit User</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+

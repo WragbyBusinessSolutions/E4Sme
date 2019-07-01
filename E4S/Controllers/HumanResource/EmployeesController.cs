@@ -38,6 +38,10 @@ namespace E4S.Controllers.HumanResource
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
 
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
+
       return orgId;
     }
 
@@ -103,8 +107,126 @@ namespace E4S.Controllers.HumanResource
     
         public IActionResult AddEmployee()
         {
-            return View();
+      var orgId = getOrg();
+      ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId), "Id", "JobTitleName");
+      ViewData["EmploymentStatus"] = new SelectList(_context.EmploymentStatuses.Where(x => x.OrganisationId == orgId), "Id", "EmploymentStatusName");
+      ViewData["Department"] = new SelectList(_context.Departments.Where(x => x.OrganisationId == orgId), "Id", "DepartmentName");
+      ViewData["JobCategory"] = new SelectList(_context.JobCategories.Where(x => x.OrganisationId == orgId), "Id", "JobCategoryName");
+      ViewData["Branch"] = new SelectList(_context.Branches.Where(x => x.OrganisationId == orgId), "Id", "BranchName");
+      ViewData["PayGrade"] = new SelectList(_context.PayGrades.Where(x => x.OrganisationId == orgId), "Id", "PayGradeName");
+
+      return View();
         }
+
+    [HttpPost]
+    public async Task<IActionResult> AddNewEmployee(IFormFile wizardpicture, PostNewEmployeeWizard postNewEmployee)
+    {
+      if(postNewEmployee == null)
+      {
+        return NotFound();
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+      var userId = Guid.NewGuid();
+
+      EmployeeDetail newEmployee = new EmployeeDetail()
+      {
+        Id = Guid.NewGuid(),
+        FirstName = postNewEmployee.FirstName,
+        LastName = postNewEmployee.LastName,
+        Email = postNewEmployee.Email,
+        EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+        OrganisationId = orgId,
+        UserId = userId,
+        DateOfBirth = postNewEmployee.DateOfBirth,
+        MaritalStatus = postNewEmployee.MaritalStatus
+      };
+
+      //_context.Add(newEmployee);
+      //_context.SaveChanges();
+
+      var user = new ApplicationUser
+      {
+        Id = userId.ToString(),
+        UserName = newEmployee.Email,
+        Email = newEmployee.Email,
+        OrganisationId = orgId,
+        PhoneNumber = newEmployee.PhoneNumber,
+        UserRole = "Employee",
+        EmployeeName = newEmployee.LastName + " " + newEmployee.FirstName,
+        FirstName = postNewEmployee.FirstName,
+        LastName = postNewEmployee.LastName,
+        OrganisationName = organisationDetails.OrganisationName
+      };
+
+      var result = await _userManager.CreateAsync(user);
+      if (result.Succeeded)
+      {
+        await _userManager.AddToRoleAsync(user, user.UserRole);
+
+        var Email = user.Email;
+        string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+        var response = _emailSender.SendGridEmailAsync(user.Email, "Set Your Password",
+           callbackUrl, user.FirstName, "setPassword");
+
+
+        _context.Add(newEmployee);
+        _context.SaveChanges();
+
+        Job employeeJon = new Job()
+        {
+          Id = Guid.NewGuid(),
+          BranchId = postNewEmployee.Branch,
+          JobCategoryId = postNewEmployee.JobCategory,
+          JobTitleId = postNewEmployee.JobTitle,
+          DepartmentId = postNewEmployee.Department,
+          OrganisationId = orgId,
+          EmployeeDetailId = newEmployee.Id,
+          JoinedDate = postNewEmployee.JoinedDate,
+          StartDate = postNewEmployee.StartDate,
+          EmploymentStatusId = postNewEmployee.EmploymentStatus,
+
+        };
+
+        Salary employeeSal = new Salary()
+        {
+          Id = Guid.NewGuid(),
+          Amount = postNewEmployee.Amount,
+          PayFrequency = postNewEmployee.PayFrequency,
+          OrganisationId = orgId,
+          EmployeeDetailId = newEmployee.Id,
+
+        };
+
+
+
+        try
+        {
+          _context.Add(employeeJon);
+          _context.SaveChanges();
+
+          _context.Add(employeeSal);
+          _context.SaveChanges();
+        }
+        catch
+        {
+
+        }
+
+
+      }
+      else
+      {
+        return NotFound();
+      }
+
+
+      return RedirectToAction("Index");
+    }
 
     [HttpPost]
     public async Task<IActionResult> UploadCSV(IFormFile file)
@@ -165,8 +287,8 @@ namespace E4S.Controllers.HumanResource
             string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
             var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
-            var response = _emailSender.SendGridEmailAsync(user.Email, "Reset Password",
-               $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+            var response = _emailSender.SendGridEmailAsync(user.Email, "Set Password",
+               callbackUrl, user.FirstName, "setPassword");
 
             //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
 
@@ -214,7 +336,7 @@ namespace E4S.Controllers.HumanResource
       if (salaryEmployee != null)
       {
         employeeDetailsVM.Amount = salaryEmployee.Amount;
-        employeeDetailsVM.PayGradeId = salaryEmployee.PayGradeId;
+        //employeeDetailsVM.PayGradeId = salaryEmployee.PayGradeId;
         employeeDetailsVM.PayFrequency = salaryEmployee.PayFrequency;
         employeeDetailsVM.Comments = salaryEmployee.Comment;
         employeeDetailsVM.Currency = salaryEmployee.Currency;
@@ -254,7 +376,7 @@ namespace E4S.Controllers.HumanResource
         employeeSalary.PayFrequency = postSalary.PayFrequency;
         employeeSalary.Amount = postSalary.Amount;
         employeeSalary.Currency = postSalary.Currency;
-        employeeSalary.PayGradeId = postSalary.PayGrade;
+        //employeeSalary.PayGradeId = postSalary.PayGrade;
         employeeSalary.Comment = postSalary.Comments;
 
         _context.Update(employeeSalary);
@@ -275,7 +397,6 @@ namespace E4S.Controllers.HumanResource
           Id = Guid.NewGuid(),
           Amount = postSalary.Amount,
           OrganisationId = orgId,
-          PayGradeId = postSalary.PayGrade,
           EmployeeDetailId = postSalary.EmployeeId,
           Currency = postSalary.Currency,
           PayFrequency = postSalary.PayFrequency,
@@ -457,8 +578,8 @@ namespace E4S.Controllers.HumanResource
           string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
           var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
-          var response = _emailSender.SendGridEmailAsync(user.Email, "Reset Password",
-             $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+          var response = _emailSender.SendGridEmailAsync(user.Email, "Set Password",
+             callbackUrl, user.FirstName, "setPassword");
 
           //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
 

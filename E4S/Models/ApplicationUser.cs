@@ -16,6 +16,11 @@ namespace E4S.Models
     public string Status { get; set; }
 
     public Guid OrganisationId { get; set; }
+    public string OrganisationName { get; set; }
+
+    public string FirstName { get; set; }
+    public string MiddleName { get; set; }
+    public string LastName { get; set; }
 
   }
 }

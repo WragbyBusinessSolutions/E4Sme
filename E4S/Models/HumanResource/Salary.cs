@@ -11,8 +11,6 @@ namespace E4S.Models.HumanResource
     public Guid EmployeeDetailId { get; set; }
     public virtual EmployeeDetail EmployeeDetail { get; set; }
 
-    public Guid PayGradeId { get; set; }
-    public virtual PayGrade PayGrade { get; set; }
 
     public string SalaryComponent { get; set; }
     public string PayFrequency { get; set; }

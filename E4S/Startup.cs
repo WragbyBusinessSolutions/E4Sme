@@ -37,8 +37,13 @@ namespace E4S
           .AddEntityFrameworkStores<ApplicationDbContext>()
           .AddDefaultTokenProviders();
 
-      // Add application services.
-      services.AddTransient<IEmailSender, EmailSender>();
+      //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+      //{
+      //  options.SignIn.RequireConfirmedEmail = true;
+      //});
+
+        // Add application services.
+        services.AddTransient<IEmailSender, EmailSender>();
 
       services.AddMvc();
     }

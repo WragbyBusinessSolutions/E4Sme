@@ -14,6 +14,7 @@ using E4S.Models;
 using E4S.Models.AccountViewModels;
 using E4S.Services;
 using E4S.Data;
+using E4S.Models.HumanResource;
 
 namespace E4S.Controllers
 {
@@ -241,10 +242,19 @@ namespace E4S.Controllers
         {
           Id = orgId,
           OrganisationId = orgId,
-          //RegistrarId = Guid.Parse(user.Id),
+          OrganisationName = model.OrganisationName
         };
 
-        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, OrganisationId = newOrganisation.Id };
+        var user = new ApplicationUser { UserName = model.Email,
+          Email = model.Email,
+          OrganisationId = newOrganisation.Id,
+          OrganisationName = model.OrganisationName,
+          FirstName = model.FirstName,
+          LastName = model.LastName,
+          PhoneNumber = model.PhoneNumber,
+          UserRole = "Super Admin"
+
+        };
         var result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
@@ -258,13 +268,34 @@ namespace E4S.Controllers
           _context.Add(newOrganisation);
           _context.SaveChanges();
 
+          EmployeeDetail employeeDetail = new EmployeeDetail()
+          {
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            OrganisationId = newOrganisation.Id,
+            UserId = newOrganisation.RegistrarId,
+            Email = model.Email,
+          };
 
+          _context.Add(employeeDetail);
+          await _context.SaveChangesAsync();
+
+          Branch branch = new Branch()
+          {
+            Id = Guid.NewGuid(),
+            BranchName = "Headquarters",
+            OrganisationId = newOrganisation.Id,
+
+          };
+
+          _context.Add(branch);
+          _context.SaveChanges();
 
           _logger.LogInformation("User created a new account with password.");
 
           var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
           var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-          await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+          await _emailSender.SendGridEmailConfrimationAsync(model.Email, "Confirmation", callbackUrl, model.FirstName);
 
           await _signInManager.SignInAsync(user, isPersistent: false);
           _logger.LogInformation("User created a new account with password.");
@@ -412,7 +443,7 @@ namespace E4S.Controllers
         var code = await _userManager.GeneratePasswordResetTokenAsync(user);
         var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
         await _emailSender.SendGridEmailAsync(model.Email, "Reset Password",
-           $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+           callbackUrl, user.FirstName, "forgotPassword");
         //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
         //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
         return RedirectToAction(nameof(ForgotPasswordConfirmation));

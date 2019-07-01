@@ -35,11 +35,24 @@ namespace E4S.Controllers
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
 
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
+
       return orgId;
+    }
+
+    public void orgDetails()
+    {
+      var orgdetails = _context.Organisations.Where(x => x.Id == getOrg()).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
     }
 
     public async Task<IActionResult> Index()
     {
+      orgDetails();
+
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var user = await _signInManager.UserManager.FindByIdAsync(userId);
       var userRoles = await _signInManager.UserManager.GetRolesAsync(user);

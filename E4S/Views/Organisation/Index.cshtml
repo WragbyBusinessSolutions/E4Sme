@@ -15,7 +15,7 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
             <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                <form action="" method="">
+                @*<form action="" method="">*@
                     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center" data-background-color="orange">
                       <h3 class="card-title">
@@ -39,15 +39,50 @@
                             <div class="tab-pane fade show active" id="about">
                                 <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
                                 <div class="row justify-content-center">
-                                    <div class="col-sm-4">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                <input type="file" id="wizard-picture">
-                                            </div>
-                                            <h6 class="description">Choose Orginsation Logo</h6>
+                                  <div class="col-sm-4">
+
+                                    <form enctype="multipart/form-data" asp-action="UploadProfile" method="post">
+                                      <h5 class="description">Choose Orginsation Logo</h5>
+
+                                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail">
+                                          @if (Model.ImageUrl == null || Model.ImageUrl == "")
+                                          {
+                                            <img src="../../assets/img/image_placeholder.jpg" id="imageUploadForm" name="image" multiple="multiple" alt="...">
+
+                                          }
+                                          else
+                                          {
+                                            <img src="~/@Model.ImageUrl" id="imageUploadForm" name="image" multiple="multiple" alt="...">
+
+                                          }
                                         </div>
-                                    </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                        <div>
+                                          <span class="btn btn-rose btn-round btn-file">
+                                            <span class="fileinput-new">Select image</span>
+                                            <span class="fileinput-exists">Change</span>
+                                            <input type="file" name="file" id="file" />
+                                          </span>
+                                          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                        <div class="form-group">
+                                          <button type="submit" class="btn btn-success btn-md fileinput-exists">Upload</button>
+                                        </div>
+
+                                      </div>
+
+                                    </form>
+
+
+                                    @*<div class="picture-container">
+                                      <div class="picture">
+                                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                        <input type="file" id="wizard-picture">
+                                      </div>
+                                      <h6 class="description">Choose Orginsation Logo</h6>
+                                    </div>*@
+                                  </div>
                                     <div class="col-sm-6">
                                         <label class="col-md-3 col-form-label">Registration No</label>
                                         <div class="input-group form-control-lg">
@@ -128,7 +163,7 @@
                         </div>
                     </div>
 
-                </form>
+                @*</form>*@
             </div>
         </div>
         <!-- wizard container -->

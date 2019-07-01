@@ -12,7 +12,7 @@
                 Salary 
             </h3>
             <h5 class="description">
-                On boarding our new employee.
+                This is what you earn.
             </h5>
         </div>
         @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -23,9 +23,54 @@
 
                   <div class="card-body ">
 
-                    <!-- Start of the Emergency Contact tabs-->
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Pay Grade</label>
+                            <input asp-for="PayGrade.PayGradeName" type="text"  class="form-control" placeholder="Country" disabled>
+                            @*</input>*@
+                          </div>
+                        </div>
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Pay Frequency</label>
+                            <input asp-for="PayFrequency" type="text" class="form-control" disabled>
+                            @*</input>*@
+                          </div>
+                        </div>
+                      </div>
 
-                    <!-- the End of Emergency Contact Tabs-->
+
+                      <hr />
+
+                      <div class="row">
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Amount</label>
+                            <input asp-for="Amount" type="number" readonly class="form-control" placeholder="Amount">
+                          </div>
+                        </div>
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Currency</label>
+                            <input asp-for="Currency" readonly type="text" class="form-control" placeholder="Currency">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Comments</label>
+                            <input type="text" class="form-control" readonly asp-for="Comment" placeholder="Comments">
+                          </div>
+                        </div>
+                      </div>
+                      @*<div class="card-footer">
+                        <button type="button" class="btn btn-fill btn-primary" name="btnSalary" id="btnSalary">Save</button>
+                      </div>*@
+                    </form>
 
                   </div>
                 </div>
