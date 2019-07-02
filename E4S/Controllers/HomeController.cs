@@ -22,6 +22,9 @@ namespace E4S.Controllers
     private readonly IEmailSender _emailSender;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
+    [TempData]
+    public string StatusMessage { get; set; }
+
     public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender, SignInManager<ApplicationUser> signInManager)
     {
       _context = context;
@@ -56,6 +59,7 @@ namespace E4S.Controllers
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var user = await _signInManager.UserManager.FindByIdAsync(userId);
       var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
+      ViewData["StatusMessage"] = StatusMessage;
 
       if (userRoles.Contains("Employee"))
       {
