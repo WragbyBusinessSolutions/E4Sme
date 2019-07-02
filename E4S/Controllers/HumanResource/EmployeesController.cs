@@ -304,7 +304,119 @@ namespace E4S.Controllers.HumanResource
       return RedirectToAction("Index");
     }
 
-        public IActionResult EmployeeDetails(Guid id)
+    [HttpPost]
+    public async Task<IActionResult> UploadEmployeeCSV(IFormFile file)
+    {
+      if (file == null || file.Length == 0)
+        return Content("file not selected");
+
+      var path = Path.Combine(
+                  Directory.GetCurrentDirectory(), "wwwroot",
+                  file.FileName);
+
+      var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+      using (var stream = new FileStream(path, FileMode.Create))
+      {
+        await file.CopyToAsync(stream);
+      }
+
+      string csvData = System.IO.File.ReadAllText(path);
+      Guid userId;
+
+      List<NewEmployeeImport> newEmployeeList = new List<NewEmployeeImport>();
+
+      //Execute a loop over the rows.
+      foreach (string row in csvData.Split("\r\n"))
+      {
+        if (!string.IsNullOrEmpty(row))
+        {
+          userId = Guid.NewGuid();
+          int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+
+          NewEmployeeImport newEmployee = new NewEmployeeImport()
+          {
+            FirstName = row.Split(',')[0],
+            MiddleName = row.Split(',')[1],
+            LastName = row.Split(',')[2],
+            EmployeeEmail = row.Split(',')[3],
+            EmployeeId = row.Split(',')[4],
+            Gender = row.Split(',')[5],
+            MaritalStatus = row.Split(',')[6],
+            ContactAddress = row.Split(',')[7],
+            //DateOfBirth = DateTime.Parse(row.Split(',')[8]),
+            JobTitle = row.Split(',')[9],
+            Department = row.Split(',')[10],
+            EmploymentStatus = row.Split(',')[11],
+            JobCategory = row.Split(',')[12],
+            Branch = row.Split(',')[13],
+            //JoinedDate = DateTime.Parse(row.Split(',')[14]),
+            //StartDate = DateTime.Parse(row.Split(',')[15]),
+            //EndDate = DateTime.Parse(row.Split(',')[16]),
+            ContractDetail = row.Split(',')[17],
+            PayGrade = row.Split(',')[18],
+            PayFrequency = row.Split(',')[19],
+            //Amount = float.Parse(row.Split(',')[20]),
+            Currency = row.Split(',')[21],
+            Comments = row.Split(',')[22],
+            BankName = row.Split(',')[23],
+            AccointNo = row.Split(',')[24],
+            AccountName = row.Split(',')[25],
+          };
+
+          newEmployeeList.Add(newEmployee);
+
+
+          //EmployeeDetail empDetail = new EmployeeDetail()
+          //{
+          //  Id = Guid.NewGuid(),
+          //  FirstName = row.Split(',')[0],
+          //  LastName = row.Split(',')[1],
+          //  Email = row.Split(',')[2],
+          //  OrganisationId = orgId,
+          //  EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+          //  UserId = userId
+          //};
+
+          //var user = new ApplicationUser
+          //{
+          //  Id = userId.ToString(),
+          //  UserName = empDetail.Email,
+          //  Email = empDetail.Email,
+          //  OrganisationId = orgId,
+          //  UserRole = "Employee",
+          //  EmployeeName = empDetail.LastName + " " + empDetail.FirstName,
+          //};
+
+          //var result = await _userManager.CreateAsync(user);
+          //if (result.Succeeded)
+          //{
+          //  await _userManager.AddToRoleAsync(user, user.UserRole);
+
+          //  var Email = user.Email;
+          //  string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+          //  var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+          //  var response = _emailSender.SendGridEmailAsync(user.Email, "Set Password",
+          //     callbackUrl, user.FirstName, "setPassword");
+
+          //  //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+
+          //  _context.Add(empDetail);
+          //  _context.SaveChanges();
+
+
+          //}
+
+
+        }
+      }
+      return View(newEmployeeList);
+    }
+
+    public IActionResult EmployeeDetails(Guid id)
         {
       var singleEmployee = _context.EmployeeDetails.Where(x => x.Id == id).FirstOrDefault();
       var orgId = getOrg();

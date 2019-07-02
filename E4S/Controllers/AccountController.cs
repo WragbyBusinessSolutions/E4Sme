@@ -464,13 +464,20 @@ namespace E4S.Controllers
    
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult ResetPassword(string code = null)
+    public IActionResult ResetPassword(string code = null, string userId = null)
     {
       if (code == null)
       {
         throw new ApplicationException("A code must be supplied for password reset.");
+
+
       }
-      var model = new ResetPasswordViewModel { Code = code, };
+      var model = new ResetPasswordViewModel { Code = code };
+      var useremail = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+      ViewData["OrgImageURL"] = _context.Organisations.Where(x => x.Id == useremail.OrganisationId).FirstOrDefault().ImageUrl;
+
+      ViewData["Email"] = useremail.Email;
       return View(model);
     }
 
