@@ -40,7 +40,8 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Description</label>
-                            <input type="email" class="form-control" placeholder="Description" id="Description">
+                            <textarea rows="5" cols="60">
+                            </textarea>
                           </div>
                         </div>
                       </div>
@@ -79,9 +80,7 @@
               <th>
                 Job Category
               </th>
-              <th>
-                Description
-              </th>
+              
               <th>
                 Actions
               </th>
@@ -96,7 +95,7 @@
                   <td></td>
                   <td></td>
                   <td>No Data to Display</td>
-                  <td></td>
+                  
                   <td></td>
 
                 }
@@ -120,12 +119,10 @@
                       <td>
                         @item.JobCategoryName
                       </td>
+                      
                       <td>
-                        @item.Description
-                      </td>
-                      <td>
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Delete"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                       </td>
                     </tr>
 
