@@ -56,8 +56,9 @@ namespace E4S.Controllers
       //var path = Path.Combine(
       //            Directory.GetCurrentDirectory(), "wwwroot",
       //            file.FileName);
-      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employeeImage", file.FileName);
-      var path2 = Path.Combine("images", "employeeImage", file.FileName);
+      var filename = Guid.NewGuid().ToString() + file.FileName;
+      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employeeImage", filename);
+      var path2 = Path.Combine("images", "employeeImage", filename);
 
       var orgId = getOrg();
       var org = _context.Organisations.Where(x => x.OrganisationId == orgId).FirstOrDefault();
