@@ -1,222 +1,200 @@
 ﻿
 @{
-    ViewData["Title"] = "Add Employee";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Add Employee";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-
 <div class="content">
-    <div class="col-md-10 mr-auto ml-auto">
-        <!--      Wizard container        -->
-        <div class="wizard-container">
-            <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                <form action="AddNewEmployee" method="post">
-                    <!--  You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"  -->
-                    <div class="card-header text-center" data-background-color="orange">
-                        <h3 class="card-title">
-                            Onboarding New Employee
-                        </h3>
-                        <h5 class="description">
-                            This information will let us know more about you.
-                        </h5>
-                        <div class="wizard-navigation">
-                            <ul>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#about" data-toggle="tab">
-                                        <i class="now-ui-icons users_circle-08"></i> Profile Details
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#account" data-toggle="tab">
-                                        <i class="now-ui-icons ui-1_settings-gear-63"></i> Job
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#address" data-toggle="tab">
-                                        <i class="now-ui-icons ui-1_email-85"></i> Salary
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+  <div class="col-md-10 mr-auto ml-auto">
+    <!--      Wizard container        -->
+    <div class="wizard-container">
+      <div class="card card-wizard" data-color="primary" id="wizardProfile">
+        <form action="AddNewEmployee" method="post">
+          <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+          <div class="card-header text-center" data-background-color="orange">
+            <h3 class="card-title">
+              Onboarding New Employee
+            </h3>
+            <h5 class="description">
+              This information will let us know more about you.</h5>
+              <div class="wizard-navigation">
+                <ul>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#about" data-toggle="tab">
+                      <i class="now-ui-icons users_circle-08"></i> Profile Details
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#account" data-toggle="tab">
+                      <i class="now-ui-icons ui-1_settings-gear-63"></i> Job
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#address" data-toggle="tab">
+                      <i class="now-ui-icons ui-1_email-85"></i> Salary
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="about">
+                @*<h5 class="info-text"> Let's start with the basic information.</h5>*@
+                <div class="row justify-content-center">
+                  <div class="col-sm-4">
+
+                    <div class="picture-container">
+                      <div class="picture">
+                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizardpicture" name="wizardpicture">
+                      </div>
+                      <h6 class="description">Choose Picture</h6>
                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons users_circle-08"></i>*@
+                      </span>
+                      <input type="text" class="form-control" placeholder="First Name (required)" name="firstname" id="firstname">
+                    </div>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="text" placeholder="Last Name (required)" class="form-control" name="lastname" id="lastname" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4 mt-3">
+                    <label>Phone Number</label>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="tel" placeholder="Phone No (required)" class="form-control" name="phoneNo" id="phoneNo"/>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mt-3">
+                    <label>Employee Email</label>
+                    <div class="input-group form-control-lg">
+                      <span class="input-group-addon">
+                        @*<i class="now-ui-icons text_caps-small"></i>*@
+                      </span>
+                      <input type="email" placeholder="Employee Email (required)" class="form-control" id="email" name="email" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <select type="text" data-style="btn btn-round" class="selectpicker"  id="Gender" name="Gender">
+                        <option> -- Select Gender -- </option>
+                        <option>Male </option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label>Marital Status</label>
+                      <select  type="text" data-style="btn btn-round" class="selectpicker"  id="maritalStatus" name="maritalStatus" >
+                        <option> -- Select Marital -- </option>
+                        <option>Single </option>
+                        <option>Married</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Date of Birth</label>
+                      <input  type="Date" class="form-control" placeholder="date" id="DateOfBirth" name="DateOfBirth">
+                    </div>
+                  </div>
+                </div>
 
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="about">
-                                @*<h5 class="info-text"> Let's start with the basic information.</h5>*@
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-4">
+              </div>
+              
+              <div class="tab-pane fade" id="account">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div class="row">
 
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                <input type="file" id="wizardpicture" name="wizardpicture">
-                                            </div>
-                                            <h6 class="description">Choose Picture</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                @*<i class="now-ui-icons users_circle-08"></i>*@
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="First Name (required)" name="firstname" id="firstname">
-                                        </div>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                @*<i class="now-ui-icons text_caps-small"></i>*@
-                                            </span>
-                                            <input type="text" placeholder="Last Name (required)" class="form-control" name="lastname" id="lastname" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 mt-3">
-                                        <label>Phone Number</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                @*<i class="now-ui-icons text_caps-small"></i>*@
-                                            </span>
-                                            <input type="tel" placeholder="Phone No (required)" class="form-control" name="phoneNo" id="phoneNo" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mt-3">
-                                        <label>Employee Email</label>
-                                        <div class="input-group form-control-lg">
-                                            <span class="input-group-addon">
-                                                @*<i class="now-ui-icons text_caps-small"></i>*@
-                                            </span>
-                                            <input type="email" placeholder="Employee Email (required)" class="form-control" id="email" name="email" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <select type="text" data-style="btn btn-round" class="selectpicker" id="Gender" name="Gender">
-                                                <option> -- Select Gender -- </option>
-                                                <option>Male </option>
-                                                <option>Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label>Marital Status</label>
-                                            <select type="text" data-style="btn btn-round" class="selectpicker" id="maritalStatus" name="maritalStatus">
-                                                <option> -- Select Marital -- </option>
-                                                <option>Single </option>
-                                                <option>Married</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Date of Birth</label>
-                                            <input type="Date" class="form-control" placeholder="date" id="DateOfBirth" name="DateOfBirth">
-                                        </div>
-                                    </div>
-                                </div>
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <label>Job Title</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
+                            <option> -- Select Job Title -- </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Department</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
+                            <option> -- Select Department -- </option>
+                          </select>
+                        </div>
+                      </div>
 
-                            </div>
-
-                            <div class="tab-pane fade" id="account">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Job Title</label>
-                                                    <div class="input-group mb-2">
-                                                        <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
-                                                            <option> -- Select Job Title -- </option>
-                                                        </select>
-
-                                                        <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Title" data-toggle="modal" data-target="#noticeModal">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Department</label>
-                                                    <div class="input-group mb-2">
-                                                        <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
-                                                            <option> -- Select Department -- </option>
-                                                        </select>
-                                                        <div class="input-group-append " style="position:relative; top:-10px;" data-toggle="modal" data-target="#noticeModal1">
-                                                            <button class="btn btn-success" type="button" title="Click to add Department">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Job Category</label>
+                          <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
+                            <option> -- Select Job Category -- </option>
+                          </select>
+                        </div>
+                      </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Job Category</label>
-                                                    <div class="input-group mb-2">
-                                                        <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
-                                                            <option> -- Select Job Category -- </option>
-                                                        </select>
-                                                        <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Job Category" data-toggle="modal" data-target="#noticeModal2">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Employment Type</label>
+                                                    <label>Employment Status</label>
                                                     <div class="input-group mb-2">
                                                         <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
                                                             <option> -- Select Job Employement Status -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Type" data-toggle="modal" data-target="#noticeModal3">+</button>
+                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Branch</label>
-                                                    <div class="input-group mb-2">
-                                                        <select type="text" class="form-control" asp-items="ViewBag.Branch" id="Branch" name="Branch">
-                                                            <option> -- Select Branch -- </option>
-                                                        </select>
-                                                        <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Branch" data-toggle="modal" data-target="#noticeModal4">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Joined date </label>
-                                                    <input type="date" class="form-control" id="JoinedDate" name="JoinedDate">
-                                                </div>
-                                            </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Branch</label>
+                            <select type="text" class="form-control" asp-items="ViewBag.Branch" id="Branch" name="Branch">
+                              <option> -- Select Branch -- </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Joined date </label>
+                            <input type="date" class="form-control" id="JoinedDate" name="JoinedDate" >
+                          </div>
+                        </div>
 
 
-                                            <div class="col-md-6 ">
-                                                <div class="form-group">
-                                                    <label>Start Date</label>
-                                                    <input type="date" class="form-control" id="StartDate" name="StartDate">
-                                                </div>
-                                            </div>
-                                            @*<div class="col-md-6 ">
-                                              <div class="form-group">
-                                                <label>End Date</label>
-                                                <input type="date" class="form-control" >
-                                              </div>
-                                            </div>*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" id="StartDate" name="StartDate" >
+                          </div>
+                        </div>
+                        @*<div class="col-md-6 ">
+                          <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" >
+                          </div>
+                        </div>*@
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
                             <div class="tab-pane fade" id="address">
@@ -416,7 +394,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="now-ui-icons ui-1_simple-remove"></i>
                         </button>
-                        <h5 class="modal-title" id="myModalLabel">Enter New Employement Type</h5>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Employement Status</h5>
                     </div>
                     <div class="modal-body">
                         <div class="instruction">
@@ -424,8 +402,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Employment Type </label>
-                                            <input type="text" class="form-control" placeholder="Employment Type" id="EmploymentStatusName" required>
+                                            <label>Employment Status Name</label>
+                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
                                         </div>
                                     </div>
                                 </div>
@@ -523,112 +501,112 @@
 
 <script>
 
-    $(document).ready(function () {
-        // Initialise the wizard
-        demo.initNowUiWizard();
-        setTimeout(function () {
-            $('.card.card-wizard').addClass('active');
-        }, 600);
+    $(document).ready(function() {
+    // Initialise the wizard
+    demo.initNowUiWizard();
+    setTimeout(function() {
+      $('.card.card-wizard').addClass('active');
+    }, 600);
+  });
+
+  $(document).ready(function () {
+    //-------------------------------SELECT CASCADING-------------------------//
+    var selectedCountry = selectedRegion = selectedCity = countryCode = "";
+    // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
+    var BATTUTA_KEY = "00000000000000000000000000000000";
+    // Populate country select box from battuta API
+    url =
+      "https://geo-battuta.net/api/country/all/?key=" +
+      BATTUTA_KEY +
+      "&callback=?";
+    // EXTRACT JSON DATA.
+    $.getJSON(url, function (data) {
+      $.each(data, function (index, value) {
+        // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
+        $("#country").append(
+          '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
+        );
+      });
+    });
+    // Country selected --> update region list .
+    $("#country").change(function () {
+      selectedCountry = this.options[this.selectedIndex].text;
+      countryCode = $(this).children(":selected").attr("id");
+      url =
+        "https://geo-battuta.net/api/region/" +
+        countryCode +
+        "/all/?key=" +
+        BATTUTA_KEY +
+        "&callback=?";
+      $.getJSON(url, function (data) {
+        $("#region option").remove();
+        $.each(data, function (index, value) {
+          // APPEND OR INSERT DATA TO SELECT ELEMENT.
+          $("#region").append(
+            '<option value="' + value.region + '">' + value.region + "</option>"
+          );
+        });
+      });
+    });
+    // Region selected --> updated city list
+    $("#region").on("change", function () {
+      selectedRegion = this.options[this.selectedIndex].text;
+      // Populate country select box from battuta API
+      region = $("#region").val();
+      url =
+        "https://geo-battuta.net/api/city/" +
+        countryCode +
+        "/search/?region=" +
+        region +
+        "&key=" +
+        BATTUTA_KEY +
+        "&callback=?";
+      $.getJSON(url, function (data) {
+        $("#city option").remove();
+        $.each(data, function (index, value) {
+          // APPEND OR INSERT DATA TO SELECT ELEMENT.
+          $("#city").append(
+            '<option value="' + value.city + '">' + value.city + "</option>"
+          );
+        });
+      });
+    });
+    // city selected --> update location string
+    $("#city").on("change", function () {
+      selectedCity = this.options[this.selectedIndex].text;
+      $("#location").html(
+        "Locatation: Country: " +
+        selectedCountry +
+        ", Region: " +
+        selectedRegion +
+        ", City: " +
+        selectedCity
+      );
     });
 
-    $(document).ready(function () {
-        //-------------------------------SELECT CASCADING-------------------------//
-        var selectedCountry = selectedRegion = selectedCity = countryCode = "";
-        // This is a demo API key for testing purposes. You should rather request your API key (free) from http://battuta.medunes.net/
-        var BATTUTA_KEY = "00000000000000000000000000000000";
-        // Populate country select box from battuta API
-        url =
-            "https://geo-battuta.net/api/country/all/?key=" +
-            BATTUTA_KEY +
-            "&callback=?";
-        // EXTRACT JSON DATA.
-        $.getJSON(url, function (data) {
-            $.each(data, function (index, value) {
-                // APPEND OR INSERT DATA TO SELECT ELEMENT. Set the country code in the id section rather than in the value.
-                $("#country").append(
-                    '<option id="' + value.code + '" value="' + value.code + '">' + value.name + "</option>"
-                );
-            });
-        });
-        // Country selected --> update region list .
-        $("#country").change(function () {
-            selectedCountry = this.options[this.selectedIndex].text;
-            countryCode = $(this).children(":selected").attr("id");
-            url =
-                "https://geo-battuta.net/api/region/" +
-                countryCode +
-                "/all/?key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#region option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#region").append(
-                        '<option value="' + value.region + '">' + value.region + "</option>"
-                    );
-                });
-            });
-        });
-        // Region selected --> updated city list
-        $("#region").on("change", function () {
-            selectedRegion = this.options[this.selectedIndex].text;
-            // Populate country select box from battuta API
-            region = $("#region").val();
-            url =
-                "https://geo-battuta.net/api/city/" +
-                countryCode +
-                "/search/?region=" +
-                region +
-                "&key=" +
-                BATTUTA_KEY +
-                "&callback=?";
-            $.getJSON(url, function (data) {
-                $("#city option").remove();
-                $.each(data, function (index, value) {
-                    // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                    $("#city").append(
-                        '<option value="' + value.city + '">' + value.city + "</option>"
-                    );
-                });
-            });
-        });
-        // city selected --> update location string
-        $("#city").on("change", function () {
-            selectedCity = this.options[this.selectedIndex].text;
-            $("#location").html(
-                "Locatation: Country: " +
-                selectedCountry +
-                ", Region: " +
-                selectedRegion +
-                ", City: " +
-                selectedCity
-            );
-        });
-
-    });
-    // process form
-    function processForm() {
-        var username = password = country = region = city = '';
-        username = $('#username').val();
-        password = $('#password').val();
-        country = $('#country').val();
-        region = $('#region').val();
-        city = $('#city').val();
-        if (username != '' && password != '' && country != '' && region != '' && city != '') {
-            $("#location").html(
-                "Username: " + username +
-                " /Password: " + password +
-                " /Locatation: Country: " +
-                country +
-                ", Region: " +
-                region +
-                ", City: " +
-                city
-            );
-        } else {
-            $("#location").html('Complete Form 1st');
-            return false;
-        }
+  });
+  // process form
+  function processForm() {
+    var username = password = country = region = city = '';
+    username = $('#username').val();
+    password = $('#password').val();
+    country = $('#country').val();
+    region = $('#region').val();
+    city = $('#city').val();
+    if (username != '' && password != '' && country != '' && region != '' && city != '') {
+      $("#location").html(
+        "Username: " + username +
+        " /Password: " + password +
+        " /Locatation: Country: " +
+        country +
+        ", Region: " +
+        region +
+        ", City: " +
+        city
+      );
+    } else {
+      $("#location").html('Complete Form 1st');
+      return false;
     }
+  }
 </script>
