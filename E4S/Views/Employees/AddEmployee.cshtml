@@ -121,53 +121,73 @@
                   <div class="col-lg-10">
                     <div class="row">
 
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label>Job Title</label>
-                          <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
-                            <option> -- Select Job Title -- </option>
-                          </select>
-                        </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Job Title</label>
+                              <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
+                                      <option> -- Select Job Title -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                      <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal">+</button>
+                                  </div>
+                              </div>                             
+                          </div>
                       </div>
                       <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Department</label>
-                          <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
-                            <option> -- Select Department -- </option>
-                          </select>
-                        </div>
+                          <div class="form-group">
+                              <label>Department</label>
+                              <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
+                                      <option> -- Select Department -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                      <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal1">+</button>
+                                  </div>
+                              </div>                           
+                          </div>
                       </div>
 
                       <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Job Category</label>
-                          <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
-                            <option> -- Select Job Category -- </option>
-                          </select>
-                        </div>
+                          <div class="form-group">
+                              <label>Job Category</label>
+                              <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
+                                      <option> -- Select Job Category -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                      <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal2">+</button>
+                                  </div>
+                              </div>                            
+                          </div>
                       </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Employment Status</label>
-                                                    <div class="input-group mb-2">
-                                                        <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
-                                                            <option> -- Select Job Employement Status -- </option>
-                                                        </select>
-                                                        <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                         <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Branch</label>
-                            <select type="text" class="form-control" asp-items="ViewBag.Branch" id="Branch" name="Branch">
-                              <option> -- Select Branch -- </option>
-                            </select>
-                          </div>
+                            <div class="form-group">
+                                <label>Employment Status</label>
+                                <div class="input-group mb-2">
+                                    <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
+                                        <option> -- Select Job Employement Status -- </option>
+                                    </select>
+                                    <div class="input-group-append " style="position:relative; top:-10px;">
+                                        <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <div class="input-group mb-2">
+                                    <select type="text" class="form-control" asp-items="ViewBag.Branch" id="Branch" name="Branch">
+                                        <option> -- Select Branch -- </option>
+                                    </select>
+                                    <div class="input-group-append " style="position:relative; top:-10px;">
+                                        <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal4">+</button>
+                                    </div>
+                                </div>                                                              
+                            </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
@@ -197,52 +217,52 @@
               </div>
 
 
-                            <div class="tab-pane fade" id="address">
-                                <div class="row justify-content-center">
-                                    @*<div class="col-sm-12">
-                                      <h5 class="info-text"> Are you living in a nice area? </h5>
-                                    </div>*@
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <label>Pay Frequency</label>
-                                            <select type="text" class="form-control" id="payFrequency" name="payFrequency">
-                                                <option> -- Select Pay Frequency -- </option>
-                                                <option value="Monthly">Monthly</option>
-                                                <option value="Bi Monthly">Bi Monthly</option>
-                                                <option value="Weekly">Weekly</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <label>Amount</label>
-                                            <input type="number" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <label>Currency</label>
-                                            <input type="text" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="tab-pane fade" id="address">
+                    <div class="row justify-content-center">
+                        @*<div class="col-sm-12">
+                            <h5 class="info-text"> Are you living in a nice area? </h5>
+                        </div>*@
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <label>Pay Frequency</label>
+                                <select type="text" class="form-control" id="payFrequency" name="payFrequency">
+                                    <option> -- Select Pay Frequency -- </option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Bi Monthly">Bi Monthly</option>
+                                    <option value="Weekly">Weekly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <label>Currency</label>
+                                <input type="text" class="form-control text-right" placeholder="Amount" id="Amount" name="Amount">
                             </div>
                         </div>
                     </div>
+                </div>
+                        
 
-                    <div class="card-footer">
-                        <div class="pull-right">
-                            <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                            <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
-                        </div>
-                        <div class="pull-left">
-                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-                        </div>
-                        <div class="clearfix"></div>
+                <div class="card-footer">
+                    <div class="pull-right">
+                        <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
+                        <input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
                     </div>
-                </form>
-            </div>
-        </div>
+                    <div class="pull-left">
+                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+          </div>
+      </div>
+    
         <!-- wizard container -->
         <!-- All the modal Pages -->
         <!-- notice modal -->
@@ -495,7 +515,7 @@
         <!-- end Employment Status modal -->
         <!-- End of all the modal pages-->
 
-    </div>
+  </div>
 </div>
 <script src="~/assets/js/plugins/bootstrap-switch.js"></script>
 
