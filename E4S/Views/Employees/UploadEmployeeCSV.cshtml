@@ -1,0 +1,91 @@
+﻿@model IEnumerable<E4S.ViewModel.NewEmployeeImport>
+@{
+  ViewData["Title"] = "UploadEmployeeCSV";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+<h2>UploadEmployeeCSV</h2>
+
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="text-primary">
+      <th class="text-center">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox">
+            <span class="form-check-sign"></span>
+          </label>
+        </div>
+      </th>
+      <th class="text-center">
+        #
+      </th>
+      <th>
+        Job Title
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Note
+      </th>
+      <th>
+        Actions
+      </th>
+      </thead>
+
+      <tbody>
+        @{
+          int i = 1;
+
+          @if (Model.Count() < 1)
+          {
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>No Data to Display</td>
+          <td></td>
+          <td></td>
+
+        }
+
+          @foreach (var item in Model)
+          {
+
+            <tr>
+              <td class="text-center">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+                  </label>
+                </div>
+              </td>
+              <td class="text-center">
+                @i
+              </td>
+
+              <td>
+                @item.FirstName
+              </td>
+              <td>
+                @item.Amount
+              </td>
+              <td>
+                @item.AccountName
+              </td>
+              <td>
+                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>
+
+            { i = i + 1; }
+          }
+        }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
