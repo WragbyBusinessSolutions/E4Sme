@@ -25,6 +25,8 @@ namespace E4S.Controllers.HumanResource
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailSender _emailSender;
 
+
+
     public EmployeesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
       _context = context;
@@ -335,6 +337,10 @@ namespace E4S.Controllers.HumanResource
           userId = Guid.NewGuid();
           int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
+          try
+          {
+
+          }
 
           NewEmployeeImport newEmployee = new NewEmployeeImport()
           {
@@ -413,7 +419,15 @@ namespace E4S.Controllers.HumanResource
 
         }
       }
+
+
       return View(newEmployeeList);
+    }
+
+    public IActionResult CheckData()
+    {
+
+      return View();
     }
 
     public IActionResult EmployeeDetails(Guid id)
