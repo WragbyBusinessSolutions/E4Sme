@@ -13,9 +13,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="justify-content-end align-items-center pull-right">
-                                    <a asp-action="createbranch" asp-controller="Organisation" class="btn btn-info btn-lg">Create New</a>
-                                </div>
+                                @*<div class="justify-content-end align-items-center pull-right">*@
+                                    <a asp-action="createbranch" asp-controller="Organisation" class="btn btn-info">Create New</a>
+                                @*</div>*@
                                 <h4 class="card-title">List of Branches</h4>
                             </div>
                             <div class="card-body">
@@ -30,15 +30,7 @@
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                      <tr>
-                                        <th>Name</th>
-                                        <th>E-mail</th>
-                                        <th>Phone</th>
-                                        <th>City</th>
-                                        <th class="disabled-sorting text-right">Actions</th>
-                                      </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
 
                                       @foreach (var item in Model)
