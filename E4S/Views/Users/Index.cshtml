@@ -4,28 +4,25 @@
 }
 
 
-@Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
-
-
 <div class="content">
-
+ 
 
   <div class="row">
     <!-- Column -->
 
+    <div class="container-fluid">     
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">List of Users</h4>
 
-    <div class="container-fluid">
-      <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="justify-content-end align-items-center pull-right">
-                  <a asp-action="AddUser" asp-controller="Users" class="btn btn-info btn-lg">Create New</a>
+                  @*<div class="justify-content-end align-items-center pull-right">*@
+                  <a asp-action="AddUser" asp-controller="Users" class="btn btn-info">Create New</a>
+                  @*</div>*@
+
                 </div>
-
-                <h4 class="card-title">List of Users</h4>
-              </div>
               <div class="card-body">
                 <br />
                 <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
@@ -38,13 +35,13 @@
                     </tr>
                   </thead>
                   @*<tfoot>
-                      <tr>
-                        <th>Name</th>
-                        <th>E-mail</th>
-                        <th>Role</th>
-                        <th class="disabled-sorting text-right">Actions</th>
-                      </tr>
-                    </tfoot>*@
+                    <tr>
+                      <th>Name</th>
+                      <th>E-mail</th>
+                      <th>Role</th>
+                      <th class="disabled-sorting text-right">Actions</th>
+                    </tr>
+                  </tfoot>*@
                   <tbody>
 
                     @foreach (var item in Model)
@@ -54,8 +51,8 @@
                         <td>@item.Email</td>
                         <td>@item.UserRole</td>
                         <td class="text-right">
-                          <a asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                          <a  asp-action="EditUser" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm edit"title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"title="Click to Delete"><i class="fas fa-times"></i></a>
                         </td>
                       </tr>
 
@@ -63,16 +60,16 @@
                   </tbody>
                 </table>
               </div>
-              <!-- end content-->
-            </div>
-            <!--  end card  -->
+                  <!-- end content-->
+                </div>
+                <!--  end card  -->
+              </div>
+            <!-- end col-md-12 -->
           </div>
-          <!-- end col-md-12 -->
+          <!-- end row -->
         </div>
-        <!-- end row -->
       </div>
     </div>
   </div>
-</div>
-
+  
 
