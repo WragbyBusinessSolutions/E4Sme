@@ -341,6 +341,10 @@ namespace E4S.Controllers.HumanResource
           {
 
           }
+          catch
+          {
+
+          }
 
           NewEmployeeImport newEmployee = new NewEmployeeImport()
           {
