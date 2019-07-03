@@ -28,6 +28,9 @@ namespace E4S.Controllers
     private readonly ILogger _logger;
     private readonly ApplicationDbContext _context;
 
+    [TempData]
+    public string StatusMessage { get; set; }
+
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
@@ -299,6 +302,8 @@ namespace E4S.Controllers
 
           await _signInManager.SignInAsync(user, isPersistent: false);
           _logger.LogInformation("User created a new account with password.");
+
+          StatusMessage = "Account created. Kindly update organisation details. Thanks.";
 
 
           return RedirectToLocal(returnUrl);

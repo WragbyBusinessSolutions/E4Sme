@@ -16,6 +16,9 @@ namespace E4S.Controllers
   public class OrganisationController : Controller
   {
     private readonly ApplicationDbContext _context;
+    [TempData]
+    public string StatusMessage { get; set; }
+
 
     public OrganisationController(ApplicationDbContext context)
     {
@@ -56,11 +59,12 @@ namespace E4S.Controllers
       //var path = Path.Combine(
       //            Directory.GetCurrentDirectory(), "wwwroot",
       //            file.FileName);
-      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employeeImage", file.FileName);
-      var path2 = Path.Combine("images", "employeeImage", file.FileName);
+      var filename = Guid.NewGuid().ToString() + file.FileName;
+      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "employeeImage", filename);
+      var path2 = Path.Combine("images", "employeeImage", filename);
 
       var orgId = getOrg();
-      var org = _context.Organisations.Where(x => x.OrganisationId == orgId).FirstOrDefault();
+      var org = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
       
       //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -87,6 +91,9 @@ namespace E4S.Controllers
 
       var org = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
+      ViewData["StatusMessage"] = StatusMessage;
+
+
       return View(org);
     }
 
@@ -95,6 +102,8 @@ namespace E4S.Controllers
       var orgId = getOrg();
 
       var branchList = _context.Branches.Where(x => x.OrganisationId == orgId).ToList();
+
+      ViewData["StatusMessage"] = StatusMessage;
 
       return View(branchList);
     }
@@ -110,7 +119,10 @@ namespace E4S.Controllers
         return View(org);
       }
 
-       return View();
+      StatusMessage = "Organisation successfully updated.";
+
+
+      return View();
     }
 
 
@@ -123,6 +135,7 @@ namespace E4S.Controllers
 
         _context.Update(organisation);
         _context.SaveChanges();
+        StatusMessage = "Update successfully.";
 
         return RedirectToAction("Index");
       }
@@ -151,6 +164,8 @@ namespace E4S.Controllers
 
       _context.Add(branch);
       _context.SaveChanges();
+
+      StatusMessage = "New branch successfully created.";
 
       return RedirectToAction("Branch");
     }

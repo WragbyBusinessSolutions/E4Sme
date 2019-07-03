@@ -20,6 +20,8 @@ namespace E4S.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailSender _emailSender;
 
+    [TempData]
+    public string StatusMessage { get; set; }
 
     public UsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
@@ -46,6 +48,7 @@ namespace E4S.Controllers
       var orgId = getOrg();
 
       var userList = _context.Users.Where(x => x.OrganisationId == orgId).ToList();
+      ViewData["StatusMessage"] = StatusMessage;
 
       return View(userList);
     }
@@ -111,6 +114,7 @@ namespace E4S.Controllers
       _context.Update(employeedetails);
       _context.SaveChanges();
 
+      StatusMessage = "Editting user is succuessful";
 
       return RedirectToAction("Index");
     }
@@ -118,6 +122,8 @@ namespace E4S.Controllers
 
     public IActionResult AddUser()
     {
+      ViewData["StatusMessage"] = StatusMessage;
+
       var org = getOrg();
 
       return View();
@@ -140,6 +146,7 @@ namespace E4S.Controllers
         
       };
 
+
       var result = await _userManager.CreateAsync(user);
       if (result.Succeeded)
       {
@@ -153,16 +160,25 @@ namespace E4S.Controllers
            callbackUrl, user.EmployeeName, "setPassword");
 
         // var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+        StatusMessage = "User created successfully.";
 
 
         //if(response == "Success")
         //{
         return RedirectToAction("Index");
-      //  }
+        //  }
+      }
+      else
+      {
+        StatusMessage = "Error creating a user, User already exists.";
+
+        //Repomse user already exist.
       }
 
-      
 
+
+
+      ViewData["StatusMessage"] = StatusMessage;
 
       return View(newuser);
     }

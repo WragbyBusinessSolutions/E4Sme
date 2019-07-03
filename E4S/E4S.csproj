@@ -27,6 +27,9 @@
     <Content Update="Views\EmployeeProfile\Dependents.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Employees\CheckData.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutEmployee.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
