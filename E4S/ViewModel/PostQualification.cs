@@ -12,6 +12,7 @@ namespace E4S.ViewModel
     public string Institution { get; set; }
     public string CourseOfStudy { get; set; }
     public string YearCompleted { get; set; }
+    public string ImageUrl { get; set; }
 
   }
 }

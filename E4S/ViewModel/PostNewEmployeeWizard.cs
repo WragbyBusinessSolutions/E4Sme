@@ -25,6 +25,11 @@ namespace E4S.ViewModel
     public DateTime JoinedDate { get; set; }
     public DateTime StartDate { get; set; }
 
+    public string BankName { get; set; }
+    public string AccountName { get; set; }
+    public string AccountNo { get; set; }
+
+
     public float Amount { get; set; }
     public string PayFrequency { get; set; }
 

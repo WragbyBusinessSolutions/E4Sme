@@ -69,7 +69,8 @@ namespace E4S.Controllers.HumanResource
             Department = empDetails.Department.DepartmentName,
             EmployeeStatus = empDetails.EmploymentStatus.EmploymentStatusName,
             JobTitle = empDetails.JobTitle.JobTitleName,
-            Supervisor = ""
+            Supervisor = "",
+            IsActive = item.IsActive,
           };
 
         }
@@ -84,7 +85,9 @@ namespace E4S.Controllers.HumanResource
             Department = "--Not Assigned--",
             EmployeeStatus = "--Not Assigned--",
             JobTitle = "--Not Assigned--",
-            Supervisor = ""
+            Supervisor = "",
+            IsActive = item.IsActive
+
           };
 
         }
@@ -201,6 +204,9 @@ namespace E4S.Controllers.HumanResource
           PayFrequency = postNewEmployee.PayFrequency,
           OrganisationId = orgId,
           EmployeeDetailId = newEmployee.Id,
+          BankName = postNewEmployee.BankName,
+          AccountName = postNewEmployee.AccountName,
+          AccountNo = postNewEmployee.AccountNo
 
         };
 
