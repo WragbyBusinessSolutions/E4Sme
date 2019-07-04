@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace E4S.ViewModel
 {
-  public class EmployeeDeashboardViewModel
+  public class EmployeeDashboardViewModel
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string ImadeURL { get; set; }
+    public string ImageURL { get; set; }
     public string JobTitle { get; set; }
     public string Department { get; set; }
   }
