@@ -33,13 +33,35 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+      var userDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      EmployeeDashboardViewModel edVM = new EmployeeDashboardViewModel();
+      edVM.FirstName = userDetails.FirstName;
+      edVM.LastName = userDetails.LastName;
+      edVM.ImageURL = userDetails.ImageUrl;
+
+      var job = _context.Jobs.Where(x => x.EmployeeDetailId == userDetails.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
+
+      edVM.JobTitle = job.JobTitle.JobTitleName;
+      edVM.Department = job.Department.DepartmentName;
+
+
+
+      return View(edVM);
         }
 
     private Guid getOrg()
     {
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
+
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
 
       return orgId;
     }
