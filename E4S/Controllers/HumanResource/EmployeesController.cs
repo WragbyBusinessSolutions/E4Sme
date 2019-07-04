@@ -342,45 +342,75 @@ namespace E4S.Controllers.HumanResource
         {
           userId = Guid.NewGuid();
           int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+          NewEmployeeImport newEmployee ;
 
           try
           {
+            newEmployee = new NewEmployeeImport()
+            {
+              FirstName = row.Split(',')[0],
+              MiddleName = row.Split(',')[1],
+              LastName = row.Split(',')[2],
+              EmployeeEmail = row.Split(',')[3],
+              EmployeeId = row.Split(',')[4],
+              Gender = row.Split(',')[5],
+              MaritalStatus = row.Split(',')[6],
+              ContactAddress = row.Split(',')[7],
+              DateOfBirth = DateTime.Parse(row.Split(',')[8]),
+              JobTitle = row.Split(',')[9],
+              Department = row.Split(',')[10],
+              EmploymentStatus = row.Split(',')[11],
+              JobCategory = row.Split(',')[12],
+              Branch = row.Split(',')[13],
+              JoinedDate = DateTime.Parse(row.Split(',')[14]),
+              StartDate = DateTime.Parse(row.Split(',')[15]),
+              EndDate = DateTime.Parse(row.Split(',')[16]),
+              ContractDetail = row.Split(',')[17],
+              PayGrade = row.Split(',')[18],
+              PayFrequency = row.Split(',')[19],
+              Amount = float.Parse(row.Split(',')[20]),
+              Currency = row.Split(',')[21],
+              Comments = row.Split(',')[22],
+              BankName = row.Split(',')[23],
+              AccointNo = row.Split(',')[24],
+              AccountName = row.Split(',')[25],
+            };
 
           }
           catch
           {
+            newEmployee = new NewEmployeeImport()
+            {
+              FirstName = row.Split(',')[0],
+              MiddleName = row.Split(',')[1],
+              LastName = row.Split(',')[2],
+              EmployeeEmail = row.Split(',')[3],
+              EmployeeId = row.Split(',')[4],
+              Gender = row.Split(',')[5],
+              MaritalStatus = row.Split(',')[6],
+              ContactAddress = row.Split(',')[7],
+              //DateOfBirth = DateTime.Parse(row.Split(',')[8]),
+              JobTitle = row.Split(',')[9],
+              Department = row.Split(',')[10],
+              EmploymentStatus = row.Split(',')[11],
+              JobCategory = row.Split(',')[12],
+              Branch = row.Split(',')[13],
+              //JoinedDate = DateTime.Parse(row.Split(',')[14]),
+              //StartDate = DateTime.Parse(row.Split(',')[15]),
+              //EndDate = DateTime.Parse(row.Split(',')[16]),
+              ContractDetail = row.Split(',')[17],
+              PayGrade = row.Split(',')[18],
+              PayFrequency = row.Split(',')[19],
+              //Amount = float.Parse(row.Split(',')[20]),
+              Currency = row.Split(',')[21],
+              Comments = row.Split(',')[22],
+              BankName = row.Split(',')[23],
+              AccointNo = row.Split(',')[24],
+              AccountName = row.Split(',')[25],
+            };
 
           }
 
-          NewEmployeeImport newEmployee = new NewEmployeeImport()
-          {
-            FirstName = row.Split(',')[0],
-            MiddleName = row.Split(',')[1],
-            LastName = row.Split(',')[2],
-            EmployeeEmail = row.Split(',')[3],
-            EmployeeId = row.Split(',')[4],
-            Gender = row.Split(',')[5],
-            MaritalStatus = row.Split(',')[6],
-            ContactAddress = row.Split(',')[7],
-            //DateOfBirth = DateTime.Parse(row.Split(',')[8]),
-            JobTitle = row.Split(',')[9],
-            Department = row.Split(',')[10],
-            EmploymentStatus = row.Split(',')[11],
-            JobCategory = row.Split(',')[12],
-            Branch = row.Split(',')[13],
-            //JoinedDate = DateTime.Parse(row.Split(',')[14]),
-            //StartDate = DateTime.Parse(row.Split(',')[15]),
-            //EndDate = DateTime.Parse(row.Split(',')[16]),
-            ContractDetail = row.Split(',')[17],
-            PayGrade = row.Split(',')[18],
-            PayFrequency = row.Split(',')[19],
-            //Amount = float.Parse(row.Split(',')[20]),
-            Currency = row.Split(',')[21],
-            Comments = row.Split(',')[22],
-            BankName = row.Split(',')[23],
-            AccointNo = row.Split(',')[24],
-            AccountName = row.Split(',')[25],
-          };
 
           newEmployeeList.Add(newEmployee);
 
