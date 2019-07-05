@@ -7,6 +7,7 @@ namespace E4S.ViewModel
 {
     public class PostNewEmploymentStatus
     {
+        public string AId { get; set; }
         public string EmploymentStatusName { get; set; }
 
         public string Description { get; set; }
