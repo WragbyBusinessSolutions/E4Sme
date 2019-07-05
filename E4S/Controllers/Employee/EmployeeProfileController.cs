@@ -33,13 +33,35 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+      var userDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      EmployeeDashboardViewModel edVM = new EmployeeDashboardViewModel();
+      edVM.FirstName = userDetails.FirstName;
+      edVM.LastName = userDetails.LastName;
+      edVM.ImageURL = userDetails.ImageUrl;
+
+      var job = _context.Jobs.Where(x => x.EmployeeDetailId == userDetails.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
+
+      edVM.JobTitle = job.JobTitle.JobTitleName;
+      edVM.Department = job.Department.DepartmentName;
+
+
+
+      return View(edVM);
         }
 
     private Guid getOrg()
     {
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
+
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
 
       return orgId;
     }
@@ -97,11 +119,24 @@ namespace E4S.Controllers.Employee
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       employeeDetail.UserId = Guid.Parse(userId);
       employeeDetail.OrganisationId = orgId;
-      _context.Update(employeeDetail);
+
+      var empDetails = _context.EmployeeDetails.Where(x => x.Id == employeeDetail.Id).FirstOrDefault();
+
+      empDetails.FirstName = employeeDetail.FirstName;
+      empDetails.MiddleName = employeeDetail.MiddleName;
+      empDetails.LastName = employeeDetail.LastName;
+      empDetails.OtherId = employeeDetail.OtherId;
+      empDetails.Gender = employeeDetail.Gender;
+      empDetails.MaritalStatus = employeeDetail.MaritalStatus;
+
+      empDetails.DateOfBirth = employeeDetail.DateOfBirth;
+
+
+      _context.Update(empDetails);
       await _context.SaveChangesAsync();
 
 
-      return View(employeeDetail);
+      return View(empDetails);
     }
 
 
@@ -515,8 +550,8 @@ namespace E4S.Controllers.Employee
       //var path = Path.Combine(
       //            Directory.GetCurrentDirectory(), "wwwroot",
       //            file.FileName);
-      var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "qualificationImage", file.FileName);
-      var path2 = Path.Combine("images", "qualificationImage", file.FileName);
+      //var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "qualificationImage", file.FileName);
+      //var path2 = Path.Combine("images", "qualificationImage", file.FileName);
 
       var orgId = getOrg();
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -536,18 +571,19 @@ namespace E4S.Controllers.Employee
       };
 
 
-      using (var stream = new FileStream(path, FileMode.Create))
-      {
-        await file.CopyToAsync(stream);
-       // employeeDetails.ImageUrl = path2;
+      //using (var stream = new FileStream(path, FileMode.Create))
+      //{
+      //  await file.CopyToAsync(stream);
+      // // employeeDetails.ImageUrl = path2;
 
-        institutionQualification.ImageURL = path2;
+      //}
+
+      institutionQualification.ImageURL = postQualification.ImageUrl;
 
 
-        _context.Add(institutionQualification);
-        _context.SaveChanges();
+      _context.Add(institutionQualification);
+      _context.SaveChanges();
 
-      }
 
       return RedirectToAction("Qualification");
     }

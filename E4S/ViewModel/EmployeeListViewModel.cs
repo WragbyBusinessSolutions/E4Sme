@@ -15,6 +15,6 @@ namespace E4S.ViewModel
     public string EmployeeStatus { get; set; }
     public string Department { get; set; }
     public string Supervisor { get; set; }
-
+    public bool IsActive { get; set; }
   }
 }

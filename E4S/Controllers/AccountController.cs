@@ -504,6 +504,20 @@ namespace E4S.Controllers
       var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
       if (result.Succeeded)
       {
+        try
+        {
+          // Update Employee Status after successfully setting password.
+          var employeeDetail = _context.EmployeeDetails.Where(x => x.Email == model.Email).FirstOrDefault();
+          employeeDetail.IsActive = true;
+
+          _context.Update(employeeDetail);
+          _context.SaveChanges();
+        }
+        catch
+        {
+
+        }
+
         return RedirectToAction(nameof(ResetPasswordConfirmation));
       }
       AddErrors(result);
