@@ -448,7 +448,7 @@ namespace E4S.Controllers
         var code = await _userManager.GeneratePasswordResetTokenAsync(user);
         var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
         await _emailSender.SendGridEmailAsync(model.Email, "Reset Password",
-           callbackUrl, user.FirstName, "forgotPassword");
+           callbackUrl, "ERP 4 SME",  user.FirstName, "forgotPassword");
         //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
         //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
         return RedirectToAction(nameof(ForgotPasswordConfirmation));
