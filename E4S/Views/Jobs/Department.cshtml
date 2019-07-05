@@ -39,7 +39,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" id="Description" required>
+                                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,6 +49,49 @@
                                             <hr />
                                             <div class="card-footer ">
                                                 <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
+                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end notice modal -->
+                    <!-- Edit modal Department -->
+                    <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                    <h5 class="modal-title" id="myModalLabel">Edit Department</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="instruction">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Department Name</label>
+                                                        <input type="text" class="form-control" placeholder="Department Name" id="eDepartmentName" name="eDepartmentName" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <input type="text" class="form-control" placeholder="Description" id="eDescription" name="eDescription" required>
+                                                        <input type="hidden" class="form-control" placeholder="deptid" id="edeptid" name="edeptid" >
+                                                        @*<textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <button type="button" class="btn btn-fill btn-primary btn-round" id="editDepartment">Submit</button>
                                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
@@ -125,7 +169,7 @@
                                       @item.Description
                                     </td>
                                     <td>
-                                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                                      <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" id="Editbtn"  DepartmentId="@item.Id" Selected-Departmentname="@item.DepartmentName" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
                                       <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                                     </td>
                                   </tr>
@@ -146,6 +190,28 @@
 
 @section Scripts {
     <script type="text/javascript">
+
+        //Code for pulling the Records on the Table  
+        var aEditDeptId;
+
+         $(document).delegate('#Editbtn',
+        'click',
+        function (e) {
+
+            aEditDeptId = $(this).attr('DepartmentId');
+            departmentName = $(this).attr('Selected-Departmentname');
+            description = $(this).attr('Selected-Description');
+            
+            //console.log(description, department);
+
+
+            $('input[name=edeptid]').val(aEditDeptId);
+            $('input[name=eDepartmentName]').val(departmentName);
+            $('input[name=eDescription]').val(description);
+            
+        });
+
+        //End of the code
 
         $(document).ready(function () {
 
@@ -198,6 +264,65 @@
                 });
             });
         });
+
+
+        // Edit your post 
+
+         $(document).ready(function () {
+
+            $("#editDepartment").click(function (event) {
+
+                event.preventDefault();
+
+                var PostDepartment = { 
+                    AId: $("#edeptid").val(),
+                    DepartmentName: $("#eDepartmentName").val(),
+                    Description : $("#eDescription").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostDepartment);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/Jobs/editDepartment",
+                  data: JSON.stringify(PostDepartment),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+
+      
+
+    });
 
     </script>
 

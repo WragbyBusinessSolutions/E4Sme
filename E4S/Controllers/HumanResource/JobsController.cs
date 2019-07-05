@@ -98,8 +98,65 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
+        // Edit the Job Title
 
-    public IActionResult EmploymentStatus()
+        [HttpPost]
+        public async Task<IActionResult> editJobTitle([FromBody]PostNewJobTitle postNewJobTitle)
+        {
+            if (postNewJobTitle == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+            //bool isAssign = true;
+
+            //if (postNewDepartment. == Guid.Empty)
+            //{
+            //    isAssign = false;
+            //}
+
+            try
+            {
+
+                var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+                orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+                
+                _context.Update(orgJobTitle);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
+        // Ednf of Edit for Job Title
+
+
+        public IActionResult EmploymentStatus()
     {
       var orgId = getOrg();
       var employmentStatuses = _context.EmploymentStatuses.Where(x => x.OrganisationId == orgId).ToList();
@@ -155,7 +212,58 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
-    public IActionResult JobCategory()
+
+        // Edit the Department
+
+        [HttpPost]
+        public async Task<IActionResult> editEmploymentStatus([FromBody]PostNewEmploymentStatus postNewEmploymentStatus)
+        {
+            if (postNewEmploymentStatus == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+            try
+            {
+
+                var orgEmployType = _context.EmploymentStatuses.Where(x => x.Id == Guid.Parse(postNewEmploymentStatus.AId)).FirstOrDefault();
+                orgEmployType.EmploymentStatusName = postNewEmploymentStatus.EmploymentStatusName;
+                orgEmployType.Description = postNewEmploymentStatus.Description;
+
+
+                _context.Update(orgEmployType);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Department
+
+
+        public IActionResult JobCategory()
     {
       var orgId = getOrg();
       var jobCategory = _context.JobCategories.Where(x => x.OrganisationId == orgId).ToList();
@@ -211,7 +319,58 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
-    public IActionResult PayGrade()
+
+        // Edit the Department
+
+        [HttpPost]
+        public async Task<IActionResult> editJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
+        {
+            if (postNewJobCategory == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+            try
+            {
+
+                var orgJobCat = _context.JobCategories.Where(x => x.Id == Guid.Parse(postNewJobCategory.AId)).FirstOrDefault();
+                orgJobCat.JobCategoryName = postNewJobCategory.JobCategory;
+                orgJobCat.Description = postNewJobCategory.Description;
+
+
+                _context.Update(orgJobCat);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Department
+
+
+        public IActionResult PayGrade()
     {
       var orgId = getOrg();
       var payGrades = _context.PayGrades.Where(x => x.OrganisationId == orgId).ToList();
@@ -324,7 +483,67 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
-    public IActionResult LeaveConfiguration()
+
+        // Edit the Department
+
+        [HttpPost]
+        public async Task<IActionResult> editDepartment([FromBody]PostNewDepartment postNewDepartment)
+        {
+            if (postNewDepartment == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            
+
+            //bool isAssign = true;
+
+            //if (postNewDepartment. == Guid.Empty)
+            //{
+            //    isAssign = false;
+            //}
+
+            try
+            {
+
+                var orgDept = _context.Departments.Where(x => x.Id == Guid.Parse(postNewDepartment.AId)).FirstOrDefault();
+                orgDept.DepartmentName = postNewDepartment.DepartmentName;
+                orgDept.Description = postNewDepartment.Description;
+               
+
+                _context.Update(orgDept);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Department
+
+
+
+        public IActionResult LeaveConfiguration()
     {
       var orgId = getOrg();
       var LeaveConfiguration = _context.LeaveConfigurations.Where(x => x.OrganisationId == orgId).ToList();

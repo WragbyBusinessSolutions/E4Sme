@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace E4S.ViewModel
 {
-  public class PostSkill
+  public class PostNewSkill
   {
     public string AId { get; set; }
-    public string qSkill { get; set; }
-    public string qDescription { get; set; }
-    public string qYearOfExperience { get; set; }
+
+    public string Skill { get; set; }
+    public string Description { get; set; }
+    public string YearOfExperience { get; set; }
 
   }
 }
