@@ -146,6 +146,7 @@ namespace E4S.Controllers
         
       };
 
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
       var result = await _userManager.CreateAsync(user);
       if (result.Succeeded)
@@ -157,7 +158,7 @@ namespace E4S.Controllers
         var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
 
         var response = _emailSender.SendGridEmailAsync(user.Email, "Create Password",
-           callbackUrl, user.EmployeeName, "setPassword");
+           callbackUrl, orgdetails.OrganisationName, user.EmployeeName, "setPassword");
 
         // var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
         StatusMessage = "User created successfully.";

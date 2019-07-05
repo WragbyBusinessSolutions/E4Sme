@@ -91,7 +91,7 @@ namespace E4S.Services
     }
 
 
-    async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message, string firstname, string template)
+    async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message, string organisation, string firstname, string template)
     {
       var apiKey = "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";
       //new code
@@ -100,7 +100,7 @@ namespace E4S.Services
 
       EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
-      var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", message).Replace("#HostDomain", domain);
+      var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", message).Replace("#HostDomain", domain).Replace("#Organisation", organisation);
 
       //string 
 
@@ -115,8 +115,8 @@ namespace E4S.Services
         
       };
       msg.AddTo(new EmailAddress(emailAdd, emailAdd));
-      var response = await client.SendEmailAsync(msg);
-      
+      await client.SendEmailAsync(msg);
+      //var response = 
 
     }
 
@@ -145,8 +145,8 @@ namespace E4S.Services
 
       };
       msg.AddTo(new EmailAddress(emailAdd, emailAdd));
-      var response = await client.SendEmailAsync(msg);
-
+      await client.SendEmailAsync(msg);
+      //var response =
 
     }
 

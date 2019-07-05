@@ -544,8 +544,8 @@ namespace E4S.Controllers.Employee
 
     public async Task<IActionResult> UploadDocument(IFormFile file, PostQualification postQualification)
     {
-      if (file == null || file.Length == 0)
-        return Content("file not selected");
+      //if (file == null || file.Length == 0)
+      //  return Content("file not selected");
 
       //var path = Path.Combine(
       //            Directory.GetCurrentDirectory(), "wwwroot",
