@@ -456,7 +456,7 @@ namespace E4S.Controllers.Employee
 
       return View(EQVM);
         }
-    
+
     public async Task<IActionResult> skillsUpload(PostSkill postSkill)
     {
       if(postSkill == null)
@@ -497,6 +497,64 @@ namespace E4S.Controllers.Employee
 
 
     }
+
+    [HttpPost]
+    public async Task<IActionResult> editSkills([FromBody]PostSkill postSkill)
+    {
+      if (postSkill == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var orgSkill = _context.Skills.Where(x => x.Id == Guid.Parse(postSkill.AId)).FirstOrDefault();
+        orgSkill.SkillName = postSkill.qSkill;
+        orgSkill.Description = postSkill.qDescription;
+        orgSkill.YearsOfExperience = postSkill.qYearOfExperience;
+
+
+        _context.Update(orgSkill);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+
 
     public async Task<IActionResult> workUpload(PostWorkExperience postWorkExperience)
     {

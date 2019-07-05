@@ -593,7 +593,7 @@
                                       <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
-                                            <label>Year of Experience</label>
+                                            <label>Years of Experience</label>
                                             <input type="number" class="form-control" placeholder="Year of Experience" id="qYearOfExperience" name="qYearOfExperience" required>
                                           </div>
                                         </div>
@@ -715,7 +715,7 @@
 
                                     <hr />
                                     <div class="card-footer ">
-                                      <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                                      <button type="submit" class="btn btn-fill btn-primary btn-round" >Submit</button>
                                       <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                     </div>
                                   </form>
@@ -918,6 +918,67 @@
         $('input[name=grade]').val(grade);
         $('input[name=yearcompleted]').val(year);
       });
+
+
+
+    $(document).ready(function () {
+
+            $("#editSkills").click(function (event) {
+
+                event.preventDefault();
+
+                var PostSkill = { 
+                    AId: $("#SkillsId").val(),
+                    Skill: $("#qSkill").val(),
+                  Description: $("#qDescription").val(),
+                   YearOfExperience : $("#qYearOfExperience").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostSkill);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/EmployeeProfile/editSkills",
+                  data: JSON.stringify(PostSkill),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+
+      
+
+    });
+
 
   </script>
  }
