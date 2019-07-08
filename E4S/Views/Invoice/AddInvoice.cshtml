@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewData["Title"] = "Add Invoice";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+<style>
+
+
+    .invoice-body {
+        margin-top: 40px;
+    }
+
+    .invoice-card {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .hidden-info {
+        visibility: hidden;
+    }
+
+    .total-section {
+        margin-top: 40px;
+    }
+
+    .customer-button {
+        width: 200px;
+        height: 160px;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+    .table-item{
+        font-size: 12px;
+    }
+</style>
+
+
+<div class="content">
+
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-8 ">
+            <div class="card card-body printableArea invoice-card">
+
+
+
+                <div class="row">
+                    <div class="row pull-left invoice-card">
+                        <h5>Invoice No:</h5>
+
+                        <div class="">
+
+                            <div class="col-lg-12">
+                                <input type="number" class="form-control" placeholder="#" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <hr />
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+
+                            <p class="text-muted m-l-5 pull-right hidden-info">
+                                <b class="text-danger spanlabel">OrganisationName</b>
+                                <br />
+                                .Organisation.Address
+                                <br /> Organisation.City,
+                                <br /> Organisation.State,
+                                <br /> Organisation.Country
+                                <br />Organisation.ZipCode
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row invoice-card">
+                        <div class="col-lg-12">
+                            <div class="pull-right text-right">
+
+                                <p>
+
+                                    <b>Invoice Date <i class="fa fa-calendar"></i> :</b>
+
+                                    <input type="date" class="form-control" />
+
+                                </p>
+                                <p>
+                                    <b>Due Date :</b>
+                                    <i class="fa fa-calendar"></i>
+                                    <input type="date" class="form-control" />
+                                    <span class="text-danger"></span>
+                                </p>
+
+                            </div>
+
+
+                            <div class="btn-group">
+                                <button type="button" class="form-control customer-button dropright dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="~/assets/img/user22.png" height="20" width="20" /> Add a customer
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#"><input type="text" class="form-control" placeholder="type a customer name" /></a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">+ Add new customer</a>
+
+                                 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 align-items-center invoice-body">
+
+                            <input class="form-control text-center" placeholder="INVOICE TITLE" />
+
+                        </div>
+
+                        <div class="col-md-12 invoice-body">
+                            <div class="table-responsive m-t-40" style="clear: both;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-item"><strong>Item</strong></th>
+                                            <th><strong>Description</strong></th>
+                                            <th><strong>Quantity</strong></th>
+                                            <th><strong>Unit Cost</strong></th>
+                                            <th><strong>Total</strong></th>
+                                            <th>+/-</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Air Conditioner</td>
+                                            <td>Split AC</td>
+                                            <td> 3 </td>
+                                            <td> $500 </td>
+                                            <td> $1500 </td>
+                                            <td>
+                                                <a asp-action="Delete" class="btn btn-sm btn-danger">-</a>
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+
+                                            <td>
+                                                <input hidden type="text" id="addEstimateId" name="bdate" class="form-control" value="Model.EstimateId">
+                                                <input type="text" id="addItem" name="bdate" onChange="changecat(this.value);" class="form-control" placeholder="Item/Service">
+                                            </td>
+                                            <td>
+                                                <input type="text" id="addDescription" name="bdate" class="form-control" placeholder="Description">
+                                            </td>
+                                            <td class="text-right">
+                                                <input type="number" id="addQuantity" name="bdate" class="form-control text-right" placeholder="0">
+                                            </td>
+                                            <td class="text-right">
+                                                <input type="number" id="addUnitCost" name="bdate" class="form-control text-right" placeholder="0.00">
+                                            </td>
+                                            <td class="text-right">
+                                                <input disabled type="number" id="addAmount" name="bdate" class="form-control text-right" placeholder="0">
+                                            </td>
+                                            <td>
+                                                <button id="clickb" name="clickb" class="btn btn-sm btn-success">+</button>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12 total-section">
+                            <div class="pull-right text-right">
+                                <p>Sub - Total amount:  ₦0.00</p>
+                                <p>
+                                    <input type="checkbox" checked disabled /> vat (5%) : ₦0.00
+                                </p>
+                                <hr>
+                                <h3>
+                                    <b>Total :</b> ₦0.00
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-right">
+                                <button class="btn btn-success" type="submit"> Done  </button>
+                                <button id="print" class="btn btn-info btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+    $('#myModal').modal(options)
+</script>

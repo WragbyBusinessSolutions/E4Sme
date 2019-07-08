@@ -1,78 +1,79 @@
-.card{
+.card {
     border: 0;
     border-radius: $border-radius-small;
     display: inline-block;
     position: relative;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     box-shadow: $box-shadow;
 
-    .card-body{
+    .card-body {
         padding: 15px 15px 10px 15px;
 
-        &.table-full-width{
+        &.table-full-width {
             padding-left: 0;
             padding-right: 0;
         }
     }
 
-    .card-header{
-      &:not([data-background-color]){
-        background-color: transparent;
-      }
-      padding: 15px 15px 0;
-      border: 0;
+    .card-header {
+        &:not([data-background-color]) {
+            background-color: transparent;
+        }
 
-      .card-title{
-          margin-top: 10px;
-      }
-    }
+        padding: 15px 15px 0;
+        border: 0;
 
-    .map{
-        border-radius: $border-radius-small;
-
-        &.map-big{
-          height: 400px;
+        .card-title {
+            margin-top: 10px;
         }
     }
 
-    &[data-background-color="orange"]{
+    .map {
+        border-radius: $border-radius-small;
+
+        &.map-big {
+            height: 400px;
+        }
+    }
+
+    &[data-background-color="orange"] {
         background-color: $primary-color;
 
-        .card-header{
+        .card-header {
             background-color: $primary-color;
         }
 
-        .card-footer{
-            .stats{
+        .card-footer {
+            .stats {
                 color: $white-color;
             }
         }
     }
 
-    &[data-background-color="red"]{
+    &[data-background-color="red"] {
         background-color: $danger-color;
     }
 
-    &[data-background-color="yellow"]{
+    &[data-background-color="yellow"] {
         background-color: $warning-color;
     }
 
-    &[data-background-color="blue"]{
+    &[data-background-color="blue"] {
         background-color: $info-color;
     }
 
-    &[data-background-color="green"]{
+    &[data-background-color="green"] {
         background-color: $success-color;
     }
 
-    .image{
+    .image {
         overflow: hidden;
         height: 200px;
         position: relative;
     }
 
-    .avatar{
+    .avatar {
         width: 30px;
         height: 30px;
         overflow: hidden;
@@ -80,26 +81,26 @@
         margin-bottom: 15px;
     }
 
-    label{
+    label {
         font-size: $font-size-small;
         margin-bottom: 5px;
         color: $dark-gray;
     }
 
-    .card-footer{
+    .card-footer {
         background-color: transparent;
         border: 0;
 
 
-        .stats{
-            i{
+        .stats {
+            i {
                 margin-right: 5px;
                 position: relative;
                 top: 2px;
             }
         }
 
-        .btn{
+        .btn {
             margin: 0;
         }
     }
