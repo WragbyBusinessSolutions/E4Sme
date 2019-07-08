@@ -1,18 +1,20 @@
-.card-pricing{
+.card-pricing {
     text-align: center;
 
-    .card-category{
+    .card-category {
         padding-top: 1.25em;
     }
 
-    .card-title{
+   
+
+    .card-title {
         margin-top: 30px;
     }
 
-    .card-icon{
+    .card-icon {
         padding: 10px 0 0px;
 
-        i{
+        i {
             font-size: 30px;
             line-height: 2.7;
             max-width: 80px;
@@ -26,28 +28,33 @@
             position: relative;
         }
 
-        &.icon-primary i{
+        &.icon-primary i {
             @include icon-color($primary-color);
         }
-        &.icon-info i{
+
+        &.icon-info i {
             @include icon-color($info-color);
         }
-        &.icon-success i{
+
+        &.icon-success i {
             color: $success-color;
-            box-shadow:  0px 9px 30px -6px rgba(22, 199, 13, 0.85);
+            box-shadow: 0px 9px 30px -6px rgba(22, 199, 13, 0.85);
         }
-        &.icon-warning i{
+
+        &.icon-warning i {
             @include icon-color($warning-color);
         }
-        &.icon-danger i{
+
+        &.icon-danger i {
             @include icon-color($danger-color);
         }
     }
-    h1{
-        small{
+
+    h1 {
+        small {
             font-size: 18px;
 
-            &:first-child{
+            &:first-child {
                 position: relative;
                 top: -17px;
                 font-size: 26px;
@@ -55,25 +62,27 @@
         }
     }
 
-    ul{
+    ul {
         list-style: none;
         padding: 0;
         max-width: 240px;
         margin: 10px auto;
 
-        li{
+        li {
             color: $default-color;
             text-align: center;
             padding: 12px 0;
             border-bottom: 1px solid rgba($default-color,.3);
 
-            &:last-child{
+            &:last-child {
                 border: 0;
             }
-            b{
+
+            b {
                 color: $black-color;
             }
-            i{
+
+            i {
                 top: 3px;
                 right: 3px;
                 position: relative;
@@ -82,26 +91,29 @@
         }
     }
 
-    &.card-background{
-        ul{
-            li{
+    &.card-background {
+        ul {
+            li {
                 color: $white-color;
                 border-color: rgba($white-color,.3);
 
-                b{
+                b {
                     color: $white-color;
                 }
             }
         }
-        [class*="text-"]{
+
+        [class*="text-"] {
             color: $white-color !important;
         }
-        .card-body{
+
+        .card-body {
             padding-top: 1.25rem;
             padding-bottom: 1.25rem;
         }
     }
-    &.card-background:after{
+
+    &.card-background:after {
         background-color: rgba(0, 0, 0, 0.65);
     }
 }

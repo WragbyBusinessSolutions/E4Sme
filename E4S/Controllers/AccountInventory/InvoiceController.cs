@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E4S.Controllers.HumanResource
+namespace E4S.Controllers.AccountInventory
 {
     public class InvoiceController : Controller
     {
@@ -12,5 +12,11 @@ namespace E4S.Controllers.HumanResource
         {
             return View();
         }
+
+        public IActionResult AddInvoice()
+        {
+            return View();
+        }
+
     }
 }
