@@ -33,13 +33,35 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+      var userDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      EmployeeDashboardViewModel edVM = new EmployeeDashboardViewModel();
+      edVM.FirstName = userDetails.FirstName;
+      edVM.LastName = userDetails.LastName;
+      edVM.ImageURL = userDetails.ImageUrl;
+
+      var job = _context.Jobs.Where(x => x.EmployeeDetailId == userDetails.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
+
+      edVM.JobTitle = job.JobTitle.JobTitleName;
+      edVM.Department = job.Department.DepartmentName;
+
+
+
+      return View(edVM);
         }
 
     private Guid getOrg()
     {
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
+
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
 
       return orgId;
     }
@@ -434,7 +456,7 @@ namespace E4S.Controllers.Employee
 
       return View(EQVM);
         }
-    
+
     public async Task<IActionResult> skillsUpload(PostSkill postSkill)
     {
       if(postSkill == null)
@@ -475,6 +497,64 @@ namespace E4S.Controllers.Employee
 
 
     }
+
+    [HttpPost]
+    public async Task<IActionResult> editSkills([FromBody]PostSkill postSkill)
+    {
+      if (postSkill == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var orgSkill = _context.Skills.Where(x => x.Id == Guid.Parse(postSkill.AId)).FirstOrDefault();
+        orgSkill.SkillName = postSkill.qSkill;
+        orgSkill.Description = postSkill.qDescription;
+        orgSkill.YearsOfExperience = postSkill.qYearOfExperience;
+
+
+        _context.Update(orgSkill);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+
 
     public async Task<IActionResult> workUpload(PostWorkExperience postWorkExperience)
     {
@@ -522,8 +602,8 @@ namespace E4S.Controllers.Employee
 
     public async Task<IActionResult> UploadDocument(IFormFile file, PostQualification postQualification)
     {
-      if (file == null || file.Length == 0)
-        return Content("file not selected");
+      //if (file == null || file.Length == 0)
+      //  return Content("file not selected");
 
       //var path = Path.Combine(
       //            Directory.GetCurrentDirectory(), "wwwroot",

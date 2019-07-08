@@ -60,79 +60,95 @@
                     <div class="card-body ">
                         <!-- Start of the Emergency Contact tabs-->
                         <div class="card-body">
-                            <form method="post" asp-action="PersonalDetails" asp-controller="EmployeeProfile">
-                                <div class="row">
-                                    <input asp-for="Id" hidden>
-                                    <div class="col-md-4 pr-1">
-                                        <div class="form-group">
-                                            <label>First Name</label>
-                                            <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Middle name</label>
-                                            <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Last Name</label>
-                                            <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
-                                        </div>
-                                    </div>
+                          <form method="post" asp-action="PersonalDetails" asp-controller="EmployeeProfile">
+                            <div class="row">
+                              <input asp-for="Id" hidden>
+                              <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                  <label>First Name</label>
+                                  <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
                                 </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-md-6 pr-1">
-                                        <div class="form-group">
-                                            <label>Employye ID</label>
-                                            <input asp-for="EmployeeId" type="text" class="form-control" readonly placeholder="Employee ID">
-                                        </div>
-                                    </div>
+                              </div>
+                              <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                  <label>Middle name</label>
+                                  <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name">
+                                </div>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Last Name</label>
+                                  <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                              <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                  <label>Employee ID</label>
+                                  <input asp-for="EmployeeId" type="text" class="form-control" readonly placeholder="Employee ID">
+                                </div>
+                              </div>
 
-                                    <div class="col-md-6 pl-1">
-                                        <div class="form-group">
-                                            <label>Other ID </label>
-                                            <input asp-for="OtherId" type="text" class="form-control" placeholder="Other ID">
-                                        </div>
-                                    </div>
+                              <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                  <label>Other ID </label>
+                                  <input asp-for="OtherId" type="text" class="form-control" placeholder="Other ID">
                                 </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-md-4 pr-1">
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <select asp-for="Gender" type="text" class="form-control" placeholder="Username">
-                                                <option>-- Select Gender</option>
-                                                <option value="Male">Male </option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Marital Status</label>
-                                            <select asp-for="MaritalStatus" type="text" class="form-control" placeholder="Username">
-                                                <option> -- Select Marital Status -- </option>
-                                                <option value="Single">Single </option>
-                                                <option value="Married">Married</option>
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Date of Birth</label>
-                                            <input asp-for="DateOfBirth" type="Date" class="form-control" placeholder="date">
-                                        </div>
-                                    </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                              <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                  <label>Gender</label>
+                                  <select asp-for="Gender" type="text" class="form-control" placeholder="Username">
+                                    <option>-- Select Gender</option>
+                                    <option value="Male">Male </option>
+                                    <option value="Female">Female</option>
+                                  </select>
                                 </div>
-                                <hr />
-                                <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary">Update</button>
+                              </div>
+                              <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                  <label>Marital Status</label>
+                                  <select asp-for="MaritalStatus" type="text" class="form-control" placeholder="Username">
+                                    <option> -- Select Marital Status -- </option>
+                                    <option value="Single">Single </option>
+                                    <option value="Married">Married</option>
+
+                                  </select>
                                 </div>
-                            </form>
+                              </div>
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Date of Birth</label>
+                                  <input asp-for="DateOfBirth" type="Date" class="form-control" placeholder="date">
+                                </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                              <div class="col-md-6 pr-1">
+                                <div class="form-group">
+                                  <label>Work E-Mail</label>
+                                  <input asp-for="EmployeeId" type="text" class="form-control" placeholder="Enter Work E-Mail">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6 pl-1">
+                                <div class="form-group">
+                                  <label>Phone Number</label>
+                                  <input asp-for="OtherId" type="text" class="form-control" placeholder="Enter Phone Number">
+                                </div>
+                              </div>
+                            </div>
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary">Update</button>
+                            </div>
+                          </form>
                         </div>
                         <!-- the End of Emergency Contact Tabs-->
 

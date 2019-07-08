@@ -32,6 +32,12 @@ namespace E4S.ViewModel
     public List<EmergencyContact> EmergencyContacts { get; set; }
     public List<Dependant> Dependants { get; set; }
 
+    public List<InstitutionQualification> InstitutionQualifications { get; set; }
+    public List<Skill> Skills { get; set; }
+    public List<WorkExperience> WorkExperiences { get; set; }
+
+
+
 
   }
 }
