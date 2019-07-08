@@ -18,6 +18,8 @@ namespace E4S.Controllers.HumanResource
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
 
+   
+
     public JobsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
       _context = context;
@@ -46,7 +48,8 @@ namespace E4S.Controllers.HumanResource
     {
       var orgId = getOrg();
       var jobTitles = _context.JobTitles.Where(x => x.OrganisationId == orgId).ToList();
-      return View(jobTitles);
+
+            return View(jobTitles);
     }
 
     [HttpPost]
@@ -131,7 +134,7 @@ namespace E4S.Controllers.HumanResource
                 
                 _context.Update(orgJobTitle);
                 _context.SaveChanges();
-
+                
 
                 return Json(new
                 {
@@ -320,7 +323,7 @@ namespace E4S.Controllers.HumanResource
     }
 
 
-        // Edit the Department
+        // Edit the Job Cartegory
 
         [HttpPost]
         public async Task<IActionResult> editJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
@@ -367,7 +370,7 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        // Ednf of Edit for Department
+        // Ednf of Edit for Category
 
 
         public IActionResult PayGrade()
@@ -622,7 +625,55 @@ namespace E4S.Controllers.HumanResource
       msg = "Fail"
     });
   }
+        // Edit the LeaveConfiguration
+
+        [HttpPost]
+        public async Task<IActionResult> editLeaveConfiguration([FromBody]PostNewLeaveConfiguration postNewLeaveConfiguration)
+        {
+            if (postNewLeaveConfiguration == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+            try
+            {
+
+                var orgLeaveCon = _context.LeaveConfigurations.Where(x => x.Id == Guid.Parse(postNewLeaveConfiguration.AId)).FirstOrDefault();
+                orgLeaveCon.LeaveTitle = postNewLeaveConfiguration.LeaveTitle;
+                orgLeaveCon.MaxDuration = postNewLeaveConfiguration.MaxDuration;
+                orgLeaveCon.Description = postNewLeaveConfiguration.Description;
 
 
-}
+                _context.Update(orgLeaveCon);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Leave Configuration
+
+    }
 }
