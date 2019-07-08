@@ -84,9 +84,9 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" id="eDescription" name="eDescription" required>
+                                                        @*<input type="text" class="form-control" placeholder="Description" id="eDescription" name="eDescription" required>*@
                                                         <input type="hidden" class="form-control" placeholder="deptid" id="edeptid" name="edeptid" >
-                                                        @*<textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>*@
+                                                        <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -207,7 +207,7 @@
 
             $('input[name=edeptid]').val(aEditDeptId);
             $('input[name=eDepartmentName]').val(departmentName);
-            $('input[name=eDescription]').val(description);
+            $('textarea[name=eDescription]').val(description);
             
         });
 
