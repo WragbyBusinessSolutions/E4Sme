@@ -1,0 +1,261 @@
+﻿
+@{
+  ViewData["Title"] = "Invoice";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+
+<div class="content">
+
+
+  <div class="row">
+    <!-- Column -->
+
+    <div class="container-fluid">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                @*<div class="justify-content-end align-items-center pull-right">
+      <a asp-action="AddVacancy" asp-controller="Recruitments" class="btn btn-info btn-lg">Create New</a>
+    </div>
+
+    <h4 class="card-title">List of Vacancies</h4>*@
+
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="card-body text-left">
+                      <h4>Invoice</h4>
+                    </div>
+                  </div>
+                  <div class="col-md-3 ml-auto">
+                    <div class="card-body text-right">
+                      <label class="col-sm-6 col-form-label"><h6>Invoice No.</h6></label>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="#04271-5" disabled>
+                      </div>
+                      @*<h4>Invoice No.:<input class="form-control col-md-4  text-right" disabled @*value="#@Model.QuoteNo"* /></h4>*@
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3">
+                    @*<div class="card">*@
+                    <div class="card-body text-left">
+                      <b>Billed To:</b>
+                      @*<address>*@
+
+                      <b>C & I Leasing</b><br />
+                      <p>5, Okoya Thomas Close,</p>
+                      <p>Surulere, Lagos</p>
+                      <abbr title="Phone">P:</abbr>(0803) 573-3902
+
+
+                      @*</address>*@
+                    </div>
+                    @*</div>*@
+                  </div>
+                  <div class="col-md-3 ml-auto">
+                    <div class="card-body text-right">
+                      <b>Shipped To:</b>
+                      <b>Flutterwave, Inc.</b>
+                      <p>24, Oju Ologbon Str.</p>
+                      <p>Victoria Island, Lagos</p>
+                      <abbr title="Phone">P:</abbr>(0803) 726-1372
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-3 ml-auto">
+                    <div class="card-body text-right">
+                      <div class="form-group">
+                        <p>Invoice Date : <i class="fa fa-calendar"></i></p><input type="date" class="form-control" placeholder=".col-md-3">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+                </div>
+
+
+
+                <div class="row">
+
+
+                  <div class="col-md-3 ml-auto">
+                    <div class="card-body text-right">
+                      <div class="form-group">
+                        <p>Due Date : <i class="fa fa-calendar"></i></p><input type="date" class="form-control" placeholder=".col-md-3">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                  @*<div class="col-md-3 ml-auto">
+      <div class="card-body text-right">
+        <b>Invoice Date :</b> <i class="fa fa-calendar"></i> <input @*asp-for="InvoiceDate"*@ @*type="date" />
+          <span asp-validation-for="InvoiceDate" class="text-danger"></span>
+          </p>
+          <p>
+            <b>Due Date :</b> <i class="fa fa-calendar"></i> <input asp-for="DueDate" type="date" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+          </p>
+
+        </div>
+      </div>*@
+              </div>
+
+              <div class="col-md-3">
+                <div class="card-body text-left">
+                  <div class="form-group">
+                    <p>To:</p>
+                    <select class="form-control">
+                      <option>Mr. Emeka</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="card-body text-center">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card-body text-center">
+                <input @*asp-for="InvoiceTitle"*@ class="form-control text-center" placeholder="INVOICE TITLE" />
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card-body text-center">
+                  </div>
+                </div>
+              </div>
+
+              @*<div class="col-md-12 align-items-center">
+
+                <input asp-for="InvoiceTitle" class="form-control text-center" placeholder="INVOICE TITLE" />
+
+              </div>*@
+
+
+
+              </div>
+              <div class="card-body">
+                <br />
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th class="text-center">
+                      Item/Service
+                    </th>
+                    <th class="text-center">
+                      Description
+                    </th>
+                    <th class="text-center">
+                      Quantity
+                    </th>
+                    <th class="text-center">
+                      Unit Cost
+                    </th>
+                    <th class="text-center">
+                      Total
+                    </th>
+                    <th class="text-center">
+                      +/-
+                    </th>
+
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <input hidden type="text" id="addEstimateId" name="bdate" class="form-control" @*value="@Model.EstimateId"*@>
+                          <input type="text" id="addItem" name="bdate" onChange="changecat(this.value);" class="form-control" placeholder="Item/Service">
+                        </td>
+                        <td>
+                          <input type="text" id="addDescription" name="bdate" class="form-control" placeholder="Description">
+                        </td>
+                        <td>
+                          <input type="number" id="addQuantity" name="bdate" class="form-control text-right" placeholder="0">
+                        </td>
+                        <td @*class="text-right"*@>
+                          <input type="number" id="addUnitCost" name="bdate" class="form-control text-right" placeholder="0.00">
+                        </td>
+                        <td @*class="text-right"*@>
+                          <input disabled type="number" id="addAmount" name="bdate" class="form-control text-right" placeholder="0">
+                        </td>
+                        <td @*class="text-right"*@>
+                          <button id="clickb" name="clickb" class="btn btn-sm btn-success">+</button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right"><b>Sub Total:</b></td>
+                        <td>₦0.00</td>
+                      </tr>
+
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right"><b>VAT(5%):</b></td>
+                        <td>₦0.00</td>
+                      </tr>
+
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right"><h5>Total:</h5></td>
+                        <td><h5>₦0.00</h5></td>
+                      </tr>
+
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right"><button class="btn btn-danger" type="submit"> Done  </button></td>
+                        <td><button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+                <!-- end content-->
+                </div>
+            <!--  end card  -->
+          </div>
+          <!-- end col-md-12 -->
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

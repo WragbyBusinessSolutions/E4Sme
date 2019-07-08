@@ -34,37 +34,37 @@
                 <div class="col-md-3">
                   <ul class="nav nav-pills nav-pills-primary flex-column" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#link4" role="tablist">
+                      <a class="nav-link active" data-toggle="tab" href="#profileDetails" role="tablist">
                         Profile Details
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#job" role="tablist">
                         Job
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#salary" role="tablist">
                         Salary
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link5" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#contactDetails" role="tablist">
                         Contact Details
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link6" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#emergencyContact" role="tablist">
                         Emergency Contact
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link1" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#dependents" role="tablist">
                         Dependents
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#link7" role="tablist">
+                      <a class="nav-link" data-toggle="tab" href="#qualification" role="tablist">
                         Qualification
                       </a>
                     </li>
@@ -73,25 +73,27 @@
 
                 <div class="col-md-8">
                   <div class="tab-content">
-                    <div class="tab-pane active" id="link4">
-                      <form>
+
+                    <div class="tab-pane active" id="profileDetails">
+
+                      <form method="post">
                         <div class="row">
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
                               <label>First Name</label>
-                              <input asp-for="EmployeeDetail.FirstName" type="text" class="form-control" placeholder="Company">
+                              <input asp-for="EmployeeDetail.FirstName" type="text" class="form-control" placeholder="FirstName">
                             </div>
                           </div>
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Middle Name</label>
-                              <input asp-for="EmployeeDetail.MiddleName" type="text" class="form-control" placeholder="Username">
+                              <input asp-for="EmployeeDetail.MiddleName" type="text" class="form-control" placeholder="MiddleName">
                             </div>
                           </div>
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Last Name</label>
-                              <input asp-for="EmployeeDetail.LastName" type="text" class="form-control" placeholder="Email">
+                              <input asp-for="EmployeeDetail.LastName" type="text" class="form-control" placeholder="LastName">
                             </div>
                           </div>
                         </div>
@@ -153,32 +155,437 @@
                           </div>
                         </div>
                         <hr />
-                        @*<div class="row">
-                              <div class="col-md-4 pr-1">
-                                  <div class="form-group">
-                                      <label>Country</label>
-                                      <select id="country" class="form-control" asp-for="Country" required><option value="@null">-- Country --</option></select>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 px-1">
-                                  <div class="form-group">
-                                      <label>State</label>
-                                      <select id="region" class="form-control" asp-for="State" required><option value="@null">-- State --</option></select>
-                                  </div>
-                              </div>
-                              <div class="col-md-4 pl-1">
-                                  <div class="form-group">
-                                      <label>City</label>
-                                      <select id="city" class="form-control" asp-for="City" required><option value="@null">-- City --</option></select>
-                                  </div>
-                              </div>
-                          </div>*@
                         <div class="card-footer ">
                           <button type="submit" class="btn btn-fill btn-primary">Update</button>
                         </div>
                       </form>
+
                     </div>
-                    <div class="tab-pane" id="link5">
+
+
+                    <div class="tab-pane" id="job">
+
+                      <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                              <h5 class="modal-title" id="myModalLabel">Enter New Job Title</h5>
+                            </div>
+                            <div id="loading-overlay">
+                              <div class="loading-icon"></div>
+                            </div>
+
+                            <div class="modal-body">
+                              <div class="instruction">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" class="form-control" placeholder="Job Title" id="JobTitle" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Note</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobTitle">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                              <h5 class="modal-title" id="myModalLabel">Enter New Department</h5>
+                            </div>
+                            <div class="modal-body">
+                              <div class="instruction">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Department Name</label>
+                                        <input type="text" class="form-control" placeholder="Department Name" id="DepartmentName" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="card-footer ">
+                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+                              @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                              <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
+                            </div>
+                            <div class="modal-body">
+                              <div class="instruction">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Job Category</label>
+                                        <input type="text" class="form-control" placeholder="Job Category" id="JobCategory" required>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                              <h5 class="modal-title" id="myModalLabel">Enter New Employement Status</h5>
+                            </div>
+                            <div class="modal-body">
+                              <div class="instruction">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Employment Status Name</label>
+                                        <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label> Description </label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                              </button>
+                              <h5 class="modal-title" id="myModalLabel">Enter New Branch</h5>
+                            </div>
+                            <div class="modal-body">
+                              <div class="instruction">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Employment Status Name</label>
+                                        <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" placeholder="Email" id="Email" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" placeholder="Phone Number" id="Phone Number" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label> City </label>
+                                        <input type="text" class="form-control" placeholder="City" id="City" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label> Country </label>
+                                        <input type="text" class="form-control" placeholder="country" id="country" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Job Title</label>
+                                <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
+                                    <option> -- Select Job Title -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal">+</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Department</label>
+                                <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
+                                    <option> -- Select Department -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal1">+</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Employment Type</label>
+                                <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
+                                    <option> -- Select Job Employement Status -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Job Category</label>
+                                <div class="input-group mb-2">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
+                                    <option> -- Select Job Category -- </option>
+                                  </select>
+                                  <div class="input-group-append " style="position:relative; top:-10px;">
+                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal2">+</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-5 pr-1">
+                              <div class="form-group">
+                                <label>Joined date </label>
+                                <input asp-for="JoinDate" type="date" class="form-control" placeholder="Company">
+                              </div>
+                            </div>
+                            <div class="col-md-5 pl-1">
+                              <div class="form-group">
+                                <label>Branch</label>
+                                <select asp-for="BranchId" type="text" asp-items="ViewBag.Branch" class="form-control">
+                                  <option> -- Select Branch -- </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <hr />
+                          <h5>Employment Contract</h5>
+
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Start Date</label>
+                                <input asp-for="StartDate" type="date" class="form-control" placeholder="Country">
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>End Date</label>
+                                <input asp-for="EndDate" type="date" class="form-control" placeholder="ZIP Code">
+                              </div>
+                            </div>
+                          </div>
+                          @*  *@
+                          @*<div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Contract Details</label>
+                <input type="text" class="form-control" asp-for="ContractDetails"  placeholder="Comtract Details" required>
+              </div>
+            </div>
+          </div>*@
+                          <div class="card-footer">
+                            <button type="button" class="btn btn-fill btn-primary" id="btnJob">Update</button>
+                            <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+
+
+                    <div class="tab-pane" id="salary">
+
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Pay Frequency</label>
+                                <select asp-for="PayFrequency" type="text" class="form-control">
+                                  <option> -- Select Pay Frequency -- </option>
+                                  <option value="Monthly">Monthly</option>
+                                  <option value="Bi Monthly">Bi Monthly</option>
+                                  <option value="Weekly">Weekly</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Amount</label>
+                                <input asp-for="Amount" type="number" class="form-control" placeholder="Amount">
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-md-6 ">
+                            <div class="form-group">
+                              <label>Currency</label>
+                              <input type="text" class="form-control" id="StartDate" name="StartDate">
+                            </div>
+                          </div>
+                          <div class="col-md-6 ">
+                            <div class="form-group">
+                              <label></label>
+                            </div>
+                          </div>
+                          <hr />
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Account Name</label>
+                              <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="AccountName" placeholder="Account Name" name="Account Name" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label>Amount Number </label>
+                              <input type="number" class="form-control" placeholder="Amount Number" id="Amount Number " name="Amount Number ">
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-6 ">
+                            <div class="form-group">
+                              <label>Bank Name</label>
+                              <input type="text" class="form-control" placeholder="Bank Name" id="BankName" name="BnakName">
+                            </div>
+                          </div>
+
+
+                          <div class="card-footer">
+                            <button type="button" class="btn btn-fill btn-primary" name="btnSalary" id="btnSalary">Save</button>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+
+
+                    <div class="tab-pane" id="contactDetails">
 
                       <div class="card-body">
                         <form>
@@ -264,166 +671,14 @@
                               </div>
                             </div>
                           </div>
-                          @*<div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-primary">Update</button>
-                          </div>*@
                         </form>
                       </div>
 
-                      @*<div class="card-body">
-                        <form>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Address 1</label>
-                                <input type="text" class="form-control" placeholder="Home Address" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Address 2</label>
-                                <input type="text" class="form-control" placeholder="Home Address">
-                              </div>
-                            </div>
-                          </div>
-                          <hr />
-                          <div class="row">
-                            <div class="col-md-5 pr-1">
-                              <div class="form-group">
-                                <label>Country </label>
-                                <input type="text" class="form-control" placeholder="Company">
-                              </div>
-                            </div>
-                            <div class="col-md-3 px-1">
-                              <div class="form-group">
-                                <label>State</label>
-                                <input type="text" class="form-control" placeholder="Username">
-                              </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                              <div class="form-group">
-                                <label>Local Govt</label>
-                                <input type="text" class="form-control" placeholder="Local Govt">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Zip/Postal Code</label>
-                                <input type="text" class="form-control" placeholder="Home Address" required>
-                              </div>
-                            </div>
-                          </div>
-                          <hr />
-                          <div class="row">
-                            <div class="col-md-4 pr-1">
-                              <div class="form-group">
-                                <label>Home Telephone</label>
-                                <input type="text" class="form-control" placeholder="City">
-                              </div>
-                            </div>
-                            <div class="col-md-4 px-1">
-                              <div class="form-group">
-                                <label>Mobile</label>
-                                <input type="text" class="form-control" placeholder="Country">
-                              </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                              <div class="form-group">
-                                <label>Work Telephone</label>
-                                <input type="number" class="form-control" placeholder="ZIP Code">
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-md-6 ">
-                              <div class="form-group">
-                                <label>Work Email</label>
-                                <input type="text" class="form-control" placeholder="Country">
-                              </div>
-                            </div>
-                            <div class="col-md-6 ">
-                              <div class="form-group">
-                                <label>Personal Email</label>
-                                <input type="text" class="form-control" placeholder="ZIP Code">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-primary">Submit</button>
-                          </div>
-                        </form>
-                      </div>*@
                     </div>
-                    <div class="tab-pane" id="link6">
-                      @*<div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal">Create New</a>
-                        </div>
-                      </div>
-                      <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
-                            </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" required>
-                                      </div>
-                                    </div>
-                                  </div>
 
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Relationship</label>
-                                        <input type="text" class="form-control" placeholder="Home Relationship">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Home Telephone</label>
-                                        <input type="text" class="form-control" placeholder="Home Telephone">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" placeholder="Address">
-                                      </div>
-                                    </div>
-                                  </div>
 
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end notice modal -->*@
+
+                    <div class="tab-pane" id="emergencyContact">
 
                       <div class="card-body">
                         <br />
@@ -437,123 +692,60 @@
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th>Home Telephone</th>
-                              <th>Address</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
                             @foreach (var item in Model.EmergencyContacts)
-                    {
-                            <tr>
-                              <td>@item.Name</td>
-                              <td>@item.Relationship</td>
-                              <td>@item.HomeTelephone</td>
-                              <td>@item.Address</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
+                            {
+                              <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Relationship</td>
+                                <td>@item.HomeTelephone</td>
+                                <td>@item.Address</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
 
-                    }
+                            }
                             @*<tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td>Admin</td>
-                              <td>Pending</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td>Employee</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
-                              <td>Accountant</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>*@
+              <td>Garrett Winters</td>
+              <td>info@GatterrWinters.com</td>
+              <td>Admin</td>
+              <td>Pending</td>
+              <td class="text-right">
+                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Ashton Cox</td>
+              <td>ArthurCox@mail.com</td>
+              <td>Employee</td>
+              <td>Active</td>
+              <td class="text-right">
+                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Cedric Kelly</td>
+              <td>cedrickelly@mail.com</td>
+              <td>Accountant</td>
+              <td>Active</td>
+              <td class="text-right">
+                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+              </td>
+            </tr>*@
 
                           </tbody>
                         </table>
                       </div>
+
                     </div>
-                    <div class="tab-pane" id="link1">
-                      @*<div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal1">Create New</a>
-                        </div>
-                      </div>*@
 
-                      <!-- notice modal -->
-                      @*<div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Dependent</h5>
-                            </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" required>
-                                      </div>
-                                    </div>
-                                  </div>
 
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Relationship</label>
-                                        <input type="text" class="form-control" placeholder="Home Relationship">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Birth Date</label>
-                                        <input type="date" class="form-control" placeholder="Birth Date">
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>*@
-                      <!-- end notice modal -->
+                    <div class="tab-pane" id="dependents">
 
                       <div class="card-body">
                         <br />
@@ -566,14 +758,6 @@
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th>Date of Birth</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
                             @foreach (var item in Model.Dependants)
                             {
@@ -592,612 +776,26 @@
                           </tbody>
                         </table>
                       </div>
-                    </div>
-                    <div class="tab-pane" id="link2">
-                        <!-- Start of the Jobs tabs-->
-                        <!-- wizard container -->
-                        <!-- All the modal Pages -->
-                        <!-- notice modal -->
 
-                        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                        <h5 class="modal-title" id="myModalLabel">Enter New Job Title</h5>
-                                    </div>
-                                    <div id="loading-overlay">
-                                        <div class="loading-icon"></div>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="instruction">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Job Title</label>
-                                                            <input type="text" class="form-control" placeholder="Job Title" id="JobTitle" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Description</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Note</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer ">
-                                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobTitle">Submit</button>
-                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- end job Title modal -->
-                        <!-- Begin Department modal -->
-                        <!-- notice modal -->
-                        <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                        <h5 class="modal-title" id="myModalLabel">Enter New Department</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="instruction">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Department Name</label>
-                                                            <input type="text" class="form-control" placeholder="Department Name" id="DepartmentName" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Description</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-footer ">
-                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
-                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end notice modal -->
-                        <!-- end Department modal -->
-                        <!-- Begin Job Category modal -->
-                        <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                        <h5 class="modal-title" id="myModalLabel">Enter New Job Category</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="instruction">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Job Category</label>
-                                                            <input type="text" class="form-control" placeholder="Job Category" id="JobCategory" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Description</label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-footer ">
-                                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
-                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end Job Category modal -->
-                        <!-- Begin Employment Status modal -->
-                        <!-- notice modal -->
-                        <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                        <h5 class="modal-title" id="myModalLabel">Enter New Employement Status</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="instruction">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Employment Status Name</label>
-                                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label> Description </label>
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-footer ">
-                                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
-                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end notice modal -->
-                        <!-- end Employment Status modal -->
-                        <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                        <h5 class="modal-title" id="myModalLabel">Enter New Branch</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="instruction">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Employment Status Name</label>
-                                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Email</label>
-                                                            <input type="text" class="form-control" placeholder="Email" id="Email" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Phone Number</label>
-                                                            <input type="text" class="form-control" placeholder="Phone Number" id="Phone Number" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label> City </label>
-                                                            <input type="text" class="form-control" placeholder="City" id="City" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label> Country </label>
-                                                            <input type="text" class="form-control" placeholder="country" id="country" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer ">
-                                                    <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
-                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Begin Employment Status modal -->
-                        <!-- end Employment Status modal -->
-                        <!-- End of all the modal pages-->
-
-
-
-                        <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Job Title</label>
-                                            <div class="input-group mb-2">
-                                                <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
-                                                    <option> -- Select Job Title -- </option>
-                                                </select>
-                                                <div class="input-group-append " style="position:relative; top:-10px;">
-                                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal">+</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Department</label>
-                                            <div class="input-group mb-2">
-                                                <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
-                                                    <option> -- Select Department -- </option>
-                                                </select>
-                                                <div class="input-group-append " style="position:relative; top:-10px;">
-                                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal1">+</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Employment Type</label>
-                                            <div class="input-group mb-2">
-                                                <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
-                                                    <option> -- Select Job Employement Status -- </option>
-                                                </select>
-                                                <div class="input-group-append " style="position:relative; top:-10px;">
-                                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Job Category</label>
-                                            <div class="input-group mb-2">
-                                                <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
-                                                    <option> -- Select Job Category -- </option>
-                                                </select>
-                                                <div class="input-group-append " style="position:relative; top:-10px;">
-                                                    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal2">+</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-5 pr-1">
-                                        <div class="form-group">
-                                            <label>Joined date </label>
-                                            <input asp-for="JoinDate" type="date" class="form-control" placeholder="Company">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 pl-1">
-                                        <div class="form-group">
-                                            <label>Branch</label>
-                                            <select asp-for="BranchId" type="text" asp-items="ViewBag.Branch" class="form-control">
-                                                <option> -- Select Branch -- </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <hr />
-                                <h5>Employment Contract</h5>
-
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Start Date</label>
-                                            <input asp-for="StartDate" type="date" class="form-control" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>End Date</label>
-                                            <input asp-for="EndDate" type="date" class="form-control" placeholder="ZIP Code">
-                                        </div>
-                                    </div>
-                                </div>
-                                @*  *@
-                                @*<div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Contract Details</label>
-                      <input type="text" class="form-control" asp-for="ContractDetails"  placeholder="Comtract Details" required>
-                    </div>
-                  </div>
-                </div>*@
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-fill btn-primary" id="btnJob">Update</button>
-                                    <button type="submit" class="btn btn-fill btn-info">Terminate Employment</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- the End of Jobs Tabs-->
                     </div>
 
-                    <div class="tab-pane" id="link3">
+                    <div class="tab-pane" id="qualification">
 
                       <div class="card-body">
-                          <form>
-                              <div class="row">
-                                  @*<div class="col-md-6 ">
-              <div class="form-group">
-                <label>Pay Grade</label>
-                <select asp-for="PayGradeId" type="text" asp-items="ViewBag.PayGrade" class="form-control" placeholder="Country">
-                  <option> -- Select Pay Grade -- </option>
-                </select>
-              </div>
-            </div>*@
-                                  <div class="col-md-6 ">
-                                      <div class="form-group">
-                                          <label>Pay Frequency</label>
-                                          <select asp-for="PayFrequency" type="text" class="form-control">
-                                              <option> -- Select Pay Frequency -- </option>
-                                              <option value="Monthly">Monthly</option>
-                                              <option value="Bi Monthly">Bi Monthly</option>
-                                              <option value="Weekly">Weekly</option>
-                                          </select>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-6 ">
-                                      <div class="form-group">
-                                          <label>Amount</label>
-                                          <input asp-for="Amount" type="number" class="form-control" placeholder="Amount">
-                                      </div>
-                                  </div>
-
-                              </div>
-                              <div class="col-md-6 ">
-                                  <div class="form-group">
-                                      <label>Currency</label>
-                                      <input type="text" class="form-control" id="StartDate" name="StartDate">
-                                  </div>
-                              </div>
-                              <div class="col-md-6 ">
-                                  <div class="form-group">
-                                      <label></label>
-                                  </div>
-                              </div>
-                              <hr />
-
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>Account Name</label>
-                                      <div class="input-group mb-2">
-                                          <input type="text" class="form-control" id="AccountName" placeholder="Account Name" name="Account Name" />
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>Amount Number </label>
-                                      <input type="number" class="form-control" placeholder="Amount Number" id="Amount Number " name="Amount Number ">
-                                  </div>
-                              </div>
-                              
-
-                              <div class="col-md-6 ">
-                                  <div class="form-group">
-                                      <label>Bank Name</label>
-                                      <input type="text" class="form-control" placeholder="Bank Name" id="BankName" name="BnakName">
-                                  </div>
-                              </div>
-
-
-
-                              @*<div class="row">
-          <div class="col-md-6 ">
-            <div class="form-group">
-              <label>Currency</label>
-              <input asp-for="Currency" type="text" class="form-control" placeholder="Currency">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Comments</label>
-              <input type="text" class="form-control" asp-for="Comments" placeholder="Comments" >
-            </div>
-          </div>
-        </div>*@
-                              <div class="card-footer">
-                                  <button type="button" class="btn btn-fill btn-primary" name="btnSalary" id="btnSalary">Save</button>
-                              </div>
-                          </form>
-                      </div>
-
-                    </div>
-                    <div class="tab-pane" id="link7">
-                      <!-- Start of Qualifaction-->
-                      <!-- Education Page-->
-                      <div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal3">Create New</a>
-                        </div>
-                      </div>
-
-                      <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Education</h5>
-                            </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Level</label>
-                                        <select type="text" class="form-control" placeholder="Name" required>
-                                          <option> -- Select Level -- </option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Institute</label>
-                                        <input type="text" class="form-control" placeholder="Institute">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Major/Specailiazation</label>
-                                        <input type="text" class="form-control" placeholder="Major/Specailiazation">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Year</label>
-                                        <input type="text" class="form-control" placeholder="Year">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>GPA/Score</label>
-                                        <input type="text" class="form-control" placeholder="Year">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Start Date</label>
-                                        <input type="date" class="form-control" placeholder="Year">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>End Date</label>
-                                        <input type="date" class="form-control" placeholder="Year">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end notice modal -->
-
-                      <div class="card-body">
-                        <br />
                         <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                           <thead>
                             <tr>
-                              <th> Name</th>
+                              
+                              <th> Qualifications</th>
                               <th>Relationship</th>
                               <th>Date of Birth</th>
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th>Date of Birth</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
                             <tr>
                               <td>Tiger Nixon</td>
                               <td>info@TigerNixon.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td>Admin</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
                               <td>Active</td>
                               <td class="text-right">
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
@@ -1208,67 +806,10 @@
                           </tbody>
                         </table>
                       </div>
-                      <!-- work Experience End-->
-                      <!-- Skills-->
-                      <div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal4">Create New</a>
-                        </div>
-                      </div>
 
-                      <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Skill</h5>
-                            </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Skill</label>
-                                        <input type="text" class="form-control" placeholder="Skill" required>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Year of Experience</label>
-                                        <input type="text" class="form-control" placeholder="Year of Experience">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Comments</label>
-                                        <input type="text" class="form-control" placeholder="Comments">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end notice modal -->
+                      <hr />
 
                       <div class="card-body">
-                        <br />
                         <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                           <thead>
                             <tr>
@@ -1277,38 +818,7 @@
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th> Name</th>
-                              <th>Relationship</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
-                            <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
                             <tr>
                               <td>Cedric Kelly</td>
                               <td>cedrickelly@mail.com</td>
@@ -1321,81 +831,9 @@
                         </table>
                       </div>
                       <!--End Skills-->
-
-                      <div class="card-header">
-                        <div class="justify-content-end align-items-center ">
-                          <a class="btn btn-fill btn-primary" data-toggle="modal" data-target="#noticeModal5">Create New</a>
-                        </div>
-                      </div>
-
-                      <!-- notice modal -->
-                      <div class="modal fade" id="noticeModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                              </button>
-                              <h5 class="modal-title" id="myModalLabel">Enter New Language</h5>
-                            </div>
-                            <div class="modal-body">
-                              <div class="instruction">
-                                <form>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>language</label>
-                                        <select type="text" class="form-control" placeholder="Name" required>
-                                          <option> -- Select --</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Fluency</label>
-                                        <select type="text" class="form-control" placeholder="Name" required>
-                                          <option> -- Select --</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Competency</label>
-                                        <select type="text" class="form-control" placeholder="Name" required>
-                                          <option> -- Select --</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Comments</label>
-                                        <input type="text" class="form-control" placeholder="Comments">
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <hr />
-                                  <div class="card-footer ">
-                                    <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- end notice modal -->
+                      <hr />
 
                       <div class="card-body">
-                        <br />
                         <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                           <thead>
                             <tr>
@@ -1405,42 +843,7 @@
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
-                          <tfoot>
-                            <tr>
-                              <th>Language</th>
-                              <th>Fluency</th>
-                              <th>Comtency</th>
-                              <th class="disabled-sorting text-right">Actions</th>
-                            </tr>
-                          </tfoot>
                           <tbody>
-                            <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>info@GatterrWinters.com</td>
-                              <td>Admin</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>ArthurCox@mail.com</td>
-                              <td>Active</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
                             <tr>
                               <td>Cedric Kelly</td>
                               <td>cedrickelly@mail.com</td>
@@ -1458,19 +861,6 @@
                     </div>
 
 
-
-
-
-                    <div class="tab-pane" id="#">
-                      Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                      <br>
-                      <br> innovate resource-leveling customer service for state of the art customer service.
-                    </div>
-                    <div class="tab-pane" id="#">
-                      Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                      <br>
-                      <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
-                    </div>
                   </div>
                 </div>
               </div>
