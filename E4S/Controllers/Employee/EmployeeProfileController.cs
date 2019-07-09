@@ -553,6 +553,117 @@ namespace E4S.Controllers.Employee
     }
 
 
+    public async Task<IActionResult> editRecords([FromBody]PostQualification postQualification)
+    {
+      if (postQualification == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var orgRecord = _context.InstitutionQualifications.Where(x => x.Id == Guid.Parse(postQualification.AId)).FirstOrDefault();
+        orgRecord.Degree = postQualification.Degree;
+        orgRecord.Grade = postQualification.Grade;
+        orgRecord.Institution = postQualification.Institution;
+        orgRecord.CourseOfStudy = postQualification.CourseOfStudy;
+        orgRecord.YearCompleted = postQualification.YearCompleted;
+        orgRecord.ImageURL = postQualification.ImageUrl;
+
+
+        _context.Update(orgRecord);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    public async Task<IActionResult> editWorkExperience([FromBody]PostWorkExperience postWorkExperience)
+    {
+      if (postWorkExperience == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var orgWork = _context.WorkExperiences.Where(x => x.Id == Guid.Parse(postWorkExperience.AId)).FirstOrDefault();
+        orgWork.Organisation = postWorkExperience.WOrganisation;
+        orgWork.JobTitle = postWorkExperience.WJobTitle;
+        orgWork.StartDate = postWorkExperience.WStartDate;
+        orgWork.EndDate = postWorkExperience.WEndDate;
+        orgWork.Comment = postWorkExperience.WComment;
+
+
+        _context.Update(orgWork);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
 
 
 
@@ -625,6 +736,7 @@ namespace E4S.Controllers.Employee
         CourseOfStudy = postQualification.CourseOfStudy,
         Institution = postQualification.Institution,
         YearCompleted = postQualification.YearCompleted,
+        ImageURL = postQualification.ImageUrl,
 
       };
 

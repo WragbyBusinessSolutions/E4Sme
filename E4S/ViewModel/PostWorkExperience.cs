@@ -7,6 +7,7 @@ namespace E4S.ViewModel
 {
   public class PostWorkExperience
   {
+    public string AId { get; set; }
     public string WOrganisation { get; set; }
     public string WJobTitle { get; set; }
     public DateTime WStartDate { get; set; }

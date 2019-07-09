@@ -7,6 +7,8 @@ namespace E4S.ViewModel
 {
   public class PostQualification
   {
+    public string AId { get; set; }
+
     public string Degree { get; set; }
     public string Grade { get; set; }
     public string Institution { get; set; }
