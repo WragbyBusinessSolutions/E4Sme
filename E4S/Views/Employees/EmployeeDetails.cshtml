@@ -78,22 +78,23 @@
 
                       <form method="post">
                         <div class="row">
+                          <input id="empID" name="empID" asp-for="EmployeeDetail.Id" hidden />
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
                               <label>First Name</label>
-                              <input asp-for="EmployeeDetail.FirstName" type="text" class="form-control" placeholder="FirstName">
+                              <input asp-for="EmployeeDetail.FirstName" id="empFirstName" name="empFirstName" type="text" class="form-control" placeholder="FirstName">
                             </div>
                           </div>
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Middle Name</label>
-                              <input asp-for="EmployeeDetail.MiddleName" type="text" class="form-control" placeholder="MiddleName">
+                              <input asp-for="EmployeeDetail.MiddleName" id="empMiddleName" name="empMiddleName"  type="text" class="form-control" placeholder="MiddleName">
                             </div>
                           </div>
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Last Name</label>
-                              <input asp-for="EmployeeDetail.LastName" type="text" class="form-control" placeholder="LastName">
+                              <input asp-for="EmployeeDetail.LastName" id="empLastName" name="empLastName"  type="text" class="form-control" placeholder="LastName">
                             </div>
                           </div>
                         </div>
@@ -102,13 +103,13 @@
                           <div class="col-md-6 pr-1">
                             <div class="form-group">
                               <label>Employye ID</label>
-                              <input asp-for="EmployeeDetail.EmployeeId" type="text" class="form-control" disabled placeholder="Employee ID">
+                              <input asp-for="EmployeeDetail.EmployeeId" type="text" class="form-control" id="empEmployeeID" name="empEmployeeID"   placeholder="Employee ID">
                             </div>
                           </div>
                           <div class="col-md-6 pl-1">
                             <div class="form-group">
                               <label>Other ID </label>
-                              <input asp-for="EmployeeDetail.OtherId" type="text" class="form-control" placeholder="Other ID">
+                              <input asp-for="EmployeeDetail.OtherId" type="text" class="form-control" id="empOtherId" name="empOtherId"  placeholder="Other ID">
                             </div>
                           </div>
                         </div>
@@ -117,26 +118,27 @@
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
                               <label>Gender</label>
-                              <select asp-for="EmployeeDetail.Gender" type="text" class="form-control" placeholder="Username">
-                                <option>Male </option>
-                                <option>Female</option>
+                              <select asp-for="EmployeeDetail.Gender" type="text" id="empGender" name="empGender"  class="form-control" placeholder="Username">
+                                <option> -- Select Gender -- </option>
+                                <option value="Male"> Male </option>
+                                <option value="Female">Female</option>
                               </select>
                             </div>
                           </div>
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Marital Status</label>
-                              <select asp-for="EmployeeDetail.MaritalStatus" type="text" class="form-control" placeholder="Username">
-                                <option selected> -- Select Marital -- </option>
-                                <option>Single </option>
-                                <option>Married</option>
+                              <select asp-for="EmployeeDetail.MaritalStatus" type="text" id="empMaritalStatus" name="empMaritalStatus"  class="form-control" placeholder="Username">
+                                <option > -- Select Marital -- </option>
+                                <option value="Single">Single </option>
+                                <option value="Married">Married</option>
                               </select>
                             </div>
                           </div>
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Date of Birth</label>
-                              <input asp-for="EmployeeDetail.DateOfBirth" type="Date" class="form-control" placeholder="date">
+                              <input asp-for="EmployeeDetail.DateOfBirth" type="Date" id="empDateOfBirth" name="empDateOfBirth"  class="form-control" placeholder="date">
                             </div>
                           </div>
                         </div>
@@ -144,19 +146,19 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Email</label>
-                              <input asp-for="EmployeeDetail.Email" type="email" class="form-control" placeholder="Email">
+                              <input asp-for="EmployeeDetail.Email" type="email" id="empEmail" name="empEmail" class="form-control" placeholder="Email">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Phone No</label>
-                              <input asp-for="EmployeeDetail.PhoneNumber" type="tel" class="form-control" placeholder="Phone No">
+                              <input asp-for="EmployeeDetail.PhoneNumber" type="tel" id="empTel" name="empTel" class="form-control" placeholder="Phone No">
                             </div>
                           </div>
                         </div>
                         <hr />
                         <div class="card-footer ">
-                          <button type="submit" class="btn btn-fill btn-primary">Update</button>
+                          <button type="button" class="btn btn-fill btn-primary" id="btnUpdatePD" name="btnUpdatePD">Update</button>
                         </div>
                       </form>
 
@@ -410,7 +412,7 @@
                               <div class="form-group">
                                 <label>Job Title</label>
                                 <div class="input-group mb-2">
-                                  <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitleId" name="JobTitleId">
                                     <option> -- Select Job Title -- </option>
                                   </select>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
@@ -423,7 +425,7 @@
                               <div class="form-group">
                                 <label>Department</label>
                                 <div class="input-group mb-2">
-                                  <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
+                                  <select type="text" class="form-control" asp-items="ViewBag.Department" id="DepartmentId" name="DepartmentId">
                                     <option> -- Select Department -- </option>
                                   </select>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
@@ -438,7 +440,7 @@
                               <div class="form-group">
                                 <label>Employment Type</label>
                                 <div class="input-group mb-2">
-                                  <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus">
+                                  <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatusId" name="EmploymentStatusId">
                                     <option> -- Select Job Employement Status -- </option>
                                   </select>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
@@ -451,7 +453,7 @@
                               <div class="form-group">
                                 <label>Job Category</label>
                                 <div class="input-group mb-2">
-                                  <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategory" name="JobCategory">
+                                  <select type="text" class="form-control" asp-items="ViewBag.JobCategory" id="JobCategoryId" name="JobCategoryId">
                                     <option> -- Select Job Category -- </option>
                                   </select>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
@@ -472,7 +474,7 @@
                             <div class="col-md-5 pl-1">
                               <div class="form-group">
                                 <label>Branch</label>
-                                <select asp-for="BranchId" type="text" asp-items="ViewBag.Branch" class="form-control">
+                                <select asp-for="BranchId" type="text" asp-items="ViewBag.Branch" id="BranchId" name="BranchId" class="form-control">
                                   <option> -- Select Branch -- </option>
                                 </select>
                               </div>
@@ -539,41 +541,52 @@
                             </div>
 
                           </div>
-                          <div class="col-md-6 ">
-                            <div class="form-group">
-                              <label>Currency</label>
-                              <input type="text" class="form-control" id="StartDate" name="StartDate">
-                            </div>
-                          </div>
-                          <div class="col-md-6 ">
-                            <div class="form-group">
-                              <label></label>
-                            </div>
-                          </div>
-                          <hr />
-
-                          <div class="col-sm-6">
-                            <div class="form-group">
-                              <label>Account Name</label>
-                              <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="AccountName" placeholder="Account Name" name="Account Name" />
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Currency</label>
+                                <input asp-for="Currency" type="text" class="form-control" id="Currency" name="Currency">
                               </div>
                             </div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="form-group">
-                              <label>Amount Number </label>
-                              <input type="number" class="form-control" placeholder="Amount Number" id="Amount Number " name="Amount Number ">
-                            </div>
+
+
                           </div>
 
 
-                          <div class="col-md-6 ">
-                            <div class="form-group">
-                              <label>Bank Name</label>
-                              <input type="text" class="form-control" placeholder="Bank Name" id="BankName" name="BnakName">
+                          <hr />
+
+                          <div class="row">
+
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>Account Name</label>
+                                <div class="input-group mb-2">
+                                  <input asp-for="AccountName" type="text" class="form-control" id="AccountName" placeholder="Account Name" name="AccountName" />
+                                </div>
+                              </div>
                             </div>
+
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label>Amount Number </label>
+                                <input asp-for="AccountNo" type="text" class="form-control" placeholder="Amount Number" id="AccountNo" name="AccountNo">
+                              </div>
+                            </div>
+
+
                           </div>
+                          
+                          <div class="row">
+                            <div class="col-md-6 ">
+                              <div class="form-group">
+                                <label>Bank Name</label>
+                                <input asp-for="BankName" type="text" class="form-control" placeholder="Bank Name" id="BankName" name="BankName">
+                              </div>
+                            </div>
+
+
+                          </div>
+                          
 
 
                           <div class="card-footer">
@@ -880,6 +893,77 @@
 
     $(document).ready(function () {
 
+             $("#btnUpdatePD").click(function (event) {
+
+                event.preventDefault();
+    var PostPersonalDetail = {
+                    Id: $("#Id").val(),
+                    FirstName: $("#empFirstName").val(),
+                    MiddleName: $("#empMiddleName").val(),
+                    LastName: $("#empLastName").val(),
+                    EmployeeId: $("#empEmployeeID").val(),
+                    OtherId: $("#empOtherId").val(),
+                    Gender: $("#empGender").val(),
+                    MaritalStatus: $("#empMaritalStatus").val(),
+                    DateofBirth: $("#empDateOfBirth").val(),
+                    Email: $("#empEmail").val(),
+                    Telephone: $("#empTel").val(),
+                };
+
+
+
+                // console.log(Items);
+                console.log(PostPersonalDetail);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/UpdatePersonalDetail",
+                    data: JSON.stringify(PostPersonalDetail),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+        	                  swal({
+                                  title: "Success!",
+                                  text: "Update Successfully!",
+                                  buttonsStyling: false,
+                                  confirmButtonClass: "btn btn-success",
+                              type: "success"
+                            }).then(function () {
+
+
+                            }).catch(swal.noop);
+
+                            window.location.reload();
+
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+
                   $("#btnSalary").click(function (event) {
 
                 event.preventDefault();
@@ -890,7 +974,11 @@
                     PayFrequency: $("#PayFrequency").val(),
                     Currency: $("#Currency").val(),
                     Amount: $("#Amount").val(),
-                    Comments: $("#Comments").val(),
+                  Comments: $("#Comments").val(),
+                  BankName: $("#BankName").val(),
+                  AccountNo: $("#AccountNo").val(),
+                  AccountName: $("#AccountName").val(),
+
                 };
 
 

@@ -26,6 +26,9 @@ namespace E4S.ViewModel
     public float Amount { get; set; }
     public string Comments { get; set; }
 
+    public string BankName { get; set; }
+    public string AccountName { get; set; }
+    public string AccountNo { get; set; }
 
     public EmployeeDetail EmployeeDetail { get; set; }
     public ContactDetail ContactDetail { get; set; }

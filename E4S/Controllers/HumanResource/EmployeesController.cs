@@ -238,7 +238,7 @@ namespace E4S.Controllers.HumanResource
       return RedirectToAction("Index");
     }
 
-    [HttpPost]
+    [HttpPost] 
     public async Task<IActionResult> UploadCSV(IFormFile file)
     {
       if (file == null || file.Length == 0)
@@ -1006,6 +1006,9 @@ namespace E4S.Controllers.HumanResource
         employeeDetailsVM.PayFrequency = salaryEmployee.PayFrequency;
         employeeDetailsVM.Comments = salaryEmployee.Comment;
         employeeDetailsVM.Currency = salaryEmployee.Currency;
+        employeeDetailsVM.AccountNo = salaryEmployee.AccountNo;
+        employeeDetailsVM.BankName = salaryEmployee.BankName;
+        employeeDetailsVM.AccountName = salaryEmployee.AccountName;
       }
 
       ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId) , "Id", "JobTitleName", employeeDetailsVM.JobTitleId);
@@ -1017,6 +1020,91 @@ namespace E4S.Controllers.HumanResource
 
       return View(employeeDetailsVM);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePersonalDetail([FromBody]PostPersonalDetail postPersonalDetail)
+    {
+      if (postPersonalDetail == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.Id == postPersonalDetail.Id).FirstOrDefault();
+
+
+      if (employeeDetails != null)
+      {
+        try
+        {
+          employeeDetails.FirstName = postPersonalDetail.FirstName;
+          employeeDetails.MiddleName = postPersonalDetail.MiddleName;
+          employeeDetails.LastName = postPersonalDetail.LastName;
+          employeeDetails.OtherId = postPersonalDetail.OtherId;
+          employeeDetails.EmployeeId = postPersonalDetail.EmployeeId;
+          employeeDetails.Gender = postPersonalDetail.Gender;
+          employeeDetails.MaritalStatus = postPersonalDetail.MaritalStatus;
+          employeeDetails.DateOfBirth = postPersonalDetail.DateofBirth;
+          employeeDetails.PhoneNumber = postPersonalDetail.Telephone;
+
+          _context.Update(employeeDetails);
+          await _context.SaveChangesAsync();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+
+        }
+
+      }
+
+
+     // try
+     // {
+     //   var newEmployeeSalary = new Salary()
+     //   {
+     //     Id = Guid.NewGuid(),
+     //     Amount = postSalary.Amount,
+     //     OrganisationId = orgId,
+     //     EmployeeDetailId = postSalary.EmployeeId,
+     //     Currency = postSalary.Currency,
+     //     PayFrequency = postSalary.PayFrequency,
+     //     Comment = postSalary.Comments,
+     //     IsActive = true
+
+     //   };
+
+     //   _context.Add(newEmployeeSalary);
+     //   _context.SaveChanges();
+
+
+     //   return Json(new
+     //   {
+     //     msg = "Success"
+     //   }
+     //);
+     // }
+     // catch (Exception ee)
+     // {
+
+     // }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
 
     [HttpPost]
     public async Task<IActionResult> SaveSalary([FromBody]PostSalary postSalary)
@@ -1044,6 +1132,10 @@ namespace E4S.Controllers.HumanResource
         employeeSalary.Currency = postSalary.Currency;
         //employeeSalary.PayGradeId = postSalary.PayGrade;
         employeeSalary.Comment = postSalary.Comments;
+        employeeSalary.BankName = postSalary.BankName;
+        employeeSalary.AccountName = postSalary.AccountName;
+        employeeSalary.AccountNo = postSalary.AccountNo;
+
 
         _context.Update(employeeSalary);
         await _context.SaveChangesAsync();
@@ -1067,8 +1159,11 @@ namespace E4S.Controllers.HumanResource
           Currency = postSalary.Currency,
           PayFrequency = postSalary.PayFrequency,
           Comment = postSalary.Comments,
-          IsActive = true
-          
+          IsActive = true,
+          BankName = postSalary.BankName,
+          AccountName = postSalary.AccountName,
+          AccountNo = postSalary.AccountNo,
+
         };
 
         _context.Add(newEmployeeSalary);
