@@ -47,8 +47,16 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                          <label>Leave Title</label>
+                                                            <label>Leave Title</label>
                                                             <input id="LeaveTitle" type="text" class="form-control" placeholder="Title Leave" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Maximum Duration</label>
+                                                            <input id="MaxDuration" type="number" class="form-control" placeholder="Number of Days" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -57,7 +65,49 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Description</label>
-                                                            <input id="Description" type="text" class="form-control" placeholder="Description" required>
+                                                            <textarea class="form-control" placeholder="Description" id="Description" name="Description" required rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-footer ">
+                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewLeaveConfiguration">Submit</button>
+                                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end notice modal -->
+                        <!-- notice modal -->
+                        <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-notice">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </button>
+                                        <h5 class="modal-title" id="myModalLabel">Edit Leave Configuration</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="instruction">
+                                            <form>
+                                                @*<div class="row">
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label>Employee Name</label>
+                                      <input id="EmployeeName" name="EmployeeName" type="text" class="form-control" placeholder="Employee Name" required>
+                                    </div>
+                                  </div>
+                                </div>*@
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Leave Title</label>
+                                                            <input id="eLeaveTitle" name="eLeaveTitle" type="text" class="form-control" placeholder="Title Leave" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -65,15 +115,25 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label>Leave Duration</label>
-                                                            <input id="MaxDuration" type="number" class="form-control" placeholder="Number of Days" required>
+                                                            <label>Maximum Duration</label>
+                                                            <input id="eMaxDuration" name="eMaxDuration" type="number" class="form-control" placeholder="Number of Days" required>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
+                                                            <input type="hidden" class="form-control" placeholder="deptid" id="eLeaveid" name="eLeaveid">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <hr />
                                                 <div class="card-footer ">
-                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewLeaveConfiguration">Submit</button>
+                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="editLeaveConfiguration">Submit</button>
                                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
@@ -113,57 +173,57 @@
                                         <tbody>
 
                                             @{
-                                                  int i = 1;
+                                                int i = 1;
 
-                                                                                @if (Model.Count() < 1)
-                                                  {
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td>No Data to Display</td>
-                                                                            <td></td>
-                                                                            <td></td>
+                                                @if (Model.Count() < 1)
+                                                {
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>No Data to Display</td>
+                                                <td></td>
 
-                                                }
+                                            }
 
-                                                                                @foreach (var item in Model)
-                                                  {
+                                                @foreach (var item in Model)
+                                                {
 
-                                                                                <tr>
-                                                                                    <td class="text-center">
-                                                                                        <div class="form-check">
-                                                                                            <label class="form-check-label">
-                                                                                                <input class="form-check-input" type="checkbox">
-                                                                                                <span class="form-check-sign"></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-center">
-                                                                                        @i
-                                                                                    </td>
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <div class="form-check">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox">
+                                                                    <span class="form-check-sign"></span>
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @i
+                                                        </td>
 
-                                                                                    <td>
-                                                                                        @item.LeaveTitle
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        @item.Description
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                                                                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                                                                    </td>
-                                                                                </tr>
+                                                        <td>
+                                                            @item.LeaveTitle
+                                                        </td>
+                                                        <td>
+                                                            @item.Description
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" id="Editbtn" LeaveConfigId="@item.Id" Selected-LeaveConfig="@item.LeaveTitle" Selected-MaxDuration="@item.MaxDuration" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
+                                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                                        </td>
+                                                    </tr>
 
                                                     { i = i + 1; }
-                                                  }
-                                                                            }
+                                                }
+                                            }
 
-                                                                            </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- the End of Emergency Contact Tabs-->
                         </div>
-                        <!-- the End of Emergency Contact Tabs-->
-                    </div>
                 </div>
             </div>
         </div>
@@ -229,6 +289,89 @@
                 });
             });
         });
+
+         //Code for pulling the Records on the Table  
+        var aEditLeaveId;
+
+         $(document).delegate('#Editbtn',
+        'click',
+        function (e) {
+
+            aEditLeaveId = $(this).attr('LeaveConfigId');
+            leaveConfig = $(this).attr('Selected-LeaveConfig');
+            maxDuration = $(this).attr('Selected-MaxDuration');
+            description = $(this).attr('Selected-Description');
+            
+            //console.log(description, department);
+
+            $('input[name=eLeaveid]').val(aEditLeaveId);
+            $('input[name=eLeaveTitle]').val(leaveConfig);
+            $('input[name=eMaxDuration]').val(maxDuration);
+            $('textarea[name=eDescription]').val(description);
+            
+        });
+
+        //End of the code
+
+        // Edit your post 
+
+         $(document).ready(function () {
+
+            $("#editLeaveConfiguration").click(function (event) {
+
+                event.preventDefault();
+
+                var PostLeaveConfiguration = { 
+                    AId: $("#eLeaveid").val(),
+                    LeaveTitle: $("#eLeaveTitle").val(),
+                    MaxDuration: $("#eMaxDuration").val(),
+                    Description : $("#eDescription").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostLeaveConfiguration);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/Jobs/editLeaveConfiguration",
+                  data: JSON.stringify(PostLeaveConfiguration),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+      
+            });
+
+
+
 
     </script>
 

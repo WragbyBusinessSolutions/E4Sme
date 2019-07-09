@@ -3,6 +3,7 @@ using E4S.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -170,5 +171,37 @@ namespace E4S.Controllers
       return RedirectToAction("Branch");
     }
 
-  }
+        [HttpPost]
+        public IActionResult editbranch(Branch branch)
+        {
+            var org = getOrg();
+
+            var bran = _context.Branches.Where(x => x.Id == branch.Id).FirstOrDefault();
+
+
+            if (branch == null)
+            {
+                return View();
+            }
+
+            try
+            {
+                branch.OrganisationId = bran.Id;                 
+                branch.Id = Guid.NewGuid();
+
+                _context.Update(branch);
+                _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {              
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Branch");
+         }
+            
+                
+
+    }
 }
