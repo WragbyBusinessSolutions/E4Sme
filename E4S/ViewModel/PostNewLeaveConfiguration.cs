@@ -7,6 +7,7 @@ namespace E4S.ViewModel
 {
     public class PostNewLeaveConfiguration
     {
+        public string AId { get; set; }
         public string LeaveTitle { get; set; }
         public string Description { get; set; }
         public int MaxDuration { get; set; }

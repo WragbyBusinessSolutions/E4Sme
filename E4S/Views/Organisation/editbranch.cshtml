@@ -1,0 +1,75 @@
+﻿@model E4S.Models.Branch
+
+@{
+  ViewData["Title"] = "Edit Branch";
+}
+
+
+<div class="content">
+  <div class="row">
+      <div class="col-md-6">
+           <div class="card ">
+                  <div class="card-header ">
+                    <h4 class="card-title">Edit Branch</h4>
+                  </div>
+                  <div class="card-body ">
+                    <form method="post" asp-action="editbranch" asp-controller="organisation" class="form-horizontal">
+                      <div class="row">
+                        <label class="col-md-3 col-form-label">Branch Name</label>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <input asp-for="BranchName" type="text" class="form-control" placeholder="Branch Name">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-md-3 col-form-label">Email</label>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-md-3 col-form-label">Phone Number</label>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <input asp-for="PhoneNo" type="tel" class="form-control" placeholder="Phone Number">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-md-3 col-form-label">City</label>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <input asp-for="City" type="text" class="form-control" placeholder="City">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-md-3 col-form-label">Country</label>
+                        <div class="col-md-9">
+                          <div class="form-group">
+                            <input asp-for="Country" type="text" class="form-control" placeholder="Country">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer ">
+                        <div class="row">
+                          <label class="col-md-3"></label>
+                          <div class="col-md-9">
+                            <button type="submit" class="btn btn-fill btn-primary">Create Branch</button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+           </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
