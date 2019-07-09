@@ -238,7 +238,7 @@ namespace E4S.Controllers.HumanResource
       return RedirectToAction("Index");
     }
 
-    [HttpPost]
+    [HttpPost] 
     public async Task<IActionResult> UploadCSV(IFormFile file)
     {
       if (file == null || file.Length == 0)
@@ -396,8 +396,145 @@ namespace E4S.Controllers.HumanResource
             newEmployeeList.Add(newEmployee);
 
           }
+
+
+
         }
       }
+
+
+
+
+
+      List<NewEmployeeImport> successfullyEmployeeList = new List<NewEmployeeImport>();
+      List<NewEmployeeImport> unsuccessfullyEmployeeList = new List<NewEmployeeImport>();
+      EmployeeDetail empDetail;
+      //var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+      foreach (var item in newEmployeeList)
+      {
+        int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+        var userId = Guid.NewGuid();
+
+        empDetail = new EmployeeDetail()
+        {
+          Id = Guid.NewGuid(),
+          FirstName = item.FirstName,
+          LastName = item.LastName,
+          Email = item.EmployeeEmail,
+          OrganisationId = orgId,
+          EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+          UserId = userId
+        };
+
+        var user = new ApplicationUser
+        {
+          Id = userId.ToString(),
+          UserName = empDetail.Email,
+          Email = empDetail.Email,
+          OrganisationId = orgId,
+          UserRole = "Employee",
+          EmployeeName = empDetail.LastName + " " + empDetail.FirstName,
+          FirstName = empDetail.FirstName,
+          LastName = empDetail.LastName
+        };
+
+        var result = await _userManager.CreateAsync(user);
+
+        if (result.Succeeded)
+        {
+          await _userManager.AddToRoleAsync(user, user.UserRole);
+
+          //var Email = user.Email;
+          string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+          var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+          var response = _emailSender.SendGridEmailAsync(user.Email, "Create Password", callbackUrl, organisationDetails.OrganisationName, user.EmployeeName, "setPassword");
+
+
+          //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+
+          _context.Add(empDetail);
+          _context.SaveChanges();
+
+          successfullyEmployeeList.Add(item);
+
+          //Job employeeJob = new Job();
+
+          //if (item.JobTitle != null || item.JobTitle != "")
+          //{
+
+          //  var isJobTitle = _context.JobTitles.Where(x => x.OrganisationId == orgId).Where(x => x.JobTitleName.ToLower() == item.JobTitle.ToLower()).FirstOrDefault();
+          //  if (isJobTitle == null)
+          //  {
+          //    JobTitle newJobTitle = new JobTitle()
+          //    {
+          //      OrganisationId = orgId,
+          //      JobTitleName = item.JobTitle,
+          //      Id = Guid.NewGuid()
+
+          //    };
+
+          //    _context.Add(newJobTitle);
+          //    _context.SaveChanges();
+
+          //    employeeJob.JobTitleId = newJobTitle.Id;
+          //  }
+          //  else
+          //  {
+          //    employeeJob.JobTitleId = isJobTitle.Id;
+          //  }
+          //}
+
+          //if (item.Department != null || item.Department != "")
+          //{
+          //  var isDepartment = _context.Departments.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentName.ToLower() == item.Department.ToLower()).FirstOrDefault();
+          //  if (isDepartment == null)
+          //  {
+          //    Department newDepartment = new Department()
+          //    {
+          //      OrganisationId = orgId,
+          //      DepartmentName = item.Department,
+          //      Id = Guid.NewGuid()
+
+          //    };
+
+          //    _context.Add(newDepartment);
+          //    _context.SaveChanges();
+
+          //    employeeJob.DepartmentId = newDepartment.Id;
+          //  }
+          //  else
+          //  {
+          //    employeeJob.DepartmentId = isDepartment.Id;
+
+          //  }
+          //}
+
+          //employeeJob.Id = Guid.NewGuid();
+          //employeeJob.OrganisationId = orgId;
+          //employeeJob.EmployeeDetailId = empDetail.Id;
+          //try
+          //{
+          //  _context.Add(employeeJob);
+          //  _context.SaveChanges();
+          //}
+          //catch
+          //{
+
+          //}
+
+        }
+        else
+        {
+          unsuccessfullyEmployeeList.Add(item);
+
+        }
+
+
+      }
+
+
 
 
       // Tolu Code
@@ -637,7 +774,7 @@ namespace E4S.Controllers.HumanResource
 
       //}
 
-      var unsuccessful = SaveEmployeeDetailsAsync(newEmployeeList);
+      //var unsuccessful = SaveEmployeeDetailsAsync(newEmployeeList);
 
       return View(newEmployeeList);
     }
@@ -869,6 +1006,9 @@ namespace E4S.Controllers.HumanResource
         employeeDetailsVM.PayFrequency = salaryEmployee.PayFrequency;
         employeeDetailsVM.Comments = salaryEmployee.Comment;
         employeeDetailsVM.Currency = salaryEmployee.Currency;
+        employeeDetailsVM.AccountNo = salaryEmployee.AccountNo;
+        employeeDetailsVM.BankName = salaryEmployee.BankName;
+        employeeDetailsVM.AccountName = salaryEmployee.AccountName;
       }
 
       ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId) , "Id", "JobTitleName", employeeDetailsVM.JobTitleId);
@@ -880,6 +1020,91 @@ namespace E4S.Controllers.HumanResource
 
       return View(employeeDetailsVM);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePersonalDetail([FromBody]PostPersonalDetail postPersonalDetail)
+    {
+      if (postPersonalDetail == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.Id == postPersonalDetail.Id).FirstOrDefault();
+
+
+      if (employeeDetails != null)
+      {
+        try
+        {
+          employeeDetails.FirstName = postPersonalDetail.FirstName;
+          employeeDetails.MiddleName = postPersonalDetail.MiddleName;
+          employeeDetails.LastName = postPersonalDetail.LastName;
+          employeeDetails.OtherId = postPersonalDetail.OtherId;
+          employeeDetails.EmployeeId = postPersonalDetail.EmployeeId;
+          employeeDetails.Gender = postPersonalDetail.Gender;
+          employeeDetails.MaritalStatus = postPersonalDetail.MaritalStatus;
+          employeeDetails.DateOfBirth = postPersonalDetail.DateofBirth;
+          employeeDetails.PhoneNumber = postPersonalDetail.Telephone;
+
+          _context.Update(employeeDetails);
+          await _context.SaveChangesAsync();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+
+        }
+
+      }
+
+
+     // try
+     // {
+     //   var newEmployeeSalary = new Salary()
+     //   {
+     //     Id = Guid.NewGuid(),
+     //     Amount = postSalary.Amount,
+     //     OrganisationId = orgId,
+     //     EmployeeDetailId = postSalary.EmployeeId,
+     //     Currency = postSalary.Currency,
+     //     PayFrequency = postSalary.PayFrequency,
+     //     Comment = postSalary.Comments,
+     //     IsActive = true
+
+     //   };
+
+     //   _context.Add(newEmployeeSalary);
+     //   _context.SaveChanges();
+
+
+     //   return Json(new
+     //   {
+     //     msg = "Success"
+     //   }
+     //);
+     // }
+     // catch (Exception ee)
+     // {
+
+     // }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
 
     [HttpPost]
     public async Task<IActionResult> SaveSalary([FromBody]PostSalary postSalary)
@@ -907,6 +1132,10 @@ namespace E4S.Controllers.HumanResource
         employeeSalary.Currency = postSalary.Currency;
         //employeeSalary.PayGradeId = postSalary.PayGrade;
         employeeSalary.Comment = postSalary.Comments;
+        employeeSalary.BankName = postSalary.BankName;
+        employeeSalary.AccountName = postSalary.AccountName;
+        employeeSalary.AccountNo = postSalary.AccountNo;
+
 
         _context.Update(employeeSalary);
         await _context.SaveChangesAsync();
@@ -930,8 +1159,11 @@ namespace E4S.Controllers.HumanResource
           Currency = postSalary.Currency,
           PayFrequency = postSalary.PayFrequency,
           Comment = postSalary.Comments,
-          IsActive = true
-          
+          IsActive = true,
+          BankName = postSalary.BankName,
+          AccountName = postSalary.AccountName,
+          AccountNo = postSalary.AccountNo,
+
         };
 
         _context.Add(newEmployeeSalary);
