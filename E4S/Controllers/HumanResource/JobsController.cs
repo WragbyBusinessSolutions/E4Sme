@@ -373,13 +373,39 @@ namespace E4S.Controllers.HumanResource
         // Ednf of Edit for Category
 
 
-        public IActionResult PayGrade()
-    {
-      var orgId = getOrg();
-      var payGrades = _context.PayGrades.Where(x => x.OrganisationId == orgId).ToList();
+        // Delete of Edit for Category
+        [HttpPost]
+        public JsonResult Delete(int Id)
+        {
+            try
+            {
+                //ClientManagement cdb = new ClientManagement();
+                //if (cdb.DeleteClient(id))
+                //{
+                //    TempData["Message"] = "Client Deleted Successfully";
+                //}
+                //Session.Abandon();
+                return Json("Delete");
+            }
+            catch
+            {
+                return Json("Error");
+            }
 
-      return View(payGrades);
-    }
+        }
+
+            // Delete of Edit for Category
+
+
+
+        public IActionResult PayGrade()
+        {
+            var orgId = getOrg();
+            var payGrades = _context.PayGrades.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(payGrades);
+        }
+
     [HttpPost]
     public async Task<IActionResult> PostNewPayGrade([FromBody]PostNewPayGrade postNewPayGrade)
     {
