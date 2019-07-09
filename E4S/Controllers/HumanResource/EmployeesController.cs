@@ -396,8 +396,145 @@ namespace E4S.Controllers.HumanResource
             newEmployeeList.Add(newEmployee);
 
           }
+
+
+
         }
       }
+
+
+
+
+
+      List<NewEmployeeImport> successfullyEmployeeList = new List<NewEmployeeImport>();
+      List<NewEmployeeImport> unsuccessfullyEmployeeList = new List<NewEmployeeImport>();
+      EmployeeDetail empDetail;
+      //var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+      foreach (var item in newEmployeeList)
+      {
+        int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+        var userId = Guid.NewGuid();
+
+        empDetail = new EmployeeDetail()
+        {
+          Id = Guid.NewGuid(),
+          FirstName = item.FirstName,
+          LastName = item.LastName,
+          Email = item.EmployeeEmail,
+          OrganisationId = orgId,
+          EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
+          UserId = userId
+        };
+
+        var user = new ApplicationUser
+        {
+          Id = userId.ToString(),
+          UserName = empDetail.Email,
+          Email = empDetail.Email,
+          OrganisationId = orgId,
+          UserRole = "Employee",
+          EmployeeName = empDetail.LastName + " " + empDetail.FirstName,
+          FirstName = empDetail.FirstName,
+          LastName = empDetail.LastName
+        };
+
+        var result = await _userManager.CreateAsync(user);
+
+        if (result.Succeeded)
+        {
+          await _userManager.AddToRoleAsync(user, user.UserRole);
+
+          //var Email = user.Email;
+          string Code = await _userManager.GeneratePasswordResetTokenAsync(user);
+          var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, Code, Request.Scheme);
+
+          var response = _emailSender.SendGridEmailAsync(user.Email, "Create Password", callbackUrl, organisationDetails.OrganisationName, user.EmployeeName, "setPassword");
+
+
+          //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
+
+          _context.Add(empDetail);
+          _context.SaveChanges();
+
+          successfullyEmployeeList.Add(item);
+
+          //Job employeeJob = new Job();
+
+          //if (item.JobTitle != null || item.JobTitle != "")
+          //{
+
+          //  var isJobTitle = _context.JobTitles.Where(x => x.OrganisationId == orgId).Where(x => x.JobTitleName.ToLower() == item.JobTitle.ToLower()).FirstOrDefault();
+          //  if (isJobTitle == null)
+          //  {
+          //    JobTitle newJobTitle = new JobTitle()
+          //    {
+          //      OrganisationId = orgId,
+          //      JobTitleName = item.JobTitle,
+          //      Id = Guid.NewGuid()
+
+          //    };
+
+          //    _context.Add(newJobTitle);
+          //    _context.SaveChanges();
+
+          //    employeeJob.JobTitleId = newJobTitle.Id;
+          //  }
+          //  else
+          //  {
+          //    employeeJob.JobTitleId = isJobTitle.Id;
+          //  }
+          //}
+
+          //if (item.Department != null || item.Department != "")
+          //{
+          //  var isDepartment = _context.Departments.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentName.ToLower() == item.Department.ToLower()).FirstOrDefault();
+          //  if (isDepartment == null)
+          //  {
+          //    Department newDepartment = new Department()
+          //    {
+          //      OrganisationId = orgId,
+          //      DepartmentName = item.Department,
+          //      Id = Guid.NewGuid()
+
+          //    };
+
+          //    _context.Add(newDepartment);
+          //    _context.SaveChanges();
+
+          //    employeeJob.DepartmentId = newDepartment.Id;
+          //  }
+          //  else
+          //  {
+          //    employeeJob.DepartmentId = isDepartment.Id;
+
+          //  }
+          //}
+
+          //employeeJob.Id = Guid.NewGuid();
+          //employeeJob.OrganisationId = orgId;
+          //employeeJob.EmployeeDetailId = empDetail.Id;
+          //try
+          //{
+          //  _context.Add(employeeJob);
+          //  _context.SaveChanges();
+          //}
+          //catch
+          //{
+
+          //}
+
+        }
+        else
+        {
+          unsuccessfullyEmployeeList.Add(item);
+
+        }
+
+
+      }
+
+
 
 
       // Tolu Code
@@ -637,7 +774,7 @@ namespace E4S.Controllers.HumanResource
 
       //}
 
-      var unsuccessful = SaveEmployeeDetailsAsync(newEmployeeList);
+      //var unsuccessful = SaveEmployeeDetailsAsync(newEmployeeList);
 
       return View(newEmployeeList);
     }
