@@ -442,7 +442,15 @@
                                 <div class="input-group mb-2">
                                   <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatusId" name="EmploymentStatusId">
                                     <option> -- Select Job Employement Status -- </option>
+                                     
+                                      <option>  <a class="btn btn-success" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+ Add New Status</a> </option>
+                                      <option> <div class="input-group-append " style="position:relative; top:-10px;">
+    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
+</div> </option>
                                   </select>
+                                    <div class="">
+
+                                    </div>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
                                     <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
                                   </div>
