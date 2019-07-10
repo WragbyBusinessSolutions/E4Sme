@@ -556,6 +556,67 @@ namespace E4S.Controllers.Employee
     }
 
 
+
+    [HttpPost]
+    public async Task<IActionResult> DelSkills([FromBody]string skillId)
+    {
+      if (skillId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var skillTitle = await _context.Skills.FindAsync(Guid.Parse(skillId));
+        _context.Skills.Remove(skillTitle);
+        var skillDescription = await _context.Skills.FindAsync(Guid.Parse(skillId));
+        _context.Skills.Remove(skillDescription);
+        var skillExperience = await _context.Skills.FindAsync(Guid.Parse(skillId));
+        _context.Skills.Remove(skillExperience);
+
+
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
     public async Task<IActionResult> editRecords([FromBody]PostQualification postQualification)
     {
       if (postQualification == null)
@@ -613,6 +674,72 @@ namespace E4S.Controllers.Employee
     }
 
 
+    [HttpPost]
+    public async Task<IActionResult> DelInstitutionRecords([FromBody]string RecordId)
+    {
+      if (RecordId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var school = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(school);
+        var course = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(course);
+        var degree = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(degree);
+        var grade = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(grade);
+        var year = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(year);
+        var ImageUrl = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
+        _context.InstitutionQualifications.Remove(ImageUrl);
+        
+
+
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
     public async Task<IActionResult> editWorkExperience([FromBody]PostWorkExperience postWorkExperience)
     {
       if (postWorkExperience == null)
@@ -655,6 +782,68 @@ namespace E4S.Controllers.Employee
           msg = "Success"
         }
      );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DelWorkExperience([FromBody]string workId)
+    {
+      if (workId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var workTitle = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
+        _context.WorkExperiences.Remove(workTitle);
+        var jobTitle = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
+        _context.WorkExperiences.Remove(jobTitle);
+        var startDate = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
+        _context.WorkExperiences.Remove(startDate);
+        var endDate = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
+        _context.WorkExperiences.Remove(endDate);
+        var comment = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
+        _context.WorkExperiences.Remove(comment);
+       
+        
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
       }
       catch (Exception ee)
       {
