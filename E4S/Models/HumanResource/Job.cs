@@ -17,15 +17,15 @@ namespace E4S.Models.HumanResource
     public string JobSpecification { get; set; } 
 
     public Guid EmploymentStatusId { get; set; }
-    public virtual EmploymentStatus EmploymentStatus { get; set; }
+    //public virtual EmploymentStatus EmploymentStatus { get; set; }
 
     public Guid JobCategoryId { get; set; }
-    public virtual JobCategory JobCategory { get; set; }
+    //public virtual JobCategory JobCategory { get; set; }
 
     public DateTime JoinedDate { get; set; }
 
     public Guid BranchId { get; set; }
-    public virtual Branch Branch { get; set; }
+    //public virtual Branch Branch { get; set; }
 
     public Guid DepartmentId { get; set; }
     public virtual Department Department { get; set; }

@@ -62,14 +62,14 @@ namespace E4S.Controllers.HumanResource
       {
         try
         {
-          var empDetails = _context.Jobs.Where(x => x.EmployeeDetailId == item.Id).Include(x => x.JobTitle).Include(x => x.Department).Include(x => x.EmploymentStatus).FirstOrDefault();
+          var empDetails = _context.Jobs.Where(x => x.EmployeeDetailId == item.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
           singleEmployee = new EmployeeListViewModel()
           {
             Id = item.Id,
             EmployeeName = item.FirstName + " " + item.LastName,
             Email = item.Email,
             Department = empDetails.Department.DepartmentName,
-            EmployeeStatus = empDetails.EmploymentStatus.EmploymentStatusName,
+            EmployeeStatus = _context.EmploymentStatuses.Where(x => x.Id == empDetails.EmploymentStatusId).FirstOrDefault().EmploymentStatusName,
             JobTitle = empDetails.JobTitle.JobTitleName,
             Supervisor = "",
             IsActive = item.IsActive,

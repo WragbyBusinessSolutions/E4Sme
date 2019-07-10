@@ -55,7 +55,7 @@
                                           <div class="form-group">
                                             <label>Degree</label>
                                             <div class="form-group">
-                                              <select id="degree" name="degree" class="form-control">
+                                              <select id="Degree" name="Degree" class="form-control" required>
                                                 <option>-- Select Degree --</option>
                                                 <option value="BSc.">BSc.</option>
                                                 <option value="BA.">BA.</option>
@@ -73,7 +73,7 @@
                                           <div class="form-group">
                                             <label>Grade</label>
                                             <div class="form-group">
-                                              <select id="grade" name="grade" class="form-control">
+                                              <select id="Grade" name="Grade" class="form-control" required>
                                                 <option>-- Select Grade --</option>
                                                 <option value="First Class">First Class</option>
                                                 <option value="Distinction">Distinction</option>
@@ -93,7 +93,7 @@
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Institution</label>
-                                            <input id="institution" name="institution" type="text" class="form-control" placeholder="Institution">
+                                            <input id="Institution" name="Institution" type="text" class="form-control" placeholder="Institution" required>
                                           </div>
                                         </div>
                                       </div>
@@ -101,7 +101,7 @@
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Course Of Study</label>
-                                            <input id="coureofstudy" name="courseofstudy" type="text" class="form-control" placeholder="Course Of Study">
+                                            <input id="CourseOfStudy" name="CourseOfStudy" type="text" class="form-control" placeholder="Course Of Study" required>
                                           </div>
                                         </div>
                                       </div>
@@ -110,7 +110,7 @@
                                           <div class="form-group">
                                             <label>Year Completed</label>
                                             <div class="form-group">
-                                              <select id="yearcompleted" name="yearcompleted" class="form-control">
+                                              <select id="YearCompleted" name="YearCompleted" class="form-control" required>
                                                 <option>- Year -</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2019">2019</option>
@@ -184,7 +184,7 @@
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Certificate Url</label>
-                                            <input id="ImageURL" name="ImageURL" type="text" class="form-control" placeholder="http://">
+                                            <input id="ImageUrl" name="ImageUrl" type="text" class="form-control" placeholder="http://">
                                           </div>
                                         </div>
                                       </div>
@@ -214,13 +214,14 @@
                                 </div>
                                 <div class="modal-body">
                                   <div class="instruction">
-                                    <form enctype="multipart/form-data" asp-action="UploadDocument" method="post">
+                                    <form method="post">
+                                      <input id="RecordId" name="RecordId" hidden />
                                       <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Degree</label>
                                             <div class="form-group">
-                                              <select id="degree" name="degree" class="form-control">
+                                              <select id="qedegree" name="qedegree" class="form-control">
                                                 <option>-- Select Degree --</option>
                                                 <option value="BSc.">BSc.</option>
                                                 <option value="BA.">BA.</option>
@@ -238,7 +239,7 @@
                                           <div class="form-group">
                                             <label>Grade</label>
                                             <div class="form-group">
-                                              <select id="grade" name="grade" class="form-control">
+                                              <select id="qegrade" name="qegrade" class="form-control">
                                                 <option>-- Select Grade --</option>
                                                 <option value="First Class">First Class</option>
                                                 <option value="Distinction">Distinction</option>
@@ -258,7 +259,7 @@
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Institution</label>
-                                            <input id="institution" name="institution" type="text" class="form-control" placeholder="Institution">
+                                            <input id="qeinstitution" name="qeinstitution" type="text" class="form-control" placeholder="Institution">
                                           </div>
                                         </div>
                                       </div>
@@ -266,7 +267,7 @@
                                         <div class="col-md-12">
                                           <div class="form-group">
                                             <label>Course Of Study</label>
-                                            <input id="coureofstudy" name="courseofstudy" type="text" class="form-control" placeholder="Course Of Study">
+                                            <input id="qecourseofstudy" name="qecourseofstudy" type="text" class="form-control" placeholder="Course Of Study">
                                           </div>
                                         </div>
                                       </div>
@@ -275,7 +276,7 @@
                                           <div class="form-group">
                                             <label>Year Completed</label>
                                             <div class="form-group">
-                                              <select id="yearcompleted" name="yearcompleted" class="form-control">
+                                              <select id="qeyearcompleted" name="qeyearcompleted" class="form-control">
                                                 <option>- Year -</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2019">2019</option>
@@ -345,31 +346,19 @@
                                       </div>
 
 
-
                                       <div class="row">
-                                        <div class="col-md-12 ontent-center">
+                                        <div class="col-md-12">
                                           <div class="form-group">
-                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                              <div class="fileinput-new thumbnail">
-                                                <img src="../../assets/img/image_placeholder.jpg" id="imageUploadForm" name="image" multiple="multiple" alt="...">
-                                              </div>
-                                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                              <div>
-                                                <span class="btn btn-rose btn-round btn-file">
-                                                  <span class="fileinput-new">Upload File</span>
-                                                  <span class="fileinput-exists">Change</span>
-                                                  <input type="file" name="file" />
-                                                </span>
-                                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                              </div>
-                                            </div>
+                                            <label>Certificate Url</label>
+                                            <input id="qeImageUrl" name="qeImageUrl" type="text" class="form-control" placeholder="http://">
                                           </div>
                                         </div>
                                       </div>
 
+
                                       <hr />
                                       <div class="card-footer ">
-                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="editRecords">Submit</button>
                                         <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                       </div>
                                     </form>
@@ -393,6 +382,7 @@
                                 <th>Degree</th>
                                 <th>Grade</th>
                                 <th>Year </th>
+                                <th>Certificate URL </th>
                                 <th class="disabled-sorting text-right">Actions</th>
                               </tr>
                             </thead>
@@ -400,17 +390,18 @@
                             <tbody>
                               @foreach (var item in Model.InstitutionQualifications)
                               {
-                                <tr>
-                                  <td>@item.Institution</td>
-                                  <td>@item.CourseOfStudy</td>
-                                  <td>@item.Degree</td>
-                                  <td>@item.Grade</td>
-                                  <td>@item.YearCompleted</td>
-                                  <td class="text-right">
-                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="modal" data-target="#noticeModalEditRecords" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                                    <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                  </td>
-                                </tr>
+                              <tr>
+                                <td>@item.Institution</td>
+                                <td>@item.CourseOfStudy</td>
+                                <td>@item.Degree</td>
+                                <td>@item.Grade</td>
+                                <td>@item.YearCompleted</td>
+                                <td>@item.ImageURL</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="modal" data-target="#noticeModalEditRecords" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" Selected-ImageURL="@item.ImageURL" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
 
                               }
 
@@ -508,7 +499,7 @@
                                     <form method="post">
                                       @*<form enctype="multipart/form-data" asp-action="skillsUpload" method="post">*@
                                       <input id="qSkillsId" name="qSkillsId" hidden />
-
+                                      
                                       <div class="row">
                                         <div class="col-md-12">
                                           <div class="form-group">
@@ -611,7 +602,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Company</label>
-                                          <input type="text" class="form-control" placeholder="Company" id="WOrganisation" name="WOrganisation">
+                                          <input type="text" class="form-control" placeholder="Company" id="WOrganisation" name="WOrganisation" required>
                                         </div>
                                       </div>
                                     </div>
@@ -620,7 +611,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Job Title</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="WJobTitle" name="WJobTitle">
+                                          <input type="text" class="form-control" placeholder="Job Title" id="WJobTitle" name="WJobTitle" required>
                                         </div>
                                       </div>
                                     </div>
@@ -628,7 +619,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>From</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WStartDate" name="WStartDate">
+                                          <input type="date" class="form-control" placeholder="Job Title" id="WStartDate" name="WStartDate" required>
 
                                         </div>
                                       </div>
@@ -637,7 +628,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>To</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WEndDate" name="WEndDate">
+                                          <input type="date" class="form-control" placeholder="Job Title" id="WEndDate" name="WEndDate" required>
                                         </div>
                                       </div>
                                     </div>
@@ -645,7 +636,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Comment</label>
-                                          <input type="text" class="form-control" placeholder="Comment" id="WComment" name="WComment">
+                                          <input type="text" class="form-control" placeholder="Comment" id="WComment" name="WComment" required>
                                         </div>
                                       </div>
                                     </div>
@@ -675,12 +666,13 @@
                               <div class="modal-body">
                                 <div class="instruction">
 
-                                  <form>
+                                  <form method="post">
+                                    <input id="WorkId" name="WorkId" hidden />
                                     <div class="row">
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Company</label>
-                                          <input type="text" class="form-control" placeholder="Company" id="WOrganisation" name="WOrganisation">
+                                          <input type="text" class="form-control" placeholder="Company" id="qeWOrganisation" name="qeWOrganisation">
                                         </div>
                                       </div>
                                     </div>
@@ -689,7 +681,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Job Title</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="WJobTitle" name="WJobTitle">
+                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWJobTitle" name="qeWJobTitle">
                                         </div>
                                       </div>
                                     </div>
@@ -697,7 +689,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>From</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WStartDate" name="WStartDate">
+                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWStartDate" name="qeWStartDate">
 
                                         </div>
                                       </div>
@@ -706,7 +698,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>To</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WEndDate" name="WEndDate">
+                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWEndDate" name="qeWEndDate">
                                         </div>
                                       </div>
                                     </div>
@@ -714,14 +706,14 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Comment</label>
-                                          <input type="text" class="form-control" placeholder="Comment" id="WComment" name="WComment">
+                                          <input type="text" class="form-control" placeholder="Comment" id="qeWComment" name="qeWComment">
                                         </div>
                                       </div>
                                     </div>
 
                                     <hr />
                                     <div class="card-footer ">
-                                      <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="editWorkHistory">Submit</button>
                                       <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                     </div>
                                   </form>
@@ -756,7 +748,7 @@
                                   <td>@item.EndDate.ToString("dd, MMM yyyy")</td>
                                   <td>@item.Comment</td>
                                   <td class="text-right">
-                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" data-toggle="modal" data-target="#noticeModalExperience" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate" Selected-EndDate="@item.EndDate" Selected-Comment="@item.Comment"  title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" data-toggle="modal" data-target="#noticeModalExperience" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate.ToString("dd, MMM yyyy")" Selected-EndDate="@item.EndDate.ToString("dd, MMM yyyy")" Selected-Comment="@item.Comment"  title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
                                     <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                                   </td>
                                 </tr>
@@ -822,11 +814,11 @@
         //  console.log(aEditAssetId);
 
         $('input[name=WorkId]').val(aEditWorkId);
-        $('input[name=WOrganisation]').val(company);
-        $('input[name=WJobTitle]').val(jobTitle);
-        $('input[name=WStartDate]').val(startDate);
-        $('input[name=WEndDate]').val(endDate);
-        $('input[name=WComment]').val(comment);
+        $('input[name=qeWOrganisation]').val(company);
+        $('input[name=qeWJobTitle]').val(jobTitle);
+        $('input[name=qeWStartDate]').val(startDate);
+        $('input[name=qeWEndDate]').val(endDate);
+        $('input[name=qeWComment]').val(comment);
 
       });
 
@@ -842,6 +834,7 @@
         degree = $(this).attr('Selected-Degree');
         grade = $(this).attr('Selected-Grade');
         year = $(this).attr('Selected-YearCompleted');
+        ImageUrl = $(this).attr('Selected-ImageURL');
 
        //var degree = $('#degree').find(":selected").text();
 
@@ -849,11 +842,12 @@
         //  console.log(aEditAssetId);
 
         $('input[name=RecordId]').val(aEditRcrdId);
-        $('input[name=institution]').val(school);
-        $('input[name=courseofstudy]').val(course);
-        $('select[name=degree]').val(degree);
-        $('select[name=grade]').val(grade);
-        $('select[name=yearcompleted]').val(year);
+        $('input[name=qeinstitution]').val(school);
+        $('input[name=qecourseofstudy]').val(course);
+        $('select[name=qedegree]').val(degree);
+        $('select[name=qegrade]').val(grade);
+        $('select[name=qeyearcompleted]').val(year);
+        $('input[name=qeImageUrl]').val(ImageUrl);
       });
 
 
@@ -912,11 +906,240 @@
                 });
               });
 
-      
+       $("#editWorkHistory").click(function (event) {
 
+                event.preventDefault();
+
+                var PostWorkExperience = { 
+                    AId: $("#WorkId").val(),
+                    WOrganisation: $("#qeWOrganisation").val(),
+                  WJobTitle: $("#qeWJobTitle").val(),
+                   WStartDate : $("#qeWStartDate").val(),
+                   WEndDate : $("#qeWEndDate").val(),
+                  WComment: $("#qeWComment").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostWorkExperience);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/EmployeeProfile/editWorkExperience",
+                  data: JSON.stringify(PostWorkExperience),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+       });
+
+       $("#editRecords").click(function (event) {
+
+                event.preventDefault();
+
+                var PostQualification = { 
+                    AId: $("#RecordId").val(),
+                    Institution: $("#qeinstitution").val(),
+                  CourseOfStudy: $("#qecourseofstudy").val(),
+                   Degree : $("#qedegree").val(),
+                   Grade : $("#qegrade").val(),
+                  YearCompleted: $("#qeyearcompleted").val(),
+                  ImageUrl: $("#qeImageUrl").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostQualification);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/EmployeeProfile/editRecords",
+                  data: JSON.stringify(PostQualification),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
     });
 
 
+
+
+    //    $(document).ready(function () {
+
+    //        $("#editRecords").click(function (event) {
+
+    //            event.preventDefault();
+
+    //            var PostQualification = { 
+    //                AId: $("#RecordId").val(),
+    //                Institution: $("#qeinstitution").val(),
+    //              CourseOfStudy: $("#qecourseofstudy").val(),
+    //               Degree : $("#qedegree").val(),
+    //               Grade : $("#qegrade").val(),
+    //              YearCompleted: $("#qeyearcompleted").val(),
+    //              ImageUrl: $("#qeImageUrl").val(),
+
+    //            };
+
+
+    //            // console.log(Items);
+    //            console.log(PostQualification);
+
+    //            $.ajax({
+    //              type: "POST",
+    //              url: "/EmployeeProfile/editRecords",
+    //              data: JSON.stringify(PostQualification),
+    //              dataType: "json",
+    //              contentType: 'application/json; charset=utf-8',
+    //              headers: {
+    //                  RequestVerificationToken:
+    //                  $('input:hidden[name="__RequestVerificationToken"]').val()
+    //              },
+    //              success: function (r) {
+
+    //                if (r.msg == "Success") {
+
+    //                  demo.showSwal('success-message');
+
+    //                } else if (r.msg == "Fail") {
+
+    //                  alert(r.msg);
+
+    //                } else if (r.msg == "No Data") {
+    //                  alert(r.msg);
+
+    //                } else {
+    //                  alert(r.msg);
+    //                }
+    //                //alert(r.msg);
+    //                // window.location.reload();
+
+    //              },
+    //              error: function () {
+    //                alert(r.msg);
+    //              }
+    //            });
+    //          });
+
+      
+
+    //});
+
+
+    // $(document).ready(function () {
+
+    //        $("#editWorkHistory").click(function (event) {
+
+    //            event.preventDefault();
+
+    //            var PostWorkExperience = { 
+    //                AId: $("#WorkId").val(),
+    //                WOrganisation: $("#qeWOrganisation").val(),
+    //              WJobTitle: $("#qeWJobTitle").val(),
+    //               WStartDate : $("#qeWStartDate").val(),
+    //               WEndDate : $("#qeWEndDate").val(),
+    //              WComment: $("#qeWComment").val(),
+
+    //            };
+
+
+    //            // console.log(Items);
+    //            console.log(PostWorkExperience);
+
+    //            $.ajax({
+    //              type: "POST",
+    //              url: "/EmployeeProfile/editWorkExperience",
+    //              data: JSON.stringify(PostWorkExperience),
+    //              dataType: "json",
+    //              contentType: 'application/json; charset=utf-8',
+    //              headers: {
+    //                  RequestVerificationToken:
+    //                  $('input:hidden[name="__RequestVerificationToken"]').val()
+    //              },
+    //              success: function (r) {
+
+    //                if (r.msg == "Success") {
+
+    //                  demo.showSwal('success-message');
+
+    //                } else if (r.msg == "Fail") {
+
+    //                  alert(r.msg);
+
+    //                } else if (r.msg == "No Data") {
+    //                  alert(r.msg);
+
+    //                } else {
+    //                  alert(r.msg);
+    //                }
+    //                //alert(r.msg);
+    //                // window.location.reload();
+
+    //              },
+    //              error: function () {
+    //                alert(r.msg);
+    //              }
+    //            });
+    //          });
+
+      
+
+    //});
   </script>
  }
 
