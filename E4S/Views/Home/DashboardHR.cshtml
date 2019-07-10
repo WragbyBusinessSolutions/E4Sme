@@ -72,7 +72,7 @@
       <div class="card">
 
         <div class="card-header">
-          <h4 class="card-title">Bar Chart</h4>
+          <h4 class="card-title">Departments</h4>
           <h5 class="card-category">Head Count Per Department</h5>
         </div>
         <div class="card-body">
@@ -549,6 +549,13 @@
     </div>
 
 
+    @*@{
+      foreach (var item in Model.HeadCounts)
+      {
+        Html.DisplayText("Wfewfwefw");
+
+      }
+    }*@
 
 
 
@@ -556,158 +563,10 @@
 
 
 
-
-
-    @*<div class="col-md-12">
-    <div class="card card-plain">
-      <div class="card-header">
-        <h4 class="card-title"> Top Recent Application</h4>
-        @*<p class="category"> Here is a subtitle for this table</p>*@
-    @*</div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead class=" text-primary">
-              <th>
-                Vacancy
-              </th>
-              <th>
-                Candidate Name
-              </th>
-              <th>
-                Email
-              </th>
-              <th>
-                Hiring Manager
-              </th>
-              <th>
-                Status
-              </th>
-              <th class="text-right">
-                Action
-              </th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Senior Developer
-                  </td>
-                  <td>
-                    Elijah Adewuyi
-                  </td>
-                  <td>
-                    june0x@gmail.com
-                  </td>
-                  <td>
-                    Damilare Ibrahim
-                  </td>
-                  <td>
-                    <a class="btn btn-sm btn-info">Approved</a>
-                  </td>
-                  <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-info">Profile</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Junior Developer
-                  </td>
-                  <td>
-                    Michael Izedunor
-                  </td>
-                  <td>
-                    chubbymike@gmail.com
-                  </td>
-                  <td>
-                    Damilare Ibrahim
-                  </td>
-                  <td>
-                    <a class="btn btn-sm btn-success">Pending</a>
-                  </td>
-                  <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-info">Profile</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    UI/UX Developer
-                  </td>
-                  <td>
-                    Bayo Kolade
-                  </td>
-                  <td>
-                    bigB@gmail.com
-                  </td>
-                  <td>
-                    Damilare Ibrahim
-                  </td>
-                  <td>
-                    <a class="btn btn-sm btn-success">Pending</a>
-                  </td>
-                  <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-info">Profile</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Mobile Developer
-                  </td>
-                  <td>
-                    Funke Ajayi
-                  </td>
-                  <td>
-                    finefunky@gmail.com
-                  </td>
-                  <td>
-                    Damilare Ibrahim
-                  </td>
-                  <td>
-                    <a class="btn btn-sm btn-success">Pending</a>
-                  </td>
-                  <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-info">Profile</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Mobile/Web Developer
-                  </td>
-                  <td>
-                    Emeka Akumefule
-                  </td>
-                  <td>
-                    Em4Jesus@gmail.com
-                  </td>
-                  <td>
-                    Damilare Ibrahim
-                  </td>
-                  <td>
-                    <a class="btn btn-sm btn-info">Approved</a>
-                  </td>
-                  <td class="text-right">
-                    <a href="#" class="btn btn-sm btn-info">Profile</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div>
-              <a href="#" class="pull-right">View more...</a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>*@
   </div>
 
 </div>
 <script src="~/assets/js/plugins/chartjs.min.js"></script>
-@*<script>
-    $(document).ready(function () {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartPageCharts();
-    });
-  </script>*@
 
 
 
@@ -718,6 +577,8 @@
 
 <!-- amCharts javascript code -->
 <script type="text/javascript">
+
+
   AmCharts.makeChart("chartdiv",
 
     {
@@ -783,108 +644,28 @@
 	//		//"text": "Chart Title"
 	//	}
 	//],
-	"dataProvider": [
-		{
-			"category": "HR",
-			"column-1": 8,
-			"column-2": 5
-		},
-		{
-			"category": "Dev Ops",
-			"column-1": 6,
-			"column-2": 7
-		},
-		{
-			"category": "Sales",
-			"column-1": 2,
-			"column-2": 3
-    },
+      "dataProvider": [
+
+    @foreach (var item in Model.HeadCounts)
     {
-			"category": "HR",
-			"column-1": 8,
-			"column-2": 5
-		},
-		{
-			"category": "Dev Ops",
-			"column-1": 6,
-			"column-2": 7
-		},
-    {
-			"category": "Sales",
-			"column-1": 2,
-			"column-2": 3
-		}
+
+         @:{
+         @:"category": "@item.Department",
+         @:"column-1": @item.Male,
+         @:"column-2": @item.Female,
+         @:},
+
+    }
+
+  //  {
+		//	"category": "Sales",
+		//	"column-1": 2,
+		//	"column-2": 3
+		//}
 
 	]
 }
-    //{
-    //  "type": "serial",
-    //  "categoryField": "category",
-    //  "columnSpacing": 4,
-    //  "columnWidth": 0.42,
-    //  "autoMarginOffset": 40,
-    //  "marginRight": 70,
-    //  "marginTop": 70,
-    //  "plotAreaBorderAlpha": 0.02,
-    //  "plotAreaBorderColor": "#FFFFFF",
-    //  "zoomOutButtonRollOverAlpha": 0,
-    //  "startDuration": 1,
-    //  "decimalSeparator": "0.",
-    //  "fontSize": 14,
-    //  "handDrawThickness": 0,
-    //  "percentPrecision": 5,
-    //  "theme": "light",
-    //  "categoryAxis": {
-    //    "gridPosition": "start"
-    //  },
-    //  "trendLines": [],
-    //  "graphs": [
-    //    {
-    //      "balloonText": "[[title]] of [[category]]:[[value]]",
-    //      "fillAlphas": 0.9,
-    //      "id": "AmGraph-1",
-    //      "title": "graph 1",
-    //      "type": "column",
-    //      "valueField": "column-1"
-    //    },
-    //    {
-    //      "balloonText": "[[title]] of [[category]]:[[value]]",
-    //      "fillAlphas": 0.9,
-    //      "id": "AmGraph-2",
-    //      "title": "graph 2",
-    //      "type": "column",
-    //      "valueField": "column-2"
-    //    },
-    //    {
-    //      "id": "AmGraph-3",
-    //      "title": "graph 3"
-    //    },
-    //    {
-    //      "fixedColumnWidth": 2,
-    //      "gapPeriod": 6,
-    //      "id": "AmGraph-4",
-    //      "lineAlpha": 0,
-    //      "tabIndex": 9,
-    //      "title": "graph 4"
-    //    }
-    //  ],
-    //  "guides": [],
-    //  "valueAxes": [
-    //    {
-    //      "id": "ValueAxis-1",
-    //      "title": "Axis title"
-    //    }
-    //  ],
-    //  "allLabels": [],
-    //  "balloon": {},
-    //  "titles": [],
-    //  "dataProvider": [
-    //    {
-    //      "category": "category 2",
-    //      "column-1": "65",
-    //      "column-2": "80"
-    //    }
-    //  ]
-    //}
   );
+
+
 </script>
