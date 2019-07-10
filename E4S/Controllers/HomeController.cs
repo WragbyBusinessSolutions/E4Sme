@@ -133,7 +133,7 @@ namespace E4S.Controllers
 
 
       HRDVM.LatestEmployeeVMs = lastestEmployeeVM;
-
+      HRDVM.TotalEmployee = empDetails.Count();
 
       return View(HRDVM);
     }
