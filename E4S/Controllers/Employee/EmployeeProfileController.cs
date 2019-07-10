@@ -347,7 +347,64 @@ namespace E4S.Controllers.Employee
       });
     }
 
-    public IActionResult Dependents()
+
+        // Edit the Emergency Contact
+
+        [HttpPost]
+        public async Task<IActionResult> editEmergencyContact([FromBody]PostEmergencyContact postEmergencyContact)
+        {
+            if (postEmergencyContact == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var employeeDetails = await _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefaultAsync();
+
+            try
+            {
+                
+                var EmployEmergCon = _context.EmergencyContacts.Where(x => x.Id == Guid.Parse(postEmergencyContact.AId)).FirstOrDefault();
+                EmployEmergCon.Name = postEmergencyContact.Name;
+                EmployEmergCon.Relationship = postEmergencyContact.Relationship;
+                EmployEmergCon.HomeTelephone = postEmergencyContact.HomeTelephone;
+                EmployEmergCon.Address = postEmergencyContact.Address;
+                EmployEmergCon.OrganisationId = orgId;
+                EmployEmergCon.EmployeeDetailId = employeeDetails.Id;
+                
+               
+                _context.Update(EmployEmergCon);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Emergency Contact
+
+
+
+        public IActionResult Dependents()
         {
 
       var orgId = getOrg();

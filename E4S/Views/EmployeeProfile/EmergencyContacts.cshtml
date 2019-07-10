@@ -25,113 +25,173 @@
 
             <!-- Start of the Emergency Contact tabs-->
 
-            <div class="card-body">
-              <div class="card-header">
-                <div class="justify-content-end align-items-center ">
-                  <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal">Add New Contact</a>
-                </div>
-              </div>
-              <!-- notice modal -->
-              <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-notice">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                      </button>
-                      <h5 class="modal-title" id="myModalLabel">Enter New Emergency</h5>
-                    </div>
-                    <div class="modal-body">
-                      <div class="instruction">
-                        <form>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required >
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Relationship</label>
-                                <input type="text" class="form-control" id="Relationship" name="Relationship" placeholder="Home Relationship" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Home Telephone</label>
-                                <input id="HomeTelephone" name="HomeTelephone" type="text" class="form-control" placeholder="Home Telephone" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Address</label>
-                                <input id="Address" name="Address" type="text" class="form-control" placeholder="Address" required>
-                              </div>
-                            </div>
-                          </div>
-
-                          <hr />
-                          <div class="card-footer ">
-                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEmergency">Submit</button>
-                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- end notice modal -->
               <div class="card-body">
-                <br />
-                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                  <thead>
-                    <tr>
-                      <th> Name</th>
-                      <th>Relationship</th>
-                      <th>Home Telephone</th>
-                      <th>Address</th>
-                      <th class="disabled-sorting text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  @*<tfoot>
-                    <tr>
-                      <th> Name</th>
-                      <th>Relationship</th>
-                      <th>Home Telephone</th>
-                      <th>Address</th>
-                      <th class="disabled-sorting text-right">Actions</th>
-                    </tr>
-                  </tfoot>*@
-                  <tbody>
+                  <div class="card-header">
+                      <div class="justify-content-end align-items-center ">
+                          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">Add New Contact</button>
+                      </div>
+                  </div>
+                  <!-- notice modal -->
+                  <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                  <h5 class="modal-title" id="myModalLabel">Enter New Emergency</h5>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="instruction">
+                                      <form >
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Name</label>
+                                                      <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" required>
+                                                  </div>
+                                              </div>
+                                          </div>
 
-                    @foreach (var item in Model)
-                    {
-                      <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Relationship</td>
-                        <td>@item.HomeTelephone</td>
-                        <td>@item.Address</td>
-                        <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                        </td>
-                      </tr>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Relationship</label>
+                                                      <input type="text" class="form-control" id="Relationship" name="Relationship" placeholder="Home Relationship" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Home Telephone</label>
+                                                      <input id="HomeTelephone" name="HomeTelephone" type="text" class="form-control" placeholder="Home Telephone" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Address</label>
+                                                      <input id="Address" name="Address" type="text" class="form-control" placeholder="Address" required>
+                                                  </div>
+                                              </div>
+                                          </div>
 
-                    }
+                                          <hr />
+                                          <div class="card-footer ">
+                                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEmergency" disabled="disabled">Submit</button>
+                                              @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- end notice modal -->
+                  <!-- notice modal -->
+                  <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-notice">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                  </button>
+                                  <h5 class="modal-title" id="myModalLabel"> Edit Emergency</h5>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="instruction">
+                                      <form>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Name</label>
+                                                      <input id="eName" name="eName" type="text" class="form-control" placeholder="Name" required>
+                                                      <input id="eemergCon" name="eemergCon" type="hidden" class="form-control" required>
+                                                  </div>
+                                              </div>
+                                          </div>
 
-                  </tbody>
-                </table>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Relationship</label>
+                                                      <input type="text" class="form-control" id="eRelationship" name="eRelationship" placeholder="Home Relationship" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Home Telephone</label>
+                                                      <input id="eHomeTelephone" name="eHomeTelephone" type="text" class="form-control" placeholder="Home Telephone" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Address</label>
+                                                      <input id="eAddress" name="eAddress" type="text" class="form-control" placeholder="Address" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <hr />
+                                          <div class="card-footer ">
+                                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editEmergencyContact" >Submit</button>
+                                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- end notice modal -->
+                  <div class="card-body">
+                      <br />
+                      <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                          <thead>
+                              <tr>
+                                  <th> Name</th>
+                                  <th>Relationship</th>
+                                  <th>Home Telephone</th>
+                                  <th>Address</th>
+                                  <th class="disabled-sorting text-right">Actions</th>
+                              </tr>
+                          </thead>
+                          @*<tfoot>
+                  <tr>
+                    <th> Name</th>
+                    <th>Relationship</th>
+                    <th>Home Telephone</th>
+                    <th>Address</th>
+                    <th class="disabled-sorting text-right">Actions</th>
+                  </tr>
+                </tfoot>*@
+                          <tbody>
+
+                              @foreach (var item in Model)
+                              {
+                                  <tr>
+                                      <td>@item.Name</td>
+                                      <td>@item.Relationship</td>
+                                      <td>@item.HomeTelephone</td>
+                                      <td>@item.Address</td>
+                                      <td class="text-right">
+                                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" data-toggle="modal" data-target="#noticeModal1" id="Editbtn" EmergencyContactId="@item.Id" Selected-Name="@item.Name" Selected-Relationship="@item.Relationship" Selected-HomeTelephone="@item.HomeTelephone" Selected-Address="@item.Address"><i class="far fa-calendar-alt"></i></a>
+                                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                      </td>
+                                  </tr>
+
+                              }
+
+                          </tbody>
+                      </table>
+                  </div>
               </div>
-            </div>
             <!-- the End of Emergency Contact Tabs-->
 
           </div>
@@ -145,6 +205,24 @@
 
 
   <script type="text/javascript">
+
+      $(document).ready(function() {
+        $('.EmCon form-group input').keyup(function() {
+
+            var empty = false;
+            $('.EmCon form-group input').each(function() {
+                if ($(this).val().length == 0) {
+                    empty = true;
+                }
+            });
+
+            if (empty) {
+                $('.card-footer button').attr('disabled', 'disabled');
+            } else {
+                $('.card-footer button').removeAttr('disabled');
+            }
+        });
+      });
 
     $(document).ready(function () {
 
@@ -201,6 +279,90 @@
 
 
     });
+
+      //Code for pulling the Records on the Table  
+        var eEmergCon;
+
+         $(document).delegate('#Editbtn',
+        'click',
+        function (e) {
+
+            eEmergCon = $(this).attr('EmergencyContactId');
+            name = $(this).attr('Selected-Name');
+            relationship = $(this).attr('Selected-Relationship');
+            hometelephone = $(this).attr('Selected-HomeTelephone');
+            address = $(this).attr('Selected-Address');
+            
+            //console.log(description, department);
+
+
+            $('input[name=eemergCon]').val(eEmergCon);
+            $('input[name=eName]').val(name);
+            $('input[name=eRelationship]').val(relationship);
+            $('input[name=eHomeTelephone]').val(hometelephone);
+            $('input[name=eAddress]').val(address);
+            
+        });
+
+        //End of the code
+
+       // Edit your post 
+
+         $(document).ready(function () {
+
+            $("#editEmergencyContact").click(function (event) {
+
+                event.preventDefault();
+
+                var PostEditEmergencyContact = { 
+                    AId: $("#eemergCon").val(),
+                    Name: $("#eName").val(),
+                    Relationship: $("#eRelationship").val(),
+                    HomeTelephone: $("#eHomeTelephone").val(),
+                    Address: $("#eAddress").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostEditEmergencyContact);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/EmployeeProfile/editEmergencyContact",
+                  data: JSON.stringify(PostEditEmergencyContact),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+      
+            });
 
   </script>
 

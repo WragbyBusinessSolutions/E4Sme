@@ -420,15 +420,9 @@ namespace E4S.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BranchId");
-
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("EmployeeDetailId");
-
-                    b.HasIndex("EmploymentStatusId");
-
-                    b.HasIndex("JobCategoryId");
 
                     b.HasIndex("JobTitleId");
 
@@ -955,11 +949,6 @@ namespace E4S.Data.Migrations
 
             modelBuilder.Entity("E4S.Models.HumanResource.Job", b =>
                 {
-                    b.HasOne("E4S.Models.Branch", "Branch")
-                        .WithMany()
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("E4S.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
@@ -968,16 +957,6 @@ namespace E4S.Data.Migrations
                     b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
                         .WithMany()
                         .HasForeignKey("EmployeeDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.HumanResource.EmploymentStatus", "EmploymentStatus")
-                        .WithMany()
-                        .HasForeignKey("EmploymentStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.HumanResource.JobCategory", "JobCategory")
-                        .WithMany()
-                        .HasForeignKey("JobCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("E4S.Models.HumanResource.JobTitle", "JobTitle")

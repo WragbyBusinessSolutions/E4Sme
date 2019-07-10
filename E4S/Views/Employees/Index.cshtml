@@ -3,7 +3,11 @@
   ViewData["Title"] = "Employees";
   Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
-
+<style>
+    .top-margin{
+        margin-top: 40px;
+    }
+</style>
 <div class="content">
 
   <div class="row">
@@ -22,7 +26,7 @@
       <input type="text" class="form-control">
     </div>*@
                 <label>Job Title</label>
-                <div class="col">
+                <div class="">
                   <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
                     <option disabled selected>Job Title</option>
                     <option value="2">Foobar</option>
@@ -54,7 +58,7 @@
       <input type="text" class="form-control">
     </div>*@
                 <label>Department</label>
-                <div class="col">
+                <div class="">
                   <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
                     <option disabled selected>Department</option>
                     <option value="2">Foobar</option>
@@ -73,7 +77,7 @@
               <div class="col-md-4">
 
                 <label>Employment Status</label>
-                <div class="col">
+                <div class="">
                   <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
                     <option disabled selected>Employment Status</option>
                     <option value="2">Foobar</option>
@@ -246,9 +250,9 @@
               <th>
                 Job Title
               </th>
-              <th>
+              @*<th>
                 Employee Status
-              </th>
+              </th>*@
               <th>
                 Department
               </th>
@@ -276,7 +280,6 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
 
                 }
 
@@ -299,9 +302,9 @@
               <td>
                 @item.JobTitle
               </td>
-              <td>
+              @*<td>
                 @item.EmployeeStatus
-              </td>
+              </td>*@
               <td>
                 @item.Department
               </td>
@@ -309,7 +312,7 @@
                 @item.IsActive
               </td>
               <td>
-                <a asp-action="EmployeeDetails" class="btn btn-md btn-info" asp-route-id="@item.Id">View Details</a>
+                <a asp-action="EmployeeDetails" class="btn btn-md btn-info" asp-route-id="@item.Id"><i class="fa fa-eye"></i></a>
 
               </td>
             </tr>
