@@ -44,11 +44,17 @@ namespace E4S.Controllers.Employee
       edVM.LastName = userDetails.LastName;
       edVM.ImageURL = userDetails.ImageUrl;
 
-      var job = _context.Jobs.Where(x => x.EmployeeDetailId == userDetails.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
+      try
+      {
+        var job = _context.Jobs.Where(x => x.EmployeeDetailId == userDetails.Id).Include(x => x.JobTitle).Include(x => x.Department).FirstOrDefault();
 
-      edVM.JobTitle = job.JobTitle.JobTitleName;
-      edVM.Department = job.Department.DepartmentName;
+        edVM.JobTitle = job.JobTitle.JobTitleName;
+        edVM.Department = job.Department.DepartmentName;
+      }
+      catch
+      {
 
+      }
 
 
       return View(edVM);
@@ -418,10 +424,7 @@ namespace E4S.Controllers.Employee
 
       var empJob = _context.Jobs
         .Where(x => x.EmployeeDetailId == employeeDetails.Id)
-        .Include(x => x.Branch)
-        .Include(x => x.JobCategory)
         .Include(x => x.JobTitle)
-        .Include(x => x.EmploymentStatus)
         .Include(x => x.Department)
         .FirstOrDefault();
       return View(empJob);
