@@ -405,7 +405,10 @@ namespace E4S.Controllers.HumanResource
           Email = item.EmployeeEmail,
           OrganisationId = orgId,
           EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
-          UserId = userId
+          UserId = userId,
+          MaritalStatus = item.MaritalStatus,
+          Gender = item.Gender
+          
         };
 
         var user = new ApplicationUser

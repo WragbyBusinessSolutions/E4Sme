@@ -12,6 +12,9 @@ namespace E4S.ViewModel
     public int PendingLeave { get; set; }
     public int TotalEmployee { get; set; }
 
+    public List<HeadCount> HeadCounts { get; set; }
+
+
     public List<LatestEmployeeVM> LatestEmployeeVMs { get; set; }
     public List<LeaveDashVM> LeaveDashVMs { get; set; }
     public List<RecentApplication> RecentApplications { get; set; }
@@ -42,5 +45,12 @@ namespace E4S.ViewModel
     public string CandidateName { get; set; }
     public string Email { get; set; }
     public string HiringManager { get; set; }
+  }
+
+  public class HeadCount
+  {
+    public string Department { get; set; }
+    public int Male { get; set; }
+    public int Female { get; set; }
   }
 }
