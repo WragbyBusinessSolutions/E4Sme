@@ -37,6 +37,10 @@ namespace E4S
           .AddEntityFrameworkStores<ApplicationDbContext>()
           .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Expiration = TimeSpan.FromMinutes(30);
+            });
       //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
       //{
       //  options.SignIn.RequireConfirmedEmail = true;
