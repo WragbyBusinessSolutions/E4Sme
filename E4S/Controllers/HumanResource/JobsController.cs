@@ -156,10 +156,63 @@ namespace E4S.Controllers.HumanResource
 
 
 
-        // Ednf of Edit for Job Title
+    // Ednf of Edit for Job Title
+
+    [HttpPost]
+    public async Task<IActionResult> DelJobTitle([FromBody]string jobId)
+    {
+      if (jobId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
 
 
-        public IActionResult EmploymentStatus()
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var jobTitle = await _context.JobTitles.FindAsync(Guid.Parse(jobId));
+        _context.JobTitles.Remove(jobTitle);
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+    public IActionResult EmploymentStatus()
     {
       var orgId = getOrg();
       var employmentStatuses = _context.EmploymentStatuses.Where(x => x.OrganisationId == orgId).ToList();
