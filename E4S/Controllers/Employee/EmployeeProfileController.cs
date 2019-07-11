@@ -1063,7 +1063,14 @@ namespace E4S.Controllers.Employee
 
     public IActionResult EmployeeAssets()
         {
-            return View();
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var employeeAsset = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+
+      return View(employeeAsset);
         }
 
         public IActionResult Appraisal()
