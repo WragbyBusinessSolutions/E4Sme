@@ -1023,7 +1023,7 @@ namespace E4S.Controllers.Employee
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
       var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
-      ViewData["LeaveTitle"] = new SelectList(_context.LeaveConfigurations.Where(x => x.OrganisationId == orgId), "LeaveTitle", "LeaveTitle");
+      ViewData["LeaveTitle"] = new SelectList(_context.LeaveConfigurations.Where(x => x.OrganisationId == orgId), "Id", "LeaveTitle");
 
 
       return View(leaveList);
@@ -1041,22 +1041,61 @@ namespace E4S.Controllers.Employee
        );
       }
 
+      if(postLeave.StartDate <= DateTime.Now)
+      {
+        return Json(new
+        {
+          msg = "You cant not back date leave date, check/adjust the dates."
+        });
+      }
+      else if(postLeave.StartDate >= postLeave.EndDate)
+      {
+        return Json(new
+        {
+          msg = "End date is earlier than start date. Kindly adjust dates."
+        });
+
+      }
+
       var orgId = getOrg();
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var leaveDetails = _context.LeaveConfigurations.Where(x => x.OrganisationId == orgId).Where(x => x.Id == Guid.Parse(postLeave.LeaveTitle)).FirstOrDefault();
+
+      int days = int.Parse((postLeave.EndDate.Date - postLeave.StartDate.Date).TotalDays.ToString());
+      int weekendCount = 0;
+      for (DateTime date = postLeave.StartDate; date <= postLeave.EndDate; date = date.AddDays(1))
+      {
+        if (date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
+          weekendCount++;
+      }
+
+      int leaveDays = days - weekendCount;
+
+      if(leaveDetails.MaxDuration < leaveDays)
+      {
+        return Json(new
+        {
+          msg = "You have exceeded the number of leave days. Kindly adjust dates."
+        });
+      }
+
 
       try
       {
         Leave leave = new Leave()
         {
           Id = Guid.NewGuid(),
-          LeaveTitle = postLeave.LeaveTitle,
+          LeaveTitle = leaveDetails.LeaveTitle,
+          LeaveConfigId = leaveDetails.Id,
           Description = postLeave.Description,
           StartDate = postLeave.StartDate,
           EndDate = postLeave.EndDate,
           OrganisationId = orgId,
           Status = "Pending",
-          EmployeeDetailId = employeeDetails.Id
+          EmployeeDetailId = employeeDetails.Id,
+          CalculatedDays = leaveDays,
 
         };
 

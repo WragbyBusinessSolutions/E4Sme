@@ -112,6 +112,7 @@
                       <th>Description</th>
                       <th>Start Date</th>
                       <th>End Date</th>
+                      <th>Days</th>
                       <th>Approved Date</th>
                       <th>Status</th>
                       <th class="disabled-sorting text-right">Actions</th>
@@ -132,41 +133,59 @@
                   <tbody>
                     @foreach (var item in Model)
                     {
-                      <tr>
-                        <td>@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName</td>
-                        <td>@item.LeaveTitle</td>
-                        <td>@item.Description</td>
-                        <td>@item.StartDate.ToString("MMMM dd, yyyy")</td>
-                        <td>@item.EndDate.ToString("MMMM dd, yyyy")</td>
+                    <tr>
+                      <td>@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName</td>
+                      <td>@item.LeaveTitle</td>
+                      <td>@item.Description</td>
+                      <td>@item.StartDate.ToString("MMMM dd, yyyy")</td>
+                      <td>@item.EndDate.ToString("MMMM dd, yyyy")</td>
+                      <td>@item.CalculatedDays</td>
+                      <td>
+                        @if (item.Status == "Approved")
+                        {
+                          @item.ApproveDate.ToString("MMM dd, yyyy")
+                        }
+                        else
+                        {
+                          <p>-----</p>
+                        }
+                      </td>
+                      @if (item.Status == "Pending")
+                      {
                         <td>
-                          @if (item.Status == "Approved")
-                          {
-                            @item.ApproveDate.ToString("MMM dd, yyyy")
-                          }
-                          else
-                          {
-                            <p>-----</p>
-                          }
-                        </td>
-                        <td>
-                          @if (item.Status == "Pending")
-                          {
-                            <a class="btn btn-sm btn-warning">@item.Status</a>
-                          }
-                          else if (item.Status == "Approved")
-                          {
-                            <a class="btn btn-sm btn-info">@item.Status</a>
-                          }
-                          else if (item.Status == "Declined")
-                          {
-                            <a class="btn btn-sm btn-danger">@item.Status</a>
-                          }
+                          <a class="btn btn-sm btn-warning">@item.Status</a>
                         </td>
                         <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName ="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
                           <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                         </td>
-                      </tr>
+                      }
+                      else if (item.Status == "Approved")
+                      {
+                        <td>
+                          <a class="btn btn-sm btn-info">@item.Status</a>
+                        </td>
+                        <td class="text-right">
+        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+      </td>
+                      }
+                      else if (item.Status == "Declined")
+                      {
+                        <td>
+                          <a class="btn btn-sm btn-danger">@item.Status</a>
+                        </td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                        </td>
+                      }
+
+                      @*<td class="text-right">
+                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                      </td>*@
+                    </tr>
 
                     }
 

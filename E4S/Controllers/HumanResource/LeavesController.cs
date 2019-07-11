@@ -28,6 +28,10 @@ namespace E4S.Controllers.HumanResource
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
       var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
 
+      var orgdetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      ViewData["OrganisationName"] = orgdetails.OrganisationName;
+      ViewData["OrganisationImage"] = orgdetails.ImageUrl;
+
       return orgId;
     }
 
