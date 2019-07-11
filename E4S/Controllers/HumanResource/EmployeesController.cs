@@ -69,7 +69,7 @@ namespace E4S.Controllers.HumanResource
             EmployeeName = item.FirstName + " " + item.LastName,
             Email = item.Email,
             Department = empDetails.Department.DepartmentName,
-            EmployeeStatus = _context.EmploymentStatuses.Where(x => x.Id == empDetails.EmploymentStatusId).FirstOrDefault().EmploymentStatusName,
+            //EmployeeStatus = _context.EmploymentStatuses.Where(x => x.Id == empDetails.EmploymentStatusId).FirstOrDefault().EmploymentStatusName,
             JobTitle = empDetails.JobTitle.JobTitleName,
             Supervisor = "",
             IsActive = item.IsActive,
@@ -85,7 +85,7 @@ namespace E4S.Controllers.HumanResource
             EmployeeName = item.FirstName + " " + item.LastName,
             Email = item.Email,
             Department = "--Not Assigned--",
-            EmployeeStatus = "--Not Assigned--",
+            //EmployeeStatus = "--Not Assigned--",
             JobTitle = "--Not Assigned--",
             Supervisor = "",
             IsActive = item.IsActive
@@ -350,12 +350,14 @@ namespace E4S.Controllers.HumanResource
               newEmployee = new NewEmployeeImport()
               {
                 FirstName = workSheet.Cells[row, 1].Value.ToString(),
-                LastName = workSheet.Cells[row, 3].Value.ToString(),
-                Gender = workSheet.Cells[row, 6].Value.ToString(),
-                MaritalStatus = workSheet.Cells[row, 7].Value.ToString(),
-                EmployeeEmail = workSheet.Cells[row, 4].Value.ToString(),
-                JobTitle = workSheet.Cells[row, 10].Value.ToString(),
-                Department = workSheet.Cells[row, 11].Value.ToString(),
+                LastName = workSheet.Cells[row, 2].Value.ToString(),
+                EmployeeEmail = workSheet.Cells[row, 3].Value.ToString(),
+                Gender = workSheet.Cells[row, 4].Value.ToString(),
+                MaritalStatus = workSheet.Cells[row, 5].Value.ToString(),
+                JobTitle = workSheet.Cells[row, 6].Value.ToString(),
+                Department = workSheet.Cells[row, 7].Value.ToString(),
+                PayFrequency = workSheet.Cells[row, 8].Value.ToString(),
+                Amount = float.Parse(workSheet.Cells[row, 9].Value.ToString())
               };
 
             }
@@ -364,40 +366,19 @@ namespace E4S.Controllers.HumanResource
               newEmployee = new NewEmployeeImport()
               {
                 FirstName = workSheet.Cells[row, 1].Value.ToString(),
-                LastName = workSheet.Cells[row, 3].Value.ToString(),
-                Gender = workSheet.Cells[row, 6].Value.ToString(),
-                MaritalStatus = workSheet.Cells[row, 7].Value.ToString(),
-                EmployeeEmail = workSheet.Cells[row, 4].Value.ToString(),
+                LastName = workSheet.Cells[row, 2].Value.ToString(),
+                EmployeeEmail = workSheet.Cells[row, 3].Value.ToString(),
+                Gender = workSheet.Cells[row, 4].Value.ToString(),
+                MaritalStatus = workSheet.Cells[row, 5].Value.ToString(),
+                JobTitle = workSheet.Cells[row, 6].Value.ToString(),
+                Department = workSheet.Cells[row, 7].Value.ToString(),
               };
 
               }
 
-
-              //MiddleName = workSheet.Cells[row, 2].Value.ToString(),
-              ////EmployeeId = workSheet.Cells[row, 5].Value.ToString(),
-              ////DateOfBirth = DateTime.Parse(workSheet.Cells[row, 8].Value.ToString()),
-              //ContactAddress = workSheet.Cells[row, 9].Value.ToString(),
-              ////EmploymentStatus = workSheet.Cells[row, 12].Value.ToString(),
-              //JobCategory = workSheet.Cells[row, 13].Value.ToString(),
-              //Branch = workSheet.Cells[row, 15].Value.ToString(),
-              ////JoinedDate = DateTime.Parse(workSheet.Cells[row, 14].Value.ToString()),
-              ////StartDate = DateTime.Parse(workSheet.Cells[row, 16].Value.ToString()),
-              ////EndDate = DateTime.Parse(workSheet.Cells[row, 17].Value.ToString()),
-              //ContractDetail = workSheet.Cells[row, 18].Value.ToString(),
-              //PayGrade = workSheet.Cells[row, 19].Value.ToString(),
-              //PayFrequency = workSheet.Cells[row, 20].Value.ToString(),
-              ////Amount = float.Parse(workSheet.Cells[row, 21].Value.ToString()),
-              //Currency = workSheet.Cells[row, 22].Value.ToString(),
-              //Comments = workSheet.Cells[row, 23].Value.ToString(),
-              //BankName = workSheet.Cells[row, 24].Value.ToString(),
-              //AccointNo = workSheet.Cells[row, 25].Value.ToString(),
-              //AccountName = workSheet.Cells[row, 26].Value.ToString(),
-
             newEmployeeList.Add(newEmployee);
 
           }
-
-
 
         }
       }
@@ -424,7 +405,10 @@ namespace E4S.Controllers.HumanResource
           Email = item.EmployeeEmail,
           OrganisationId = orgId,
           EmployeeId = organisationDetails.OrganisationPrefix + (noOfEmployee + 1).ToString(),
-          UserId = userId
+          UserId = userId,
+          MaritalStatus = item.MaritalStatus,
+          Gender = item.Gender
+          
         };
 
         var user = new ApplicationUser
@@ -451,7 +435,6 @@ namespace E4S.Controllers.HumanResource
 
           var response = _emailSender.SendGridEmailAsync(user.Email, "Create Password", callbackUrl, organisationDetails.OrganisationName, user.EmployeeName, "setPassword");
 
-
           //var response = _emailSender.GmailSendEmail(user.Email, callbackUrl, user.UserRole);
 
           _context.Add(empDetail);
@@ -459,70 +442,93 @@ namespace E4S.Controllers.HumanResource
 
           successfullyEmployeeList.Add(item);
 
-          //Job employeeJob = new Job();
 
-          //if (item.JobTitle != null || item.JobTitle != "")
-          //{
+          // Job Creation
+          Job employeeJob = new Job();
 
-          //  var isJobTitle = _context.JobTitles.Where(x => x.OrganisationId == orgId).Where(x => x.JobTitleName.ToLower() == item.JobTitle.ToLower()).FirstOrDefault();
-          //  if (isJobTitle == null)
-          //  {
-          //    JobTitle newJobTitle = new JobTitle()
-          //    {
-          //      OrganisationId = orgId,
-          //      JobTitleName = item.JobTitle,
-          //      Id = Guid.NewGuid()
+          if (item.JobTitle != null || item.JobTitle != "")
+          {
 
-          //    };
+            var isJobTitle = _context.JobTitles.Where(x => x.OrganisationId == orgId).Where(x => x.JobTitleName.ToLower() == item.JobTitle.ToLower()).FirstOrDefault();
+            if (isJobTitle == null)
+            {
+              JobTitle newJobTitle = new JobTitle()
+              {
+                OrganisationId = orgId,
+                JobTitleName = item.JobTitle,
+                Id = Guid.NewGuid()
 
-          //    _context.Add(newJobTitle);
-          //    _context.SaveChanges();
+              };
 
-          //    employeeJob.JobTitleId = newJobTitle.Id;
-          //  }
-          //  else
-          //  {
-          //    employeeJob.JobTitleId = isJobTitle.Id;
-          //  }
-          //}
+              _context.Add(newJobTitle);
+              _context.SaveChanges();
 
-          //if (item.Department != null || item.Department != "")
-          //{
-          //  var isDepartment = _context.Departments.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentName.ToLower() == item.Department.ToLower()).FirstOrDefault();
-          //  if (isDepartment == null)
-          //  {
-          //    Department newDepartment = new Department()
-          //    {
-          //      OrganisationId = orgId,
-          //      DepartmentName = item.Department,
-          //      Id = Guid.NewGuid()
+              employeeJob.JobTitleId = newJobTitle.Id;
+            }
+            else
+            {
+              employeeJob.JobTitleId = isJobTitle.Id;
+            }
+          }
 
-          //    };
+          if (item.Department != null || item.Department != "")
+          {
+            var isDepartment = _context.Departments.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentName.ToLower() == item.Department.ToLower()).FirstOrDefault();
+            if (isDepartment == null)
+            {
+              Department newDepartment = new Department()
+              {
+                OrganisationId = orgId,
+                DepartmentName = item.Department,
+                Id = Guid.NewGuid()
 
-          //    _context.Add(newDepartment);
-          //    _context.SaveChanges();
+              };
 
-          //    employeeJob.DepartmentId = newDepartment.Id;
-          //  }
-          //  else
-          //  {
-          //    employeeJob.DepartmentId = isDepartment.Id;
+              _context.Add(newDepartment);
+              _context.SaveChanges();
 
-          //  }
-          //}
+              employeeJob.DepartmentId = newDepartment.Id;
+            }
+            else
+            {
+              employeeJob.DepartmentId = isDepartment.Id;
 
-          //employeeJob.Id = Guid.NewGuid();
-          //employeeJob.OrganisationId = orgId;
-          //employeeJob.EmployeeDetailId = empDetail.Id;
-          //try
-          //{
-          //  _context.Add(employeeJob);
-          //  _context.SaveChanges();
-          //}
-          //catch
-          //{
+            }
+          }
 
-          //}
+          employeeJob.Id = Guid.NewGuid();
+          employeeJob.OrganisationId = orgId;
+          employeeJob.EmployeeDetailId = empDetail.Id;
+          try
+          {
+            _context.Add(employeeJob);
+            _context.SaveChanges();
+          }
+          catch
+          {
+
+          }
+
+
+          Salary empSalary = new Salary()
+          {
+            PayFrequency = item.PayFrequency,
+            Amount = item.Amount,
+            Id = Guid.NewGuid(),
+            EmployeeDetailId = empDetail.Id,
+            OrganisationId = orgId,
+
+          };
+
+          try
+          {
+            _context.Add(empSalary);
+            _context.SaveChanges();
+          }
+          catch
+          {
+
+          }
 
         }
         else

@@ -125,7 +125,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
                   </button>
-                  <h5 class="modal-title" id="myModalLabel">Upload CSV File</h5>
+                  <h5 class="modal-title" id="myModalLabel">Upload EXCEL (.xlsx) File</h5>
                 </div>
                 <div class="modal-body">
                   <div class="instruction">
@@ -133,7 +133,7 @@
                       <div class="row">
                         <div class="col-md-12 content-center">
                           <div class="form-group">
-                            <h6><b>Format:  </b><i>Download sample <a href="~/document/import_employee_format.csv">here</a></i></h6>
+                            <h6><b>Format:  </b><i>Download sample <a href="~/document/EMPLOYEE_LIST_UPLOAD.xlsx">here</a></i></h6>
 
                             <label>Select File</label>
                             @*<input type="file" class="form-control" placeholder="First Name" id="csvFile">*@
@@ -250,9 +250,9 @@
               <th>
                 Job Title
               </th>
-              <th>
+              @*<th>
                 Employee Status
-              </th>
+              </th>*@
               <th>
                 Department
               </th>
@@ -280,7 +280,6 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
 
                 }
 
@@ -303,9 +302,9 @@
               <td>
                 @item.JobTitle
               </td>
-              <td>
+              @*<td>
                 @item.EmployeeStatus
-              </td>
+              </td>*@
               <td>
                 @item.Department
               </td>

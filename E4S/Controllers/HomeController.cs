@@ -131,9 +131,26 @@ namespace E4S.Controllers
           }
         }
 
+      List<HeadCount> headCounts = new List<HeadCount>();
+      var department = _context.Departments.ToList();
+      HeadCount hC;
+      foreach (var item in department)
+      {
+        hC = new HeadCount();
+
+        hC.Department = item.DepartmentName;
+        hC.Female = _context.Jobs.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Female").ToList().Count();
+        hC.Male = _context.Jobs.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Male").ToList().Count();
+
+        headCounts.Add(hC);
+      }
+
+
+
 
       HRDVM.LatestEmployeeVMs = lastestEmployeeVM;
-
+      HRDVM.TotalEmployee = empDetails.Count();
+      HRDVM.HeadCounts = headCounts;
 
       return View(HRDVM);
     }
