@@ -12,5 +12,14 @@ namespace E4S.Controllers.HumanResource
         {
             return View();
         }
+    public IActionResult SalaryAdditions()
+    {
+      return View();
     }
+    public IActionResult SalaryDeductions()
+    {
+      return View();
+    }
+
+  }
 }

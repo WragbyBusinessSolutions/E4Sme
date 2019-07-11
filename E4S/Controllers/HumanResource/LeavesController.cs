@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
+    [Authorize]
     public class LeavesController : Controller
     {
     private readonly ApplicationDbContext _context;
