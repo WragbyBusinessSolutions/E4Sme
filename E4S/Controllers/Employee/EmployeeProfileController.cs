@@ -422,9 +422,9 @@ namespace E4S.Controllers.Employee
 
         }
 
-    public async Task<IActionResult> PostDependent([FromBody]PostEmergencyContact postEmergencyContact)
+    public async Task<IActionResult> PostDependent([FromBody]PostDependents postDependents)
     {
-      if (postEmergencyContact == null)
+      if (postDependents == null)
       {
         return Json(new
         {
@@ -442,9 +442,9 @@ namespace E4S.Controllers.Employee
         Dependant dependant = new Dependant()
         {
           Id = Guid.NewGuid(),
-          Name = postEmergencyContact.Name,
-          Relationship = postEmergencyContact.Relationship,
-          Address = postEmergencyContact.Address,
+          Name = postDependents.Name,
+          Relationship = postDependents.Relationship,
+          Address = postDependents.Address,
           OrganisationId = orgId,
           EmployeeDetailId = employeeDetails.Id,
 
@@ -473,7 +473,61 @@ namespace E4S.Controllers.Employee
     }
 
 
-    public IActionResult Jobs()
+        // Edit the Dependents
+
+        [HttpPost]
+        public async Task<IActionResult> editDependents([FromBody]PostDependents postDependents)
+        {
+            if (postDependents == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var employeeDetails = await _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefaultAsync();
+
+            try
+            {
+
+                var EmployDependt = _context.Dependants.Where(x => x.Id == Guid.Parse(postDependents.AId)).FirstOrDefault();
+                EmployDependt.Name = postDependents.Name;
+                EmployDependt.Relationship = postDependents.Relationship;
+                EmployDependt.Address = postDependents.Address;
+                EmployDependt.OrganisationId = orgId;
+                EmployDependt.EmployeeDetailId = employeeDetails.Id;
+
+
+                _context.Update(EmployDependt);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Dependents
+
+
+        public IActionResult Jobs()
         {
       var orgId = getOrg();
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

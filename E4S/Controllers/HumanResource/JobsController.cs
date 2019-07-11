@@ -752,7 +752,74 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        // Ednf of Edit for Leave Configuration
+    // Ednf of Edit for Leave Configuration
 
+    [HttpPost]
+    public async Task<IActionResult> DelLeaveConfig([FromBody]string LeaveId)
+    {
+      if (LeaveId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var LeaveTitle = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(LeaveTitle);
+        var LeaveDuration = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(LeaveDuration);
+        var description = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(description);
+
+
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
+
+
+
+
+
+
+
+
+
+  }
 }

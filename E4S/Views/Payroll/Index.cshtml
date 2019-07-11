@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-header">
-                    <h4 class="card-title"> Employee List</h4>
+                    <h4 class="card-title"> Employee Payroll</h4>
                 </div>
                 <div class="card-body ">
                     <form method="#" action="#">
@@ -111,13 +111,23 @@
                 <div class="card-header">
                     @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
                     @*<button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">*@
-                    <a asp-action="AddEmployee" class="btn btn-info">Add New Employee</a>
+                    @*<a asp-action="AddEmployee" class="btn btn-info">Add New Employee</a>*@
                     @*</button>*@
-
-                    <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#uploadModal">
-                        Upload Employee CSV
-                    </button>
-
+                    <div class="card">
+                        <div class="card-title">
+                            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#uploadModal">
+                                Salary Deductions
+                            </button>
+                            <button class="btn btn-info pull-right" data-toggle="modal" data-target="#uploadModal">
+                                Salary Additions
+                            </button>
+                        </div>
+                    </div>
+                    
+                    @*<button class="btn btn-danger pull-right" data-toggle="modal" data-target="#uploadModal">
+            Download P
+        </button>*@
+                </div>
 
                     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
@@ -166,8 +176,8 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -226,14 +236,14 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
                             </div>
                         </div>
                     </div>
                     <!-- end notice modal -->
                     @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
-                </div>
+                
 
 
 
@@ -273,7 +283,7 @@
                         </thead>
 
 
-                        <tbody>
+                        @*<tbody>
 
                             @{
                                 int i = 1;
@@ -302,16 +312,14 @@
                                         <td>
                                             <a asp-action="EmployeeDetails" asp-route-id="@item.Id">@item.EmployeeName</a>
                                             @*<a href="#"></a>*@
-                                        </td>
+                                        @*</td>
                                         <td>
                                             @item.Email
                                         </td>
                                         <td>
                                             @item.JobTitle
                                         </td>
-                                        @*<td>
-                                                @item.EmployeeStatus
-                                            </td>*@
+                                        @
                                         <td>
                                             @item.Department
                                         </td>
@@ -328,16 +336,13 @@
                                 }
                             }
 
-                            </tbody>
+                            </tbody>*@
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 
 
 

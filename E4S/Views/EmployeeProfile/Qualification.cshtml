@@ -33,7 +33,7 @@
                 <!-- Education Page-->
                 <div class="card-header">
                   <div class="justify-content-end align-items-center ">
-                    <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal3">Add Insititution Records</a>
+                    <button class="btn  btn-info" data-toggle="modal" data-target="#noticeModal3">Add Insititution Records</button>
                   </div>
                 </div>
 
@@ -428,7 +428,7 @@
                 <!-- Skills-->
                 <div class="card-header">
                   <div class="justify-content-end align-items-center ">
-                    <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal4">Add Skills</a>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal4">Add Skills</button>
                   </div>
                 </div>
 
@@ -580,7 +580,7 @@
 
               <div class="card-header">
                 <div class="justify-content-end align-items-center ">
-                  <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal5">Add Work Experience</a>
+                  <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal5">Add Work Experience</button>
                 </div>
               </div>
 
@@ -856,6 +856,93 @@
 
 
     $(document).ready(function () {
+       $("#delRecords").click(function (event) {
+
+          event.preventDefault();
+
+          var RecordId = $(this).attr('selected-id');
+          var school = $(this).attr('selected-institution');
+          var course = $(this).attr('selected-courseOfStudy');
+          var degree = $(this).attr('selected-degree');
+          var grade = $(this).attr('selected-grade');
+          var year = $(this).attr('selected-yearCompleted');
+          var ImageUrl = $(this).attr('selected-imageUrl');
+
+
+
+          // console.log(Items);
+          console.log(RecordId);
+
+          swal({
+
+            title: 'Are you sure?',
+            text: "You won't be able to revert!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+          }).then(function () {
+
+            $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/DelInstitutionRecords",
+              data: JSON.stringify(RecordId),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+                  $("#loading-overlay").hide();
+                  swal({
+                    title: 'Deleted!',
+                    text: 'Your record has been deleted.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+
+                  });
+
+                              window.location.reload();
+
+
+                } else if (r.msg == "Fail") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+              }
+            });
+
+
+          }).catch(swal.noop);
+
+
+
+        });
+      });
+
+
+    $(document).ready(function () {
 
      
 
@@ -1021,89 +1108,7 @@
 
       });
 
-      $("#delRecords").click(function (event) {
-
-          event.preventDefault();
-
-          var RecordId = $(this).attr('selected-id');
-          var school = $(this).attr('selected-institution');
-          var course = $(this).attr('selected-courseOfStudy');
-          var degree = $(this).attr('selected-degree');
-          var grade = $(this).attr('selected-grade');
-          var year = $(this).attr('selected-yearCompleted');
-          var ImageUrl = $(this).attr('selected-imageUrl');
-
-
-
-          // console.log(Items);
-          console.log(RecordId);
-
-          swal({
-
-            title: 'Are you sure?',
-            text: "You won't be able to revert!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Yes, delete it!',
-            buttonsStyling: false
-          }).then(function () {
-
-            $.ajax({
-              type: "POST",
-              url: "/EmployeeProfile/DelInstitutionRecords",
-              data: JSON.stringify(RecordId),
-              dataType: "json",
-              contentType: 'application/json; charset=utf-8',
-              headers: {
-                RequestVerificationToken:
-                  $('input:hidden[name="__RequestVerificationToken"]').val()
-              },
-              success: function (r) {
-
-                if (r.msg == "Success") {
-                  $("#loading-overlay").hide();
-                  swal({
-                    title: 'Deleted!',
-                    text: 'Your record has been deleted.',
-                    type: 'success',
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-
-                  });
-
-                              window.location.reload();
-
-
-                } else if (r.msg == "Fail") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else if (r.msg == "No Data") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-                }
-                //alert(r.msg);
-                // window.location.reload();
-
-              },
-              error: function () {
-                $("#loading-overlay").hide();
-                alert(r.msg);
-              }
-            });
-
-
-          }).catch(swal.noop);
-
-
-
-        });
+     
 
 
       $("#editSkills").click(function (event) {
