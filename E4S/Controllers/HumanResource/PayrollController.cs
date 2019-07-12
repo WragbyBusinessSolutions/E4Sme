@@ -36,24 +36,47 @@ namespace E4S.Controllers.HumanResource
       return orgId;
     }
 
-    public IActionResult Index()
+        [Produces("application/json")]
+        [HttpGet("search")]
+        [Route("/api/Payroll/search")]
+        public async Task<IActionResult> Search()
         {
-      var orgId = getOrg();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
 
-      return View();
+
+            var otheruser =  _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var names = _context.EmployeeDetails.Where(x => x.OrganisationId == otheruser.Id).Where(p => p.FirstName.Contains(term)).Select(p => p.FirstName).ToList();
+                return Ok(names);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
-    public IActionResult SalaryAdditions()
-    {
-      var orgId = getOrg();
 
-      return View();
+        public IActionResult Index()
+        {
+          var orgId = getOrg();
+
+          return View();
+        }
+        public IActionResult SalaryAdditions()
+        {
+          var orgId = getOrg();
+
+          return View();
+        }
+        public IActionResult SalaryDeductions()
+        {
+          var orgId = getOrg();
+
+          return View();
+        }
+
     }
-    public IActionResult SalaryDeductions()
-    {
-      var orgId = getOrg();
-
-      return View();
-    }
-
-  }
 }

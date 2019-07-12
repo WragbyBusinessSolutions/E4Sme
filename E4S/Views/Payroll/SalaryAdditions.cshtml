@@ -5,8 +5,30 @@
 }
 
 
-<div class="content">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#autocom').autocomplete({
 
+            source: '/api/Payroll/search'
+
+        });
+
+        $('#addItem').autocomplete({
+
+            source: '/api/Estimates/productsearch'
+
+        });
+
+
+    })
+</script>
+
+
+
+<div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -15,7 +37,7 @@
 
                     @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
                     <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                        Create 
+                        Create
                     </button>
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -34,9 +56,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                        </select>
+                                                        <input type="text" class="form-control" placeholder="Employee Name"  autocomplete="on" id="autocom" required>                              
                                                     </div>
                                                 </div>
                                             </div>
@@ -44,7 +64,9 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Addition Type</label>
-                                                        <input type="text" class="form-control" placeholder="Addition Type" id="DeductionType" required>
+                                                        <select type="text" class="form-control" asp-items="ViewBag.AdditionType" id="AdditionType" name="AdditionType">
+                                                            <option> -- Select Addition Type -- </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,215 +303,215 @@
                                 }
 
                                 </tbody>*@
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
 
+</div>
 
 
 
-    <script>
+
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+
+        });
+
+        var table = $('#datatable').DataTable();
+
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+    });
+
+
+</script>
+
+
+
+@section Scripts {
+
+    <!--  DataTables.net Plugin, full documentation here  -->
+    <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+
         $(document).ready(function () {
-            $('#datatable').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                responsive: true,
 
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search records",
-                }
+            $("#submitAsset").click(function (event) {
 
-            });
+                event.preventDefault();
 
-            var table = $('#datatable').DataTable();
+                var PostOrganisationAsset = {
+                    EmployeeDetailId: $("#employeeId").val(),
+                    DeviceName: $("#DeviceName").val(),
+                    Brand: $("#Brand").val(),
+                    Model: $("#Model").val(),
+                    SerialNumber: $("#SerialNo").val(),
+                };
 
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
 
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
+                // console.log(Items);
+                console.log(PostOrganisationAsset);
 
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyAssets/postCompanyAssets",
+                    data: JSON.stringify(PostOrganisationAsset),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
 
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
             });
         });
 
 
+        //Code for pulling the Records on the Table
+        var aEditAssetId;
+
+        $(document).delegate('#Editbtn',
+            'click',
+            function (e) {
+
+                aEditAssetId = $(this).attr('EditAssetId');
+                deviceName = $(this).attr('select-DeviceName');
+                brand = $(this).attr('Selected-Brand');
+                model = $(this).attr('Selected-Model');
+                serialNo = $(this).attr('Selected-SerialNo');
+
+
+                //console.log(varstartDate, varendDate);
+                //  console.log(aEditAssetId);
+
+                $('input[name=AssetId]').val(aEditAssetId);
+                $('input[name=eDeviceName]').val(deviceName);
+                $('input[name=eBrand]').val(brand);
+                $('input[name=eModel]').val(model);
+                $('input[name=eSerialNo]').val(serialNo);
+
+            });
+
+        //End of the code
+
+        $(document).ready(function () {
+
+            $("#editAsset").click(function (event) {
+
+                event.preventDefault();
+
+                var PostOrganisationAsset = {
+                    AId: $("#AssetId").val(),
+                    EmployeeDetailId: $("#eemployeeId").val(),
+                    DeviceName: $("#eDeviceName").val(),
+                    Brand: $("#eBrand").val(),
+                    Model: $("#eModel").val(),
+                    SerialNumber: $("#eSerialNo").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostOrganisationAsset);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyAssets/editCompanyAssets",
+                    data: JSON.stringify(PostOrganisationAsset),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+
+
+        });
+
     </script>
 
-
-
-    @section Scripts {
-
-        <!--  DataTables.net Plugin, full documentation here  -->
-        <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
-
-        <script type="text/javascript">
-
-            $(document).ready(function () {
-
-                $("#submitAsset").click(function (event) {
-
-                    event.preventDefault();
-
-                    var PostOrganisationAsset = {
-                        EmployeeDetailId: $("#employeeId").val(),
-                        DeviceName: $("#DeviceName").val(),
-                        Brand: $("#Brand").val(),
-                        Model: $("#Model").val(),
-                        SerialNumber: $("#SerialNo").val(),
-                    };
-
-
-                    // console.log(Items);
-                    console.log(PostOrganisationAsset);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/CompanyAssets/postCompanyAssets",
-                        data: JSON.stringify(PostOrganisationAsset),
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        headers: {
-                            RequestVerificationToken:
-                                $('input:hidden[name="__RequestVerificationToken"]').val()
-                        },
-                        success: function (r) {
-
-                            if (r.msg == "Success") {
-
-                                demo.showSwal('success-message');
-
-                            } else if (r.msg == "Fail") {
-
-                                alert(r.msg);
-
-                            } else if (r.msg == "No Data") {
-                                alert(r.msg);
-
-                            } else {
-                                alert(r.msg);
-                            }
-                            //alert(r.msg);
-                            // window.location.reload();
-
-                        },
-                        error: function () {
-                            alert(r.msg);
-                        }
-                    });
-                });
-            });
-
-
-            //Code for pulling the Records on the Table
-            var aEditAssetId;
-
-            $(document).delegate('#Editbtn',
-                'click',
-                function (e) {
-
-                    aEditAssetId = $(this).attr('EditAssetId');
-                    deviceName = $(this).attr('select-DeviceName');
-                    brand = $(this).attr('Selected-Brand');
-                    model = $(this).attr('Selected-Model');
-                    serialNo = $(this).attr('Selected-SerialNo');
-
-
-                    //console.log(varstartDate, varendDate);
-                    //  console.log(aEditAssetId);
-
-                    $('input[name=AssetId]').val(aEditAssetId);
-                    $('input[name=eDeviceName]').val(deviceName);
-                    $('input[name=eBrand]').val(brand);
-                    $('input[name=eModel]').val(model);
-                    $('input[name=eSerialNo]').val(serialNo);
-
-                });
-
-            //End of the code
-
-            $(document).ready(function () {
-
-                $("#editAsset").click(function (event) {
-
-                    event.preventDefault();
-
-                    var PostOrganisationAsset = {
-                        AId: $("#AssetId").val(),
-                        EmployeeDetailId: $("#eemployeeId").val(),
-                        DeviceName: $("#eDeviceName").val(),
-                        Brand: $("#eBrand").val(),
-                        Model: $("#eModel").val(),
-                        SerialNumber: $("#eSerialNo").val(),
-                    };
-
-
-                    // console.log(Items);
-                    console.log(PostOrganisationAsset);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/CompanyAssets/editCompanyAssets",
-                        data: JSON.stringify(PostOrganisationAsset),
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        headers: {
-                            RequestVerificationToken:
-                                $('input:hidden[name="__RequestVerificationToken"]').val()
-                        },
-                        success: function (r) {
-
-                            if (r.msg == "Success") {
-
-                                demo.showSwal('success-message');
-
-                            } else if (r.msg == "Fail") {
-
-                                alert(r.msg);
-
-                            } else if (r.msg == "No Data") {
-                                alert(r.msg);
-
-                            } else {
-                                alert(r.msg);
-                            }
-                            //alert(r.msg);
-                            // window.location.reload();
-
-                        },
-                        error: function () {
-                            alert(r.msg);
-                        }
-                    });
-                });
-
-
-
-            });
-
-        </script>
-
-    }
+}
 
 
