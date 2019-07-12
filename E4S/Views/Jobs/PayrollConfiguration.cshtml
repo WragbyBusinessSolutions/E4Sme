@@ -31,7 +31,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Addition Name</label>
-                                                            <input type="text" class="form-control" placeholder="Department Name" id="DepartmentName" required>
+                                                            <input type="text" class="form-control" placeholder="Department Name" id="AdditionName" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -47,7 +47,7 @@
                                                 </div>
                                                 <hr />
                                                 <div class="card-footer">
-                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
+                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewAddition">Submit</button>
                                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
@@ -225,7 +225,7 @@
 
                                                 <hr />
                                                 <div class="card-footer">
-                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
+                                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitAddition">Submit</button>
                                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
@@ -368,24 +368,29 @@
     @section Scripts {
         <script type="text/javascript">
 
+          //$(document).ready(function () {
 
-     $(document).ready(function() {
-    $('.form-group input').keyup(function() {
+         
 
-        var empty = false;
-        $('.form-group input').each(function() {
-            if ($(this).val().length == 0) {
-                empty = true;
-            }
-        });
+          //   });
 
-        if (empty) {
-            $('.card-footer button').attr('disabled', 'disabled');
-        } else {
-            $('.card-footer button').removeAttr('disabled');
-        }
-    });
-    });
+    // $(document).ready(function() {
+    //$('.form-group input').keyup(function() {
+
+    //    var empty = false;
+    //    $('.form-group input').each(function() {
+    //        if ($(this).val().length == 0) {
+    //            empty = true;
+    //        }
+    //    });
+
+    //    if (empty) {
+    //        $('.card-footer button').attr('disabled', 'disabled');
+    //    } else {
+    //        $('.card-footer button').removeAttr('disabled');
+    //    }
+    //});
+    //});
 
 
 
@@ -413,55 +418,54 @@
 
       $(document).ready(function () {
 
-        $("#delDept").click(function (event) {
+        //$("#delDept").click(function (event) {
 
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                confirmButtonText: 'Yes, delete it!',
-                buttonsStyling: false
-            }).then(function () {
-
-
-
-              swal({
-                title: 'Deleted!',
-                text: 'Your file has been deleted.',
-                type: 'success',
-                confirmButtonClass: "btn btn-success",
-                buttonsStyling: false
-              });
+        //    swal({
+        //        title: 'Are you sure?',
+        //        text: "You won't be able to revert this!",
+        //        type: 'warning',
+        //        showCancelButton: true,
+        //        confirmButtonClass: 'btn btn-success',
+        //        cancelButtonClass: 'btn btn-danger',
+        //        confirmButtonText: 'Yes, delete it!',
+        //        buttonsStyling: false
+        //    }).then(function () {
 
 
 
+        //      swal({
+        //        title: 'Deleted!',
+        //        text: 'Your file has been deleted.',
+        //        type: 'success',
+        //        confirmButtonClass: "btn btn-success",
+        //        buttonsStyling: false
+        //      });
 
-            }).catch(swal.noop);
-
-        });
 
 
 
-            $("#SubmitNewDepartment").click(function (event) {
+        //    }).catch(swal.noop);
+
+        //});
+
+
+         $("#SubmitNewAddition").click(function (event) {
 
                 event.preventDefault();
 
-                var Department = {
-                    DepartmentName: $("#DepartmentName").val(),
+                var Addition = {
+                    AdditionName: $("#AdditionName").val(),
                     Description: $("#Description").val(),
                 };
 
 
                 // console.log(Items);
-                console.log(Department);
+                console.log(Addition);
 
                 $.ajax({
                     type: "POST",
-                    url: "/Jobs/Department",
-                    data: JSON.stringify(Department),
+                    url: "/Jobs/AddAddition",
+                    data: JSON.stringify(Addition),
                     dataType: "json",
                     contentType: 'application/json; charset=utf-8',
                     headers: {
@@ -493,64 +497,115 @@
                     }
                 });
             });
+
+
+
+            //$("#SubmitNewDepartment").click(function (event) {
+
+            //    event.preventDefault();
+
+            //    var Department = {
+            //        DepartmentName: $("#DepartmentName").val(),
+            //        Description: $("#Description").val(),
+            //    };
+
+
+            //    // console.log(Items);
+            //    console.log(Department);
+
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "/Jobs/Department",
+            //        data: JSON.stringify(Department),
+            //        dataType: "json",
+            //        contentType: 'application/json; charset=utf-8',
+            //        headers: {
+            //            RequestVerificationToken:
+            //                $('input:hidden[name="__RequestVerificationToken"]').val()
+            //        },
+            //        success: function (r) {
+
+            //            if (r.msg == "Success") {
+
+            //                demo.showSwal('success-message');
+
+            //            } else if (r.msg == "Fail") {
+
+            //                alert(r.msg);
+
+            //            } else if (r.msg == "No Data") {
+            //                alert(r.msg);
+
+            //            } else {
+            //                alert(r.msg);
+            //            }
+            //            //alert(r.msg);
+            //            // window.location.reload();
+
+            //        },
+            //        error: function () {
+            //            alert(r.msg);
+            //        }
+            //    });
+            //});
         });
 
 
         // Edit your post
 
-         $(document).ready(function () {
+         //$(document).ready(function () {
 
-            $("#editDepartment").click(function (event) {
+         //   $("#editDepartment").click(function (event) {
 
-                event.preventDefault();
+         //       event.preventDefault();
 
-                var PostDepartment = {
-                    AId: $("#edeptid").val(),
-                    DepartmentName: $("#eDepartmentName").val(),
-                    Description : $("#eDescription").val(),
-                };
+         //       var PostDepartment = {
+         //           AId: $("#edeptid").val(),
+         //           DepartmentName: $("#eDepartmentName").val(),
+         //           Description : $("#eDescription").val(),
+         //       };
 
 
-                // console.log(Items);
-                console.log(PostDepartment);
+         //       // console.log(Items);
+         //       console.log(PostDepartment);
 
-                $.ajax({
-                  type: "POST",
-                  url: "/Jobs/editDepartment",
-                  data: JSON.stringify(PostDepartment),
-                  dataType: "json",
-                  contentType: 'application/json; charset=utf-8',
-                  headers: {
-                      RequestVerificationToken:
-                      $('input:hidden[name="__RequestVerificationToken"]').val()
-                  },
-                  success: function (r) {
+         //       $.ajax({
+         //         type: "POST",
+         //         url: "/Jobs/editDepartment",
+         //         data: JSON.stringify(PostDepartment),
+         //         dataType: "json",
+         //         contentType: 'application/json; charset=utf-8',
+         //         headers: {
+         //             RequestVerificationToken:
+         //             $('input:hidden[name="__RequestVerificationToken"]').val()
+         //         },
+         //         success: function (r) {
 
-                    if (r.msg == "Success") {
+         //           if (r.msg == "Success") {
 
-                      demo.showSwal('success-message');
+         //             demo.showSwal('success-message');
 
-                    } else if (r.msg == "Fail") {
+         //           } else if (r.msg == "Fail") {
 
-                      alert(r.msg);
+         //             alert(r.msg);
 
-                    } else if (r.msg == "No Data") {
-                      alert(r.msg);
+         //           } else if (r.msg == "No Data") {
+         //             alert(r.msg);
 
-                    } else {
-                      alert(r.msg);
-                    }
-                    //alert(r.msg);
-                    // window.location.reload();
+         //           } else {
+         //             alert(r.msg);
+         //           }
+         //           //alert(r.msg);
+         //           // window.location.reload();
 
-                  },
-                  error: function () {
-                    alert(r.msg);
-                  }
-                });
-              });
+         //         },
+         //         error: function () {
+         //           alert(r.msg);
+         //         }
+         //       });
+         //     });
 
-            });
+         //   });
 
         </script>
 

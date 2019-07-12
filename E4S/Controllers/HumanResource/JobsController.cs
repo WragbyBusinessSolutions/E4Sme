@@ -818,6 +818,61 @@ namespace E4S.Controllers.HumanResource
             return View();
         }
 
+    public IActionResult AddAddition()
+    {
+      var orgId = getOrg();
+      var addition = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddAddition([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
+    {
+      if (additionDeductionViewModel == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+      try
+      {
+        Addition newAddition = new Addition()
+        {
+          Id = Guid.NewGuid(),
+          AdditionType = additionDeductionViewModel.AdditionName,
+          Description = additionDeductionViewModel.Description,
+          OrganisationId = orgId
+        };
+
+        _context.Add(newAddition);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
 
 
 
