@@ -80,7 +80,7 @@
 
                                           <hr />
                                           <div class="card-footer ">
-                                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEmergency" disabled="disabled">Submit</button>
+                                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEmergency">Submit</button>
                                               @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
                                           </div>
                                       </form>
@@ -206,23 +206,23 @@
 
   <script type="text/javascript">
 
-      $(document).ready(function() {
-        $('.EmCon form-group input').keyup(function() {
+      //$(document).ready(function() {
+      //  $('.EmCon form-group input').keyup(function() {
 
-            var empty = false;
-            $('.EmCon form-group input').each(function() {
-                if ($(this).val().length == 0) {
-                    empty = true;
-                }
-            });
+      //      var empty = false;
+      //      $('.EmCon form-group input').each(function() {
+      //          if ($(this).val().length == 0) {
+      //              empty = true;
+      //          }
+      //      });
 
-            if (empty) {
-                $('.card-footer button').attr('disabled', 'disabled');
-            } else {
-                $('.card-footer button').removeAttr('disabled');
-            }
-        });
-      });
+      //      if (empty) {
+      //          $('.card-footer button').attr('disabled', 'disabled');
+      //      } else {
+      //          $('.card-footer button').removeAttr('disabled');
+      //      }
+      //  });
+      //});
 
     $(document).ready(function () {
 
