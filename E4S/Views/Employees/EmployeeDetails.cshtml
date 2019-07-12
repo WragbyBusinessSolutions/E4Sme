@@ -68,6 +68,11 @@
                         Qualification
                       </a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#workHistory" role="tablist">
+                        Employment History
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
@@ -88,13 +93,13 @@
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Middle Name</label>
-                              <input asp-for="EmployeeDetail.MiddleName" id="empMiddleName" name="empMiddleName"  type="text" class="form-control" placeholder="MiddleName">
+                              <input asp-for="EmployeeDetail.MiddleName" id="empMiddleName" name="empMiddleName" type="text" class="form-control" placeholder="MiddleName">
                             </div>
                           </div>
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Last Name</label>
-                              <input asp-for="EmployeeDetail.LastName" id="empLastName" name="empLastName"  type="text" class="form-control" placeholder="LastName">
+                              <input asp-for="EmployeeDetail.LastName" id="empLastName" name="empLastName" type="text" class="form-control" placeholder="LastName">
                             </div>
                           </div>
                         </div>
@@ -103,13 +108,13 @@
                           <div class="col-md-6 pr-1">
                             <div class="form-group">
                               <label>Employye ID</label>
-                              <input asp-for="EmployeeDetail.EmployeeId" type="text" class="form-control" id="empEmployeeID" name="empEmployeeID"   placeholder="Employee ID">
+                              <input asp-for="EmployeeDetail.EmployeeId" type="text" class="form-control" id="empEmployeeID" name="empEmployeeID" placeholder="Employee ID">
                             </div>
                           </div>
                           <div class="col-md-6 pl-1">
                             <div class="form-group">
                               <label>Other ID </label>
-                              <input asp-for="EmployeeDetail.OtherId" type="text" class="form-control" id="empOtherId" name="empOtherId"  placeholder="Other ID">
+                              <input asp-for="EmployeeDetail.OtherId" type="text" class="form-control" id="empOtherId" name="empOtherId" placeholder="Other ID">
                             </div>
                           </div>
                         </div>
@@ -118,7 +123,7 @@
                           <div class="col-md-4 pr-1">
                             <div class="form-group">
                               <label>Gender</label>
-                              <select asp-for="EmployeeDetail.Gender" type="text" id="empGender" name="empGender"  class="form-control" placeholder="Username">
+                              <select asp-for="EmployeeDetail.Gender" type="text" id="empGender" name="empGender" class="form-control" placeholder="Username">
                                 <option> -- Select Gender -- </option>
                                 <option value="Male"> Male </option>
                                 <option value="Female">Female</option>
@@ -128,8 +133,8 @@
                           <div class="col-md-4 px-1">
                             <div class="form-group">
                               <label>Marital Status</label>
-                              <select asp-for="EmployeeDetail.MaritalStatus" type="text" id="empMaritalStatus" name="empMaritalStatus"  class="form-control" placeholder="Username">
-                                <option > -- Select Marital -- </option>
+                              <select asp-for="EmployeeDetail.MaritalStatus" type="text" id="empMaritalStatus" name="empMaritalStatus" class="form-control" placeholder="Username">
+                                <option> -- Select Marital -- </option>
                                 <option value="Single">Single </option>
                                 <option value="Married">Married</option>
                               </select>
@@ -138,7 +143,7 @@
                           <div class="col-md-4 pl-1">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Date of Birth</label>
-                              <input asp-for="EmployeeDetail.DateOfBirth" type="Date" id="empDateOfBirth" name="empDateOfBirth"  class="form-control" placeholder="date">
+                              <input asp-for="EmployeeDetail.DateOfBirth" type="Date" id="empDateOfBirth" name="empDateOfBirth" class="form-control" placeholder="date">
                             </div>
                           </div>
                         </div>
@@ -442,15 +447,17 @@
                                 <div class="input-group mb-2">
                                   <select type="text" class="form-control" asp-items="ViewBag.EmploymentStatus" id="EmploymentStatusId" name="EmploymentStatusId">
                                     <option> -- Select Job Employement Status -- </option>
-                                     
-                                      <option>  <a class="btn btn-success" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+ Add New Status</a> </option>
-                                      <option> <div class="input-group-append " style="position:relative; top:-10px;">
-    <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
-</div> </option>
-                                  </select>
-                                    <div class="">
 
-                                    </div>
+                                    <option>  <a class="btn btn-success" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+ Add New Status</a> </option>
+                                    <option>
+                                      <div class="input-group-append " style="position:relative; top:-10px;">
+                                        <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
+                                      </div>
+                                    </option>
+                                  </select>
+                                  <div class="">
+
+                                  </div>
                                   <div class="input-group-append " style="position:relative; top:-10px;">
                                     <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
                                   </div>
@@ -583,7 +590,7 @@
 
 
                           </div>
-                          
+
                           <div class="row">
                             <div class="col-md-6 ">
                               <div class="form-group">
@@ -594,7 +601,7 @@
 
 
                           </div>
-                          
+
 
 
                           <div class="card-footer">
@@ -818,16 +825,16 @@
 
                             @foreach (var item in Model.InstitutionQualifications)
                             {
-                            <tr>
-                              <td>@item.Institution</td>
-                              <td>@item.CourseOfStudy</td>
-                              <td>@item.YearCompleted</td>
-                              <td>@item.Grade</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
+                              <tr>
+                                <td>@item.Institution</td>
+                                <td>@item.CourseOfStudy</td>
+                                <td>@item.YearCompleted</td>
+                                <td>@item.Grade</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
 
                             }
 
@@ -847,44 +854,73 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
+
+                            @foreach (var item in Model.Skills)
+                            {
+                              <tr>
+                                <td>@item.SkillName</td>
+                                <td>@item.YearsOfExperience</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
+                            }
+
                           </tbody>
                         </table>
                       </div>
                       <!--End Skills-->
                       <hr />
 
+                      
+
+                    </div>
+
+                    <div class="tab-pane" id="workHistory">
+
                       <div class="card-body">
                         <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                           <thead>
                             <tr>
-                              <th>Language</th>
-                              <th>Fluency</th>
-                              <th>Comtency</th>
+
+                              <th> Company Name</th>
+                              <th>Job Title</th>
+                              <th>Start Date</th>
+                              <th>End Date</th>
+                              <th>Comments</th>
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
+
+                            @foreach (var item in Model.WorkExperiences)
+                            {
                             <tr>
-                              <td>Cedric Kelly</td>
-                              <td>cedrickelly@mail.com</td>
-                              <td>Active</td>
+                              <td>@item.Organisation</td>
+                              <td>@item.JobTitle</td>
+                              <td>@item.StartDate</td>
+                              <td>@item.EndDate</td>
+                              <td>@item.Comment</td>
                               <td class="text-right">
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                               </td>
                             </tr>
 
+                            }
+
                           </tbody>
                         </table>
                       </div>
+
+                     
+
+                      
+                     
+                    
+
+                      
 
                     </div>
 
