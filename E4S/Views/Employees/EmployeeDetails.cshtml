@@ -806,23 +806,30 @@
                         <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
                           <thead>
                             <tr>
-                              
-                              <th> Qualifications</th>
-                              <th>Relationship</th>
-                              <th>Date of Birth</th>
+
+                              <th> Institution</th>
+                              <th>Course of Study</th>
+                              <th>Year Completed</th>
+                              <th>Grade</th>
                               <th class="disabled-sorting text-right">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
+
+                            @foreach (var item in Model.InstitutionQualifications)
+                            {
                             <tr>
-                              <td>Tiger Nixon</td>
-                              <td>info@TigerNixon.com</td>
-                              <td>Active</td>
+                              <td>@item.Institution</td>
+                              <td>@item.CourseOfStudy</td>
+                              <td>@item.YearCompleted</td>
+                              <td>@item.Grade</td>
                               <td class="text-right">
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                               </td>
                             </tr>
+
+                            }
 
                           </tbody>
                         </table>
