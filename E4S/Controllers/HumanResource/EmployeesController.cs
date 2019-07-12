@@ -749,7 +749,10 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.EmergencyContacts = _context.EmergencyContacts.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.Dependants = _context.Dependants.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.InstitutionQualifications = _context.InstitutionQualifications.Where(x => x.EmployeeDetailId == id).ToList();
-      
+      employeeDetailsVM.Skills = _context.Skills.Where(x => x.EmployeeDetailId == id).ToList();
+      employeeDetailsVM.WorkExperiences = _context.WorkExperiences.Where(x => x.EmployeeDetailId == id).ToList();
+
+
 
       var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
       var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
