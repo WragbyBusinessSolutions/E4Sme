@@ -209,7 +209,7 @@
                             </td>
                             <td>
                               <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" id="Editbtn" LeaveConfigId="@item.Id" Selected-LeaveConfig="@item.LeaveTitle" Selected-MaxDuration="@item.MaxDuration" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
-                              <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delLeaveConfig" selected-id="@item.Id" selected-leaveTitle="@item.LeaveTitle" selected-leaveDuration="@item.MaxDuration" selected-leaveDescription="@item.Description" title="Click to Delete"><i class="fas fa-times"></i></a>
+                              <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delLeave" selected-id="@item.Id" selected-leaveTitle="@item.LeaveTitle" selected-leaveDuration="@item.MaxDuration" selected-leaveDescription="@item.Description" title="Click to Delete"><i class="fas fa-times"></i></a>
                             </td>
                           </tr>
 
@@ -239,7 +239,13 @@
 
     <script type="text/javascript">
 
+      //  $(document).ready(function () {
+
+      //});
+
       $(document).ready(function () {
+
+        
 
         $("#SubmitNewLeaveConfiguration").click(function (event) {
 
@@ -318,9 +324,64 @@
 
       // Edit your post
 
+    
+
       $(document).ready(function () {
 
-        $("#delLeaveConfig").click(function (event) {
+
+
+        $("#editLeaveConfiguration").click(function (event) {
+
+          event.preventDefault();
+
+          var PostLeaveConfiguration = {
+            AId: $("#eLeaveid").val(),
+            LeaveTitle: $("#eLeaveTitle").val(),
+            MaxDuration: $("#eMaxDuration").val(),
+            Description: $("#eDescription").val(),
+          };
+
+
+          // console.log(Items);
+          console.log(PostLeaveConfiguration);
+
+          $.ajax({
+            type: "POST",
+            url: "/Jobs/editLeaveConfiguration",
+            data: JSON.stringify(PostLeaveConfiguration),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                demo.showSwal('success-message');
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+        });
+
+         $("#delLeave").click(function (event) {
 
           event.preventDefault();
 
@@ -398,63 +459,6 @@
 
 
 
-        });
-
-      });
-
-      $(document).ready(function () {
-
-
-
-        $("#editLeaveConfiguration").click(function (event) {
-
-          event.preventDefault();
-
-          var PostLeaveConfiguration = {
-            AId: $("#eLeaveid").val(),
-            LeaveTitle: $("#eLeaveTitle").val(),
-            MaxDuration: $("#eMaxDuration").val(),
-            Description: $("#eDescription").val(),
-          };
-
-
-          // console.log(Items);
-          console.log(PostLeaveConfiguration);
-
-          $.ajax({
-            type: "POST",
-            url: "/Jobs/editLeaveConfiguration",
-            data: JSON.stringify(PostLeaveConfiguration),
-            dataType: "json",
-            contentType: 'application/json; charset=utf-8',
-            headers: {
-              RequestVerificationToken:
-                $('input:hidden[name="__RequestVerificationToken"]').val()
-            },
-            success: function (r) {
-
-              if (r.msg == "Success") {
-
-                demo.showSwal('success-message');
-
-              } else if (r.msg == "Fail") {
-
-                alert(r.msg);
-
-              } else if (r.msg == "No Data") {
-                alert(r.msg);
-
-              } else {
-                alert(r.msg);
-              }
-              //alert(r.msg);
-              // window.location.reload();
-
-            },
-            error: function () {
-              alert(r.msg);
-            }
-          });
         });
 
       });
