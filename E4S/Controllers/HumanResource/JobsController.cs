@@ -813,7 +813,10 @@ namespace E4S.Controllers.HumanResource
     }
 
 
-
+        public IActionResult PayrollConfiguration()
+        {
+            return View();
+        }
 
 
 
