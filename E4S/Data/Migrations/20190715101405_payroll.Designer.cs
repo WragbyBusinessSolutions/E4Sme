@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190715101405_payroll")]
+    partial class payroll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -715,8 +716,6 @@ namespace E4S.Data.Migrations
                     b.Property<Guid>("EmployeeId");
 
                     b.Property<string>("EmployeeName");
-
-                    b.Property<Guid>("GenerationId");
 
                     b.Property<float>("Gratuities");
 

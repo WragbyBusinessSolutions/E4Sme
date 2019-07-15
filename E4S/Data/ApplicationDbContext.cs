@@ -54,5 +54,7 @@ namespace E4S.Data
     public DbSet<SalaryAddition> SalaryAdditions { get; set; }
     public DbSet<SalaryDeduction> SalaryDeductions { get; set; }
 
+    public DbSet<Payroll> Payrolls { get; set; }
+
   }
 }
