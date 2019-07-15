@@ -887,72 +887,66 @@ namespace E4S.Controllers.HumanResource
 
         // Deduction 
 
-        public IActionResult AddDeducions()
+        public IActionResult AddDeduction()
         {
             var orgId = getOrg();
-            var SalaryAdd = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+            var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
 
-            return View(SalaryAdd);
+            return View(SalaryDeduct);
 
         }
 
-        public IActionResult AddDeduction()
+
+
+    //
+
+    [HttpPost]
+    public async Task<IActionResult> AddDeduction([FromBody]PostNewDeduction postNewDeduction)
     {
+      if (postNewDeduction == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
       var orgId = getOrg();
-      var addition = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
-      //return View();
-      return RedirectToAction("PayrollConfiguration");
+      try
+      {
+        Deduction newDeduction = new Deduction()
+        {
+          Id = Guid.NewGuid(),
+          DeductionType = postNewDeduction.DeductionType,
+          Description = postNewDeduction.Description,
+          OrganisationId = orgId
+        };
+
+        _context.Add(newDeduction);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
-
-    //[HttpPost]
-    //public async Task<IActionResult> AddDeduction([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
-    //{
-    //  if (additionDeductionViewModel == null)
-    //  {
-    //    return Json(new
-    //    {
-    //      msg = "No Data"
-    //    }
-    //   );
-    //  }
-
-    //  var orgId = getOrg();
-    //  var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-    //  int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
-
-    //  try
-    //  {
-    //    Deduction newDeduction = new Deduction()
-    //    {
-    //      Id = Guid.NewGuid(),
-    //      DeductionType = additionDeductionViewModel.DeductionName,
-    //      Description = additionDeductionViewModel.DDescription,
-    //      OrganisationId = orgId
-    //    };
-
-    //    _context.Add(newDeduction);
-    //    _context.SaveChanges();
-
-
-    //    return Json(new
-    //    {
-    //      msg = "Success"
-    //    }
-    // );
-    //  }
-    //  catch (Exception ee)
-    //  {
-
-    //  }
-
-    //  return Json(
-    //  new
-    //  {
-    //    msg = "Fail"
-    //  });
-    //}
-
 
 
 
