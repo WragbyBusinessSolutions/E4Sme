@@ -815,10 +815,88 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult PayrollConfiguration()
         {
-            return View();
+           
+            var orgId = getOrg();
+            var Add = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(Add);
         }
 
-    public IActionResult AddAddition()
+        public IActionResult AddAddition()
+        {
+            var orgId = getOrg();
+            var SalaryAdd = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(SalaryAdd);
+
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddAddition([FromBody]PostNewAddition postNewAddition)
+        {
+          if (postNewAddition == null)
+          {
+            return Json(new
+            {
+              msg = "No Data"
+            }
+           );
+          }
+
+          var orgId = getOrg();
+          var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+          int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+          try
+          {
+            Addition newAddition = new Addition()
+            {
+              Id = Guid.NewGuid(),
+              AdditionType = postNewAddition.AdditionType,
+              Description = postNewAddition.Description,
+              OrganisationId = orgId
+            };
+
+            _context.Add(newAddition);
+            _context.SaveChanges();
+
+
+            return Json(new
+            {
+              msg = "Success"
+            }
+         );
+          }
+          catch (Exception ee)
+          {
+
+          }
+
+          return Json(
+          new
+          {
+            msg = "Fail"
+          });
+        }
+
+
+
+
+
+        // Deduction 
+
+        public IActionResult AddDeducions()
+        {
+            var orgId = getOrg();
+            var SalaryAdd = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(SalaryAdd);
+
+        }
+
+        public IActionResult AddDeduction()
     {
       var orgId = getOrg();
       var addition = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
@@ -827,111 +905,53 @@ namespace E4S.Controllers.HumanResource
       return RedirectToAction("PayrollConfiguration");
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddAddition([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
-    {
-      if (additionDeductionViewModel == null)
-      {
-        return Json(new
-        {
-          msg = "No Data"
-        }
-       );
-      }
+    //[HttpPost]
+    //public async Task<IActionResult> AddDeduction([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
+    //{
+    //  if (additionDeductionViewModel == null)
+    //  {
+    //    return Json(new
+    //    {
+    //      msg = "No Data"
+    //    }
+    //   );
+    //  }
 
-      var orgId = getOrg();
-      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+    //  var orgId = getOrg();
+    //  var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+    //  int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
-      try
-      {
-        Addition newAddition = new Addition()
-        {
-          Id = Guid.NewGuid(),
-          AdditionType = additionDeductionViewModel.AdditionName,
-          Description = additionDeductionViewModel.Description,
-          OrganisationId = orgId
-        };
+    //  try
+    //  {
+    //    Deduction newDeduction = new Deduction()
+    //    {
+    //      Id = Guid.NewGuid(),
+    //      DeductionType = additionDeductionViewModel.DeductionName,
+    //      Description = additionDeductionViewModel.DDescription,
+    //      OrganisationId = orgId
+    //    };
 
-        _context.Add(newAddition);
-        _context.SaveChanges();
-
-
-        return Json(new
-        {
-          msg = "Success"
-        }
-     );
-      }
-      catch (Exception ee)
-      {
-
-      }
-
-      return Json(
-      new
-      {
-        msg = "Fail"
-      });
-    }
+    //    _context.Add(newDeduction);
+    //    _context.SaveChanges();
 
 
-    public IActionResult AddDeduction()
-    {
-      var orgId = getOrg();
-      var addition = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+    //    return Json(new
+    //    {
+    //      msg = "Success"
+    //    }
+    // );
+    //  }
+    //  catch (Exception ee)
+    //  {
 
-      //return View();
-      return RedirectToAction("PayrollConfiguration");
-    }
+    //  }
 
-    [HttpPost]
-    public async Task<IActionResult> AddDeduction([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
-    {
-      if (additionDeductionViewModel == null)
-      {
-        return Json(new
-        {
-          msg = "No Data"
-        }
-       );
-      }
-
-      var orgId = getOrg();
-      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
-
-      try
-      {
-        Deduction newDeduction = new Deduction()
-        {
-          Id = Guid.NewGuid(),
-          DeductionType = additionDeductionViewModel.DeductionName,
-          Description = additionDeductionViewModel.DDescription,
-          OrganisationId = orgId
-        };
-
-        _context.Add(newDeduction);
-        _context.SaveChanges();
-
-
-        return Json(new
-        {
-          msg = "Success"
-        }
-     );
-      }
-      catch (Exception ee)
-      {
-
-      }
-
-      return Json(
-      new
-      {
-        msg = "Fail"
-      });
-    }
+    //  return Json(
+    //  new
+    //  {
+    //    msg = "Fail"
+    //  });
+    //}
 
 
 

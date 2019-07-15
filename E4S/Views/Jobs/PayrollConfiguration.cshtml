@@ -122,7 +122,7 @@
               </th>
               </thead>
 
-              @*<tbody>
+              <tbody>
 
                 @{
                   int i = 1;
@@ -165,7 +165,7 @@
                   }
                 }
 
-                </tbody>*@
+                </tbody>
               </table>
           </div>
         </div>
@@ -345,23 +345,23 @@
 
     $(document).ready(function () {
 
-      $("#submitDeduction").click(function (event) {
+      $("#SubmitNewAddition").click(function (event) {
 
         event.preventDefault();
 
-        var Deduction = {
-           DeductionName: $("#DeductionName").val(),
-          DDescription: $("#Description").val(),
+        var SalaryAddition = {
+           AdditionName: $("#AdditionName").val(),
+           Description: $("#Description").val(),
         };
 
 
         // console.log(Items);
-        console.log(Deduction);
+        console.log(SalaryAddition);
 
         $.ajax({
           type: "POST",
-          url: "/Jobs/AddDeduction",
-          data: JSON.stringify(Deduction),
+          url: "/Jobs/AddAddition",
+          data: JSON.stringify(SalaryAddition),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {
@@ -476,54 +476,54 @@
       //});
 
 
-      $("#SubmitNewAddition").click(function (event) {
+      //$("#SubmitNewAddition").click(function (event) {
 
-        event.preventDefault();
+      //  event.preventDefault();
 
-        var Addition = {
-          AdditionName: $("#AdditionName").val(),
-          Description: $("#Description").val(),
-        };
+      //  var Addition = {
+      //    AdditionName: $("#AdditionName").val(),
+      //    Description: $("#Description").val(),
+      //  };
 
 
-        // console.log(Items);
-        console.log(Addition);
+      //  // console.log(Items);
+      //  console.log(Addition);
 
-        $.ajax({
-          type: "POST",
-          url: "/Jobs/AddAddition",
-          data: JSON.stringify(Addition),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+      //  $.ajax({
+      //    type: "POST",
+      //    url: "/Jobs/AddAddition",
+      //    data: JSON.stringify(Addition),
+      //    dataType: "json",
+      //    contentType: 'application/json; charset=utf-8',
+      //    headers: {
+      //      RequestVerificationToken:
+      //        $('input:hidden[name="__RequestVerificationToken"]').val()
+      //    },
+      //    success: function (r) {
 
-            if (r.msg == "Success") {
+      //      if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+      //        demo.showSwal('success-message');
 
-            } else if (r.msg == "Fail") {
+      //      } else if (r.msg == "Fail") {
 
-              alert(r.msg);
+      //        alert(r.msg);
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+      //      } else if (r.msg == "No Data") {
+      //        alert(r.msg);
 
-            } else {
-              alert(r.msg);
-            }
-            //alert(r.msg);
-            // window.location.reload();
+      //      } else {
+      //        alert(r.msg);
+      //      }
+      //      //alert(r.msg);
+      //      // window.location.reload();
 
-          },
-          error: function () {
-            alert(r.msg);
-          }
-        });
-      });
+      //    },
+      //    error: function () {
+      //      alert(r.msg);
+      //    }
+      //  });
+      //});
 
 
 
