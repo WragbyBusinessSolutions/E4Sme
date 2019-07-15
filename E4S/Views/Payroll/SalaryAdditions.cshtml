@@ -1,315 +1,297 @@
-﻿
+﻿@model IEnumerable<E4S.Models.HumanResource.SalaryAddition> 
+
+
 @{
-    ViewData["Title"] = "Salary Additions";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Salary Additions";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#autocom').autocomplete({
-
-            source: '/api/Payroll/search'
-
-        });
-
-        $('#addItem').autocomplete({
-
-            source: '/api/Estimates/productsearch'
-
-        });
-
-
-    })
-</script>
-
-
-
 <div class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title"> Salary Additions</h4>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Salary Additions</h4>
 
-                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                        Create
-                    </button>
-                    <!-- notice modal -->
-                    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                    <h5 class="modal-title" id="myModalLabel">Enter New Salary Additions</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="instruction">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Employee Name</label>
-                                                        <input type="text" class="form-control" placeholder="Employee Name"  autocomplete="on" id="autocom" required>                              
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Addition Type</label>
-                                                        <select type="text" class="form-control" asp-items="ViewBag.AdditionType" id="AdditionType" name="AdditionType">
-                                                            <option> -- Select Addition Type -- </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" id="DeductionType" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Amount</label>
-                                                        <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
+          @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+            Create
+          </button>
+          <!-- notice modal -->
+          <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Salary Additions</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Employee Name</label>
+                                <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                    <option value="00000000-0000-0000-0000-000000000000"> --  Employee Name  -- </option>
+                                </select>
+                                @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
                             </div>
                         </div>
-                    </div>
-                    <!-- end notice modal -->
-                    <!-- notice Edit modal -->
-                    <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-notice">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                    <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="instruction">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Deduction Type</label>
-                                                        <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Amount</label>
-                                                        <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-                                @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
-                            </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Addition Type</label>
+                            <select type="text" class="form-control" asp-items="ViewBag.AdditionType" id="AdditionType" name="AdditionType">
+                              <option> -- Select Addition Type -- </option>
+                            </select>
+                          </div>
                         </div>
-                    </div>
-                    <!-- end notice Edit modal -->
-                    @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control" placeholder="Description" id="DeductionType" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Amount</label>
+                            <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Month</label>
+                            <select class="form-control" placeholder="Month" id="Month" required>
+                              <option> -- Select Month -- </option>
+                              <option value="0">January</option>
+                              <option value="1">Feburary</option>
+                              <option value="2">March</option>
+                              <option value="3">April</option>
+                              <option value="4">May</option>
+                              <option value="5">June</option>
+                              <option value="6">July</option>
+                              <option value="7">August</option>
+                              <option value="8">September</option>
+                              <option value="9">October</option>
+                              <option value="10">November</option>
+                              <option value="11">December</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" class="form-control" placeholder="Year" id="Year" required>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                <input id="AssetId" name="AssetId" hidden />
-
-                <div class="card-body">
-                    <div>
-                        <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
-                            <thead class="text-primary">
-                            <th class="text-center">
-                                #
-                            </th>
-                            <th>
-                                Employee Name
-                            </th>
-                            <th>
-                                Salary Addition
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                Amount
-                            </th>
-                            <th>
-                                Month
-                            </th>
-                            <th>
-                                Action
-                            </th>
-
-                            </thead>
-
-
-                            @*<tbody>
-
-                                @{
-                                    int i = 1;
-
-                                    @if (Model.Count() < 1)
-                                    {
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>No Data to Display</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                }
-
-
-                                    foreach (var item in Model)
-                                    {
-
-                                        <tr>
-                                            <td class="text-center">
-                                                @i
-                                            </td>
-
-                                            <td>
-                                                @item.DeviceName
-                                            </td>
-                                            <td>
-                                                @item.Brand
-                                            </td>
-                                            <td>
-                                                @item.Model
-                                            </td>
-                                            <td>
-                                                @item.SerialNumber
-                                            </td>
-                                            <td>
-                                                @item.EmployeeName
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-
-                                            </td>
-                                        </tr>
-
-                                        { i = i + 1; }
-                                    }
-                                }
-
-                                </tbody>*@
-                        </table>
-                    </div>
-                </div>
+                @*<div class="modal-footer justify-content-center">
+                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                  </div>*@
+              </div>
             </div>
-        </div>
+          </div>
+          <!-- end notice modal -->
+          <!-- notice Edit modal -->
+          <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Employee Name</label>
+                                <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                    <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                </select>                               
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Deduction Type</label>
+                            <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Amount</label>
+                            <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Month</label>
+                            <select class="form-control" placeholder="Month" id="Month" required>
+                              <option> -- Select Month -- </option>
+                              <option value="0">January</option>
+                              <option value="1">Feburary</option>
+                              <option value="2">March</option>
+                              <option value="3">April</option>
+                              <option value="4">May</option>
+                              <option value="5">June</option>
+                              <option value="6">July</option>
+                              <option value="7">August</option>
+                              <option value="8">September</option>
+                              <option value="9">October</option>
+                              <option value="10">November</option>
+                              <option value="11">December</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" class="form-control" placeholder="Year" id="Year" required>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
 
+                  </div>
+                </div>
+                @*<div class="modal-footer justify-content-center">
+                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                  </div>*@
+              </div>
+            </div>
+          </div>
+          <!-- end notice Edit modal -->
+          @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+        </div>
+        <input id="AssetId" name="AssetId" hidden />
+
+        <div class="card-body">
+          <div>
+            <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+              <thead class="text-primary">
+              <th class="text-center">
+                #
+              </th>
+              <th>
+                Employee Name
+              </th>
+              <th>
+                Salary Addition
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Amount
+              </th>
+              <th>
+                Month
+              </th>
+              <th>
+                Action
+              </th>
+
+              </thead>
+
+
+              @*<tbody>
+
+                @{
+                    int i = 1;
+
+                    @if (Model.Count() < 1)
+                    {
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>No Data to Display</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                }
+
+
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td class="text-center">
+                                @i
+                            </td>
+
+                            <td>
+                                @item.EmployeeDetail
+                            </td>
+                            <td>
+                                @item.Addition
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" ><i class="far fa-calendar-alt"></i></a>
+                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+
+                            </td>
+                        </tr>
+
+                        { i = i + 1; }
+                    }
+                }
+
+                </tbody>*@
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+
+  </div>
 
 </div>
 
@@ -317,44 +299,44 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#datatable').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            responsive: true,
+  $(document).ready(function () {
+    $('#datatable').DataTable({
+      "pagingType": "full_numbers",
+      "lengthMenu": [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+      ],
+      responsive: true,
 
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Search records",
-            }
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search records",
+      }
 
-        });
-
-        var table = $('#datatable').DataTable();
-
-        // Edit record
-        table.on('click', '.edit', function () {
-            $tr = $(this).closest('tr');
-
-            var data = table.row($tr).data();
-            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-        });
-
-        // Delete a record
-        table.on('click', '.remove', function (e) {
-            $tr = $(this).closest('tr');
-            table.row($tr).remove().draw();
-            e.preventDefault();
-        });
-
-        //Like record
-        table.on('click', '.like', function () {
-            alert('You clicked on Like button');
-        });
     });
+
+    var table = $('#datatable').DataTable();
+
+    // Edit record
+    table.on('click', '.edit', function () {
+      $tr = $(this).closest('tr');
+
+      var data = table.row($tr).data();
+      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+    });
+
+    // Delete a record
+    table.on('click', '.remove', function (e) {
+      $tr = $(this).closest('tr');
+      table.row($tr).remove().draw();
+      e.preventDefault();
+    });
+
+    //Like record
+    table.on('click', '.like', function () {
+      alert('You clicked on Like button');
+    });
+  });
 
 
 </script>
@@ -363,154 +345,175 @@
 
 @section Scripts {
 
-    <!--  DataTables.net Plugin, full documentation here  -->
-    <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+  <!--  DataTables.net Plugin, full documentation here  -->
+  <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
 
-    <script type="text/javascript">
+  @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#autocom').autocomplete({
 
-        $(document).ready(function () {
+        source: '/api/Payroll/search'
 
-            $("#submitAsset").click(function (event) {
+      });
 
-                event.preventDefault();
+      $('#addItem').autocomplete({
 
-                var PostOrganisationAsset = {
-                    EmployeeDetailId: $("#employeeId").val(),
-                    DeviceName: $("#DeviceName").val(),
-                    Brand: $("#Brand").val(),
-                    Model: $("#Model").val(),
-                    SerialNumber: $("#SerialNo").val(),
-                };
+        source: '/api/Estimates/productsearch'
+
+      });
 
 
-                // console.log(Items);
-                console.log(PostOrganisationAsset);
+    })
+  </script>
 
-                $.ajax({
-                    type: "POST",
-                    url: "/CompanyAssets/postCompanyAssets",
-                    data: JSON.stringify(PostOrganisationAsset),
-                    dataType: "json",
-                    contentType: 'application/json; charset=utf-8',
-                    headers: {
-                        RequestVerificationToken:
-                            $('input:hidden[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (r) {
+  <script type="text/javascript">
 
-                        if (r.msg == "Success") {
+    $(document).ready(function () {
 
-                            demo.showSwal('success-message');
+      $("#submitAsset").click(function (event) {
 
-                        } else if (r.msg == "Fail") {
+        event.preventDefault();
 
-                            alert(r.msg);
+        var PostOrganisationAsset = {
+          EmployeeDetailId: $("#employeeId").val(),
+          DeviceName: $("#DeviceName").val(),
+          Brand: $("#Brand").val(),
+          Model: $("#Model").val(),
+          SerialNumber: $("#SerialNo").val(),
+        };
 
-                        } else if (r.msg == "No Data") {
-                            alert(r.msg);
 
-                        } else {
-                            alert(r.msg);
-                        }
-                        //alert(r.msg);
-                        // window.location.reload();
+        // console.log(Items);
+        console.log(PostOrganisationAsset);
 
-                    },
-                    error: function () {
-                        alert(r.msg);
-                    }
-                });
-            });
+        $.ajax({
+          type: "POST",
+          url: "/CompanyAssets/postCompanyAssets",
+          data: JSON.stringify(PostOrganisationAsset),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
         });
+      });
+    });
 
 
-        //Code for pulling the Records on the Table
-        var aEditAssetId;
+    //Code for pulling the Records on the Table
+    var aEditAssetId;
 
-        $(document).delegate('#Editbtn',
-            'click',
-            function (e) {
+    $(document).delegate('#Editbtn',
+      'click',
+      function (e) {
 
-                aEditAssetId = $(this).attr('EditAssetId');
-                deviceName = $(this).attr('select-DeviceName');
-                brand = $(this).attr('Selected-Brand');
-                model = $(this).attr('Selected-Model');
-                serialNo = $(this).attr('Selected-SerialNo');
-
-
-                //console.log(varstartDate, varendDate);
-                //  console.log(aEditAssetId);
-
-                $('input[name=AssetId]').val(aEditAssetId);
-                $('input[name=eDeviceName]').val(deviceName);
-                $('input[name=eBrand]').val(brand);
-                $('input[name=eModel]').val(model);
-                $('input[name=eSerialNo]').val(serialNo);
-
-            });
-
-        //End of the code
-
-        $(document).ready(function () {
-
-            $("#editAsset").click(function (event) {
-
-                event.preventDefault();
-
-                var PostOrganisationAsset = {
-                    AId: $("#AssetId").val(),
-                    EmployeeDetailId: $("#eemployeeId").val(),
-                    DeviceName: $("#eDeviceName").val(),
-                    Brand: $("#eBrand").val(),
-                    Model: $("#eModel").val(),
-                    SerialNumber: $("#eSerialNo").val(),
-                };
+        aEditAssetId = $(this).attr('EditAssetId');
+        deviceName = $(this).attr('select-DeviceName');
+        brand = $(this).attr('Selected-Brand');
+        model = $(this).attr('Selected-Model');
+        serialNo = $(this).attr('Selected-SerialNo');
 
 
-                // console.log(Items);
-                console.log(PostOrganisationAsset);
+        //console.log(varstartDate, varendDate);
+        //  console.log(aEditAssetId);
 
-                $.ajax({
-                    type: "POST",
-                    url: "/CompanyAssets/editCompanyAssets",
-                    data: JSON.stringify(PostOrganisationAsset),
-                    dataType: "json",
-                    contentType: 'application/json; charset=utf-8',
-                    headers: {
-                        RequestVerificationToken:
-                            $('input:hidden[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (r) {
+        $('input[name=AssetId]').val(aEditAssetId);
+        $('input[name=eDeviceName]').val(deviceName);
+        $('input[name=eBrand]').val(brand);
+        $('input[name=eModel]').val(model);
+        $('input[name=eSerialNo]').val(serialNo);
 
-                        if (r.msg == "Success") {
+      });
 
-                            demo.showSwal('success-message');
+    //End of the code
 
-                        } else if (r.msg == "Fail") {
+    $(document).ready(function () {
 
-                            alert(r.msg);
+      $("#editAsset").click(function (event) {
 
-                        } else if (r.msg == "No Data") {
-                            alert(r.msg);
+        event.preventDefault();
 
-                        } else {
-                            alert(r.msg);
-                        }
-                        //alert(r.msg);
-                        // window.location.reload();
-
-                    },
-                    error: function () {
-                        alert(r.msg);
-                    }
-                });
-            });
+        var PostOrganisationAsset = {
+          AId: $("#AssetId").val(),
+          EmployeeDetailId: $("#eemployeeId").val(),
+          DeviceName: $("#eDeviceName").val(),
+          Brand: $("#eBrand").val(),
+          Model: $("#eModel").val(),
+          SerialNumber: $("#eSerialNo").val(),
+        };
 
 
+        // console.log(Items);
+        console.log(PostOrganisationAsset);
 
+        $.ajax({
+          type: "POST",
+          url: "/CompanyAssets/editCompanyAssets",
+          data: JSON.stringify(PostOrganisationAsset),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
         });
+      });
 
-    </script>
+
+
+    });
+
+  </script>
 
 }
 

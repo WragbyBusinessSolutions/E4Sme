@@ -17,7 +17,7 @@
                 <div class="card-header">
                     <h4 class="card-title"> Employee Payroll</h4>
                 </div>
-                <div class="card-body ">
+                @*<div class="card-body ">
                     <form method="#" action="#">
                         <div class="row">
                             <div class="col-md-4">
@@ -57,9 +57,9 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div>*@
                 <div class="card-footer ">
-                    <button type="submit" class="btn btn-fill btn-success">Search</button>
+                    <a asp-action="GeneratePayroll" class="btn btn-fill btn-success">Generate Payroll</a>
                 </div>
             </div>
         </div>
@@ -305,7 +305,7 @@
         </div>
     </div>
 
-
+</div>
 
     <script>
         $(document).ready(function () {
