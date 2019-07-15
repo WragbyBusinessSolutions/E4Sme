@@ -17,5 +17,11 @@ namespace E4S.ViewModel
 
     public List<Deduction> Deductions { get; set; }
 
+    public string FId { get; set; }
+
+    public string DeductionName { get; set; }
+
+    public string DDescription { get; set; }
+
   }
 }
