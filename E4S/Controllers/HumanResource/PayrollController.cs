@@ -87,7 +87,7 @@ namespace E4S.Controllers.HumanResource
     {
       var orgId = getOrg();
 
-      var AllPayrollUser = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var AllPayrollUser = _context.Salaries.Where(x => x.OrganisationId == orgId).Include(x => x.EmployeeDetail).ToList();
       var GenId = Guid.NewGuid();
 
       foreach (var item in AllPayrollUser)
@@ -101,22 +101,22 @@ namespace E4S.Controllers.HumanResource
     }
 
 
-    private async Task ComputePaySlip(EmployeeDetail employeeInformation, string Paymonth, Guid genId)
+    private async Task ComputePaySlip(Salary employeeInformation, string Paymonth, Guid genId)
     {
       Payroll payrollDetails = new Payroll();
-      var employeeSalaryDetails = _context.Salaries.Where(x => x.EmployeeDetailId == employeeInformation.Id).FirstOrDefault();
-      var salary = employeeSalaryDetails.Amount;
+      //var employeeSalaryDetails = await _context.Salaries.Where(x => x.EmployeeDetailId == employeeInformation.Id).FirstOrDefaultAsync();
+      var salary = employeeInformation.Amount;
 
       payrollDetails.GenerationId = genId;
-      payrollDetails.EmployeeName = employeeInformation.FirstName + " " + employeeInformation.LastName;
+      payrollDetails.EmployeeName = employeeInformation.EmployeeDetail.FirstName + " " + employeeInformation.EmployeeDetail.LastName;
       payrollDetails.Basic = ((float)((salary * 12) * 0.5));
       payrollDetails.Housing = ((float)((salary * 12) * 0.3));
       payrollDetails.Transport = ((float)((salary * 12) * 0.12));
       payrollDetails.Meal = ((float)((salary * 12) * 0.08));
-      payrollDetails.BankName = employeeSalaryDetails.BankName;
-      payrollDetails.AccountNo = employeeSalaryDetails.AccountNo;
+      payrollDetails.BankName = employeeInformation.BankName;
+      payrollDetails.AccountNo = employeeInformation.AccountNo;
       payrollDetails.MonthlyBasic = salary;
-      payrollDetails.AccountName = employeeSalaryDetails.AccountName;
+      payrollDetails.AccountName = employeeInformation.AccountName;
       payrollDetails.AnnualGrossSalary = (payrollDetails.MonthlyBasic * 12);
       payrollDetails.Overtime = 0;
       payrollDetails.Arrears = 0;

@@ -16,5 +16,7 @@ namespace E4S.Models.HumanResource
 
     public string Description { get; set; }
     public DateTime Date { get; set; }
+    public float Amount { get; set; }
+
   }
 }
