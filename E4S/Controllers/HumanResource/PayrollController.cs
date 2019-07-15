@@ -41,16 +41,16 @@ namespace E4S.Controllers.HumanResource
         [Route("/api/Payroll/search")]
         public async Task<IActionResult> Search()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var orgId = _context.Users.Where(x => x.Id == userId).FirstOrDefault().OrganisationId;
+
+      var orgId = getOrg();
 
 
-            var otheruser =  _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+            //var otheruser =  _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
             try
             {
                 string term = HttpContext.Request.Query["term"].ToString();
-                var names = _context.EmployeeDetails.Where(x => x.OrganisationId == otheruser.Id).Where(p => p.FirstName.Contains(term)).Select(p => p.FirstName).ToList();
+                var names = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).Where(p => p.FirstName.Contains(term) || p.LastName.Contains(term)).Select(p => p.FirstName + " " +  p.LastName).ToList();
                 return Ok(names);
             }
             catch
