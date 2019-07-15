@@ -9,6 +9,7 @@ using E4S.Models.HumanResource;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
@@ -69,7 +70,9 @@ namespace E4S.Controllers.HumanResource
         }
         public IActionResult SalaryAdditions()
         {
-          var orgId = getOrg();
+            var ordId = getOrg();
+            ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
+            var orgId = getOrg();
 
           return View();
         }
