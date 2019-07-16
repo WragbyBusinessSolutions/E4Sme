@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.Models.HumanResource;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -65,9 +66,38 @@ namespace E4S.Controllers.HumanResource
         {
           var orgId = getOrg();
 
-          return View();
+      var orgPayrollId = _context.Payrolls.Where(z => z.OrganisationId == orgId).Select(x => x.GenerationId).Distinct().ToList();
+      List<PayrollSummaryViewModel> psVM = new List<PayrollSummaryViewModel>();
+      PayrollSummaryViewModel pSummary;
+
+      foreach (var item in orgPayrollId)
+      {
+        pSummary = new PayrollSummaryViewModel();
+        var payrolls = _context.Payrolls.Where(x => x.GenerationId == item).ToList();
+
+        pSummary.Id = item;
+        pSummary.MonthYear = payrolls.FirstOrDefault().DateCreated;
+        pSummary.NumberOfEmployee = payrolls.Count();
+        pSummary.TotalMonthlySalary = payrolls.Sum(x => x.MonthlyBasic);
+        pSummary.TotalPayables = payrolls.Sum(x => x.PayableToStaff);
+
+        psVM.Add(pSummary);
+
+      }
+
+          return View(psVM.OrderByDescending(x => x.MonthYear));
         }
-        public IActionResult SalaryAdditions()
+
+    public IActionResult ViewPayroll(Guid id)
+    {
+      var orgId = getOrg();
+
+      var payrolllist = _context.Payrolls.Where(x => x.GenerationId == id).ToList();
+
+      return View(payrolllist);
+
+    }
+    public IActionResult SalaryAdditions()
         {
           var orgId = getOrg();
 
@@ -177,7 +207,7 @@ namespace E4S.Controllers.HumanResource
       payrollDetails.PayableToStaff = payrollDetails.GrossMonthlyEmolument - (payrollDetails.TotalDeduction + payrollDetails.Addition);
 
       _context.Add(payrollDetails);
-      await _context.SaveChangesAsync();
+      _context.SaveChanges();
 
     }
 

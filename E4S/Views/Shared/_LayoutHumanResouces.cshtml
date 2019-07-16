@@ -22,6 +22,12 @@
   <!-- CSS Files -->
   <link href="@Url.Content("~/assets/css/bootstrap.min.css")" rel="stylesheet" />
   <link href="@Url.Content("~/assets/css/now-ui-dashboard.css?v=1.0.1")" rel="stylesheet" />
+
+
+  <link href="~/css/datatables.css" rel="stylesheet" type="text/css" />
+
+
+
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="@Url.Content("~/assets/demo/demo.css")" rel="stylesheet" type="text/css" />
 
@@ -154,46 +160,46 @@
 
 
           @*<li>
-      <a data-toggle="collapse" href="#Recruitment">
-        <i class="now-ui-icons design_image"></i>
-        <p>
-          RECRUITMENT
-          <b class="caret"></b>
-        </p>
-      </a>
-      <div class="collapse " id="Recruitment">
-        <ul class="nav">
-          <li>
-            <a asp-action="Index" asp-controller="Recruitments">
-              <span class="sidebar-mini-icon">V</span>
-              <span class="sidebar-normal"> VACANCIES</span>
-            </a>
-          </li>
-          <li>
-            <a asp-action="Candidates" asp-controller="Recruitments">
-              <span class="sidebar-mini-icon">C</span>
-              <span class="sidebar-normal"> CANDIDATES </span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
+              <a data-toggle="collapse" href="#Recruitment">
+                <i class="now-ui-icons design_image"></i>
+                <p>
+                  RECRUITMENT
+                  <b class="caret"></b>
+                </p>
+              </a>
+              <div class="collapse " id="Recruitment">
+                <ul class="nav">
+                  <li>
+                    <a asp-action="Index" asp-controller="Recruitments">
+                      <span class="sidebar-mini-icon">V</span>
+                      <span class="sidebar-normal"> VACANCIES</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a asp-action="Candidates" asp-controller="Recruitments">
+                      <span class="sidebar-mini-icon">C</span>
+                      <span class="sidebar-normal"> CANDIDATES </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
 
-    <li class="">
-      <a asp-action="Index" asp-controller="Appraisal">
-        <i class="now-ui-icons design_app"></i>
-        <p>Appraisals</p>
-      </a>
+            <li class="">
+              <a asp-action="Index" asp-controller="Appraisal">
+                <i class="now-ui-icons design_app"></i>
+                <p>Appraisals</p>
+              </a>
 
-    </li>
+            </li>
 
-    <li class="">
-      <a asp-action="Index" asp-controller="CompanyAssets">
-        <i class="now-ui-icons design_app"></i>
-        <p>Company Assets</p>
-      </a>
+            <li class="">
+              <a asp-action="Index" asp-controller="CompanyAssets">
+                <i class="now-ui-icons design_app"></i>
+                <p>Company Assets</p>
+              </a>
 
-    </li>*@
+            </li>*@
           <li class="">
             <a asp-action="Index" asp-controller="CompanyAssets">
               <i class="now-ui-icons design_app"></i>
@@ -244,50 +250,50 @@
               </p>
             </a>
             <div class="collapse " id="jobs">
-                <ul class="nav">
-                    <li>
-                        <a asp-action="Department" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">D</span>
-                            <span class="sidebar-normal"> Departments </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="JobTitle" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> J T</span>
-                            <span class="sidebar-normal"> Job Title</span>
-                        </a>
-                    </li>
-                    @*<li>
-          <a asp-action="PayGrade" asp-controller="Jobs">
-            <span class="sidebar-mini-icon"> P G</span>
-            <span class="sidebar-normal"> Pay Grade </span>
-          </a>
-        </li>*@
-                    <li>
-                        <a asp-action="JobCategory" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon"> J G</span>
-                            <span class="sidebar-normal"> Job Category </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">E T</span>
-                            <span class="sidebar-normal"> Employment Type </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="LeaveConfiguration" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">L C </span>
-                            <span class="sidebar-normal"> Leave Configuration </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-action="PayrollConfiguration" asp-controller="Jobs">
-                            <span class="sidebar-mini-icon">P C </span>
-                            <span class="sidebar-normal"> Payroll Configuration </span>
-                        </a>
-                    </li>
-                </ul>
+              <ul class="nav">
+                <li>
+                  <a asp-action="Department" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">D</span>
+                    <span class="sidebar-normal"> Departments </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="JobTitle" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> J T</span>
+                    <span class="sidebar-normal"> Job Title</span>
+                  </a>
+                </li>
+                @*<li>
+                    <a asp-action="PayGrade" asp-controller="Jobs">
+                      <span class="sidebar-mini-icon"> P G</span>
+                      <span class="sidebar-normal"> Pay Grade </span>
+                    </a>
+                  </li>*@
+                <li>
+                  <a asp-action="JobCategory" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon"> J G</span>
+                    <span class="sidebar-normal"> Job Category </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">E T</span>
+                    <span class="sidebar-normal"> Employment Type </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="LeaveConfiguration" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">L C </span>
+                    <span class="sidebar-normal"> Leave Configuration </span>
+                  </a>
+                </li>
+                <li>
+                  <a asp-action="PayrollConfiguration" asp-controller="Jobs">
+                    <span class="sidebar-mini-icon">P C </span>
+                    <span class="sidebar-normal"> Payroll Configuration </span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </li>
 
@@ -295,66 +301,66 @@
 
 
           @*<li class="">
-      <a href="../examples/dashboard.html">
-        <i class="now-ui-icons design_app"></i>
-        <p>Invoice</p>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="collapse" href="#pagesExamples">
-        <i class="now-ui-icons design_image"></i>
-        <p>
-          ACCOUNT
-          <b class="caret"></b>
-        </p>
-      </a>
-      <div class="collapse " id="pagesExamples">
-        <ul class="nav">
-          <li>
-            <a href="../organisation">
-              <span class="sidebar-mini-icon">OD</span>
-              <span class="sidebar-normal"> Organisation Details </span>
-            </a>
-          </li>
-          <li>
-            <a href="../organisation/branch">
-              <span class="sidebar-mini-icon">B</span>
-              <span class="sidebar-normal"> Branch </span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="">
-      <a href="../examples/dashboard.html">
-        <i class="now-ui-icons users_circle-08"></i>
-        <p>Users</p>
-      </a>
-    </li>*@
+              <a href="../examples/dashboard.html">
+                <i class="now-ui-icons design_app"></i>
+                <p>Invoice</p>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#pagesExamples">
+                <i class="now-ui-icons design_image"></i>
+                <p>
+                  ACCOUNT
+                  <b class="caret"></b>
+                </p>
+              </a>
+              <div class="collapse " id="pagesExamples">
+                <ul class="nav">
+                  <li>
+                    <a href="../organisation">
+                      <span class="sidebar-mini-icon">OD</span>
+                      <span class="sidebar-normal"> Organisation Details </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../organisation/branch">
+                      <span class="sidebar-mini-icon">B</span>
+                      <span class="sidebar-normal"> Branch </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="">
+              <a href="../examples/dashboard.html">
+                <i class="now-ui-icons users_circle-08"></i>
+                <p>Users</p>
+              </a>
+            </li>*@
           @*<li class="">
-      <a href="../examples/dashboard.html">
-        <i class="now-ui-icons users_circle-08"></i>
-        <p>Log Out</p>
-      </a>
-    </li>
+              <a href="../examples/dashboard.html">
+                <i class="now-ui-icons users_circle-08"></i>
+                <p>Log Out</p>
+              </a>
+            </li>
 
 
-    @if (SignInManager.IsSignedIn(User))
-    {
+            @if (SignInManager.IsSignedIn(User))
+            {
 
 
-      <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-        <li>
+              <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                <li>
 
-          <a class="" aria-expanded="false">
-            <i class="now-ui-icons users_circle-08"></i>
-            <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
-          </a>
+                  <a class="" aria-expanded="false">
+                    <i class="now-ui-icons users_circle-08"></i>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">LOG OUT</button>
+                  </a>
 
-        </li>
+                </li>
 
-      </form>
-    }*@
+              </form>
+            }*@
 
 
 
@@ -489,139 +495,180 @@
 
         </div>
 
+
+
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <!--   Core JS Files   -->
+        <script src="@Url.Content("~/assets/js/core/jquery.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/core/popper.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/core/bootstrap.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/plugins/moment.min.js")"></script>
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
+        <!--  Plugin for Sweet Alert -->
+        <script src="@Url.Content("~/assets/js/plugins/sweetalert2.min.js")"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="@Url.Content("~/assets/js/plugins/jquery.validate.min.js")"></script>
+        <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+        <script src="@Url.Content("~/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
+        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-selectpicker.js")"></script>
+        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-datetimepicker.js")"></script>
+        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+        <script src="@Url.Content("~/assets/js/plugins/jquery.dataTables.min.js")"></script>
+        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-tagsinput.js")"></script>
+        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="@Url.Content("~/assets/js/plugins/jasny-bootstrap.min.js")"></script>
+        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+        <script src="@Url.Content("~/assets/js/plugins/fullcalendar.min.js")"></script>
+        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+        @*<script src="@Url.Content("~/assets/js/plugins/jquery-jvectormap.js")"></script>*@
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="@Url.Content("~/assets/js/plugins/nouislider.min.js")"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- Chart JS -->
+        <script src="@Url.Content("~/assets/js/plugins/chartjs.min.js")"></script>
+        <!--  Notifications Plugin    -->
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-notify.js")"></script>
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="@Url.Content("~/assets/js/now-ui-dashboard.js?v=1.0.1")"></script>
+
+
+
+
+        <script src="~/js/DataTables/Buttons-1.5.6/js/dataTables.buttons.js"></script>
+        <script src="~/js/DataTables/Buttons-1.5.6/js/buttons.colVis.js"></script>
+        <script src="~/js/DataTables/Buttons-1.5.6/js/buttons.html5.js"></script>
+        <script src="~/js/DataTables/Buttons-1.5.6/js/buttons.print.js"></script>
+
+
+
+
+        <script src="~/js/DataTables/JSZip-2.5.0/jszip.js"></script>
+        <script src="~/js/DataTables/pdfmake-0.1.36/pdfmake.js"></script>
+        <script src="~/js/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+
+
+
+
+
+
+
+
+        <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+        <script src="@Url.Content("~/assets/demo/demo.js")"></script>
+
+        @*<link rel="stylesheet" href="@Url.Content("//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")">*@
+        @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+          <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+
+        @*<script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>*@
+
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
+        @*<script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")"></script>*@
+
+        @*<script>
+            $(document).ready(function () {
+              // Javascript method's body can be found in assets/js/demos.js
+              demo.initDashboardPageCharts();
+
+              demo.initVectorMap();
+
+            });
+          </script>*@
+
+
+
+
+
+
+        <script>
+          $(document).ready(function () {
+            // Initialise the wizard
+            demo.initNowUiWizard();
+            setTimeout(function () {
+              $('.card.card-wizard').addClass('active');
+            }, 600);
+          });
+
+          $(document).ready(function () {
+            // Initialise Sweet Alert library
+            demo.showSwal();
+          });
+
+        </script>
+
+        <link rel="stylesheet" href="@Url.Content("//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")">
+        @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+          <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+
+        <script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
+        <script>
+          $(document).ready(function () {
+
+            $('#datatable').DataTable({
+              "pagingType": "full_numbers",
+              dom: "Bfrtip",
+              "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+              ],
+
+
+              buttons: [
+                'copy',
+                'excel',
+                'csv',
+                'pdf',
+                'print',
+              ],
+
+
+              responsive: true,
+              language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+              }
+
+            });
+
+            var table = $('#datatable').DataTable();
+
+            // Edit record
+            table.on('click', '.edit', function () {
+              $tr = $(this).closest('tr');
+
+              var data = table.row($tr).data();
+              alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            });
+
+            // Delete a record
+            table.on('click', '.remove', function (e) {
+              $tr = $(this).closest('tr');
+              table.row($tr).remove().draw();
+              e.preventDefault();
+            });
+
+            //Like record
+            table.on('click', '.like', function () {
+              alert('You clicked on Like button');
+            });
+          });
+        </script>
+
+
+
+
       </body>
 
     </html>
-
-    <!--   Core JS Files   -->
-    <script src="@Url.Content("~/assets/js/core/jquery.min.js")"></script>
-    <script src="@Url.Content("~/assets/js/core/popper.min.js")"></script>
-    <script src="@Url.Content("~/assets/js/core/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>
-    <script src="@Url.Content("~/assets/js/plugins/moment.min.js")"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
-    <!--  Plugin for Sweet Alert -->
-    <script src="@Url.Content("~/assets/js/plugins/sweetalert2.min.js")"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="@Url.Content("~/assets/js/plugins/jquery.validate.min.js")"></script>
-    <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-    <script src="@Url.Content("~/assets/js/plugins/jquery.bootstrap-wizard.js")"></script>
-    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-selectpicker.js")"></script>
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-datetimepicker.js")"></script>
-    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-    <script src="@Url.Content("~/assets/js/plugins/jquery.dataTables.min.js")"></script>
-    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-tagsinput.js")"></script>
-    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="@Url.Content("~/assets/js/plugins/jasny-bootstrap.min.js")"></script>
-    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-    <script src="@Url.Content("~/assets/js/plugins/fullcalendar.min.js")"></script>
-    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-    @*<script src="@Url.Content("~/assets/js/plugins/jquery-jvectormap.js")"></script>*@
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="@Url.Content("~/assets/js/plugins/nouislider.min.js")"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Chart JS -->
-    <script src="@Url.Content("~/assets/js/plugins/chartjs.min.js")"></script>
-    <!--  Notifications Plugin    -->
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-notify.js")"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="@Url.Content("~/assets/js/now-ui-dashboard.js?v=1.0.1")"></script>
-    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-    <script src="@Url.Content("~/assets/demo/demo.js")"></script>
-
-    @*<link rel="stylesheet" href="@Url.Content("//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")">*@
-    @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
-
-    @*<script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>*@
-    
-<script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
-    @*<script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")"></script>*@
-
-    @*<script>
-        $(document).ready(function () {
-          // Javascript method's body can be found in assets/js/demos.js
-          demo.initDashboardPageCharts();
-
-          demo.initVectorMap();
-
-        });
-      </script>*@
-
-
-
-
-
-    <script>
-      $(document).ready(function () {
-
-        $('#datatable').DataTable({
-          "pagingType": "full_numbers",
-          "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-          ],
-          responsive: true,
-          language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-          }
-
-        });
-
-        var table = $('#datatable').DataTable();
-
-        // Edit record
-        table.on('click', '.edit', function () {
-          $tr = $(this).closest('tr');
-
-          var data = table.row($tr).data();
-          alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-        });
-
-        // Delete a record
-        table.on('click', '.remove', function (e) {
-          $tr = $(this).closest('tr');
-          table.row($tr).remove().draw();
-          e.preventDefault();
-        });
-
-        //Like record
-        table.on('click', '.like', function () {
-          alert('You clicked on Like button');
-        });
-      });
-    </script>
-
-    <script>
-      $(document).ready(function () {
-        // Initialise the wizard
-        demo.initNowUiWizard();
-        setTimeout(function () {
-          $('.card.card-wizard').addClass('active');
-        }, 600);
-      });
-
-      $(document).ready(function () {
-        // Initialise Sweet Alert library
-        demo.showSwal();
-      });
-
-    </script>
-
-    <link rel="stylesheet" href="@Url.Content("//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <script src="@Url.Content("~/assets/js/plugins/perfect-scrollbar.jquery.min.js")"></script>
-    <script src="@Url.Content("~/assets/js/plugins/bootstrap-switch.js")"></script>
-    <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")"></script>
-
+   
 
     @RenderSection("Scripts", required: false)
 
