@@ -10,12 +10,8 @@ namespace E4S.ViewModel
   {
     public List<Addition> Additions { get; set; }
 
-    public string AId { get; set; }
-    public string AdditionName { get; set; }
-
-    public string Description { get; set; }
-
     public List<Deduction> Deductions { get; set; }
 
+  
   }
 }
