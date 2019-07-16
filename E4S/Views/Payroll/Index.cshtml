@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E4S.ViewModel.EmployeeListViewModel>
+﻿@model IEnumerable<E4S.ViewModel.PayrollSummaryViewModel>
 @{
     ViewData["Title"] = "Employees";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
@@ -13,55 +13,23 @@
 <div class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header">
-                    <h4 class="card-title"> Employee Payroll</h4>
-                </div>
-                @*<div class="card-body ">
-                    <form method="#" action="#">
-                        <div class="row">
-                            <div class="col-md-4">
-
-                                <label>Job Title</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
-                                        <option disabled selected>Job Title</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                                <label>Department</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
-                                        <option disabled selected>Department</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-
-                                <label>Employment Status</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
-                                        <option disabled selected>Employment Status</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>*@
-                <div class="card-footer ">
-                    <a asp-action="GeneratePayroll" class="btn btn-fill btn-success">Generate Payroll</a>
-                </div>
+          <div class="card ">
+            <div class="card-header">
+              <h4 class="card-title"> Employee Payroll</h4>
             </div>
+            <div class="card-footer ">
+              <a asp-action="GeneratePayroll" class="btn btn-fill btn-success">Generate Payroll</a>
+              <hr />
+
+              <div>
+                <a asp-action="SalaryAdditions" class="btn btn-info">Salary Additions</a>
+                <a asp-action="SalaryDeductions" class="btn btn-danger pull-right">Salary Deductions</a>
+
+              </div>
+            </div>
+
+
+          </div>
         </div>
 
     </div>
@@ -75,9 +43,12 @@
                 @*<a asp-action="AddEmployee" class="btn btn-info">Add New Employee</a>*@
                 @*</button>*@
                 <div class="card">
+
+                  <div class="card-header">
+                    <h5 class="card-title">Payroll Records</h5>
+                  </div>
+
                   <div class="card-title">
-                    <a asp-action="AddEmployee" class="btn btn-info">Salary Additions</a>
-                    <a asp-action="AddEmployee" class="btn btn-danger pull-right">Salary Deductions</a>
 
                     <div class="card-body">
                       <div class="toolbar">
@@ -91,22 +62,16 @@
                           #
                         </th>
                         <th>
-                          Employee Name
+                          Month/Year
                         </th>
                         <th>
-                          Email
+                          No of Employee
                         </th>
                         <th>
-                          Job Title
-                        </th>
-                        @*<th>
-            Employee Status
-        </th>*@
-                        <th>
-                          Department
+                          Total Monthly Salary
                         </th>
                         <th>
-                          IsActive
+                          Total Payables
                         </th>
                         <th>
                           Action
@@ -115,60 +80,44 @@
                         </thead>
 
 
-                        @*<tbody>
+                        <tbody>
 
-        @{
-            int i = 1;
-
-            @if (Model.Count() < 1)
-            {
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>No Data to Display</td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-        }
+                          @{
+                            int i = 1;
 
 
-            foreach (var item in Model)
-            {
+                            foreach (var item in Model)
+                            {
 
-                <tr>
-                    <td class="text-center">
-                        @i
-                    </td>
+                              <tr>
+                                <td class="text-center">
+                                  @i
+                                </td>
 
-                    <td>
-                        <a asp-action="EmployeeDetails" asp-route-id="@item.Id">@item.EmployeeName</a>
-                        @*<a href="#"></a>*@
-                        @*</td>
-                    <td>
-                        @item.Email
-                    </td>
-                    <td>
-                        @item.JobTitle
-                    </td>
-                    @
-                    <td>
-                        @item.Department
-                    </td>
-                    <td>
-                        @item.IsActive
-                    </td>
-                    <td>
-                        <a asp-action="EmployeeDetails" class="btn btn-md btn-info" asp-route-id="@item.Id" title="Click to View Employee Details"><i class="fa fa-eye"></i></a>
+                                <td>
+                                  @item.MonthYear.ToString("MMMM, yyyy")
+                                </td>
+                                <td>
+                                  @item.NumberOfEmployee
+                                </td>
+                                <td>
+                                  @item.TotalMonthlySalary
+                                </td>
 
-                    </td>
-                </tr>
+                                <td>
+                                  @item.TotalPayables
+                                </td>
+                                <td>
+                                  <a asp-action="ViewPayroll" class="btn btn-md btn-info" asp-route-id="@item.Id" title="Click to View Employee Details"><i class="fa fa-eye"></i></a>
 
-                { i = i + 1; }
-            }
-        }
+                                </td>
+                              </tr>
 
-        </tbody>*@
+                              { i = i + 1; }
+                            }
+                          }
+
+                        </tbody>
                       </table>
                     </div>
 
@@ -177,10 +126,10 @@
 
 
 
-                @*<button class="btn btn-danger pull-right" data-toggle="modal" data-target="#uploadModal">
+                  @*<button class="btn btn-danger pull-right" data-toggle="modal" data-target="#uploadModal">
         Download P
     </button>*@
-              </div>
+                </div>
 
                     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">

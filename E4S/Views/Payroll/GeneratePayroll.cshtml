@@ -29,8 +29,8 @@
 
                 <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead class="text-primary">
-                 
-                    <th class="text-center">
+
+                  <th class="text-center">
                     #
                   </th>
 
@@ -43,17 +43,95 @@
                   <th>
                     Housing
                   </th>
-                  @*<th>
-                        Employee Status
-                    </th>*@
                   <th>
                     Transport
                   </th>
                   <th>
-                    IsActive
+                    Meal
                   </th>
                   <th>
-                    Tax
+                    Monthly Salary
+                  </th>
+                  <th>
+                    Annual Gross Salary
+                  </th>
+                  <th>
+                    OverTime
+                  </th>
+                  <th>
+                    Arrears
+                  </th>
+                  <th>
+                    Annual OT + ARRS
+                  </th>
+                  <th>
+                    Gross Monthly Emolument (Salary + Overtime)
+                  </th>
+                  <th>
+                    Gross Annual Emolument (Salary + Overtime)
+                  </th>
+                  <th>
+                    Pension Fund
+                  </th>
+                  <th>
+                    NHIS
+                  </th>
+                  <th>
+                    Gratituties
+                  </th>
+                  <th>
+                    Life Assurance
+                  </th>
+                  <th>
+                    Consolidated Reliefs & Allowance
+                  </th>
+                  <th>
+                    Total Annual Relief
+                  </th>
+                  <th>
+                    Taxable Income
+                  </th>
+                  <th>
+                    Computed Annual Tax
+                  </th>
+                  <th>
+                    Minimum Tax
+                  </th>
+                  <th>
+                    Monthly Min Tax
+                  </th>
+                  <th>
+                    Annual Tax Payable
+                  </th>
+                  <th>
+                    Annual Actaul Tax Payable
+                  </th>
+                  <th>
+                    Monthly Actual Tax Payable
+                  </th>
+                  <th>
+                    Pension Deduction Monthly
+                  </th>
+                  <th>
+                    Staff Loan
+                  </th>
+                  <th>
+                    Absent Deductions
+                  </th>
+                  <th>
+                    Cooperative Deduction
+                  </th>
+                  <th>
+                    Other Deduction
+                  </th>
+                  <th>
+                    Total Deduction
+                  </th>
+                  <th>
+                    Addition
+                  </th>
+                  <th>
+                    Payable to Staff
                   </th>
 
                   </thead>
@@ -62,23 +140,23 @@
                   <tbody>
 
                     @{
-                        int i = 1;
+                      int i = 1;
 
-                        @if (Model.Count() < 1)
-                        {
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>No Data to Display</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                      @if (Model.Count() < 1)
+                      {
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>No Data to Display</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
 
-                        }
+                    }
 
 
-                        foreach (var item in Model)
-                        {
+                      foreach (var item in Model)
+                      {
 
                 <tr>
                   <td class="text-center">
@@ -98,7 +176,88 @@
                     @item.Transport
                   </td>
                   <td>
+                    @item.Meal
+                  </td>
+                  <td>
+                    @item.MonthlyBasic
+                  </td>
+                  <td>
+                    @item.AnnualGrossSalary
+                  </td>
+                  <td>
+                    @item.Overtime
+                  </td>
+                  <td>
+                    @item.Arrears
+                  </td>
+                  <td>
+                    @item.AnnualOTArrears
+                  </td>
+                  <td>
+                    @item.GrossMonthlyEmolument
+                  </td>
+                  <td>
+                    @item.GrossAnnualEmolument
+                  </td>
+                  <td>
+                    @item.PensionFund
+                  </td>
+                  <td>
+                    @item.NHIS
+                  </td>
+                  <td>
+                    @item.Gratuities
+                  </td>
+                  <td>
+                    @item.LifeAssurance
+                  </td>
+                  <td>
+                    @item.ConsolidatedReliefsAllowance
+                  </td>
+                  <td>
+                    @item.TotalAnnualRellief
+                  </td>
+                  <td>
+                    @item.TaxableIncome
+                  </td>
+                  <td>
                     @item.ComputedAnnualTax
+                  </td>
+                  <td>
+                    @item.MinimumTax
+                  </td>
+                  <td>
+                    @item.MonthlyMinimumTax
+                  </td>
+                  <td>
+                    @item.AnnualPayableTax
+                  </td>
+                  <td>
+                    @item.AnnualActualTaxPayable
+                  </td>
+                  <td>
+                    @item.MonthlyActualTaxPayable
+                  </td>
+                  <td>
+                    @item.PensionDeductionMonthly
+                  </td>
+                  <td>
+                    @item.StaffLoan
+                  </td>
+                  <td>
+                    @item.AbsentDeductions
+                  </td>
+                  <td>
+                    @item.CooperativeDeduction
+                  </td>
+                  <td>
+                    @item.OtherDeductions
+                  </td>
+                  <td>
+                    @item.TotalDeduction
+                  </td>
+                  <td>
+                    @item.Addition
                   </td>
                   <td>
                     @item.PayableToStaff
@@ -106,12 +265,12 @@
                   </td>
                 </tr>
 
-                            { i = i + 1; }
-                        }
+                        { i = i + 1; }
+                      }
                     }
 
                     </tbody>
-                </table>
+                  </table>
               </div>
 
 
@@ -250,52 +409,10 @@
 
 </div>
 
-<script>
-
-  $(document).ready(function () {
-    $('#datatable').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
-
-    });
-
-    var table = $('#datatable').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function () {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function (e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function () {
-      alert('You clicked on Like button');
-    });
-  });
-
-
-</script>
 
 
 @section Scripts {
 
-  <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+  @*<script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>*@
 
 }
