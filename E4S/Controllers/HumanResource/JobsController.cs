@@ -818,8 +818,15 @@ namespace E4S.Controllers.HumanResource
            
             var orgId = getOrg();
             var Add = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+            var Ded = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
 
-            return View(Add);
+            var vm = new AdditionDeductionViewModel
+            {
+                Additions = Add,
+                Deductions = Ded
+            };
+
+            return View(vm);
         }
 
         public IActionResult AddAddition()
@@ -832,11 +839,10 @@ namespace E4S.Controllers.HumanResource
         }
 
 
-
         [HttpPost]
-        public async Task<IActionResult> AddAddition([FromBody]PostNewAddition postNewAddition)
+        public async Task<IActionResult> AddAddition([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
         {
-          if (postNewAddition == null)
+          if (additionDeductionViewModel == null)
           {
             return Json(new
             {
@@ -854,8 +860,8 @@ namespace E4S.Controllers.HumanResource
             Addition newAddition = new Addition()
             {
               Id = Guid.NewGuid(),
-              AdditionType = postNewAddition.AdditionType,
-              Description = postNewAddition.Description,
+              //AdditionType = additionDeductionViewModel.Additions,
+              //Description = additionDeductionViewModel.Description,
               OrganisationId = orgId
             };
 
@@ -901,9 +907,9 @@ namespace E4S.Controllers.HumanResource
     //
 
     [HttpPost]
-    public async Task<IActionResult> AddDeduction([FromBody]PostNewDeduction postNewDeduction)
+    public async Task<IActionResult> AddDeduction([FromBody]AdditionDeductionViewModel additionDeductionViewModel)
     {
-      if (postNewDeduction == null)
+      if (additionDeductionViewModel == null)
       {
         return Json(new
         {
@@ -921,8 +927,8 @@ namespace E4S.Controllers.HumanResource
         Deduction newDeduction = new Deduction()
         {
           Id = Guid.NewGuid(),
-          DeductionType = postNewDeduction.DeductionType,
-          Description = postNewDeduction.Description,
+          //DeductionType = postNewDeduction.DeductionType,
+          //Description = postNewDeduction.Description,
           OrganisationId = orgId
         };
 

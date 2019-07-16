@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E4S.Models.HumanResource.Addition>
+﻿@model E4S.ViewModel.AdditionDeductionViewModel
 
 @{
   ViewData["Title"] = "Payroll Configuration";
@@ -105,70 +105,68 @@
         </div>
 
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead class="text-primary">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="text-primary">
 
-              <th class="text-center">
-                #
-              </th>
-              <th>
-                Addition Type
-              </th>
-              <th>
-                Description
-              </th>
-              <th>
-                Actions
-              </th>
-              </thead>
+                    <th class="text-center">
+                        #
+                    </th>
+                    <th>
+                        Addition Type
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    </thead>
 
-              <tbody>
-
+                            <tbody>
                 @{
-                  int i = 1;
+                    int j = 1;
 
-                  @if (Model.Count() < 1)
-                  {
-                  <td></td>
-                  
-                  <td>No Data to Display</td>
-                  <td></td>
-                  <td></td>
-                  
+                    @if (Model.Additions.Count() < 1)
+                    {
+
+                    <td></td>
+                    <td>No Data to Display</td>
+                    <td></td>
+                    <td></td>
 
                 }
 
+                    @foreach (var item in Model.Additions)
+                    {
 
-                  foreach (var item in Model)
-                  {
+                        <tr>
 
-                    <tr>
-                      <td class="text-center">
-                        @i
-                      </td>
+                            <td class="text-center">
+                                @j
+                            </td>
 
-                      <td>
-                        @item.AdditionType
-                      </td>
-                      <td>
-                        @item.Description
-                      </td>
-                     
-                      <td>
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="EditAdtn" data-toggle="modal" data-target="#noticeModal1" EditAdtnId="@item.Id" Selected-AdditionType="@item.AdditionType" Selected-Description="@item.Description" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                            <td>
+                                @item.AdditionType
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" id="Editbtn"><i class="far fa-calendar-alt"></i></a>
+                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delDept" name="delDept" title="Click to Delete"><i class="fas fa-times"></i></a>
+                            </td>
+                        </tr>
 
-                      </td>
-                    </tr>
-
-                    { i = i + 1; }
-                  }
+                        { j = j + 1; }
+                    }
                 }
 
                 </tbody>
-              </table>
-          </div>
+
+                </table>
+                    
+                </div>
         </div>
       </div>
     </div>
@@ -213,8 +211,6 @@
                         </div>
                       </div>
 
-
-                      <hr />
                       <div class="card-footer">
                         <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDeduction">Submit</button>
                         <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
@@ -227,7 +223,7 @@
             </div>
           </div>
           <!-- end notice modal -->
-          <!-- Edit modal Department -->
+          <!-- Edit modal Deduction -->
           <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notice">
               <div class="modal-content">
@@ -398,6 +394,52 @@
     });
 
 
+     
+
+   
+    // $(document).ready(function() {
+    //$('.form-group input').keyup(function() {
+
+    //    var empty = false;
+    //    $('.form-group input').each(function() {
+    //        if ($(this).val().length == 0) {
+    //            empty = true;
+    //        }
+    //    });
+
+    //    if (empty) {
+    //        $('.card-footer button').attr('disabled', 'disabled');
+    //    } else {
+    //        $('.card-footer button').removeAttr('disabled');
+    //    }
+    //});
+    //});
+
+
+
+    //Code for pulling the Records on the Table
+    //var aEditDeptId;
+
+    //$(document).delegate('#Editbtn',
+    //  'click',
+    //  function (e) {
+
+    //    aEditDeptId = $(this).attr('DepartmentId');
+    //    departmentName = $(this).attr('Selected-Departmentname');
+    //    description = $(this).attr('Selected-Description');
+
+    //    //console.log(description, department);
+
+
+    //    $('input[name=edeptid]').val(aEditDeptId);
+    //    $('input[name=eDepartmentName]').val(departmentName);
+    //    $('textarea[name=eDescription]').val(description);
+
+    //  });
+
+    //End of the code
+
+
      $(document).ready(function () {
 
       $("#SubmitNewDeduction").click(function (event) {
@@ -448,80 +490,6 @@
           }
         });
       });
-    });
-
-   
-    // $(document).ready(function() {
-    //$('.form-group input').keyup(function() {
-
-    //    var empty = false;
-    //    $('.form-group input').each(function() {
-    //        if ($(this).val().length == 0) {
-    //            empty = true;
-    //        }
-    //    });
-
-    //    if (empty) {
-    //        $('.card-footer button').attr('disabled', 'disabled');
-    //    } else {
-    //        $('.card-footer button').removeAttr('disabled');
-    //    }
-    //});
-    //});
-
-
-
-    //Code for pulling the Records on the Table
-    //var aEditDeptId;
-
-    //$(document).delegate('#Editbtn',
-    //  'click',
-    //  function (e) {
-
-    //    aEditDeptId = $(this).attr('DepartmentId');
-    //    departmentName = $(this).attr('Selected-Departmentname');
-    //    description = $(this).attr('Selected-Description');
-
-    //    //console.log(description, department);
-
-
-    //    $('input[name=edeptid]').val(aEditDeptId);
-    //    $('input[name=eDepartmentName]').val(departmentName);
-    //    $('textarea[name=eDescription]').val(description);
-
-    //  });
-
-    //End of the code
-
-
-     var aEditAdtnId;
-
-    $(document).delegate('#EditAdtn',
-      'click',
-      function (e) {
-
-        aEditAdtnId = $(this).attr('EditAdtnId');
-        AdditionType = $(this).attr('Selected-AdditionType');
-        description = $(this).attr('Selected-Description');
-
-
-        //console.log(aEditAdtnId, AdditionType, description);
-        //  console.log(aEditAssetId);
-
-        $('input[name=eAdtnId]').val(aEditAdtnId);
-        $('input[name=eqAdditionType]').val(AdditionType);
-        $('textarea[name=eDescription]').val(description);
-
-      });
-
-
-    $(document).ready(function () {
-
-      
-
-
-
-      
     });
 
 
