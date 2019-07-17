@@ -132,7 +132,7 @@ namespace E4S.Controllers
         }
 
       List<HeadCount> headCounts = new List<HeadCount>();
-      var department = _context.Departments.ToList();
+      var department = _context.Departments.Where(x => x.OrganisationId == orgId).ToList();
       HeadCount hC;
       foreach (var item in department)
       {
