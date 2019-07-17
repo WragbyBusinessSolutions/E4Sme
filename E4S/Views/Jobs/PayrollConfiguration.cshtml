@@ -204,7 +204,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                            <textarea class="form-control" placeholder="Description" id="DDescription" required rows="3"></textarea>
                             @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
 
                           </div>
@@ -288,11 +288,11 @@
               </th>
               </thead>
 
-              @*<tbody>
+              <tbody>
                 @{
-                    int j = 1;
+                    int i = 1;
 
-                    @if (Model.Count() < 1)
+                    @if (Model.Deductions.Count() < 1)
                     {
 
                     <td></td>
@@ -302,17 +302,17 @@
 
                 }
 
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Deductions)
                     {
 
                         <tr>
 
                             <td class="text-center">
-                                @j
+                                @i
                             </td>
 
                             <td>
-                                @item.Deductions
+                                @item.DeductionType
                             </td>
                             <td>
                                 @item.Description
@@ -323,11 +323,11 @@
                             </td>
                         </tr>
 
-                        { j = j + 1; }
+                        { i = i + 1; }
                     }
                 }
 
-                </tbody>*@
+                </tbody>
             </table>
           </div>
         </div>
@@ -448,7 +448,7 @@
 
         var SalaryDeduction = {
            DeductionName: $("#DeductionName").val(),
-           Description: $("#Description").val(),
+           Description: $("#DDescription").val(),
         };
 
 
