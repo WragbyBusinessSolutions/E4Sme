@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Addition Name</label>
-                            <input type="text" class="form-control" placeholder="Addition Name" id="AdditionName" required>
+                            <input type="text" class="form-control" placeholder="Addition Name" id="AdditionName" name="AdditionName" required>
                           </div>
                         </div>
                       </div>
@@ -348,7 +348,7 @@
         event.preventDefault();
 
         var SalaryAddition = {
-           AdditionName: $("#AdditionName").val(),
+           AdditionType: $("#AdditionName").val(),
            Description: $("#Description").val(),
         };
 
@@ -370,7 +370,16 @@
 
             if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+        	swal({
+                title: "Success!",
+                text: "New Record Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+          }).catch(swal.noop);
+
+                          window.location.reload();
 
             } else if (r.msg == "Fail") {
 
