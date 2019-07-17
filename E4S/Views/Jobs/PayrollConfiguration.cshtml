@@ -196,7 +196,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Deduction Name</label>
-                            <input type="text" class="form-control" placeholder="Deduction Name" id="DeductionName" required>
+                            <input type="text" class="form-control" placeholder="Deduction Name" id="DeductionName" name="DeductionName" required>
                           </div>
                         </div>
                       </div>
@@ -456,7 +456,7 @@
         event.preventDefault();
 
         var SalaryDeduction = {
-           DeductionName: $("#DeductionName").val(),
+           DeductionType: $("#DeductionName").val(),
            Description: $("#DDescription").val(),
         };
 
