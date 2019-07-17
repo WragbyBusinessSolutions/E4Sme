@@ -12,5 +12,23 @@ namespace E4S.Controllers.HumanResource
         {
             return View();
         }
+
+        public IActionResult CatgoryList()
+        {
+            return View();
+        }
+
+        public IActionResult VeiwCatgory()
+        {
+            return View();
+        }
+        public IActionResult Template()
+        {
+            return View();
+        }
+        public IActionResult ViewTemplate()
+        {
+            return View();
+        }
     }
 }
