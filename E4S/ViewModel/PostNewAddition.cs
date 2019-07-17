@@ -11,9 +11,11 @@ namespace E4S.ViewModel
         public string AId { get; set; }
         public string AdditionType { get; set; }
         public string Description { get; set; }
-        public string Others { get; set; }
-        public bool Status { get; set; }
 
-       public List<Deduction> Deductions { get; set; }
+
+       // public string Others { get; set; }
+       // public bool Status { get; set; }
+
+       //public List<Deduction> Deductions { get; set; }
   }
 }

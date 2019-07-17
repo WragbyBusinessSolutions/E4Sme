@@ -7,10 +7,11 @@ namespace E4S.ViewModel
 {
     public class PostNewDeduction
     {
-        public string AId { get; set; }
+        public string FId { get; set; }
         public string DeductionType { get; set; }
         public string Description { get; set; }
-        public string Others { get; set; }
-        public bool Status { get; set; }
+
+        //public string Others { get; set; }
+        //public bool Status { get; set; }
     }
 }
