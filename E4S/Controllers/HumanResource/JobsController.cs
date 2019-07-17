@@ -852,8 +852,6 @@ namespace E4S.Controllers.HumanResource
           }
 
           var orgId = getOrg();
-          var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-          int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
 
           try
           {
