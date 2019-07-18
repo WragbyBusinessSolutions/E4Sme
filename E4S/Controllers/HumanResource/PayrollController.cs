@@ -98,37 +98,148 @@ namespace E4S.Controllers.HumanResource
       return View(payrolllist);
 
     }
-    public IActionResult SalaryAdditions()
+        public IActionResult SalaryAdditions()
         {
             var ordId = getOrg();
             ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
+            ViewData["Additions"] = new SelectList(_context.Additions.Where(x => x.OrganisationId == ordId), "Id", "AdditionType");
             var orgId = getOrg();
 
-          return View();
+            var salaryAdditonslist = _context.SalaryAdditions.Where(x => x.OrganisationId == ordId).ToList();
+
+            return View(salaryAdditonslist);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> postSalaryAdditions([FromBody]PostNewSalaryAdditions postNewSalaryAdditions)
+        {
+            if (postNewSalaryAdditions == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();           
+
+            try
+            {
+                SalaryAddition orgSalaryAddition = new SalaryAddition()
+                {
+                    Id = Guid.NewGuid(),
+                    EmployeeDetailId = postNewSalaryAdditions.EmployeeDetailsId,
+                    AdditionId = postNewSalaryAdditions.AdditonId,
+                    Amount = postNewSalaryAdditions.Amount,
+                    Description = postNewSalaryAdditions.Description,
+                    OrganisationId = orgId,
+
+                };
+
+                _context.Add(orgSalaryAddition);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
         public IActionResult SalaryDeductions()
+        {
+            var ordId = getOrg();
+            ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
+            ViewData["Deductions"] = new SelectList(_context.Deductions.Where(x => x.OrganisationId == ordId), "Id", "DeductionType");
+            var orgId = getOrg();
+            
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> postSalaryDeductions([FromBody]PostNewSalaryDeductions postNewSalaryDeductions)
+        {
+            if (postNewSalaryDeductions == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+
+            try
+            {
+                SalaryDeduction orgSalaryDeduction = new SalaryDeduction()
+                {
+                    Id = Guid.NewGuid(),
+                    EmployeeDetailId = postNewSalaryDeductions.EmployeeDetailsId,
+                    DeductionId = postNewSalaryDeductions.DeductionId,
+                    //Amount = postNewSalaryDeductions.Amount,
+                    Description = postNewSalaryDeductions.Description,
+                    OrganisationId = orgId,
+
+                };
+
+                _context.Add(orgSalaryDeduction);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
+
+        public async Task<IActionResult> GeneratePayroll()
         {
           var orgId = getOrg();
 
-          return View();
+          var AllPayrollUser = _context.Salaries.Where(x => x.OrganisationId == orgId).Include(x => x.EmployeeDetail).ToList();
+          var GenId = Guid.NewGuid();
+
+          foreach (var item in AllPayrollUser)
+          {
+            var result = this.ComputePaySlip(item, DateTime.Now.Month.ToString(), GenId);
+          }
+
+          var payrolllist = await _context.Payrolls.Where(x => x.GenerationId == GenId).ToListAsync();
+
+          return View(payrolllist);
         }
-
-    public async Task<IActionResult> GeneratePayroll()
-    {
-      var orgId = getOrg();
-
-      var AllPayrollUser = _context.Salaries.Where(x => x.OrganisationId == orgId).Include(x => x.EmployeeDetail).ToList();
-      var GenId = Guid.NewGuid();
-
-      foreach (var item in AllPayrollUser)
-      {
-        var result = this.ComputePaySlip(item, DateTime.Now.Month.ToString(), GenId);
-      }
-
-      var payrolllist = await _context.Payrolls.Where(x => x.GenerationId == GenId).ToListAsync();
-
-      return View(payrolllist);
-    }
 
 
     private async Task ComputePaySlip(Salary employeeInformation, string Paymonth, Guid genId)

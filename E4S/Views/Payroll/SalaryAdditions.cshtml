@@ -46,20 +46,13 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Addition Type</label>
-                            <select type="text" class="form-control" asp-items="ViewBag.AdditionType" id="AdditionType" name="AdditionType">
+                            <select type="text" class="form-control" asp-items="ViewBag.Additions" id="AdditionType" name="AdditionType">
                               <option> -- Select Addition Type -- </option>
                             </select>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Description</label>
-                            <input type="text" class="form-control" placeholder="Description" id="DeductionType" required>
-                          </div>
-                        </div>
-                      </div>
+                      
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -69,38 +62,17 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Month</label>
-                            <select class="form-control" placeholder="Month" id="Month" required>
-                              <option> -- Select Month -- </option>
-                              <option value="0">January</option>
-                              <option value="1">Feburary</option>
-                              <option value="2">March</option>
-                              <option value="3">April</option>
-                              <option value="4">May</option>
-                              <option value="5">June</option>
-                              <option value="6">July</option>
-                              <option value="7">August</option>
-                              <option value="8">September</option>
-                              <option value="9">October</option>
-                              <option value="10">November</option>
-                              <option value="11">December</option>
-                            </select>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label>Description</label>
+                                  <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                  @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
+                              </div>
                           </div>
-                        </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
                       <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAdditions">Submit</button>
                         <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                       </div>
                     </form>
@@ -124,72 +96,56 @@
                   <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
                 </div>
                 <div class="modal-body">
-                  <div class="instruction">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Employee Name</label>
-                                <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                    <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                </select>                               
+                    <div class="instruction">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Employee Name</label>
+                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                            <option value="00000000-0000-0000-0000-000000000000"> --  Employee Name  -- </option>
+                                        </select>
+                                        @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Deduction Type</label>
-                            <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Amount</label>
-                            <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Month</label>
-                            <select class="form-control" placeholder="Month" id="Month" required>
-                              <option> -- Select Month -- </option>
-                              <option value="0">January</option>
-                              <option value="1">Feburary</option>
-                              <option value="2">March</option>
-                              <option value="3">April</option>
-                              <option value="4">May</option>
-                              <option value="5">June</option>
-                              <option value="6">July</option>
-                              <option value="7">August</option>
-                              <option value="8">September</option>
-                              <option value="9">October</option>
-                              <option value="10">November</option>
-                              <option value="11">December</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                      </div>
-                    </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Addition Type</label>
+                                        <select type="text" class="form-control" asp-items="ViewBag.Additions" id="AdditionType" name="AdditionType">
+                                            <option> -- Select Addition Type -- </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
-                  </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAdditions">Submit</button>
+                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+
+
+                    </div>
                 </div>
                 @*<div class="modal-footer justify-content-center">
                       <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
@@ -231,7 +187,7 @@
               </thead>
 
 
-              @*<tbody>
+              <tbody>
 
                 @{
                     int i = 1;
@@ -259,19 +215,20 @@
                             </td>
 
                             <td>
-                                @item.EmployeeDetail
+                                @item.EmployeeDetail.FirstName
+                                @item.EmployeeDetail.LastName
                             </td>
                             <td>
-                                @item.Addition
+                                @item.Addition.AdditionType
                             </td>
                             <td>
                                 @item.Description
                             </td>
                             <td>
-                                
+                                @item.Amount
                             </td>
                             <td>
-                                
+                                @item.DateCreated.Month
                             </td>
                             <td>
                                 <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" ><i class="far fa-calendar-alt"></i></a>
@@ -284,7 +241,7 @@
                     }
                 }
 
-                </tbody>*@
+                </tbody>
             </table>
           </div>
         </div>
@@ -351,48 +308,31 @@
   @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('#autocom').autocomplete({
-
-        source: '/api/Payroll/search'
-
-      });
-
-      $('#addItem').autocomplete({
-
-        source: '/api/Estimates/productsearch'
-
-      });
-
-
-    })
-  </script>
+  
 
   <script type="text/javascript">
 
     $(document).ready(function () {
 
-      $("#submitAsset").click(function (event) {
+      $("#submitAdditions").click(function (event) {
 
         event.preventDefault();
 
-        var PostOrganisationAsset = {
-          EmployeeDetailId: $("#employeeId").val(),
-          DeviceName: $("#DeviceName").val(),
-          Brand: $("#Brand").val(),
-          Model: $("#Model").val(),
-          SerialNumber: $("#SerialNo").val(),
+        var SalaryAddition = {
+          EmployeeDetailsId: $("#employeeId").val(),
+          AdditonId: $("#AdditionType").val(),
+          Amount: $("#Amount").val(),
+          Description: $("#Description").val(),                  
         };
 
 
         // console.log(Items);
-        console.log(PostOrganisationAsset);
+        console.log(SalaryAddition);
 
         $.ajax({
           type: "POST",
-          url: "/CompanyAssets/postCompanyAssets",
-          data: JSON.stringify(PostOrganisationAsset),
+          url: "/Payroll/postSalaryAdditions",
+          data: JSON.stringify(SalaryAddition),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {

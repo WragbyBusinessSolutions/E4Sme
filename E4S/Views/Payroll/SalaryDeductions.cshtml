@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewData["Title"] = "Salary Deductions";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
@@ -12,10 +13,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> Salary Deduction</h4>
-
                     @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
                     <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                        Add New Asset
+                        Create
                     </button>
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -34,7 +34,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                        <select class="form-control" placeholder="Employee Name" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
                                                             <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
                                                         </select>
                                                     </div>
@@ -44,7 +44,9 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Deduction Type</label>
-                                                        <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
+                                                        <select type="text" class="form-control" asp-items="ViewBag.Deductions" id="DeductionType" name="DeductionType">
+                                                            <option> -- Select Deduction Type -- </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,36 +61,14 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
-                                                        </select>
+                                                        <label>Description</label>
+                                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
                                             <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitDeductions">Submit</button>
                                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
@@ -118,7 +98,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                        <select class="form-control" placeholder="Employee Name" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
                                                             <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
                                                         </select>
                                                     </div>
@@ -128,15 +108,9 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Deduction Type</label>
-                                                        <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" id="DeductionType" required>
+                                                        <select type="text" class="form-control" asp-items="ViewBag.Deductions" id="DeductionType" name="DeductionType">
+                                                            <option> -- Select Deduction Type -- </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,39 +125,18 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
-                                                        </select>
+                                                        <label>Description</label>
+                                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
                                             <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitDeductions">Submit</button>
                                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
+
 
                                     </div>
                                 </div>
@@ -348,26 +301,25 @@
 
             $(document).ready(function () {
 
-                $("#submitAsset").click(function (event) {
+                $("#submitDeductions").click(function (event) {
 
                     event.preventDefault();
 
-                    var PostOrganisationAsset = {
-                        EmployeeDetailId: $("#employeeId").val(),
-                        DeviceName: $("#DeviceName").val(),
-                        Brand: $("#Brand").val(),
-                        Model: $("#Model").val(),
-                        SerialNumber: $("#SerialNo").val(),
+                    var SalaryDeductions = {
+                          EmployeeDetailsId: $("#employeeId").val(),
+                          DeductionId: $("#AdditionType").val(),
+                          Amount: $("#Amount").val(),
+                          Description: $("#Description").val(), 
                     };
 
 
                     // console.log(Items);
-                    console.log(PostOrganisationAsset);
+                    console.log(SalaryDeductions);
 
                     $.ajax({
                         type: "POST",
-                        url: "/CompanyAssets/postCompanyAssets",
-                        data: JSON.stringify(PostOrganisationAsset),
+                        url: "/Payroll/postSalaryDeductions",
+                        data: JSON.stringify(SalaryDeductions),
                         dataType: "json",
                         contentType: 'application/json; charset=utf-8',
                         headers: {
