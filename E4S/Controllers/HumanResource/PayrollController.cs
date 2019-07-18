@@ -160,7 +160,58 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
+        // Edit the Salary Additions
 
+        [HttpPost]
+        public async Task<IActionResult> editSalaryAdditions([FromBody]PostNewSalaryAdditions postNewSalaryAdditions)
+        {
+            if (postNewSalaryAdditions == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+            try
+            {
+
+                var orgAddSal = _context.SalaryAdditions.Where(x => x.Id == Guid.Parse(postNewSalaryAdditions.AId)).FirstOrDefault();
+                orgAddSal.EmployeeDetailId = postNewSalaryAdditions.EmployeeDetailsId;
+                orgAddSal.AdditionId = postNewSalaryAdditions.AdditonId;
+                orgAddSal.Amount = postNewSalaryAdditions.Amount;
+                orgAddSal.Description = postNewSalaryAdditions.Description;
+
+                _context.Update(orgAddSal);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
+        // Ednf of Edit for Salary Additions
 
         public IActionResult SalaryDeductions()
         {
@@ -168,8 +219,10 @@ namespace E4S.Controllers.HumanResource
             ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
             ViewData["Deductions"] = new SelectList(_context.Deductions.Where(x => x.OrganisationId == ordId), "Id", "DeductionType");
             var orgId = getOrg();
-            
-            return View();
+
+            var salaryDeductionlist = _context.SalaryDeductions.Where(x => x.OrganisationId == ordId).ToList();
+
+            return View(salaryDeductionlist);
         }
 
         [HttpPost]
@@ -193,7 +246,7 @@ namespace E4S.Controllers.HumanResource
                     Id = Guid.NewGuid(),
                     EmployeeDetailId = postNewSalaryDeductions.EmployeeDetailsId,
                     DeductionId = postNewSalaryDeductions.DeductionId,
-                    //Amount = postNewSalaryDeductions.Amount,
+                    Amount = postNewSalaryDeductions.Amount,
                     Description = postNewSalaryDeductions.Description,
                     OrganisationId = orgId,
 
@@ -222,6 +275,58 @@ namespace E4S.Controllers.HumanResource
         }
 
 
+        // Edit the Salary Deductions
+
+        [HttpPost]
+        public async Task<IActionResult> editSalaryDeductions([FromBody]PostNewSalaryDeductions postNewSalaryDeductions)
+        {
+            if (postNewSalaryDeductions == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+            try
+            {
+
+                var orgDedSal = _context.SalaryDeductions.Where(x => x.Id == Guid.Parse(postNewSalaryDeductions.AId)).FirstOrDefault();
+                orgDedSal.EmployeeDetailId = postNewSalaryDeductions.EmployeeDetailsId;
+                orgDedSal.DeductionId = postNewSalaryDeductions.DeductionId;
+                orgDedSal.Amount = postNewSalaryDeductions.Amount;
+                orgDedSal.Description = postNewSalaryDeductions.Description;
+
+                _context.Update(orgDedSal);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
+        // Edit for Salary deductions
 
 
         public async Task<IActionResult> GeneratePayroll()
