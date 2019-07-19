@@ -49,6 +49,17 @@
                       </a>
                     </li>
                     <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#companyAsset" role="tablist">
+                        Employee Assigned Assets
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#leave" role="tablist">
+                        Leave
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#contactDetails" role="tablist">
                         Contact Details
                       </a>
@@ -613,6 +624,166 @@
                     </div>
 
 
+
+                    <div class="tab-pane" id="companyAsset">
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <h4 class="card-title"> Employee Assets</h4>
+                            </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-striped">
+                                  <thead class="text-primary">
+                                  <th class="text-center">
+                                    #
+                                  </th>
+                                  <th>
+                                    Device Name
+                                  </th>
+                                  <th>
+                                    Brand
+                                  </th>
+                                  <th>
+                                    Model
+                                  </th>
+                                  <th>
+                                    Serial No.
+                                  </th>
+                                  @*<th>
+                  Employee Id.
+                </th>
+                <th>
+                  Action
+                </th>*@
+
+                                  </thead>
+
+
+                                  <tbody>
+
+                                    @{
+                                      int i = 1;
+
+                                      @if (Model.OrganisationAssets.Count() < 1)
+                                      {
+
+                                      <td></td>
+                                      <td></td>
+                                      <td>No Data to Display</td>
+                                      <td></td>
+                                      <td></td>
+
+
+                                    }
+
+
+                                      foreach (var item in Model.OrganisationAssets)
+                                      {
+
+                                        <tr>
+                                          <td class="text-center">@i</td>
+
+
+                                          <td>@item.DeviceName</td>
+                                          <td>@item.Brand</td>
+                                          <td>@item.Model</td>
+                                          <td>@item.SerialNumber</td>
+                                        </tr>
+
+                                        { i = i + 1; }
+                                      }
+                                    }
+
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                    <div class="tab-pane" id="leave">
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card ">
+
+
+                            <div class="card-body ">
+
+                              <div class="card-body">
+                                <br />
+                                <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                  <thead>
+                                    <tr>
+                                      <th>Leave</th>
+                                      <th>Description</th>
+                                      <th>Start Date</th>
+                                      <th>End Date</th>
+                                      <th>Days</th>
+                                      <th>Status</th>
+
+                                    </tr>
+                                  </thead>
+
+                                  <tbody>
+
+                                    @foreach (var item in Model.Leaves)
+                                    {
+                                      <tr>
+                                        <td>@item.LeaveTitle</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.StartDate.ToString("MMMM dd, yyyy")</td>
+                                        <td>@item.EndDate.ToString("MMMM dd, yyyy")</td>
+                                        <td>@item.CalculatedDays</td>
+
+                                        @if (item.Status == "Pending")
+                                        {
+                                          <td>
+                                            <a class="btn btn-sm btn-warning">@item.Status</a>
+                                          </td>
+                                        }
+                                        else if (item.Status == "Approved")
+                                        {
+                                          <td>
+                                            <a class="btn btn-sm btn-info">@item.Status</a>
+                                          </td>
+
+                                        }
+                                        else if (item.Status == "Declined")
+                                        {
+                                          <td>
+                                            <a class="btn btn-sm btn-danger">@item.Status</a>
+                                          </td>
+                                        }
+
+                                        @*<td>@item.Status</td>
+                <td class="text-right">
+                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                </td>*@
+                                      </tr>
+
+                                    }
+
+                                  </tbody>
+                                </table>
+                              </div>
+                              <!-- the End of Emergency Contact Tabs-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
                     <div class="tab-pane" id="contactDetails">
 
                       <div class="card-body">
@@ -873,7 +1044,7 @@
                       <!--End Skills-->
                       <hr />
 
-                      
+
 
                     </div>
 
@@ -896,17 +1067,17 @@
 
                             @foreach (var item in Model.WorkExperiences)
                             {
-                            <tr>
-                              <td>@item.Organisation</td>
-                              <td>@item.JobTitle</td>
-                              <td>@item.StartDate</td>
-                              <td>@item.EndDate</td>
-                              <td>@item.Comment</td>
-                              <td class="text-right">
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                              </td>
-                            </tr>
+                              <tr>
+                                <td>@item.Organisation</td>
+                                <td>@item.JobTitle</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.Comment</td>
+                                <td class="text-right">
+                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                </td>
+                              </tr>
 
                             }
 
@@ -914,13 +1085,13 @@
                         </table>
                       </div>
 
-                     
 
-                      
-                     
-                    
 
-                      
+
+
+
+
+
 
                     </div>
 

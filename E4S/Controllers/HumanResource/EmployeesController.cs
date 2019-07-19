@@ -540,10 +540,6 @@ namespace E4S.Controllers.HumanResource
 
       }
 
-
-
-
-
       return View(newEmployeeList);
     }
 
@@ -751,7 +747,8 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.InstitutionQualifications = _context.InstitutionQualifications.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.Skills = _context.Skills.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.WorkExperiences = _context.WorkExperiences.Where(x => x.EmployeeDetailId == id).ToList();
-
+      employeeDetailsVM.Leaves = _context.Leaves.Where(x => x.EmployeeDetailId == id).ToList();
+      employeeDetailsVM.OrganisationAssets = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == id).ToList();
 
 
       var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
