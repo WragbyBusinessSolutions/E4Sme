@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "AddQuote";
+    ViewData["Title"] = "Add Quote";
     Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
@@ -36,6 +36,7 @@
     .table-item {
         font-size: 12px;
     }
+
 </style>
 
 
@@ -43,148 +44,176 @@
 
     <div class="row">
         <div class="col-md-2">
+
         </div>
+        <div class="col-md-8">
+            <div class="card invoice-card">
+                
+                    <div class="card-header">
 
-        <div class="col-md-8 ">
-            <div class="card card-body printableArea invoice-card">
+                        <div class="row invoice-card">
+                            <h5>Quote No:</h5>
 
+                            <div class="">
 
+                                <div class="col-md-12">
+                                    <input type="number" class="form-control" placeholder="#" />
+                                </div>
 
-                <div class="row">
-                    <div class="row pull-left invoice-card">
-                        <h5>Quote No:</h5>
+                            </div>
+                        </div>
 
-                        <div class="">
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                    </div>
 
-                            <div class="col-lg-12">
-                                <input type="number" class="form-control" placeholder="#" />
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="col-md-4">
+
+                                <p class="text-muted hidden-info">
+                                    <b class="text-danger spanlabel">OrganisationName</b>
+                                    <br />
+                                    .Organisation.Address
+                                    <br /> Organisation.City,
+                                    <br /> Organisation.State,
+                                    <br /> Organisation.Country
+                                    <br />Organisation.ZipCode
+                                </p>
                             </div>
 
                         </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <hr />
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-12">
-
-                            <p class="text-muted m-l-5 pull-right hidden-info">
-                                <b class="text-danger spanlabel">OrganisationName</b>
-                                <br />
-                                .Organisation.Address
-                                <br /> Organisation.City,
-                                <br /> Organisation.State,
-                                <br /> Organisation.Country
-                                <br />Organisation.ZipCode
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row invoice-card">
-                        <div class="col-lg-12">
-                            <div class="pull-right text-right">
-
-                                <p>
-
-                                    <b>Qoute Date <i class="fa fa-calendar"></i> :</b>
-
-                                    <input type="date" class="form-control" />
-
-                                </p>
-                                <p>
+                        <div class="row invoice-card">
+                            <div class="col-md-12">
+                                <div class="pull-right text-right">
+                                    <p>
+                                        <b>Qoute Date <i class="fa fa-calendar"></i> :</b>
+                                        <input type="date" class="form-control" />
+                                    </p>
 
                                     <b>To:</b>
+                                    <input type="text" class="form-control" placeholder="Customer" />
 
-                                    <button href="#" data-toggle="modal" data-target="#longModal" class="btn btn-sm btn-success" data-placement="top" title="Click to add a new Customer">+</button><input type="text" class="form-control" placeholder="Customer" />
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">
+                                        Add new customer
+                                    </button>
 
-                                </p>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Customer</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
 
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <label class="pull-left">Customer name</label>
+                                                        <input type="text" class="form-control" />
+                                                        <br />
+                                                        <label class="pull-left">Email Address</label>
+                                                        <input type="text" class="form-control" />
+                                                        <br />
+                                                        <label class="pull-left">Phone Number</label>
+                                                        <input type="number" class="form-control" />
+                                                        <br />
+                                                    </form>
 
-
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-info">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
+                            <div class="col-md-12 invoice-body">
+                                <div class="table-responsive" style="overflow:auto;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="table-item"><strong>Item</strong></th>
+                                                <th><strong>Description</strong></th>
+                                                <th><strong>Quantity</strong></th>
+                                                <th><strong>Unit Cost</strong></th>
+                                                <th><strong>Total</strong></th>
+                                                <th>+/-</th>
 
-                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+
+                                                <td>
+                                                   
+                                                    <input type="text" class="form-control" placeholder="Item/Service">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" placeholder="Description">
+                                                </td>
+                                                <td class="text-right">
+                                                    <input type="number" class="form-control text-right" placeholder="0">
+                                                </td>
+                                                <td class="text-right">
+                                                    <input type="number" class="form-control text-right" placeholder="0.00">
+                                                </td>
+                                                <td class="text-right">
+                                                    <input disabled type="number" class="form-control text-right" placeholder="0">
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-success">+</button>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-
-                       
-
-                        <div class="col-md-12 invoice-body">
-                            <div class="table-responsive m-t-40" style="clear: both; overflow:auto;">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="table-item"><strong>Item</strong></th>
-                                            <th><strong>Description</strong></th>
-                                            <th><strong>Quantity</strong></th>
-                                            <th><strong>Unit Cost</strong></th>
-                                            <th><strong>Total</strong></th>
-                                            <th>+/-</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr>
-
-                                            <td>
-                                                <input hidden type="text" id="addEstimateId" name="bdate" class="form-control" value="Model.EstimateId">
-                                                <input type="text" id="addItem" name="bdate" onChange="changecat(this.value);" class="form-control" placeholder="Item/Service">
-                                            </td>
-                                            <td>
-                                                <input type="text" id="addDescription" name="bdate" class="form-control" placeholder="Description">
-                                            </td>
-                                            <td class="text-right">
-                                                <input type="number" id="addQuantity" name="bdate" class="form-control text-right" placeholder="0">
-                                            </td>
-                                            <td class="text-right">
-                                                <input type="number" id="addUnitCost" name="bdate" class="form-control text-right" placeholder="0.00">
-                                            </td>
-                                            <td class="text-right">
-                                                <input disabled type="number" id="addAmount" name="bdate" class="form-control text-right" placeholder="0">
-                                            </td>
-                                            <td>
-                                                <button id="clickb" name="clickb" class="btn btn-sm btn-success">+</button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-12 total-section">
-                            <div class="pull-right text-right">
-                                <p>Sub - Total amount:  ₦0.00</p>
-                                <p>
-                                    <input type="checkbox" checked disabled /> vat (5%) : ₦0.00
-                                </p>
+                            <div class="col-md-12 total-section">
+                                <div class="pull-right text-right">
+                                    <p>Sub - Total amount:  ₦0.00</p>
+                                    <p>
+                                        <input type="checkbox" checked disabled /> vat (5%) : ₦0.00
+                                    </p>
+                                    <hr>
+                                    <h3>
+                                        <b>Total :</b> ₦0.00
+                                    </h3>
+                                </div>
+                                <div class="clearfix"></div>
                                 <hr>
-                                <h3>
-                                    <b>Total :</b> ₦0.00
-                                </h3>
-                            </div>
-                            <div class="clearfix"></div>
-                            <hr>
-                            <div class="text-right">
-                                <button class="btn btn-success" type="submit"> Done  </button>
-                                <button id="print" class="btn btn-info btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
+                                <div class="text-right">
+                                    <button class="btn btn-success" type="submit"> Done  </button>
+                                    <button id="print" class="btn btn-info btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                        
+                   
+                    
+                
             </div>
-
-            <div class="col-md-2">
-            </div>
-
         </div>
 
+        <div class="col-md-2">
 
+        </div>
     </div>
 </div>
-<script>
-    $('#myModal').modal(options)
-</script>
+
+
