@@ -77,7 +77,23 @@ namespace E4S.Controllers.HumanResource
 
       return View();
         }
-        public IActionResult ViewTemplate()
+
+    public IActionResult AddTemplate()
+    {
+      var orgId = getOrg();
+
+      return View();
+    }
+
+    public IActionResult EditTemplate()
+    {
+      var orgId = getOrg();
+
+      return View();
+    }
+
+
+    public IActionResult ViewTemplate()
         {
       var orgId = getOrg();
 

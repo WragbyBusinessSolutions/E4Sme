@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+
+
+<style>
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
+    }
+
+    .table-font {
+        font-weight: 500;
+    }
+
+    .iconstyle {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .picture {
+        background: fixed;
+    }
+
+        .picture:hover {
+            border-radius: 7px;
+            box-shadow: 0 0 11px rgba(33,33,33,.2);
+            padding: 10px;
+        }
+
+    .button-pad {
+        margin-top: 20px;
+    }
+
+    .space {
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
+
+    .textspace {
+        padding-top:;
+        padding-left: 50px;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Account Transaction</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    
+                    <div class="card-body body-card">
+
+                        <div class="row">
+
+
+
+                            <div class="col-md-2">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Report Type</label>
+                                <select class="form-control">
+                                    <option>Paid and Unpaid</option>
+                                    <option>Cash and Cash Equivalents</option>
+                                    <option>Cash Only</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <label>Contact</label>
+                                <select class="form-control">
+                                    <option>All Contact</option>
+                                    <option>Customers</option>
+                                    
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="submit" value="Update Report" class="button-pad btn btn-info pull-right" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header body-card">
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-success btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export Data
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Copy</a>
+                                <a class="dropdown-item" href="#">CSV</a>
+                                <a class="dropdown-item" href="#">Excel</a>
+                                <a class="dropdown-item" href="#">PDF</a>
+                                <a class="dropdown-item" href="#">Print</a>
+
+                            </div>
+                        </div>
+
+
+
+                        <h4 class="card-title"></h4>
+                    </div>
+                    <div class="card-body body-card">
+
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><strong>DATE</strong></th>
+                                        <th><strong>DESCRIPTION</strong></th>
+                                        <th><strong>DEBIT</strong></th>
+                                        <th><strong>CREDIT</strong></th>
+                                      
+                                        <th style="text-align:right;"><strong>BALANCE</strong></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="fontweight">
+
+                                    <tr>
+                                        <td class="table-font"><strong>Assets</strong><p>Under: Asset > Cash and Bank</p></td>
+                                        <td style="text-align:right;"></td>
+                                        <td style="text-align:right;"></td>
+
+                                        <td style="text-align:right;"></td>
+                                        <td style="text-align:right;"></td>
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td><strong>Starting Balance</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Jul 04, 2019</td>
+                                        <td>Write a Description</td>
+                                        <td>NGN0.00</td>
+                                        <td></td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td><strong>Totals and Ending Balance</strong></td>
+                                        <td></td>
+                                        <td>NGN0.00</td>
+                                        <td>NGN0.00</td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td><strong>Balance Change</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+                                </tbody>
+
+                                <thead>
+                                    <tr>
+                                        <th><strong>Uncategorized Income</strong><p>Under: Income > Uncategorized Income</p></th>
+                                        <th style="text-align:right;"></th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="fontweight">
+                                    <tr>
+                                        <td><strong>Starting Balance</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Jul 04, 2019</td>
+                                        <td>Write a Description</td>
+                                        <td></td>
+                                        <td>NGN0.00</td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td><strong>Totals and Ending Balance</strong></td>
+                                        <td></td>
+                                        <td>NGN0.00</td>
+                                        <td>NGN0.00</td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td><strong>Balance Change</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td style="text-align:right;">NGN0.00</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
