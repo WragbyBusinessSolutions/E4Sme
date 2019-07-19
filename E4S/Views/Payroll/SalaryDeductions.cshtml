@@ -40,7 +40,6 @@
                             </button>
                         </div>                       
                     </div>
-                    
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
@@ -250,7 +249,7 @@
                                             @item.DateCreated.Month
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" EditDedId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-DeductonId="@item.DeductionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
+                                            <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" title="Click to Edit" data-toggle="tooltip" data-placement="top" EditDedId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-DeductonId="@item.DeductionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a></span>
                                             <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
 
                                         </td>
