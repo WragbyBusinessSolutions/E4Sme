@@ -56,5 +56,11 @@ namespace E4S.Data
 
     public DbSet<Payroll> Payrolls { get; set; }
 
+
+    public DbSet<AppraisalCategory> AppraisalCategories { get; set; }
+    public DbSet<AppraisalKPI> AppraisalKPIs { get; set; }
+    public DbSet<AppraisalTemplate> AppraisalTemplates { get; set; }
+
+
   }
 }

@@ -181,21 +181,27 @@
                     </p>
                 </a>
                 <div class="collapse " id="Appraisals">
-                    <ul class="nav">
-                        <li class="">
-                            <a asp-action="Index" asp-controller="Appraisal">
-                                <span class="sidebar-mini-icon">L C </span>
-                                <span class="sidebar-normal">Appraisals</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="LeaveConfiguration" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon">L C </span>
-                                <span class="sidebar-normal"> Leave Configuration </span>
-                            </a>
-                        </li>
+                  <ul class="nav">
+                    <li class="">
+                      <a asp-action="Index" asp-controller="Appraisal">
+                        <span class="sidebar-mini-icon">L C </span>
+                        <span class="sidebar-normal">Appraisals</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a asp-action="CatgoryList" asp-controller="Appraisal">
+                        <span class="sidebar-mini-icon">AC</span>
+                        <span class="sidebar-normal"> Appraisal Category </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a asp-action="Template" asp-controller="Appraisal">
+                        <span class="sidebar-mini-icon">AT </span>
+                        <span class="sidebar-normal"> Appraisal Template </span>
+                      </a>
+                    </li>
 
-                    </ul>
+                  </ul>
                 </div>
             </li>
 
