@@ -1,778 +1,779 @@
-﻿@model  E4S.ViewModel.EmployeeQualificationViewModel
+﻿@model E4S.ViewModel.EmployeeQualificationViewModel
 
 @{
-    ViewData["Title"] = "Qualification";
-    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+  ViewData["Title"] = "Qualification";
+  Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 
 <div class="content">
-    <div class="card">
-        <div class="card-header text-center" data-background-color="orange">
-            <h3 class="card-title">
-                Qualifications
-            </h3>
-            <h5 class="description">
-                Employee - Institution, Skill Sets, Other Certification and Work Experience
-            </h5>
-        </div>
-        @*<h4 class="card-title"> Employee Jobs</h4>*@
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card ">
-
-                    <div class="card-body ">
-
-                        <!-- Start of the Emergency Contact tabs-->
-
-                      <div class="card-body">
-
-                        <div class="card-body">
-
-                          <!-- Start of Qualifaction-->
-                          <!-- Education Page-->
-                          <div class="card-header">
-                            <div class="justify-content-end align-items-center ">
-                              <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal3">Add Insititution Records</a>
-                            </div>
-                          </div>
-
-                          <!-- notice modal -->
-                          <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                  </button>
-                                  <h5 class="modal-title" id="myModalLabel">Add Institution Records</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="instruction">
-                                    <form enctype="multipart/form-data" asp-action="UploadDocument" method="post">
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Degree</label>
-                                            <div class="form-group">
-                                              <select id="Degree" name="Degree" class="form-control" required>
-                                                <option>-- Select Degree --</option>
-                                                <option value="BSc.">BSc.</option>
-                                                <option value="BA.">BA.</option>
-                                                <option value="B.Eng">B.Eng</option>
-                                                <option value="B.Tech">B.Tech</option>
-                                                <option value="HND">HND</option>
-                                                <option value="OND">OND</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Grade</label>
-                                            <div class="form-group">
-                                              <select id="Grade" name="Grade" class="form-control" required>
-                                                <option>-- Select Grade --</option>
-                                                <option value="First Class">First Class</option>
-                                                <option value="Distinction">Distinction</option>
-                                                <option value="Second Class Upper">Second Class Upper</option>
-                                                <option value="Upper Credit">Upper Credit</option>
-                                                <option value="Second Class">Second Class Lower</option>
-                                                <option value="Lower Credit">Lower Credit</option>
-                                                <option value="Third Class">Third Class</option>
-                                                <option value="Pass">Pass</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Institution</label>
-                                            <input id="Institution" name="Institution" type="text" class="form-control" placeholder="Institution" required>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Course Of Study</label>
-                                            <input id="CourseOfStudy" name="CourseOfStudy" type="text" class="form-control" placeholder="Course Of Study" required>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Year Completed</label>
-                                            <div class="form-group">
-                                              <select id="YearCompleted" name="YearCompleted" class="form-control" required>
-                                                <option>- Year -</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2014">2014</option>
-                                                <option value="2013">2013</option>
-                                                <option value="2012">2012</option>
-                                                <option value="2011">2011</option>
-                                                <option value="2010">2010</option>
-                                                <option value="2009">2009</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2007">2007</option>
-                                                <option value="2006">2006</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2004">2004</option>
-                                                <option value="2003">2003</option>
-                                                <option value="2002">2002</option>
-                                                <option value="2001">2001</option>
-                                                <option value="2000">2000</option>
-                                                <option value="1999">1999</option>
-                                                <option value="1998">1998</option>
-                                                <option value="1997">1997</option>
-                                                <option value="1996">1996</option>
-                                                <option value="1995">1995</option>
-                                                <option value="1994">1994</option>
-                                                <option value="1993">1993</option>
-                                                <option value="1992">1992</option>
-                                                <option value="1991">1991</option>
-                                                <option value="1990">1990</option>
-                                                <option value="1989">1989</option>
-                                                <option value="1988">1988</option>
-                                                <option value="1987">1987</option>
-                                                <option value="1986">1986</option>
-                                                <option value="1985">1985</option>
-                                                <option value="1984">1984</option>
-                                                <option value="1983">1983</option>
-                                                <option value="1982">1982</option>
-                                                <option value="1981">1981</option>
-                                                <option value="1980">1980</option>
-                                                <option value="1979">1979</option>
-                                                <option value="1978">1978</option>
-                                                <option value="1977">1977</option>
-                                                <option value="1976">1976</option>
-                                                <option value="1975">1975</option>
-                                                <option value="1974">1974</option>
-                                                <option value="1973">1973</option>
-                                                <option value="1972">1972</option>
-                                                <option value="1971">1971</option>
-                                                <option value="1970">1970</option>
-                                                <option value="1969">1969</option>
-                                                <option value="1968">1968</option>
-                                                <option value="1967">1967</option>
-                                                <option value="1966">1966</option>
-                                                <option value="1965">1965</option>
-                                                <option value="1964">1964</option>
-                                                <option value="1963">1963</option>
-                                                <option value="1962">1962</option>
-                                                <option value="1961">1961</option>
-                                                <option value="1960">1960</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Certificate Url</label>
-                                            <input id="ImageUrl" name="ImageUrl" type="text" class="form-control" placeholder="http://">
-                                          </div>
-                                        </div>
-                                      </div>
-
-
-                                      <hr />
-                                      <div class="card-footer ">
-                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- end notice modal -->
-
-                          <div class="modal fade" id="noticeModalEditRecords" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                  </button>
-                                  <h5 class="modal-title" id="myModalLabel">Edit Institution Records</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="instruction">
-                                    <form method="post">
-                                      <input id="RecordId" name="RecordId" hidden />
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Degree</label>
-                                            <div class="form-group">
-                                              <select id="qedegree" name="qedegree" class="form-control">
-                                                <option>-- Select Degree --</option>
-                                                <option value="BSc.">BSc.</option>
-                                                <option value="BA.">BA.</option>
-                                                <option value="B.Eng">B.Eng</option>
-                                                <option value="B.Tech">B.Tech</option>
-                                                <option value="HND">HND</option>
-                                                <option value="OND">OND</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Grade</label>
-                                            <div class="form-group">
-                                              <select id="qegrade" name="qegrade" class="form-control">
-                                                <option>-- Select Grade --</option>
-                                                <option value="First Class">First Class</option>
-                                                <option value="Distinction">Distinction</option>
-                                                <option value="Second Class Upper">Second Class Upper</option>
-                                                <option value="Upper Credit">Upper Credit</option>
-                                                <option value="Second Class">Second Class Lower</option>
-                                                <option value="Lower Credit">Lower Credit</option>
-                                                <option value="Third Class">Third Class</option>
-                                                <option value="Pass">Pass</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Institution</label>
-                                            <input id="qeinstitution" name="qeinstitution" type="text" class="form-control" placeholder="Institution">
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Course Of Study</label>
-                                            <input id="qecourseofstudy" name="qecourseofstudy" type="text" class="form-control" placeholder="Course Of Study">
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Year Completed</label>
-                                            <div class="form-group">
-                                              <select id="qeyearcompleted" name="qeyearcompleted" class="form-control">
-                                                <option>- Year -</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2014">2014</option>
-                                                <option value="2013">2013</option>
-                                                <option value="2012">2012</option>
-                                                <option value="2011">2011</option>
-                                                <option value="2010">2010</option>
-                                                <option value="2009">2009</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2007">2007</option>
-                                                <option value="2006">2006</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2004">2004</option>
-                                                <option value="2003">2003</option>
-                                                <option value="2002">2002</option>
-                                                <option value="2001">2001</option>
-                                                <option value="2000">2000</option>
-                                                <option value="1999">1999</option>
-                                                <option value="1998">1998</option>
-                                                <option value="1997">1997</option>
-                                                <option value="1996">1996</option>
-                                                <option value="1995">1995</option>
-                                                <option value="1994">1994</option>
-                                                <option value="1993">1993</option>
-                                                <option value="1992">1992</option>
-                                                <option value="1991">1991</option>
-                                                <option value="1990">1990</option>
-                                                <option value="1989">1989</option>
-                                                <option value="1988">1988</option>
-                                                <option value="1987">1987</option>
-                                                <option value="1986">1986</option>
-                                                <option value="1985">1985</option>
-                                                <option value="1984">1984</option>
-                                                <option value="1983">1983</option>
-                                                <option value="1982">1982</option>
-                                                <option value="1981">1981</option>
-                                                <option value="1980">1980</option>
-                                                <option value="1979">1979</option>
-                                                <option value="1978">1978</option>
-                                                <option value="1977">1977</option>
-                                                <option value="1976">1976</option>
-                                                <option value="1975">1975</option>
-                                                <option value="1974">1974</option>
-                                                <option value="1973">1973</option>
-                                                <option value="1972">1972</option>
-                                                <option value="1971">1971</option>
-                                                <option value="1970">1970</option>
-                                                <option value="1969">1969</option>
-                                                <option value="1968">1968</option>
-                                                <option value="1967">1967</option>
-                                                <option value="1966">1966</option>
-                                                <option value="1965">1965</option>
-                                                <option value="1964">1964</option>
-                                                <option value="1963">1963</option>
-                                                <option value="1962">1962</option>
-                                                <option value="1961">1961</option>
-                                                <option value="1960">1960</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Certificate Url</label>
-                                            <input id="qeImageUrl" name="qeImageUrl" type="text" class="form-control" placeholder="http://">
-                                          </div>
-                                        </div>
-                                      </div>
-
-
-                                      <hr />
-                                      <div class="card-footer ">
-                                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="editRecords">Submit</button>
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-
-                        </div>
-
-
-                        <div class="card-body">
-                          <br />
-                          <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                            <thead>
-                              <tr>
-                                <th>Institution</th>
-                                <th>Course of Study</th>
-                                <th>Degree</th>
-                                <th>Grade</th>
-                                <th>Year </th>
-                                <th>Certificate URL </th>
-                                <th class="disabled-sorting text-right">Actions</th>
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              @foreach (var item in Model.InstitutionQualifications)
-                              {
-                              <tr>
-                                <td>@item.Institution</td>
-                                <td>@item.CourseOfStudy</td>
-                                <td>@item.Degree</td>
-                                <td>@item.Grade</td>
-                                <td>@item.YearCompleted</td>
-                                <td>@item.ImageURL</td>
-                                <td class="text-right">
-                                  <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="modal" data-target="#noticeModalEditRecords" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" Selected-ImageURL="@item.ImageURL" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                                  <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                </td>
-                              </tr>
-
-                              }
-
-                              @*"~/@item.ImageURL" target="_blank"*@
-
-                              @*<tr>
-            <td>FUTA</td>
-            <td>Mathematical Science</td>
-            <td>B.Tech</td>
-            <td>Second Class Lower</td>
-            <td>2017</td>
-            <td class="text-right">
-              <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-              <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-            </td>
-          </tr>*@
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                        <!-- work Experience End-->
-                        <div class="card-body">
-                          <!-- Skills-->
-                          <div class="card-header">
-                            <div class="justify-content-end align-items-center ">
-                              <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal4">Add Skills</a>
-                            </div>
-                          </div>
-
-                          <!-- notice modal -->
-                          <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                  </button>
-                                  <h5 class="modal-title" id="myModalLabel">Enter New Skill</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="instruction">
-                                    <form enctype="multipart/form-data" asp-action="skillsUpload" method="post">
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Skill</label>
-                                            <input type="text" class="form-control" placeholder="Skill" id="qSkill" name="qSkill" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Description</label>
-                                            <input type="text" class="form-control" placeholder="Description" id="qDescription" name="qDescription" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Year of Experience</label>
-                                            <input type="number" class="form-control" placeholder="Year of Experience" id="qYearOfExperience" name="qYearOfExperience" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <hr />
-                                      <div class="card-footer ">
-                                        <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- end notice modal -->
-
-                          <div class="modal fade" id="noticeModalEditSkills" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-notice">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                  </button>
-                                  <h5 class="modal-title" id="myModalLabel">Edit Skill Details</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="instruction">
-                                    <form method="post">
-                                      @*<form enctype="multipart/form-data" asp-action="skillsUpload" method="post">*@
-                                      <input id="qSkillsId" name="qSkillsId" hidden />
-                                      
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Skill</label>
-                                            <input type="text" class="form-control" placeholder="Skill" id="qeSkill" name="qeSkill" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Description</label>
-                                            <input type="text" class="form-control" placeholder="Description" id="qeDescription" name="qeDescription" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="form-group">
-                                            <label>Years of Experience</label>
-                                            <input type="number" class="form-control" placeholder="Year of Experience" id="qeYearOfExperience" name="qeYearOfExperience" required>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <hr />
-                                      <div class="card-footer ">
-                                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="editSkills">Submit</button>
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </form>
-</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
-
-
-
-
-                        <div class="card-body">
-                          <br />
-                          <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                            <thead>
-                              <tr>
-                                <th>Skill</th>
-                                <th>Description</th>
-                                <th>Years of Experience</th>
-                                <th class="disabled-sorting text-right">Actions</th>
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              @foreach (var item in Model.Skills)
-                              {
-                                <tr>
-                                  <td>@item.SkillName</td>
-                                  <td>@item.Description</td>
-                                  <td>@item.YearsOfExperience</td>
-                                  <td class="text-right">
-                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " id="Editbtn"  data-toggle="modal" data-target="#noticeModalEditSkills" EditSkillsId="@item.Id" select-Skills="@item.SkillName" Selected-Description="@item.Description" Selected-YearsOfExperience="@item.YearsOfExperience" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                                    <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                  </td>
-                                </tr>
-
-                              }
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                        <!--End Skills-->
-
-                        <div class="card-header">
-                          <div class="justify-content-end align-items-center ">
-                            <a class="btn btn-fill btn-info" data-toggle="modal" data-target="#noticeModal5">Add Work Experience</a>
-                          </div>
-                        </div>
-
-                        <!-- notice modal -->
-                        <div class="modal fade" id="noticeModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-notice">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel">Enter Work Experience</h5>
-                              </div>
-                              <div class="modal-body">
-                                <div class="instruction">
-
-                                  <form enctype="multipart/form-data" asp-action="workUpload" method="post">
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Company</label>
-                                          <input type="text" class="form-control" placeholder="Company" id="WOrganisation" name="WOrganisation" required>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Job Title</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="WJobTitle" name="WJobTitle" required>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>From</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WStartDate" name="WStartDate" required>
-
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>To</label>
-                                          <input type="date" class="form-control" placeholder="Job Title" id="WEndDate" name="WEndDate" required>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Comment</label>
-                                          <input type="text" class="form-control" placeholder="Comment" id="WComment" name="WComment" required>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="card-footer ">
-                                      <button type="submit" class="btn btn-fill btn-primary btn-round" >Submit</button>
-                                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- end notice modal -->
-
-                        <div class="modal fade" id="noticeModalExperience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-notice">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </button>
-                                <h5 class="modal-title" id="myModalLabel">Edit Work Experience Details</h5>
-                              </div>
-                              <div class="modal-body">
-                                <div class="instruction">
-
-                                  <form method="post">
-                                    <input id="WorkId" name="WorkId" hidden />
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Company</label>
-                                          <input type="text" class="form-control" placeholder="Company" id="qeWOrganisation" name="qeWOrganisation">
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Job Title</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWJobTitle" name="qeWJobTitle">
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>From</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWStartDate" name="qeWStartDate">
-
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>To</label>
-                                          <input type="text" class="form-control" placeholder="Job Title" id="qeWEndDate" name="qeWEndDate">
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Comment</label>
-                                          <input type="text" class="form-control" placeholder="Comment" id="qeWComment" name="qeWComment">
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <hr />
-                                    <div class="card-footer ">
-                                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="editWorkHistory">Submit</button>
-                                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="card-body">
-                          <br />
-                          <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
-                            <thead>
-                              <tr>
-                                <th>Company</th>
-                                <th>Job Title</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Comment</th>
-                                <th class="disabled-sorting text-right">Actions</th>
-                              </tr>
-                            </thead>
-
-                            <tbody>
-
-                              @foreach (var item in Model.WorkExperiences)
-                              {
-                                <tr>
-                                  <td>@item.Organisation</td>
-                                  <td>@item.JobTitle</td>
-                                  <td>@item.StartDate.ToString("dd, MMM yyyy")</td>
-                                  <td>@item.EndDate.ToString("dd, MMM yyyy")</td>
-                                  <td>@item.Comment</td>
-                                  <td class="text-right">
-                                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" data-toggle="modal" data-target="#noticeModalExperience" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate.ToString("dd, MMM yyyy")" Selected-EndDate="@item.EndDate.ToString("dd, MMM yyyy")" Selected-Comment="@item.Comment"  title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                                    <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                  </td>
-                                </tr>
-
-                              }
-
-
-                            </tbody>
-                          </table>
-                        </div>
-
-
-
-                      </div>
-                        <!-- the End of Emergency Contact Tabs-->
-
-                      </div>
-                </div>
-            </div>
-        </div>
+  <div class="card">
+    <div class="card-header text-center" data-background-color="orange">
+      <h3 class="card-title">
+        Qualifications
+      </h3>
+      <h5 class="description">
+        Employee - Institution, Skill Sets, Other Certification and Work Experience
+      </h5>
     </div>
+    @*<h4 class="card-title"> Employee Jobs</h4>*@
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+
+          <div class="card-body ">
+
+            <!-- Start of the Emergency Contact tabs-->
+
+            <div class="card-body">
+
+              <div class="card-body">
+
+                <!-- Start of Qualifaction-->
+                <!-- Education Page-->
+                <div class="card-header">
+                  <div class="justify-content-end align-items-center ">
+                    <button class="btn  btn-info" data-toggle="modal" data-target="#noticeModal3">Add Insititution Records</button>
+                  </div>
+                </div>
+
+                <!-- notice modal -->
+                <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Add Institution Records</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="instruction">
+                          <form enctype="multipart/form-data" asp-action="UploadDocument" method="post">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Degree</label>
+                                  <div class="form-group">
+                                    <select id="Degree" name="Degree" class="form-control" required>
+                                      <option>-- Select Degree --</option>
+                                      <option value="BSc.">BSc.</option>
+                                      <option value="BA.">BA.</option>
+                                      <option value="B.Eng">B.Eng</option>
+                                      <option value="B.Tech">B.Tech</option>
+                                      <option value="HND">HND</option>
+                                      <option value="OND">OND</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Grade</label>
+                                  <div class="form-group">
+                                    <select id="Grade" name="Grade" class="form-control" required>
+                                      <option>-- Select Grade --</option>
+                                      <option value="First Class">First Class</option>
+                                      <option value="Distinction">Distinction</option>
+                                      <option value="Second Class Upper">Second Class Upper</option>
+                                      <option value="Upper Credit">Upper Credit</option>
+                                      <option value="Second Class">Second Class Lower</option>
+                                      <option value="Lower Credit">Lower Credit</option>
+                                      <option value="Third Class">Third Class</option>
+                                      <option value="Pass">Pass</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Institution</label>
+                                  <input id="Institution" name="Institution" type="text" class="form-control" placeholder="Institution" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Course Of Study</label>
+                                  <input id="CourseOfStudy" name="CourseOfStudy" type="text" class="form-control" placeholder="Course Of Study" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Year Completed</label>
+                                  <div class="form-group">
+                                    <select id="YearCompleted" name="YearCompleted" class="form-control" required>
+                                      <option>- Year -</option>
+                                      <option value="2020">2020</option>
+                                      <option value="2019">2019</option>
+                                      <option value="2018">2018</option>
+                                      <option value="2017">2017</option>
+                                      <option value="2016">2016</option>
+                                      <option value="2015">2015</option>
+                                      <option value="2014">2014</option>
+                                      <option value="2013">2013</option>
+                                      <option value="2012">2012</option>
+                                      <option value="2011">2011</option>
+                                      <option value="2010">2010</option>
+                                      <option value="2009">2009</option>
+                                      <option value="2008">2008</option>
+                                      <option value="2007">2007</option>
+                                      <option value="2006">2006</option>
+                                      <option value="2005">2005</option>
+                                      <option value="2004">2004</option>
+                                      <option value="2003">2003</option>
+                                      <option value="2002">2002</option>
+                                      <option value="2001">2001</option>
+                                      <option value="2000">2000</option>
+                                      <option value="1999">1999</option>
+                                      <option value="1998">1998</option>
+                                      <option value="1997">1997</option>
+                                      <option value="1996">1996</option>
+                                      <option value="1995">1995</option>
+                                      <option value="1994">1994</option>
+                                      <option value="1993">1993</option>
+                                      <option value="1992">1992</option>
+                                      <option value="1991">1991</option>
+                                      <option value="1990">1990</option>
+                                      <option value="1989">1989</option>
+                                      <option value="1988">1988</option>
+                                      <option value="1987">1987</option>
+                                      <option value="1986">1986</option>
+                                      <option value="1985">1985</option>
+                                      <option value="1984">1984</option>
+                                      <option value="1983">1983</option>
+                                      <option value="1982">1982</option>
+                                      <option value="1981">1981</option>
+                                      <option value="1980">1980</option>
+                                      <option value="1979">1979</option>
+                                      <option value="1978">1978</option>
+                                      <option value="1977">1977</option>
+                                      <option value="1976">1976</option>
+                                      <option value="1975">1975</option>
+                                      <option value="1974">1974</option>
+                                      <option value="1973">1973</option>
+                                      <option value="1972">1972</option>
+                                      <option value="1971">1971</option>
+                                      <option value="1970">1970</option>
+                                      <option value="1969">1969</option>
+                                      <option value="1968">1968</option>
+                                      <option value="1967">1967</option>
+                                      <option value="1966">1966</option>
+                                      <option value="1965">1965</option>
+                                      <option value="1964">1964</option>
+                                      <option value="1963">1963</option>
+                                      <option value="1962">1962</option>
+                                      <option value="1961">1961</option>
+                                      <option value="1960">1960</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Certificate Url</label>
+                                  <input id="ImageUrl" name="ImageUrl" type="text" class="form-control" placeholder="http://">
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end notice modal -->
+
+                <div class="modal fade" id="noticeModalEditRecords" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Edit Institution Records</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="instruction">
+                          <form method="post">
+                            <input id="RecordId" name="RecordId" hidden />
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Degree</label>
+                                  <div class="form-group">
+                                    <select id="qedegree" name="qedegree" class="form-control">
+                                      <option>-- Select Degree --</option>
+                                      <option value="BSc.">BSc.</option>
+                                      <option value="BA.">BA.</option>
+                                      <option value="B.Eng">B.Eng</option>
+                                      <option value="B.Tech">B.Tech</option>
+                                      <option value="HND">HND</option>
+                                      <option value="OND">OND</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Grade</label>
+                                  <div class="form-group">
+                                    <select id="qegrade" name="qegrade" class="form-control">
+                                      <option>-- Select Grade --</option>
+                                      <option value="First Class">First Class</option>
+                                      <option value="Distinction">Distinction</option>
+                                      <option value="Second Class Upper">Second Class Upper</option>
+                                      <option value="Upper Credit">Upper Credit</option>
+                                      <option value="Second Class">Second Class Lower</option>
+                                      <option value="Lower Credit">Lower Credit</option>
+                                      <option value="Third Class">Third Class</option>
+                                      <option value="Pass">Pass</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Institution</label>
+                                  <input id="qeinstitution" name="qeinstitution" type="text" class="form-control" placeholder="Institution">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Course Of Study</label>
+                                  <input id="qecourseofstudy" name="qecourseofstudy" type="text" class="form-control" placeholder="Course Of Study">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Year Completed</label>
+                                  <div class="form-group">
+                                    <select id="qeyearcompleted" name="qeyearcompleted" class="form-control">
+                                      <option>- Year -</option>
+                                      <option value="2020">2020</option>
+                                      <option value="2019">2019</option>
+                                      <option value="2018">2018</option>
+                                      <option value="2017">2017</option>
+                                      <option value="2016">2016</option>
+                                      <option value="2015">2015</option>
+                                      <option value="2014">2014</option>
+                                      <option value="2013">2013</option>
+                                      <option value="2012">2012</option>
+                                      <option value="2011">2011</option>
+                                      <option value="2010">2010</option>
+                                      <option value="2009">2009</option>
+                                      <option value="2008">2008</option>
+                                      <option value="2007">2007</option>
+                                      <option value="2006">2006</option>
+                                      <option value="2005">2005</option>
+                                      <option value="2004">2004</option>
+                                      <option value="2003">2003</option>
+                                      <option value="2002">2002</option>
+                                      <option value="2001">2001</option>
+                                      <option value="2000">2000</option>
+                                      <option value="1999">1999</option>
+                                      <option value="1998">1998</option>
+                                      <option value="1997">1997</option>
+                                      <option value="1996">1996</option>
+                                      <option value="1995">1995</option>
+                                      <option value="1994">1994</option>
+                                      <option value="1993">1993</option>
+                                      <option value="1992">1992</option>
+                                      <option value="1991">1991</option>
+                                      <option value="1990">1990</option>
+                                      <option value="1989">1989</option>
+                                      <option value="1988">1988</option>
+                                      <option value="1987">1987</option>
+                                      <option value="1986">1986</option>
+                                      <option value="1985">1985</option>
+                                      <option value="1984">1984</option>
+                                      <option value="1983">1983</option>
+                                      <option value="1982">1982</option>
+                                      <option value="1981">1981</option>
+                                      <option value="1980">1980</option>
+                                      <option value="1979">1979</option>
+                                      <option value="1978">1978</option>
+                                      <option value="1977">1977</option>
+                                      <option value="1976">1976</option>
+                                      <option value="1975">1975</option>
+                                      <option value="1974">1974</option>
+                                      <option value="1973">1973</option>
+                                      <option value="1972">1972</option>
+                                      <option value="1971">1971</option>
+                                      <option value="1970">1970</option>
+                                      <option value="1969">1969</option>
+                                      <option value="1968">1968</option>
+                                      <option value="1967">1967</option>
+                                      <option value="1966">1966</option>
+                                      <option value="1965">1965</option>
+                                      <option value="1964">1964</option>
+                                      <option value="1963">1963</option>
+                                      <option value="1962">1962</option>
+                                      <option value="1961">1961</option>
+                                      <option value="1960">1960</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Certificate Url</label>
+                                  <input id="qeImageUrl" name="qeImageUrl" type="text" class="form-control" placeholder="http://">
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editRecords">Submit</button>
+                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
+              <div class="card-body">
+                <br />
+                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Institution</th>
+                      <th>Course of Study</th>
+                      <th>Degree</th>
+                      <th>Grade</th>
+                      <th>Year </th>
+                      <th>Certificate URL </th>
+                      <th class="disabled-sorting text-right">Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    @foreach (var item in Model.InstitutionQualifications)
+                    {
+                      <tr>
+                        <td>@item.Institution</td>
+                        <td>@item.CourseOfStudy</td>
+                        <td>@item.Degree</td>
+                        <td>@item.Grade</td>
+                        <td>@item.YearCompleted</td>
+                        <td>@item.ImageURL</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="modal" data-target="#noticeModalEditRecords" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" Selected-ImageURL="@item.ImageURL" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delRecords" selected-id="@item.Id" selected-institution="@item.Institution" selected-courseOfStudy="@item.CourseOfStudy" selected-degree="@item.Degree" selected-grade="@item.Grade" selected-yearCompleted="@item.YearCompleted" selected-imageUrl="@item.ImageURL" title="Click to Delete"><i class="fas fa-times"></i></a>
+                        </td>
+                      </tr>
+
+                    }
+
+                    @*"~/@item.ImageURL" target="_blank"*@
+
+                    @*<tr>
+                        <td>FUTA</td>
+                        <td>Mathematical Science</td>
+                        <td>B.Tech</td>
+                        <td>Second Class Lower</td>
+                        <td>2017</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                        </td>
+                      </tr>*@
+
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- work Experience End-->
+              <div class="card-body">
+                <!-- Skills-->
+                <div class="card-header">
+                  <div class="justify-content-end align-items-center ">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal4">Add Skills</button>
+                  </div>
+                </div>
+
+                <!-- notice modal -->
+                <div class="modal fade" id="noticeModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Enter New Skill</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="instruction">
+                          <form enctype="multipart/form-data" asp-action="skillsUpload" method="post">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Skill</label>
+                                  <input type="text" class="form-control" placeholder="Skill" id="qSkill" name="qSkill" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Description</label>
+                                  <input type="text" class="form-control" placeholder="Description" id="qDescription" name="qDescription" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Year of Experience</label>
+                                  <input type="number" class="form-control" placeholder="Year of Experience" id="qYearOfExperience" name="qYearOfExperience" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end notice modal -->
+
+                <div class="modal fade" id="noticeModalEditSkills" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Edit Skill Details</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="instruction">
+                          <form method="post">
+                            @*<form enctype="multipart/form-data" asp-action="skillsUpload" method="post">*@
+                            <input id="qSkillsId" name="qSkillsId" hidden />
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Skill</label>
+                                  <input type="text" class="form-control" placeholder="Skill" id="qeSkill" name="qeSkill" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Description</label>
+                                  <input type="text" class="form-control" placeholder="Description" id="qeDescription" name="qeDescription" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Years of Experience</label>
+                                  <input type="number" class="form-control" placeholder="Year of Experience" id="qeYearOfExperience" name="qeYearOfExperience" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editSkills">Submit</button>
+                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="card-body">
+                <br />
+                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Skill</th>
+                      <th>Description</th>
+                      <th>Years of Experience</th>
+                      <th class="disabled-sorting text-right">Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    @foreach (var item in Model.Skills)
+                    {
+                      <tr>
+                        <td>@item.SkillName</td>
+                        <td>@item.Description</td>
+                        <td>@item.YearsOfExperience</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " id="Editbtn" data-toggle="modal" data-target="#noticeModalEditSkills" EditSkillsId="@item.Id" select-Skills="@item.SkillName" Selected-Description="@item.Description" Selected-YearsOfExperience="@item.YearsOfExperience" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delSkill" selected-id="@item.Id" selected-skill="@item.SkillName" selected-description="@item.Description" selected-experience="@item.YearsOfExperience" title="Click to Delete"><i class="fas fa-times"></i></a>
+                        </td>
+                      </tr>
+
+                    }
+
+
+                  </tbody>
+                </table>
+              </div>
+              <!--End Skills-->
+
+              <div class="card-header">
+                <div class="justify-content-end align-items-center ">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal5">Add Work Experience</button>
+                </div>
+              </div>
+
+              <!-- notice modal -->
+              <div class="modal fade" id="noticeModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-notice">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                      <h5 class="modal-title" id="myModalLabel">Enter Work Experience</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="instruction">
+
+                        <form enctype="multipart/form-data" asp-action="workUpload" method="post">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" class="form-control" placeholder="Company" id="WOrganisation" name="WOrganisation" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" class="form-control" placeholder="Job Title" id="WJobTitle" name="WJobTitle" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>From</label>
+                                <input type="date" class="form-control" placeholder="Job Title" id="WStartDate" name="WStartDate" required>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>To</label>
+                                <input type="date" class="form-control" placeholder="Job Title" id="WEndDate" name="WEndDate" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Comment</label>
+                                <input type="text" class="form-control" placeholder="Comment" id="WComment" name="WComment" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <hr />
+                          <div class="card-footer ">
+                            <button type="submit" class="btn btn-fill btn-primary btn-round">Submit</button>
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end notice modal -->
+
+              <div class="modal fade" id="noticeModalExperience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-notice">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                      <h5 class="modal-title" id="myModalLabel">Edit Work Experience Details</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="instruction">
+
+                        <form method="post">
+                          <input id="WorkId" name="WorkId" hidden />
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" class="form-control" placeholder="Company" id="qeWOrganisation" name="qeWOrganisation">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" class="form-control" placeholder="Job Title" id="qeWJobTitle" name="qeWJobTitle">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>From</label>
+                                <input type="text" class="form-control" placeholder="Job Title" id="qeWStartDate" name="qeWStartDate">
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>To</label>
+                                <input type="text" class="form-control" placeholder="Job Title" id="qeWEndDate" name="qeWEndDate">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Comment</label>
+                                <input type="text" class="form-control" placeholder="Comment" id="qeWComment" name="qeWComment">
+                              </div>
+                            </div>
+                          </div>
+
+                          <hr />
+                          <div class="card-footer ">
+                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="editWorkHistory">Submit</button>
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <br />
+                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Company</th>
+                      <th>Job Title</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Comment</th>
+                      <th class="disabled-sorting text-right">Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                    @foreach (var item in Model.WorkExperiences)
+                    {
+                      <tr>
+                        <td>@item.Organisation</td>
+                        <td>@item.JobTitle</td>
+                        <td>@item.StartDate.ToString("dd, MMM yyyy")</td>
+                        <td>@item.EndDate.ToString("dd, MMM yyyy")</td>
+                        <td>@item.Comment</td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" data-toggle="modal" data-target="#noticeModalExperience" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate.ToString("dd, MMM yyyy")" Selected-EndDate="@item.EndDate.ToString("dd, MMM yyyy")" Selected-Comment="@item.Comment" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delWork" selected-id="@item.Id" selected-organisation="@item.Organisation" selected-jobTitle="@item.JobTitle" selected-startDate="@item.StartDate.ToString("dd, MMM yyyy")" selected-endDate="@item.EndDate.ToString("dd, MMM yyyy")" selected-comment="@item.Comment" title="Click to Delete"><i class="fas fa-times"></i></a>
+                        </td>
+                      </tr>
+
+                    }
+
+
+                  </tbody>
+                </table>
+              </div>
+
+
+
+            </div>
+            <!-- the End of Emergency Contact Tabs-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-@section scripts { 
+@section scripts {
+
+  <link href="@Url.Content("~/css/ajaxoverlay.css")" rel="stylesheet" />
+
   <script>
     var aEditSkillsId;
 
@@ -836,7 +837,7 @@
         year = $(this).attr('Selected-YearCompleted');
         ImageUrl = $(this).attr('Selected-ImageURL');
 
-       //var degree = $('#degree').find(":selected").text();
+        //var degree = $('#degree').find(":selected").text();
 
         //console.log(varstartDate, varendDate);
         //  console.log(aEditAssetId);
@@ -853,293 +854,547 @@
 
 
     $(document).ready(function () {
+       $("#delRecords").click(function (event) {
 
-            $("#editSkills").click(function (event) {
+          event.preventDefault();
 
-                event.preventDefault();
-
-                var PostSkill = { 
-                    AId: $("#qSkillsId").val(),
-                    qSkill: $("#qeSkill").val(),
-                  qDescription: $("#qeDescription").val(),
-                   qYearOfExperience : $("#qeYearOfExperience").val(),
-
-                };
-
-
-                // console.log(Items);
-                console.log(PostSkill);
-
-                $.ajax({
-                  type: "POST",
-                  url: "/EmployeeProfile/editSkills",
-                  data: JSON.stringify(PostSkill),
-                  dataType: "json",
-                  contentType: 'application/json; charset=utf-8',
-                  headers: {
-                      RequestVerificationToken:
-                      $('input:hidden[name="__RequestVerificationToken"]').val()
-                  },
-                  success: function (r) {
-
-                    if (r.msg == "Success") {
-
-                      demo.showSwal('success-message');
-
-                    } else if (r.msg == "Fail") {
-
-                      alert(r.msg);
-
-                    } else if (r.msg == "No Data") {
-                      alert(r.msg);
-
-                    } else {
-                      alert(r.msg);
-                    }
-                    //alert(r.msg);
-                    // window.location.reload();
-
-                  },
-                  error: function () {
-                    alert(r.msg);
-                  }
-                });
-              });
-
-       $("#editWorkHistory").click(function (event) {
-
-                event.preventDefault();
-
-                var PostWorkExperience = { 
-                    AId: $("#WorkId").val(),
-                    WOrganisation: $("#qeWOrganisation").val(),
-                  WJobTitle: $("#qeWJobTitle").val(),
-                   WStartDate : $("#qeWStartDate").val(),
-                   WEndDate : $("#qeWEndDate").val(),
-                  WComment: $("#qeWComment").val(),
-
-                };
+          var RecordId = $(this).attr('selected-id');
+          var school = $(this).attr('selected-institution');
+          var course = $(this).attr('selected-courseOfStudy');
+          var degree = $(this).attr('selected-degree');
+          var grade = $(this).attr('selected-grade');
+          var year = $(this).attr('selected-yearCompleted');
+          var ImageUrl = $(this).attr('selected-imageUrl');
 
 
-                // console.log(Items);
-                console.log(PostWorkExperience);
 
-                $.ajax({
-                  type: "POST",
-                  url: "/EmployeeProfile/editWorkExperience",
-                  data: JSON.stringify(PostWorkExperience),
-                  dataType: "json",
-                  contentType: 'application/json; charset=utf-8',
-                  headers: {
-                      RequestVerificationToken:
-                      $('input:hidden[name="__RequestVerificationToken"]').val()
-                  },
-                  success: function (r) {
+          // console.log(Items);
+          console.log(RecordId);
 
-                    if (r.msg == "Success") {
+          swal({
 
-                      demo.showSwal('success-message');
+            title: 'Are you sure?',
+            text: "You won't be able to revert!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+          }).then(function () {
 
-                    } else if (r.msg == "Fail") {
+            $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/DelInstitutionRecords",
+              data: JSON.stringify(RecordId),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
 
-                      alert(r.msg);
+                if (r.msg == "Success") {
+                  $("#loading-overlay").hide();
+                  swal({
+                    title: 'Deleted!',
+                    text: 'Your record has been deleted.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
 
-                    } else if (r.msg == "No Data") {
-                      alert(r.msg);
+                  });
 
-                    } else {
-                      alert(r.msg);
-                    }
-                    //alert(r.msg);
-                    // window.location.reload();
-
-                  },
-                  error: function () {
-                    alert(r.msg);
-                  }
-                });
-       });
-
-       $("#editRecords").click(function (event) {
-
-                event.preventDefault();
-
-                var PostQualification = { 
-                    AId: $("#RecordId").val(),
-                    Institution: $("#qeinstitution").val(),
-                  CourseOfStudy: $("#qecourseofstudy").val(),
-                   Degree : $("#qedegree").val(),
-                   Grade : $("#qegrade").val(),
-                  YearCompleted: $("#qeyearcompleted").val(),
-                  ImageUrl: $("#qeImageUrl").val(),
-
-                };
+                              window.location.reload();
 
 
-                // console.log(Items);
-                console.log(PostQualification);
+                } else if (r.msg == "Fail") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
 
-                $.ajax({
-                  type: "POST",
-                  url: "/EmployeeProfile/editRecords",
-                  data: JSON.stringify(PostQualification),
-                  dataType: "json",
-                  contentType: 'application/json; charset=utf-8',
-                  headers: {
-                      RequestVerificationToken:
-                      $('input:hidden[name="__RequestVerificationToken"]').val()
-                  },
-                  success: function (r) {
+                } else if (r.msg == "No Data") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
 
-                    if (r.msg == "Success") {
+                } else {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+                }
+                //alert(r.msg);
+                // window.location.reload();
 
-                      demo.showSwal('success-message');
+              },
+              error: function () {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+              }
+            });
 
-                    } else if (r.msg == "Fail") {
 
-                      alert(r.msg);
+          }).catch(swal.noop);
 
-                    } else if (r.msg == "No Data") {
-                      alert(r.msg);
 
-                    } else {
-                      alert(r.msg);
-                    }
-                    //alert(r.msg);
-                    // window.location.reload();
 
-                  },
-                  error: function () {
-                    alert(r.msg);
-                  }
-                });
-              });
+        });
+      });
+
+
+    $(document).ready(function () {
+
+     
+
+        $("#delSkill").click(function (event) {
+
+          event.preventDefault();
+
+          var skillId = $(this).attr('selected-id');
+          var skillTitle = $(this).attr('selected-skill');
+          var skillDescription = $(this).attr('selected-description');
+          var skillExperience = $(this).attr('selected-experience');
+
+
+          // console.log(Items);
+          console.log(skillId);
+
+          swal({
+
+            title: 'Are you sure?',
+            text: "You won't be able to revert!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+          }).then(function () {
+
+            $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/DelSkills",
+              data: JSON.stringify(skillId),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+                  $("#loading-overlay").hide();
+                  swal({
+                    title: 'Deleted!',
+                    text: 'Your record has been deleted.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+
+                  });
+
+                              window.location.reload();
+
+
+                } else if (r.msg == "Fail") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+              }
+            });
+
+
+          }).catch(swal.noop);
+
+
+
+        });
+
+      $("#delWork").click(function (event) {
+
+          event.preventDefault();
+
+          var workId = $(this).attr('selected-id');
+          var workTitle = $(this).attr('selected-organisation');
+          var jobTitle = $(this).attr('selected-jobTitle');
+          var startDate = $(this).attr('selected-startDate');
+          var endDate = $(this).attr('selected-endDate');
+          var comment = $(this).attr('selected-comment');
+
+
+          // console.log(Items);
+          console.log(workId);
+
+          swal({
+
+            title: 'Are you sure?',
+            text: "You won't be able to revert!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+          }).then(function () {
+
+            $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/DelWorkExperience",
+              data: JSON.stringify(workId),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+                  $("#loading-overlay").hide();
+                  swal({
+                    title: 'Deleted!',
+                    text: 'Your record has been deleted.',
+                    type: 'success',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+
+                  });
+
+                              window.location.reload();
+
+
+                } else if (r.msg == "Fail") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+
+                } else {
+                  $("#loading-overlay").hide();
+                  alert(r.msg);
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+              }
+            });
+
+
+          }).catch(swal.noop);
+
+
+
+      });
+
+     
+
+
+      $("#editSkills").click(function (event) {
+
+        event.preventDefault();
+
+        var PostSkill = {
+          AId: $("#qSkillsId").val(),
+          qSkill: $("#qeSkill").val(),
+          qDescription: $("#qeDescription").val(),
+          qYearOfExperience: $("#qeYearOfExperience").val(),
+
+        };
+
+
+        // console.log(Items);
+        console.log(PostSkill);
+
+        $.ajax({
+          type: "POST",
+          url: "/EmployeeProfile/editSkills",
+          data: JSON.stringify(PostSkill),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+      $("#editWorkHistory").click(function (event) {
+
+        event.preventDefault();
+
+        var PostWorkExperience = {
+          AId: $("#WorkId").val(),
+          WOrganisation: $("#qeWOrganisation").val(),
+          WJobTitle: $("#qeWJobTitle").val(),
+          WStartDate: $("#qeWStartDate").val(),
+          WEndDate: $("#qeWEndDate").val(),
+          WComment: $("#qeWComment").val(),
+
+        };
+
+
+        // console.log(Items);
+        console.log(PostWorkExperience);
+
+        $.ajax({
+          type: "POST",
+          url: "/EmployeeProfile/editWorkExperience",
+          data: JSON.stringify(PostWorkExperience),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+      $("#editRecords").click(function (event) {
+
+        event.preventDefault();
+
+        var PostQualification = {
+          AId: $("#RecordId").val(),
+          Institution: $("#qeinstitution").val(),
+          CourseOfStudy: $("#qecourseofstudy").val(),
+          Degree: $("#qedegree").val(),
+          Grade: $("#qegrade").val(),
+          YearCompleted: $("#qeyearcompleted").val(),
+          ImageUrl: $("#qeImageUrl").val(),
+
+        };
+
+
+        // console.log(Items);
+        console.log(PostQualification);
+
+        $.ajax({
+          type: "POST",
+          url: "/EmployeeProfile/editRecords",
+          data: JSON.stringify(PostQualification),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
     });
 
 
 
 
-    //    $(document).ready(function () {
+      //    $(document).ready(function () {
 
-    //        $("#editRecords").click(function (event) {
+      //        $("#editRecords").click(function (event) {
 
-    //            event.preventDefault();
+      //            event.preventDefault();
 
-    //            var PostQualification = { 
-    //                AId: $("#RecordId").val(),
-    //                Institution: $("#qeinstitution").val(),
-    //              CourseOfStudy: $("#qecourseofstudy").val(),
-    //               Degree : $("#qedegree").val(),
-    //               Grade : $("#qegrade").val(),
-    //              YearCompleted: $("#qeyearcompleted").val(),
-    //              ImageUrl: $("#qeImageUrl").val(),
+      //            var PostQualification = {
+      //                AId: $("#RecordId").val(),
+      //                Institution: $("#qeinstitution").val(),
+      //              CourseOfStudy: $("#qecourseofstudy").val(),
+      //               Degree : $("#qedegree").val(),
+      //               Grade : $("#qegrade").val(),
+      //              YearCompleted: $("#qeyearcompleted").val(),
+      //              ImageUrl: $("#qeImageUrl").val(),
 
-    //            };
-
-
-    //            // console.log(Items);
-    //            console.log(PostQualification);
-
-    //            $.ajax({
-    //              type: "POST",
-    //              url: "/EmployeeProfile/editRecords",
-    //              data: JSON.stringify(PostQualification),
-    //              dataType: "json",
-    //              contentType: 'application/json; charset=utf-8',
-    //              headers: {
-    //                  RequestVerificationToken:
-    //                  $('input:hidden[name="__RequestVerificationToken"]').val()
-    //              },
-    //              success: function (r) {
-
-    //                if (r.msg == "Success") {
-
-    //                  demo.showSwal('success-message');
-
-    //                } else if (r.msg == "Fail") {
-
-    //                  alert(r.msg);
-
-    //                } else if (r.msg == "No Data") {
-    //                  alert(r.msg);
-
-    //                } else {
-    //                  alert(r.msg);
-    //                }
-    //                //alert(r.msg);
-    //                // window.location.reload();
-
-    //              },
-    //              error: function () {
-    //                alert(r.msg);
-    //              }
-    //            });
-    //          });
-
-      
-
-    //});
+      //            };
 
 
-    // $(document).ready(function () {
+      //            // console.log(Items);
+      //            console.log(PostQualification);
 
-    //        $("#editWorkHistory").click(function (event) {
+      //            $.ajax({
+      //              type: "POST",
+      //              url: "/EmployeeProfile/editRecords",
+      //              data: JSON.stringify(PostQualification),
+      //              dataType: "json",
+      //              contentType: 'application/json; charset=utf-8',
+      //              headers: {
+      //                  RequestVerificationToken:
+      //                  $('input:hidden[name="__RequestVerificationToken"]').val()
+      //              },
+      //              success: function (r) {
 
-    //            event.preventDefault();
+      //                if (r.msg == "Success") {
 
-    //            var PostWorkExperience = { 
-    //                AId: $("#WorkId").val(),
-    //                WOrganisation: $("#qeWOrganisation").val(),
-    //              WJobTitle: $("#qeWJobTitle").val(),
-    //               WStartDate : $("#qeWStartDate").val(),
-    //               WEndDate : $("#qeWEndDate").val(),
-    //              WComment: $("#qeWComment").val(),
+      //                  demo.showSwal('success-message');
 
-    //            };
+      //                } else if (r.msg == "Fail") {
+
+      //                  alert(r.msg);
+
+      //                } else if (r.msg == "No Data") {
+      //                  alert(r.msg);
+
+      //                } else {
+      //                  alert(r.msg);
+      //                }
+      //                //alert(r.msg);
+      //                // window.location.reload();
+
+      //              },
+      //              error: function () {
+      //                alert(r.msg);
+      //              }
+      //            });
+      //          });
 
 
-    //            // console.log(Items);
-    //            console.log(PostWorkExperience);
 
-    //            $.ajax({
-    //              type: "POST",
-    //              url: "/EmployeeProfile/editWorkExperience",
-    //              data: JSON.stringify(PostWorkExperience),
-    //              dataType: "json",
-    //              contentType: 'application/json; charset=utf-8',
-    //              headers: {
-    //                  RequestVerificationToken:
-    //                  $('input:hidden[name="__RequestVerificationToken"]').val()
-    //              },
-    //              success: function (r) {
+      //});
 
-    //                if (r.msg == "Success") {
 
-    //                  demo.showSwal('success-message');
+      // $(document).ready(function () {
 
-    //                } else if (r.msg == "Fail") {
+      //        $("#editWorkHistory").click(function (event) {
 
-    //                  alert(r.msg);
+      //            event.preventDefault();
 
-    //                } else if (r.msg == "No Data") {
-    //                  alert(r.msg);
+      //            var PostWorkExperience = {
+      //                AId: $("#WorkId").val(),
+      //                WOrganisation: $("#qeWOrganisation").val(),
+      //              WJobTitle: $("#qeWJobTitle").val(),
+      //               WStartDate : $("#qeWStartDate").val(),
+      //               WEndDate : $("#qeWEndDate").val(),
+      //              WComment: $("#qeWComment").val(),
 
-    //                } else {
-    //                  alert(r.msg);
-    //                }
-    //                //alert(r.msg);
-    //                // window.location.reload();
+      //            };
 
-    //              },
-    //              error: function () {
-    //                alert(r.msg);
-    //              }
-    //            });
-    //          });
 
-      
+      //            // console.log(Items);
+      //            console.log(PostWorkExperience);
 
-    //});
+      //            $.ajax({
+      //              type: "POST",
+      //              url: "/EmployeeProfile/editWorkExperience",
+      //              data: JSON.stringify(PostWorkExperience),
+      //              dataType: "json",
+      //              contentType: 'application/json; charset=utf-8',
+      //              headers: {
+      //                  RequestVerificationToken:
+      //                  $('input:hidden[name="__RequestVerificationToken"]').val()
+      //              },
+      //              success: function (r) {
+
+      //                if (r.msg == "Success") {
+
+      //                  demo.showSwal('success-message');
+
+      //                } else if (r.msg == "Fail") {
+
+      //                  alert(r.msg);
+
+      //                } else if (r.msg == "No Data") {
+      //                  alert(r.msg);
+
+      //                } else {
+      //                  alert(r.msg);
+      //                }
+      //                //alert(r.msg);
+      //                // window.location.reload();
+
+      //              },
+      //              error: function () {
+      //                alert(r.msg);
+      //              }
+      //            });
+      //          });
+
+
+
+      //});
   </script>
- }
+}
 

@@ -1,482 +1,541 @@
 ﻿@model IEnumerable<E4S.Models.HumanResource.OrganisationAsset>
 
 @{
-  ViewData["Title"] = "Assets";
-  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+    ViewData["Title"] = "Assets";
+    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 <div class="content">
 
-  @*<div class="row">
-    <div class="col-md-12">
-      <div class="card ">
-        <div class="card-header">
-          <h4 class="card-title"> Company Assets</h4>
-        </div>
-        <div class="card-body ">
-          <form method="#" action="#">
-            <div class="row">
-              <div class="col-md-4">
+    @*<div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title"> Company Assets</h4>
+              </div>
+              <div class="card-body ">
+                <form method="#" action="#">
+                  <div class="row">
+                    <div class="col-md-4">
 
-                <label>Employee Name</label>
-                <div class="form-group">
-                  <input type="text" class="form-control">
-                </div>
-                <label>Supervisor Name</label>
-                <div class="form-group">
-                  <input type="text" class="form-control">
-                </div>
-                <label class="col-md-3"></label>
-                <div class="col-md-9">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input checked class="form-check-input" type="checkbox">
-                      <span class="form-check-sign"></span>
-                      Current Employee Only
-                    </label>
+                      <label>Employee Name</label>
+                      <div class="form-group">
+                        <input type="text" class="form-control">
+                      </div>
+                      <label>Supervisor Name</label>
+                      <div class="form-group">
+                        <input type="text" class="form-control">
+                      </div>
+                      <label class="col-md-3"></label>
+                      <div class="col-md-9">
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input checked class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                            Current Employee Only
+                          </label>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                      <label>Id</label>
+                      <div class="form-group">
+                        <input type="text" class="form-control">
+                      </div>
+                      <label>Job Title</label>
+                      <div class="col">
+                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
+                          <option disabled selected>Job Title</option>
+                          <option value="2">Foobar</option>
+                          <option value="3">Is great</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+
+                      <label>Employment Status</label>
+                      <div class="col">
+                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
+                          <option disabled selected>Employment Status</option>
+                          <option value="2">Foobar</option>
+                          <option value="3">Is great</option>
+                        </select>
+                      </div>
+                      <label>Department</label>
+                      <div class="col">
+                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
+                          <option disabled selected>Department</option>
+                          <option value="2">Foobar</option>
+                          <option value="3">Is great</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-
-                </div>
-
+                </form>
               </div>
-
-              <div class="col-md-4">
-
-                <label>Id</label>
-                <div class="form-group">
-                  <input type="text" class="form-control">
-                </div>
-                <label>Job Title</label>
-                <div class="col">
-                  <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
-                    <option disabled selected>Job Title</option>
-                    <option value="2">Foobar</option>
-                    <option value="3">Is great</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4">
-
-                <label>Employment Status</label>
-                <div class="col">
-                  <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
-                    <option disabled selected>Employment Status</option>
-                    <option value="2">Foobar</option>
-                    <option value="3">Is great</option>
-                  </select>
-                </div>
-                <label>Department</label>
-                <div class="col">
-                  <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
-                    <option disabled selected>Department</option>
-                    <option value="2">Foobar</option>
-                    <option value="3">Is great</option>
-                  </select>
-                </div>
+              <div class="card-footer ">
+                <button type="submit" class="btn btn-fill btn-success">Search</button>
               </div>
             </div>
-          </form>
+          </div>
+
+        </div>*@
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title"> Company Assets</h4>
+                        </div>
+                        <div class="col-md-2">
+                            @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                            <button class="btn btn-info pull-right" data-toggle="modal" data-target="#noticeModal">
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+                                Add New Asset
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- notice modal -->
+                    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                    <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="instruction">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Device Name</label>
+                                                        <input type="text" class="form-control" placeholder="Device Name" id="DeviceName" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Brand</label>
+                                                        <input type="text" class="form-control" placeholder="Brand" id="Brand" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Model</label>
+                                                        <input type="text" class="form-control" placeholder="Model" id="Model" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Serial Number</label>
+                                                        <input type="text" class="form-control" placeholder="Serial Number" id="SerialNo" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Assign To</label>
+                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="card-footer ">
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                @*<div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end notice modal -->
+                    <!-- notice Edit modal -->
+                    <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notice">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                    <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="instruction">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Device Name</label>
+                                                        <input type="text" class="form-control" placeholder="Device Name" id="eDeviceName" name="eDeviceName" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Brand</label>
+                                                        <input type="text" class="form-control" placeholder="Brand" id="eBrand" name="eBrand" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Model</label>
+                                                        <input type="text" class="form-control" placeholder="Model" id="eModel" name="eModel" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Serial Number</label>
+                                                        <input type="text" class="form-control" placeholder="Serial Number" id="eSerialNo" name="eSerialNo" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Assign To</label>
+                                                        <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="card-footer ">
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="editAsset">Submit</button>
+                                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                @*<div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end notice Edit modal -->
+                    @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+                </div>
+                <input id="AssetId" name="AssetId" hidden />
+
+                <div class="card-body">
+                    <div >
+                        <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+                            <thead class="text-primary">
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th>
+                                Device Name
+                            </th>
+                            <th>
+                                Brand
+                            </th>
+                            <th>
+                                Model
+                            </th>
+                            <th>
+                                Serial No.
+                            </th>
+                            <th>
+                                Employee Name.
+                            </th>
+                            <th>
+                                Action
+                            </th>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                @{
+                                    int i = 1;
+
+                                    @if (Model.Count() < 1)
+                                    {
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Data to Display</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                }
+
+
+                                    foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td class="text-center">
+                                                @i
+                                            </td>
+
+                                            <td>
+                                                @item.DeviceName
+                                            </td>
+                                            <td>
+                                                @item.Brand
+                                            </td>
+                                            <td>
+                                                @item.Model
+                                            </td>
+                                            <td>
+                                                @item.SerialNumber
+                                            </td>
+                                            <td>
+                                                @item.EmployeeName
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" title="Click to Edit"  data-placement="top" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" ><i class="fas fa-times"></i></a>
+
+                                            </td>
+                                        </tr>
+
+                                        { i = i + 1; }
+                                    }
+                                }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="card-footer ">
-          <button type="submit" class="btn btn-fill btn-success">Search</button>
-        </div>
-      </div>
+
     </div>
 
-  </div>*@
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title"> Company Assets</h4>
-
-          @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-            Add New Asset
-          </button>
-          <!-- notice modal -->
-          <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-notice">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                  </button>
-                  <h5 class="modal-title" id="myModalLabel">Enter New Asset Details</h5>
-                </div>
-                <div class="modal-body">
-                  <div class="instruction">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Device Name</label>
-                            <input type="text" class="form-control" placeholder="Device Name" id="DeviceName" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Brand</label>
-                            <input type="text" class="form-control" placeholder="Brand" id="Brand" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Model</label>
-                            <input type="text" class="form-control" placeholder="Model" id="Model" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Serial Number</label>
-                            <input type="text" class="form-control" placeholder="Serial Number" id="SerialNo" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Assign To</label>
-                            <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                              <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                @*<div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-            </div>*@
-              </div>
-            </div>
-          </div>
-          <!-- end notice modal -->
-          <!-- notice Edit modal -->
-          <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-notice">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                  </button>
-                  <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
-                </div>
-                <div class="modal-body">
-                  <div class="instruction">
-                    <form>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Device Name</label>
-                            <input type="text" class="form-control" placeholder="Device Name" id="eDeviceName" name="eDeviceName" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Brand</label>
-                            <input type="text" class="form-control" placeholder="Brand" id="eBrand" name="eBrand" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Model</label>
-                            <input type="text" class="form-control" placeholder="Model" id="eModel" name="eModel" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Serial Number</label>
-                            <input type="text" class="form-control" placeholder="Serial Number" id="eSerialNo" name="eSerialNo" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Assign To</label>
-                            <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
-                              <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div class="card-footer ">
-                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="editAsset">Submit</button>
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                @*<div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-            </div>*@
-              </div>
-            </div>
-          </div>
-          <!-- end notice Edit modal -->
-          @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
-        </div>
-        <input id="AssetId" name="AssetId" hidden />
-
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
-              <thead class="text-primary">
-              <th class="text-center">
-                #
-              </th>
-              <th>
-                Device Name
-              </th>
-              <th>
-                Brand
-              </th>
-              <th>
-                Model
-              </th>
-              <th>
-                Serial No.
-              </th>
-              <th>
-                Employee Name.
-              </th>
-              <th>
-                Action
-              </th>
-
-              </thead>
 
 
-              <tbody>
 
-                @{
-                  int i = 1;
-
-                  @if (Model.Count() < 1)
-                  {
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>No Data to Display</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
                 }
 
+            });
 
-                  foreach (var item in Model)
-                  {
+            var table = $('#datatable').DataTable();
 
-                    <tr>
-                      <td class="text-center">
-                        @i
-                      </td>
+            // Edit record
+            table.on('click', '.edit', function () {
+                $tr = $(this).closest('tr');
 
-                      <td>
-                        @item.DeviceName
-                      </td>
-                      <td>
-                        @item.Brand
-                      </td>
-                      <td>
-                        @item.Model
-                      </td>
-                      <td>
-                        @item.SerialNumber
-                      </td>
-                      <td>
-                        @item.EmployeeName
-                      </td>
-                      <td>
-                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                var data = table.row($tr).data();
+                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            });
 
-                      </td>
-                    </tr>
+            // Delete a record
+            table.on('click', '.remove', function (e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
 
-                    { i = i + 1; }
-                  }
-                }
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-    </div>
-
-  </div>
-
-</div>
-
-@section Scripts {
-  <script type="text/javascript">
-
-  $(document).ready(function () {
-
-    $("#submitAsset").click(function (event) {
-
-      event.preventDefault();
-
-      var PostOrganisationAsset = {
-        EmployeeDetailId: $("#employeeId").val(),
-        DeviceName: $("#DeviceName").val(),
-        Brand: $("#Brand").val(),
-        Model: $("#Model").val(),
-        SerialNumber: $("#SerialNo").val(),
-      };
-
-
-      // console.log(Items);
-      console.log(PostOrganisationAsset);
-
-      $.ajax({
-        type: "POST",
-        url: "/CompanyAssets/postCompanyAssets",
-        data: JSON.stringify(PostOrganisationAsset),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          RequestVerificationToken:
-            $('input:hidden[name="__RequestVerificationToken"]').val()
-        },
-        success: function (r) {
-
-          if (r.msg == "Success") {
-
-            demo.showSwal('success-message');
-
-          } else if (r.msg == "Fail") {
-
-            alert(r.msg);
-
-          } else if (r.msg == "No Data") {
-            alert(r.msg);
-
-          } else {
-            alert(r.msg);
-          }
-          //alert(r.msg);
-          // window.location.reload();
-
-        },
-        error: function () {
-          alert(r.msg);
-        }
-      });
-    });
-  });
-
-
-      //Code for pulling the Records on the Table  
-     var aEditAssetId;
-
-      $(document).delegate('#Editbtn',
-        'click',
-        function (e) {
-
-            aEditAssetId = $(this).attr('EditAssetId');
-            deviceName = $(this).attr('select-DeviceName');
-            brand = $(this).attr('Selected-Brand');
-            model = $(this).attr('Selected-Model');
-            serialNo = $(this).attr('Selected-SerialNo');
-            
-
-          //console.log(varstartDate, varendDate);
-        //  console.log(aEditAssetId);
-
-            $('input[name=AssetId]').val(aEditAssetId);
-            $('input[name=eDeviceName]').val(deviceName);
-            $('input[name=eBrand]').val(brand);
-            $('input[name=eModel]').val(model);
-            $('input[name=eSerialNo]').val(serialNo);
-            
+            //Like record
+            table.on('click', '.like', function () {
+                alert('You clicked on Like button');
+            });
         });
 
-        //End of the code
 
-      $(document).ready(function () {
-
-      $("#editAsset").click(function (event) {
-
-        event.preventDefault();
-
-        var PostOrganisationAsset = {
-        AId: $("#AssetId").val(),
-        EmployeeDetailId: $("#eemployeeId").val(),
-        DeviceName: $("#eDeviceName").val(),
-        Brand: $("#eBrand").val(),
-        Model: $("#eModel").val(),
-        SerialNumber: $("#eSerialNo").val(),
-        };
+    </script>
 
 
-        // console.log(Items);
-        console.log(PostOrganisationAsset);
+    @section Scripts {
 
-        $.ajax({
-          type: "POST",
-          url: "/CompanyAssets/editCompanyAssets",
-          data: JSON.stringify(PostOrganisationAsset),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+        <!--  DataTables.net Plugin, full documentation here  -->
+        <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
 
-            if (r.msg == "Success") {
+        <script type="text/javascript">
 
-              demo.showSwal('success-message');
+            $(document).ready(function () {
 
-            } else if (r.msg == "Fail") {
+                $("#submitAsset").click(function (event) {
 
-              alert(r.msg);
+                    event.preventDefault();
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+                    var PostOrganisationAsset = {
+                        EmployeeDetailId: $("#employeeId").val(),
+                        DeviceName: $("#DeviceName").val(),
+                        Brand: $("#Brand").val(),
+                        Model: $("#Model").val(),
+                        SerialNumber: $("#SerialNo").val(),
+                    };
 
-            } else {
-              alert(r.msg);
-            }
-            //alert(r.msg);
-            // window.location.reload();
 
-          },
-          error: function () {
-            alert(r.msg);
-          }
-        });
-      });
+                    // console.log(Items);
+                    console.log(PostOrganisationAsset);
 
-      
+                    $.ajax({
+                        type: "POST",
+                        url: "/CompanyAssets/postCompanyAssets",
+                        data: JSON.stringify(PostOrganisationAsset),
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        headers: {
+                            RequestVerificationToken:
+                                $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (r) {
 
-    });
+                            if (r.msg == "Success") {
 
-  </script>
+                                demo.showSwal('success-message');
 
-}
+                            } else if (r.msg == "Fail") {
+
+                                alert(r.msg);
+
+                            } else if (r.msg == "No Data") {
+                                alert(r.msg);
+
+                            } else {
+                                alert(r.msg);
+                            }
+                            //alert(r.msg);
+                            // window.location.reload();
+
+                        },
+                        error: function () {
+                            alert(r.msg);
+                        }
+                    });
+                });
+            });
+
+
+            //Code for pulling the Records on the Table
+            var aEditAssetId;
+
+            $(document).delegate('#Editbtn',
+                'click',
+                function (e) {
+
+                    aEditAssetId = $(this).attr('EditAssetId');
+                    deviceName = $(this).attr('select-DeviceName');
+                    brand = $(this).attr('Selected-Brand');
+                    model = $(this).attr('Selected-Model');
+                    serialNo = $(this).attr('Selected-SerialNo');
+
+
+                    //console.log(varstartDate, varendDate);
+                    //  console.log(aEditAssetId);
+
+                    $('input[name=AssetId]').val(aEditAssetId);
+                    $('input[name=eDeviceName]').val(deviceName);
+                    $('input[name=eBrand]').val(brand);
+                    $('input[name=eModel]').val(model);
+                    $('input[name=eSerialNo]').val(serialNo);
+
+                });
+
+            //End of the code
+
+            $(document).ready(function () {
+
+                $("#editAsset").click(function (event) {
+
+                    event.preventDefault();
+
+                    var PostOrganisationAsset = {
+                        AId: $("#AssetId").val(),
+                        EmployeeDetailId: $("#eemployeeId").val(),
+                        DeviceName: $("#eDeviceName").val(),
+                        Brand: $("#eBrand").val(),
+                        Model: $("#eModel").val(),
+                        SerialNumber: $("#eSerialNo").val(),
+                    };
+
+
+                    // console.log(Items);
+                    console.log(PostOrganisationAsset);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/CompanyAssets/editCompanyAssets",
+                        data: JSON.stringify(PostOrganisationAsset),
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        headers: {
+                            RequestVerificationToken:
+                                $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (r) {
+
+                            if (r.msg == "Success") {
+
+                                demo.showSwal('success-message');
+
+                            } else if (r.msg == "Fail") {
+
+                                alert(r.msg);
+
+                            } else if (r.msg == "No Data") {
+                                alert(r.msg);
+
+                            } else {
+                                alert(r.msg);
+                            }
+                            //alert(r.msg);
+                            // window.location.reload();
+
+                        },
+                        error: function () {
+                            alert(r.msg);
+                        }
+                    });
+                });
+
+
+
+            });
+
+        </script>
+
+    }

@@ -48,5 +48,19 @@ namespace E4S.Data
     public DbSet<InstitutionQualification> InstitutionQualifications { get; set; }
     public DbSet<Skill> Skills { get; set; }
     public DbSet<WorkExperience> WorkExperiences { get; set; }
+
+    public DbSet<Deduction> Deductions { get; set; }
+    public DbSet<Addition> Additions { get; set; }
+    public DbSet<SalaryAddition> SalaryAdditions { get; set; }
+    public DbSet<SalaryDeduction> SalaryDeductions { get; set; }
+
+    public DbSet<Payroll> Payrolls { get; set; }
+
+
+    public DbSet<AppraisalCategory> AppraisalCategories { get; set; }
+    public DbSet<AppraisalKPI> AppraisalKPIs { get; set; }
+    public DbSet<AppraisalTemplate> AppraisalTemplates { get; set; }
+
+
   }
 }

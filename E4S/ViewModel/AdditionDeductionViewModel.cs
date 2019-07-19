@@ -1,0 +1,17 @@
+﻿using E4S.Models.HumanResource;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace E4S.ViewModel
+{
+  public class AdditionDeductionViewModel
+  {
+    public List<Addition> Additions { get; set; }
+
+    public List<Deduction> Deductions { get; set; }
+
+  
+  }
+}

@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "CatgoryList";
+    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> Category List </h4>
+
+                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                    <a class="btn btn-info" asp-action="AddCategory" asp-controller="Appraisal">
+                        Add New category
+                    </a>
+                    
+                </div>
+                
+                <div class="card-body">
+                    <div>
+                        <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+                            <thead class="text-primary">
+                            <th class="text-center">
+                                #
+                            </th>
+                            
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Prefiled
+                            </th>
+                            <th>
+                                Action
+                            </th>
+
+                            </thead>
+
+
+                            @*<tbody>
+
+                                @{
+                                    int i = 1;
+
+                                    @if (Model.Count() < 1)
+                                    {
+                                    <td></td>
+                                    <td></td>                                    
+                                    <td>No Data to Display</td>                                    
+                                    <td></td>
+                                    <td></td>
+
+                                }
+
+
+                                    foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td class="text-center">
+                                                @i
+                                            </td>
+
+                                            
+                                            <td>
+                                                @item.Model
+                                            </td>
+                                            <td>
+                                                @item.SerialNumber
+                                            </td>
+                                            <td>
+                                                @item.EmployeeName
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+
+                                            </td>
+                                        </tr>
+
+                                        { i = i + 1; }
+                                    }
+                                }
+
+                                </tbody>*@
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+

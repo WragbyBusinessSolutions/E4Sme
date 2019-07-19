@@ -8,6 +8,7 @@ namespace E4S.ViewModel
 {
   public class PostEmergencyContact
   {
+    public string AId { get; set; }
     [Required]
     public string Name { get; set;}
     [Required]

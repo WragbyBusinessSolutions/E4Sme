@@ -1,0 +1,705 @@
+﻿@model E4S.ViewModel.AdditionDeductionViewModel
+
+@{
+  ViewData["Title"] = "Payroll Configuration";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+}
+
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Salary Addition</h4>
+          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
+            Create Addition Type
+          </button>
+          <!-- notice modal -->
+          <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Addition Type</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Addition Name</label>
+                            <input type="text" class="form-control" placeholder="Addition Name" id="AdditionName" name="AdditionName" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                            @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewAddition">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                  @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end notice modal -->
+          <!-- Edit modal Department -->
+          <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Edit Addition Type</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form method="post">
+                      <input id="eqAdditionid" name="eqAdditionid" hidden />
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Addition Name</label>
+                            <input type="text" class="form-control" placeholder="Addition Name" id="eqAdditionType" name="eqAdditionType" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            @*<input type="hidden" class="form-control" placeholder="deptid" id="edeptid" name="edeptid">*@
+                            <textarea class="form-control" placeholder="Description" id="eqDescription" name="eqDescription" required rows="3"></textarea>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-fill btn-primary btn-round" id="editAdtn">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end notice modal -->
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="text-primary">
+
+                    <th class="text-center">
+                        #
+                    </th>
+                    <th>
+                        Addition Type
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    </thead>
+
+                            <tbody>
+                @{
+                    int j = 1;
+
+                    @if (Model.Additions.Count() < 1)
+                    {
+
+                    <td></td>
+                    <td>No Data to Display</td>
+                    <td></td>
+                    <td></td>
+
+                }
+
+                    @foreach (var item in Model.Additions)
+                    {
+
+                        <tr>
+
+                            <td class="text-center">
+                                @j
+                            </td>
+
+                            <td>
+                                @item.AdditionType
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal1" id="EditAddition" AdditionId="@item.Id" Selected-AdditionType="@item.AdditionType" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
+                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delDept" name="delDept" title="Click to Delete"><i class="fas fa-times"></i></a>
+                            </td>
+                        </tr>
+
+                        { j = j + 1; }
+                    }
+                }
+
+                </tbody>
+
+                </table>
+                    
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Salary Deduction</h4>
+          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal2">
+            Create Deduction Type
+          </button>
+          <!-- notice modal -->
+          <div class="modal fade" id="noticeModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Enter New Deduction Type</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Deduction Name</label>
+                            <input type="text" class="form-control" placeholder="Deduction Name" id="DeductionName" name="DeductionName" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" placeholder="Description" id="DDescription" required rows="3"></textarea>
+                            @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDeduction">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                  @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end notice modal -->
+          <!-- Edit modal Deduction -->
+          <div class="modal fade" id="noticeModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notice">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h5 class="modal-title" id="myModalLabel">Edit Deduction Type</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="instruction">
+                    <form method="post">
+                      <input id="eDeductionId" name="eDeductionId" hidden />
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Deduction Name</label>
+                            <input type="text" class="form-control" placeholder="Department Name" id="eDeductionType" name="eDeductionType" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            @*<input type="text" class="form-control" placeholder="Description" id="eDescription" name="eDescription" required>*@
+                            @*<input type="hidden" class="form-control" placeholder="deptid" id="edeptid" name="edeptid">*@
+                            <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-fill btn-primary btn-round" id="editDctn">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end notice modal -->
+          @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="text-primary">
+
+              <th class="text-center">
+                #
+              </th>
+              <th>
+                Deduction Type
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Actions
+              </th>
+              </thead>
+
+              <tbody>
+                @{
+                    int i = 1;
+
+                    @if (Model.Deductions.Count() < 1)
+                    {
+
+                    <td></td>
+                    <td>No Data to Display</td>
+                    <td></td>
+                    <td></td>
+
+                }
+
+                    @foreach (var item in Model.Deductions)
+                    {
+
+                        <tr>
+
+                            <td class="text-center">
+                                @i
+                            </td>
+
+                            <td>
+                                @item.DeductionType
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="modal" data-target="#noticeModal3" id="EditDeduction" DeductionId="@item.Id" Selected-DeductionType="@item.DeductionType" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a>
+                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delDept" name="delDept" title="Click to Delete"><i class="fas fa-times"></i></a>
+                            </td>
+                        </tr>
+
+                        { i = i + 1; }
+                    }
+                }
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+  <script type="text/javascript">
+
+     //Code for pulling the Records on the Table  
+        var aEditAdditionId;
+
+         $(document).delegate('#EditAddition',
+        'click',
+        function (e) {
+
+            aEditAdditionId = $(this).attr('AdditionId');
+            AdditionType = $(this).attr('Selected-AdditionType');
+            Description = $(this).attr('Selected-Description');
+            
+            //console.log(description, department);
+
+
+            $('input[name=eqAdditionid]').val(aEditAdditionId);
+            $('input[name=eqAdditionType]').val(AdditionType);
+            $('textarea[name=eqDescription]').val(Description);
+            
+        });
+
+        //End of the code
+
+     //Code for pulling the Records on the Table  
+        var aEditDeductionId;
+
+         $(document).delegate('#EditDeduction',
+        'click',
+        function (e) {
+
+            aEditDeductionId = $(this).attr('DeductionId');
+            DeductionType = $(this).attr('Selected-DeductionType');
+            Description = $(this).attr('Selected-Description');
+            
+            //console.log(description, department);
+
+
+            $('input[name=eDeductionId]').val(aEditDeductionId);
+            $('input[name=eDeductionType]').val(DeductionType);
+            $('textarea[name=eDescription]').val(Description);
+            
+        });
+
+        //End of the code
+    
+
+    $(document).ready(function () {
+
+       $("#editAdtn").click(function (event) {
+
+                event.preventDefault();
+
+                var PostAddition = { 
+                    AId: $("#eqAdditionid").val(),
+                    AdditionType: $("#eqAdditionType").val(),
+                    Description : $("#eqDescription").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostAddition);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/Jobs/editAdditionType",
+                  data: JSON.stringify(PostAddition),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+       });
+
+       $("#editDctn").click(function (event) {
+
+                event.preventDefault();
+
+                var PostDeduction = { 
+                    FId: $("#eDeductionId").val(),
+                    DeductionType: $("#eDeductionType").val(),
+                    Description : $("#eDescription").val(),
+                };
+
+
+                // console.log(Items);
+                console.log(PostDeduction);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/Jobs/editDeductionType",
+                  data: JSON.stringify(PostDeduction),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                      RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+
+      $("#SubmitNewAddition").click(function (event) {
+
+        event.preventDefault();
+
+        var SalaryAddition = {
+           AdditionType: $("#AdditionName").val(),
+           Description: $("#Description").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(SalaryAddition);
+
+        $.ajax({
+          type: "POST",
+          url: "/Jobs/AddAddition",
+          data: JSON.stringify(SalaryAddition),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "New Record Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+          }).catch(swal.noop);
+
+                          window.location.reload();
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+      $("#SubmitNewDeduction").click(function (event) {
+
+        event.preventDefault();
+
+        var SalaryDeduction = {
+           DeductionType: $("#DeductionName").val(),
+           Description: $("#DDescription").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(SalaryDeduction);
+
+        $.ajax({
+          type: "POST",
+          url: "/Jobs/AddDeduction",
+          data: JSON.stringify(SalaryDeduction),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+       
+
+    });
+
+
+     
+
+   
+    // $(document).ready(function() {
+    //$('.form-group input').keyup(function() {
+
+    //    var empty = false;
+    //    $('.form-group input').each(function() {
+    //        if ($(this).val().length == 0) {
+    //            empty = true;
+    //        }
+    //    });
+
+    //    if (empty) {
+    //        $('.card-footer button').attr('disabled', 'disabled');
+    //    } else {
+    //        $('.card-footer button').removeAttr('disabled');
+    //    }
+    //});
+    //});
+
+
+
+   
+
+    //End of the code
+
+    
+
+     // Edit your post 
+
+         //$(document).ready(function () {
+
+          
+      
+         //   });
+
+    
+
+
+
+    // $(document).ready(function () {
+
+    //  //$("#SubmitNewDeduction").click(function (event) {
+
+    //  //  event.preventDefault();
+
+    //  //  var SalaryDeduction = {
+    //  //     DeductionType: $("#DeductionName").val(),
+    //  //     Description: $("#DDescription").val(),
+    //  //  };
+
+
+    //  //  // console.log(Items);
+    //  //  console.log(SalaryDeduction);
+
+    //  //  $.ajax({
+    //  //    type: "POST",
+    //  //    url: "/Jobs/AddDeduction",
+    //  //    data: JSON.stringify(SalaryDeduction),
+    //  //    dataType: "json",
+    //  //    contentType: 'application/json; charset=utf-8',
+    //  //    headers: {
+    //  //      RequestVerificationToken:
+    //  //        $('input:hidden[name="__RequestVerificationToken"]').val()
+    //  //    },
+    //  //    success: function (r) {
+
+    //  //      if (r.msg == "Success") {
+
+    //  //        demo.showSwal('success-message');
+
+    //  //      } else if (r.msg == "Fail") {
+
+    //  //        alert(r.msg);
+
+    //  //      } else if (r.msg == "No Data") {
+    //  //        alert(r.msg);
+
+    //  //      } else {
+    //  //        alert(r.msg);
+    //  //      }
+    //  //      //alert(r.msg);
+    //  //      // window.location.reload();
+
+    //  //    },
+    //  //    error: function () {
+    //  //      alert(r.msg);
+    //  //    }
+    //  //  });
+    //  //});
+    //});
+
+
+         
+
+  </script>
+
+
+}
+
+
+

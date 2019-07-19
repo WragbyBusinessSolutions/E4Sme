@@ -752,7 +752,315 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        // Ednf of Edit for Leave Configuration
+    // Ednf of Edit for Leave Configuration
 
+    [HttpPost]
+    public async Task<IActionResult> DelLeaveConfig([FromBody]string LeaveId)
+    {
+      if (LeaveId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+
+      //var orgId = getOrg();
+      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
+        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
+
+        var LeaveTitle = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(LeaveTitle);
+        var LeaveDuration = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(LeaveDuration);
+        var description = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
+        _context.LeaveConfigurations.Remove(description);
+
+
+        await _context.SaveChangesAsync();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
+
+        public IActionResult PayrollConfiguration()
+        {
+           
+            var orgId = getOrg();
+            var Add = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+            var Ded = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
+
+            var vm = new AdditionDeductionViewModel
+            {
+                Additions = Add,
+                Deductions = Ded
+            };
+
+            return View(vm);
+        }
+
+        public IActionResult AddAddition()
+        {
+            var orgId = getOrg();
+            var SalaryAdd = _context.Additions.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(SalaryAdd);
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddAddition([FromBody]PostNewAddition postNewAddition)
+        {
+          if (postNewAddition == null)
+          {
+            return Json(new
+            {
+              msg = "No Data"
+            }
+           );
+          }
+
+          var orgId = getOrg();
+
+          try
+          {
+            Addition newAddition = new Addition()
+            {
+              Id = Guid.NewGuid(),
+              AdditionType = postNewAddition.AdditionType,
+              Description = postNewAddition.Description,
+              OrganisationId = orgId
+            };
+
+            _context.Add(newAddition);
+            _context.SaveChanges();
+
+
+            return Json(new
+            {
+              msg = "Success"
+            }
+         );
+          }
+          catch (Exception ee)
+          {
+
+          }
+
+          return Json(
+          new
+          {
+            msg = "Fail"
+          });
+        }
+
+
+    [HttpPost]
+    public async Task<IActionResult> editAdditionType([FromBody]PostNewAddition postNewAddition)
+    {
+      if (postNewAddition == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var AddType = _context.Additions.Where(x => x.Id == Guid.Parse(postNewAddition.AId)).FirstOrDefault();
+        AddType.AdditionType = postNewAddition.AdditionType;
+        AddType.Description = postNewAddition.Description;
+
+
+        _context.Update(AddType);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+
+
+    // Deduction 
+
+    public IActionResult AddDeduction()
+        {
+            var orgId = getOrg();
+            var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(SalaryDeduct);
+
+        }
+
+
+
+    //
+
+    [HttpPost]
+    public async Task<IActionResult> AddDeduction([FromBody]PostNewDeduction postNewDeduction)
+    {
+      if (postNewDeduction == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+      try
+      {
+        Deduction newDeduction = new Deduction()
+        {
+          Id = Guid.NewGuid(),
+          DeductionType = postNewDeduction.DeductionType,
+          Description = postNewDeduction.Description,
+          OrganisationId = orgId
+        };
+
+        _context.Add(newDeduction);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> editDeductionType([FromBody]PostNewDeduction postNewDeduction)
+    {
+      if (postNewDeduction == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+
+      //bool isAssign = true;
+
+      //if (postNewDepartment. == Guid.Empty)
+      //{
+      //    isAssign = false;
+      //}
+
+      try
+      {
+
+        var DedType = _context.Deductions.Where(x => x.Id == Guid.Parse(postNewDeduction.FId)).FirstOrDefault();
+        DedType.DeductionType = postNewDeduction.DeductionType;
+        DedType.Description = postNewDeduction.Description;
+
+
+        _context.Update(DedType);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+
+  }
 }

@@ -12,6 +12,7 @@ namespace E4S.Models.HumanResource
     public virtual EmployeeDetail EmployeeDetail { get; set; }
 
     public string LeaveTitle { get; set; }
+    public Guid LeaveConfigId { get; set; }
     public string Description { get; set; }
     public string Comment { get; set; }
 
@@ -21,5 +22,6 @@ namespace E4S.Models.HumanResource
     public string Status { get; set; }
     public DateTime ApproveDate { get; set; }
 
+    public int CalculatedDays { get; set; }
   }
 }

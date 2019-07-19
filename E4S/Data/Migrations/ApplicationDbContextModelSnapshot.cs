@@ -149,6 +149,104 @@ namespace E4S.Data.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("E4S.Models.HumanResource.Addition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AdditionType");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<string>("Others");
+
+                    b.Property<bool>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Additions");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Category");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<bool>("PreFilled");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppraisalCategories");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalKPI", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AppraisalCategoryId");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("KPI");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<float>("Weight");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppraisalKPIs");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalTemplate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppraisalTemplates");
+                });
+
             modelBuilder.Entity("E4S.Models.HumanResource.ContactDetail", b =>
                 {
                     b.Property<Guid>("Id")
@@ -195,6 +293,34 @@ namespace E4S.Data.Migrations
                     b.HasIndex("EmployeeDetailId");
 
                     b.ToTable("ContactDetails");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.Deduction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("DeductionType");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<string>("Others");
+
+                    b.Property<bool>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Deductions");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.Dependant", b =>
@@ -420,15 +546,9 @@ namespace E4S.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BranchId");
-
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("EmployeeDetailId");
-
-                    b.HasIndex("EmploymentStatusId");
-
-                    b.HasIndex("JobCategoryId");
 
                     b.HasIndex("JobTitleId");
 
@@ -492,6 +612,8 @@ namespace E4S.Data.Migrations
 
                     b.Property<DateTime>("ApproveDate");
 
+                    b.Property<int>("CalculatedDays");
+
                     b.Property<string>("Comment");
 
                     b.Property<DateTime>("DateCreated");
@@ -507,6 +629,8 @@ namespace E4S.Data.Migrations
                     b.Property<DateTime>("EndDate");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("LeaveConfigId");
 
                     b.Property<string>("LeaveTitle");
 
@@ -619,6 +743,112 @@ namespace E4S.Data.Migrations
                     b.ToTable("PayGrades");
                 });
 
+            modelBuilder.Entity("E4S.Models.HumanResource.Payroll", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<float>("AbsentDeductions");
+
+                    b.Property<string>("AccountName");
+
+                    b.Property<string>("AccountNo");
+
+                    b.Property<float>("Addition");
+
+                    b.Property<float>("AnnualActualTaxPayable");
+
+                    b.Property<float>("AnnualGrossSalary");
+
+                    b.Property<float>("AnnualOTArrears");
+
+                    b.Property<float>("AnnualPayableTax");
+
+                    b.Property<float>("Arrears");
+
+                    b.Property<string>("BankName");
+
+                    b.Property<float>("Basic");
+
+                    b.Property<float>("ComputedAnnualTax");
+
+                    b.Property<float>("ConsolidatedReliefsAllowance");
+
+                    b.Property<float>("CooperativeDeduction");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<Guid>("EmployeeId");
+
+                    b.Property<string>("EmployeeName");
+
+                    b.Property<Guid>("GenerationId");
+
+                    b.Property<float>("Gratuities");
+
+                    b.Property<float>("GrossAnnualEmolument");
+
+                    b.Property<float>("GrossMonthlyEmolument");
+
+                    b.Property<float>("Housing");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("JobId");
+
+                    b.Property<float>("LifeAssurance");
+
+                    b.Property<float>("Meal");
+
+                    b.Property<float>("MinimumTax");
+
+                    b.Property<string>("Month");
+
+                    b.Property<float>("MonthlyActualTaxPayable");
+
+                    b.Property<float>("MonthlyBasic");
+
+                    b.Property<float>("MonthlyMinimumTax");
+
+                    b.Property<float>("NHIS");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<float>("OtherDeductions");
+
+                    b.Property<float>("Overtime");
+
+                    b.Property<float>("PayableToStaff");
+
+                    b.Property<string>("PayrollMonth");
+
+                    b.Property<float>("PensionDeductionMonthly");
+
+                    b.Property<float>("PensionFund");
+
+                    b.Property<Guid>("SalaryId");
+
+                    b.Property<float>("StaffLoan");
+
+                    b.Property<float>("TaxableIncome");
+
+                    b.Property<float>("TotalAnnualRellief");
+
+                    b.Property<float>("TotalDeduction");
+
+                    b.Property<float>("Transport");
+
+                    b.Property<string>("Year");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payrolls");
+                });
+
             modelBuilder.Entity("E4S.Models.HumanResource.Salary", b =>
                 {
                     b.Property<Guid>("Id")
@@ -659,6 +889,74 @@ namespace E4S.Data.Migrations
                     b.HasIndex("EmployeeDetailId");
 
                     b.ToTable("Salaries");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.SalaryAddition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AdditionId");
+
+                    b.Property<float>("Amount");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Description");
+
+                    b.Property<Guid>("EmployeeDetailId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdditionId");
+
+                    b.HasIndex("EmployeeDetailId");
+
+                    b.ToTable("SalaryAdditions");
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.SalaryDeduction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<float>("Amount");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<Guid>("DeductionId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<Guid>("EmployeeDetailId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeductionId");
+
+                    b.HasIndex("EmployeeDetailId");
+
+                    b.ToTable("SalaryDeductions");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.Skill", b =>
@@ -955,11 +1253,6 @@ namespace E4S.Data.Migrations
 
             modelBuilder.Entity("E4S.Models.HumanResource.Job", b =>
                 {
-                    b.HasOne("E4S.Models.Branch", "Branch")
-                        .WithMany()
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("E4S.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
@@ -968,16 +1261,6 @@ namespace E4S.Data.Migrations
                     b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
                         .WithMany()
                         .HasForeignKey("EmployeeDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.HumanResource.EmploymentStatus", "EmploymentStatus")
-                        .WithMany()
-                        .HasForeignKey("EmploymentStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.HumanResource.JobCategory", "JobCategory")
-                        .WithMany()
-                        .HasForeignKey("JobCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("E4S.Models.HumanResource.JobTitle", "JobTitle")
@@ -996,6 +1279,32 @@ namespace E4S.Data.Migrations
 
             modelBuilder.Entity("E4S.Models.HumanResource.Salary", b =>
                 {
+                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
+                        .WithMany()
+                        .HasForeignKey("EmployeeDetailId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.SalaryAddition", b =>
+                {
+                    b.HasOne("E4S.Models.HumanResource.Addition", "Addition")
+                        .WithMany()
+                        .HasForeignKey("AdditionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
+                        .WithMany()
+                        .HasForeignKey("EmployeeDetailId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("E4S.Models.HumanResource.SalaryDeduction", b =>
+                {
+                    b.HasOne("E4S.Models.HumanResource.Deduction", "Deduction")
+                        .WithMany()
+                        .HasForeignKey("DeductionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
                         .WithMany()
                         .HasForeignKey("EmployeeDetailId")
