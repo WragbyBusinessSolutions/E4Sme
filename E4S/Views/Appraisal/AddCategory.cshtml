@@ -1,8 +1,180 @@
 ﻿
 @{
-    ViewData["Title"] = "AddCategory";
+    ViewData["Title"] = "Add Category";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>AddCategory</h2>
+<style>
+
+
+    .invoice-body {
+        margin-top: 40px;
+    }
+
+    .invoice-card {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .hidden-info {
+        visibility: hidden;
+    }
+
+    .total-section {
+        margin-top: 40px;
+    }
+
+    .customer-button {
+        width: 200px;
+        height: 160px;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    .table-item {
+        font-size: 12px;
+    }
+</style>
+
+
+
+<div class="content">
+  
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">Add Category</h4>
+                </div>
+                <div class="card-body ">
+                    <form method="get" action="/" class="form-horizontal">
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Category Name</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Category Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Prefiled </label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                        a
+                                    </label>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-fill btn-primary">Sign in</button>
+                                </div>
+                            </div>
+                        </div>                          
+                    </form>
+                </div>
+            </div>
+        </div>
+          
+
+        <div class="col-md-12 ">
+            <div class="card card-body ">
+                <div class="row">                  
+                    <div class="row invoice-card">
+                        <div class="col-lg-12">
+                            
+
+                            <div class="btn-group">
+                                <button type="button" class="form-control customer-button dropright dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="~/assets/img/user22.png" height="20" width="20" /> Select Employee
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#"><input type="text" class="form-control" placeholder="type a customer name" /></a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">+ Add Employee</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 align-items-center invoice-body">                        
+                            <h4 class="center-block">Set Employee KPIs</h4>
+                        </div>
+
+                        <div class="col-md-12 invoice-body">
+                            <div class="table-responsive m-t-40" style="clear: both;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-item"><strong>S/N</strong></th>
+                                            <th><strong>KPI's</strong></th>
+                                            <th><strong>Weight</strong></th>
+                                            <th>+/-</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Split AC</td>
+                                            <td> 3 </td>
+
+                                            <td>
+                                                <a asp-action="Delete" class="btn btn-sm btn-danger">-</a>
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+
+                                            <td>
+                                                <input hidden type="text" id="addEstimateId" name="bdate" class="form-control" value="Model.EstimateId">
+                                                <input type="text" id="addItem" name="bdate" onChange="changecat(this.value);" class="form-control" placeholder="S/N">
+                                            </td>
+                                            <td>
+                                                <input type="text" id="addDescription" name="bdate" class="form-control" placeholder="KPIs">
+                                            </td>
+                                            <td class="text-right">
+                                                <input type="number" id="addQuantity" name="bdate" class="form-control text-right" placeholder="Weight">
+                                            </td>
+
+                                            <td>
+                                                <button id="clickb" name="clickb" class="btn btn-sm btn-success">+</button>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12 total-section">                           
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-right">
+                                <button class="btn btn-success" type="submit"> Done  </button>
+                                <button id="print" class="btn btn-info btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+        </div>
+
+</div>
+
+<script>
+    $('#myModal').modal(options)
+</script>
 
