@@ -12,12 +12,20 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Salary Additions</h4>
-
-          @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-          <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-            Create
-          </button>
+            <div class="row">
+                <div class="col-md-11">
+                    <h4 class="card-title"> Salary Deduction</h4>
+                </div>
+                <div class="col-md-1">
+                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                    <button class="btn btn-info " data-toggle="modal" data-target="#noticeModal">
+                        <span class="btn-label">
+                            <i class="now-ui-icons travel_info"></i>
+                        </span>
+                        Create
+                    </button>
+                </div>
+            </div>
           <!-- notice modal -->
           <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notice">
@@ -102,7 +110,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Employee Name</label>
-                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                        <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
                                             <option value="00000000-0000-0000-0000-000000000000"> --  Employee Name  -- </option>
                                         </select>
                                         @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
@@ -113,7 +121,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Addition Type</label>
-                                        <select type="text" class="form-control" asp-items="ViewBag.Additions" id="AdditionType" name="AdditionType">
+                                        <select type="text" class="form-control" asp-items="ViewBag.Additions" id="eAdditionType" name="eAdditionType">
                                             <option> -- Select Addition Type -- </option>
                                         </select>
                                     </div>
@@ -124,7 +132,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Amount</label>
-                                        <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
+                                        <input type="text" class="form-control" placeholder="Amount" id="eAmount" name="eAmount" required>
+                                        <input type="hidden" class="form-control" placeholder="" id="AddSalId" name="AddSalId" required>
                                     </div>
                                 </div>
                             </div>
@@ -132,14 +141,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                        <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
                                         @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
 
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAdditions">Submit</button>
+                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEditAdditions">Submit</button>
                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -156,7 +165,7 @@
           <!-- end notice Edit modal -->
           @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
         </div>
-        <input id="AssetId" name="AssetId" hidden />
+        
 
         <div class="card-body">
           <div>
@@ -231,7 +240,7 @@
                                 @item.DateCreated.Month
                             </td>
                             <td>
-                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" ><i class="far fa-calendar-alt"></i></a>
+                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top" EditAddId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-AdditonId="@item.AdditionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a></span>
                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
 
                             </td>
@@ -368,27 +377,27 @@
 
 
     //Code for pulling the Records on the Table
-    var aEditAssetId;
+    var aEditAddId;
 
     $(document).delegate('#Editbtn',
       'click',
       function (e) {
 
-        aEditAssetId = $(this).attr('EditAssetId');
-        deviceName = $(this).attr('select-DeviceName');
-        brand = $(this).attr('Selected-Brand');
-        model = $(this).attr('Selected-Model');
-        serialNo = $(this).attr('Selected-SerialNo');
+          aEditAddId = $(this).attr('EditAddId');
+          employeeDetailsId = $(this).attr('select-EmployeeDetailsId');
+          additonId = $(this).attr('Selected-AdditonId');
+          amount = $(this).attr('Selected-Amount');
+          description = $(this).attr('Selected-Description');
 
 
         //console.log(varstartDate, varendDate);
         //  console.log(aEditAssetId);
 
-        $('input[name=AssetId]').val(aEditAssetId);
-        $('input[name=eDeviceName]').val(deviceName);
-        $('input[name=eBrand]').val(brand);
-        $('input[name=eModel]').val(model);
-        $('input[name=eSerialNo]').val(serialNo);
+        $('input[name=AddSalId]').val(aEditAddId);
+        $('input[name=eemployeeId]').val(employeeDetailsId);
+        $('input[name=eAdditionType]').val(additonId);
+        $('input[name=eAmount]').val(amount);
+        $('textarea[name=eDescription]').val(description);
 
       });
 
@@ -396,27 +405,26 @@
 
     $(document).ready(function () {
 
-      $("#editAsset").click(function (event) {
+      $("#submitEditAdditions").click(function (event) {
 
         event.preventDefault();
 
-        var PostOrganisationAsset = {
-          AId: $("#AssetId").val(),
-          EmployeeDetailId: $("#eemployeeId").val(),
-          DeviceName: $("#eDeviceName").val(),
-          Brand: $("#eBrand").val(),
-          Model: $("#eModel").val(),
-          SerialNumber: $("#eSerialNo").val(),
+        var PostSalaryDeduction = {
+          AId: $("#AddSalId").val(),
+          EmployeeDetailsId: $("#eemployeeId").val(),
+          AdditonId: $("#eAdditionType").val(),
+          Amount: $("#eAmount").val(),
+          Description: $("#eDescription").val(),
         };
 
 
         // console.log(Items);
-        console.log(PostOrganisationAsset);
+        console.log(PostSalaryDeduction);
 
         $.ajax({
           type: "POST",
-          url: "/CompanyAssets/editCompanyAssets",
-          data: JSON.stringify(PostOrganisationAsset),
+          url: "/Payroll/editSalaryAdditions",
+          data: JSON.stringify(PostSalaryDeduction),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {
