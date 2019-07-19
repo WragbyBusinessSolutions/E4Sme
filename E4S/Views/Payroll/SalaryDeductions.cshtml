@@ -1,9 +1,24 @@
-﻿
+﻿@model IEnumerable<E4S.Models.HumanResource.SalaryDeduction>
+
 @{
     ViewData["Title"] = "Salary Deductions";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
+
+    <style>
+        .body-card {
+            margin-left: 2%;
+            margin-right: 2%;
+            margin-top: 1%;
+            margin-bottom: 2%;
+        }
+
+        .button-padding {
+            margin-right: 10px;
+            top: -15px;
+        }
+    </style>
 
 <div class="content">
 
@@ -11,12 +26,20 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Salary Deduction</h4>
-
-                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                        Add New Asset
-                    </button>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <h4 class="card-title"> Salary Deduction</h4>
+                        </div>
+                        <div class="col-md-1">
+                            @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                            <button class="btn btn-info " data-toggle="modal" data-target="#noticeModal">
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+                                Create
+                            </button>
+                        </div>                       
+                    </div>
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
@@ -34,7 +57,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                        <select class="form-control" placeholder="Employee Name" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
                                                             <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
                                                         </select>
                                                     </div>
@@ -44,7 +67,9 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Deduction Type</label>
-                                                        <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
+                                                        <select type="text" class="form-control" asp-items="ViewBag.Deductions" id="DeductionType" >
+                                                            <option> -- Select Deduction Type -- </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -53,42 +78,21 @@
                                                     <div class="form-group">
                                                         <label>Amount</label>
                                                         <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
+                                                        <input type="hidden" class="form-control" id="DedSalId" name="DedSalId" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
-                                                        </select>
+                                                        <label>Description</label>
+                                                        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr />
                                             <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitDeductions">Submit</button>
                                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
@@ -118,7 +122,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                        <select class="form-control" placeholder="Employee Name" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
                                                             <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
                                                         </select>
                                                     </div>
@@ -128,44 +132,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Deduction Type</label>
-                                                        <input type="text" class="form-control" placeholder="Deduction Type" id="DeductionType" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" id="DeductionType" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Amount</label>
-                                                        <input type="text" class="form-control" placeholder="Amount" id="Amount" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Month</label>
-                                                        <select class="form-control" placeholder="Month" id="Month" required>
-                                                            <option> -- Select Month -- </option>
-                                                            <option value="0">January</option>
-                                                            <option value="1">Feburary</option>
-                                                            <option value="2">March</option>
-                                                            <option value="3">April</option>
-                                                            <option value="4">May</option>
-                                                            <option value="5">June</option>
-                                                            <option value="6">July</option>
-                                                            <option value="7">August</option>
-                                                            <option value="8">September</option>
-                                                            <option value="9">October</option>
-                                                            <option value="10">November</option>
-                                                            <option value="11">December</option>
+                                                        <select type="text" class="form-control" asp-items="ViewBag.Deductions" id="eDeductionType" name="eDeductionType">
+                                                            <option> -- Select Deduction Type -- </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -173,17 +141,27 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Year</label>
-                                                        <input type="text" class="form-control" placeholder="Year" id="Year" required>
+                                                        <label>Amount</label>
+                                                        <input type="text" class="form-control" placeholder="Amount" id="eAmount" name="eAmount" required>
+                                                        <input type="hidden" class="form-control" id="DedSalId" name="DedSalId" required>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
+                                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="card-footer ">
-                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEditDeductions">Submit</button>
                                                 <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
+
 
                                     </div>
                                 </div>
@@ -227,7 +205,7 @@
                             </thead>
 
 
-                            @*<tbody>
+                            <tbody>
 
                                 @{
                                     int i = 1;
@@ -249,248 +227,247 @@
                                     foreach (var item in Model)
                                     {
 
-                                        <tr>
-                                            <td class="text-center">
-                                                @i
-                                            </td>
+                                    <tr>
+                                        <td class="text-center">
+                                            @i
+                                        </td>
 
-                                            <td>
-                                                @item.DeviceName
-                                            </td>
-                                            <td>
-                                                @item.Brand
-                                            </td>
-                                            <td>
-                                                @item.Model
-                                            </td>
-                                            <td>
-                                                @item.SerialNumber
-                                            </td>
-                                            <td>
-                                                @item.EmployeeName
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                        <td>
+                                            @item.EmployeeDetail.FirstName
+                                            @item.EmployeeDetail.LastName
+                                        </td>
+                                        <td>
+                                            @item.Deduction.DeductionType
+                                        </td>
+                                        <td>
+                                            @item.Description
+                                        </td>
+                                        <td>
+                                            @item.Amount
+                                        </td>
+                                        <td>
+                                            @item.DateCreated.Month
+                                        </td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" title="Click to Edit" data-toggle="tooltip" data-placement="top" EditDedId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-DeductonId="@item.DeductionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a></span>
+                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
 
                                         { i = i + 1; }
                                     }
                                 }
 
-                                </tbody>*@
-                            </table>
-                        </div>
+                                </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
 
+</div>
 
 
 
-    <script>
+
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+
+        });
+
+        var table = $('#datatable').DataTable();
+
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+    });
+
+
+</script>
+
+
+
+@section Scripts {
+
+    <!--  DataTables.net Plugin, full documentation here  -->
+    <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+
         $(document).ready(function () {
-            $('#datatable').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                responsive: true,
 
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search records",
-                }
+            $("#submitDeductions").click(function (event) {
 
-            });
+                event.preventDefault();
 
-            var table = $('#datatable').DataTable();
+                var SalaryDeductions = {
+                    EmployeeDetailsId: $("#employeeId").val(),
+                    DeductionId: $("#DeductionType").val(),
+                    Amount: $("#Amount").val(),
+                    Description: $("#Description").val(),
+                };
 
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
 
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
+                // console.log(Items);
+                console.log(SalaryDeductions);
 
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "/Payroll/postSalaryDeductions",
+                    data: JSON.stringify(SalaryDeductions),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
 
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
             });
         });
 
 
+        //Code for pulling the Records on the Table
+    var aEditDedId;
+
+    $(document).delegate('#Editbtn',
+      'click',
+      function (e) {
+
+          aEditDedId = $(this).attr('EditDedId');
+          employeeDetailsId = $(this).attr('select-EmployeeDetailsId');
+          deductionId = $(this).attr('Selected-DeductonId');
+          amount = $(this).attr('Selected-Amount');
+          description = $(this).attr('Selected-Description');
+
+
+        //console.log(varstartDate, varendDate);
+        //  console.log(aEditAssetId);
+
+        $('input[name=DedSalId]').val(aEditDedId);
+        $('input[name=eemployeeId]').val(employeeDetailsId);
+        $('input[name=eDeductionType]').val(deductionId);
+        $('input[name=eAmount]').val(amount);
+        $('textarea[name=eDescription]').val(description);
+
+      });
+
+    //End of the code
+
+    $(document).ready(function () {
+
+      $("#submitEditDeductions").click(function (event) {
+
+        event.preventDefault();
+
+        var PostSalaryDeduction = {
+          AId: $("#DedSalId").val(),
+          EmployeeDetailsId: $("#eemployeeId").val(),
+          DeductionId: $("#eDeductionType").val(),
+          Amount: $("#eAmount").val(),
+          Description: $("#eDescription").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(PostSalaryDeduction);
+
+        $.ajax({
+          type: "POST",
+          url: "/Payroll/editSalaryDeductions",
+          data: JSON.stringify(PostSalaryDeduction),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
+
+
+    });
+
     </script>
 
-
-
-    @section Scripts {
-
-        <!--  DataTables.net Plugin, full documentation here  -->
-        <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
-
-        <script type="text/javascript">
-
-            $(document).ready(function () {
-
-                $("#submitAsset").click(function (event) {
-
-                    event.preventDefault();
-
-                    var PostOrganisationAsset = {
-                        EmployeeDetailId: $("#employeeId").val(),
-                        DeviceName: $("#DeviceName").val(),
-                        Brand: $("#Brand").val(),
-                        Model: $("#Model").val(),
-                        SerialNumber: $("#SerialNo").val(),
-                    };
-
-
-                    // console.log(Items);
-                    console.log(PostOrganisationAsset);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/CompanyAssets/postCompanyAssets",
-                        data: JSON.stringify(PostOrganisationAsset),
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        headers: {
-                            RequestVerificationToken:
-                                $('input:hidden[name="__RequestVerificationToken"]').val()
-                        },
-                        success: function (r) {
-
-                            if (r.msg == "Success") {
-
-                                demo.showSwal('success-message');
-
-                            } else if (r.msg == "Fail") {
-
-                                alert(r.msg);
-
-                            } else if (r.msg == "No Data") {
-                                alert(r.msg);
-
-                            } else {
-                                alert(r.msg);
-                            }
-                            //alert(r.msg);
-                            // window.location.reload();
-
-                        },
-                        error: function () {
-                            alert(r.msg);
-                        }
-                    });
-                });
-            });
-
-
-            //Code for pulling the Records on the Table
-            var aEditAssetId;
-
-            $(document).delegate('#Editbtn',
-                'click',
-                function (e) {
-
-                    aEditAssetId = $(this).attr('EditAssetId');
-                    deviceName = $(this).attr('select-DeviceName');
-                    brand = $(this).attr('Selected-Brand');
-                    model = $(this).attr('Selected-Model');
-                    serialNo = $(this).attr('Selected-SerialNo');
-
-
-                    //console.log(varstartDate, varendDate);
-                    //  console.log(aEditAssetId);
-
-                    $('input[name=AssetId]').val(aEditAssetId);
-                    $('input[name=eDeviceName]').val(deviceName);
-                    $('input[name=eBrand]').val(brand);
-                    $('input[name=eModel]').val(model);
-                    $('input[name=eSerialNo]').val(serialNo);
-
-                });
-
-            //End of the code
-
-            $(document).ready(function () {
-
-                $("#editAsset").click(function (event) {
-
-                    event.preventDefault();
-
-                    var PostOrganisationAsset = {
-                        AId: $("#AssetId").val(),
-                        EmployeeDetailId: $("#eemployeeId").val(),
-                        DeviceName: $("#eDeviceName").val(),
-                        Brand: $("#eBrand").val(),
-                        Model: $("#eModel").val(),
-                        SerialNumber: $("#eSerialNo").val(),
-                    };
-
-
-                    // console.log(Items);
-                    console.log(PostOrganisationAsset);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/CompanyAssets/editCompanyAssets",
-                        data: JSON.stringify(PostOrganisationAsset),
-                        dataType: "json",
-                        contentType: 'application/json; charset=utf-8',
-                        headers: {
-                            RequestVerificationToken:
-                                $('input:hidden[name="__RequestVerificationToken"]').val()
-                        },
-                        success: function (r) {
-
-                            if (r.msg == "Success") {
-
-                                demo.showSwal('success-message');
-
-                            } else if (r.msg == "Fail") {
-
-                                alert(r.msg);
-
-                            } else if (r.msg == "No Data") {
-                                alert(r.msg);
-
-                            } else {
-                                alert(r.msg);
-                            }
-                            //alert(r.msg);
-                            // window.location.reload();
-
-                        },
-                        error: function () {
-                            alert(r.msg);
-                        }
-                    });
-                });
-
-
-
-            });
-
-        </script>
-
-    }
+}
 
 
 

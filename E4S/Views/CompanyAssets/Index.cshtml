@@ -89,12 +89,21 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Company Assets</h4>
-
-                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-                    <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">
-                        Add New Asset
-                    </button>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title"> Company Assets</h4>
+                        </div>
+                        <div class="col-md-2">
+                            @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                            <button class="btn btn-info pull-right" data-toggle="modal" data-target="#noticeModal">
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+                                Add New Asset
+                            </button>
+                        </div>
+                    </div>
+                    
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
@@ -159,8 +168,8 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -229,8 +238,8 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                                    </div>*@
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -311,8 +320,8 @@
                                                 @item.EmployeeName
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
-                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" title="Click to Edit"  data-placement="top" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" ><i class="fas fa-times"></i></a>
 
                                             </td>
                                         </tr>

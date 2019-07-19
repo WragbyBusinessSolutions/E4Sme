@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190718094110_deduct")]
+    partial class deduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,76 +176,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Additions");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Category");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<bool>("PreFilled");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppraisalCategories");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalKPI", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("AppraisalCategoryId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("KPI");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<float>("Weight");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppraisalKPIs");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalTemplate", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppraisalTemplates");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.ContactDetail", b =>
