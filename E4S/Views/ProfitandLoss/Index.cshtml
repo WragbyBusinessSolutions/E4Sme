@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewData["Title"] = "Profit and Loss";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+<style>
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
+    }
+
+    .table-font {
+        font-weight: 500;
+    }
+
+    .iconstyle {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .picture {
+        background: fixed;
+    }
+
+        .picture:hover {
+            border-radius: 7px;
+            box-shadow: 0 0 11px rgba(33,33,33,.2);
+            padding: 10px;
+        }
+        .button-pad{
+            margin-top:20px;
+        }
+
+        .space{
+            margin-top: 70px;
+            margin-bottom: 40px;
+        }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Profit and Loss</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <label class="">Quarter</label>
+                            <select class="form-control" style="text-align: center;">
+                                <option>Full</option>
+                                <option>Q1</option>
+                                <option>Q2</option>
+                                <option>Q3</option>
+                                <option>Q4</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-3">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="submit" value="Generate" class="button-pad btn btn-info" />
+
+                        </div>
+
+
+
+                        <div class="col-md-3 space">
+                            <h6 style="text-align:center;">Income</h6>
+                            <h4 style="text-align:center;">₦ 0<span class="pull-right">-</span></h4>
+                        </div>
+                        <div class="col-md-3 space">
+                            <h6 style="text-align:center;">Cost of goods sold</h6>
+                            <h4 style="text-align:center;">₦ 0 <span class="pull-right">-</span></h4>
+                        </div>
+
+                        <div class="col-md-3 space">
+                            <h6 style="text-align:center;">Operating Expenses</h6>
+                            <h4 style="text-align:center;">₦ 0 <span class="pull-right">=</span></h4>
+                        </div>
+
+                        <div class="col-md-3 space">
+                            <h6 style="text-align:center;">Net Profit</h6>
+                            <h4 style="text-align:center;">₦ 0</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header body-card">
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-success btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export Data
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Copy</a>
+                                <a class="dropdown-item" href="#">CSV</a>
+                                <a class="dropdown-item" href="#">Excel</a>
+                                <a class="dropdown-item" href="#">PDF</a>
+                                <a class="dropdown-item" href="#">Print</a>
+
+                            </div>
+                        </div>
+
+
+
+                        <h4 class="card-title"></h4>
+                    </div>
+                    <div class="card-body body-card">
+
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Account</strong></th>
+                                        <th style="text-align:right;"><strong>June 23 to July 23, 2019</strong></th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="fontweight">
+
+                                    <tr>
+                                        <td class="table-font"><strong>Total Income</strong></td>
+                                        <td style="text-align:right;">NGN0.00</td>
+
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="table-font"><strong>Total Cost of Goods Sold</strong></td>
+                                        <td style="text-align:right;">NGN0.00</td>
+
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Gross Profit</strong><p>As a percentage of total income</p></td>
+                                        <td style="text-align:right;">NGN0.00 <p>0.00%</p></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Operating Expenses</strong></td>
+                                        <td style="text-align:right;">NGN0.00</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Net Profit</strong> <p>As a percentage of total income</p></td>
+                                        <td style="text-align:right;">NGN0.00 <p>0.00%</p></td>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

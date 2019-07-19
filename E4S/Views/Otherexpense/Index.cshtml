@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Other Expenses";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+<style>
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
+    }
+
+    .table-font {
+        font-weight: 500;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header body-card">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Export Data
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Copy</a>
+                            <a class="dropdown-item" href="#">CSV</a>
+                            <a class="dropdown-item" href="#">Excel</a>
+                            <a class="dropdown-item" href="#">PDF</a>
+                            <a class="dropdown-item" href="#">Print</a>
+
+                        </div>
+                    </div>
+
+                    <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+
+                        <span class="btn-label">
+                            <i class="now-ui-icons travel_info"></i>
+                        </span>
+
+                        Add New Expenses
+
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Expenses</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form>
+                                        <label class="pull-left">Date</label>
+                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" />
+                                        <br />
+                                        <label class="pull-left">Description</label>
+                                        <input type="text" class="form-control" />
+                                        <br />
+                                        <label class="pull-left">Amount</label>
+                                        <input type="text" class="form-control" />
+                                        <br />
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-info">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="card-title">Other Expenses</h4>
+                </div>
+                <div class="card-body body-card">
+
+                    <div class="table-responsive-sm">
+                        <table id="datatable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><strong>S/N</strong></th>
+                                    <th scope="col"><strong>Date</strong></th>
+                                    <th scope="col"><strong>Description</strong></th>
+
+                                    <th scope="col"><strong>Amount</strong></th>
+                                    <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="fontweight">
+
+                                <tr>
+                                    <td>1</td>
+                                    <td>Olivia Liang</td>
+                                    <td>Support Engineer</td>
+
+                                    <td>64</td>
+                                    <td class="">
+                                        <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

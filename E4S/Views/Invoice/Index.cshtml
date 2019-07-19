@@ -17,84 +17,100 @@
 </style>
 
 <div class="content">
-    <div class="row">
+    
+       
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header body-card">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export Data
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Copy</a>
-                            <a class="dropdown-item" href="#">CSV</a>
-                            <a class="dropdown-item" href="#">Excel</a>
-                            <a class="dropdown-item" href="#">PDF</a>
-                            <a class="dropdown-item" href="#">Print</a>
-                         
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pull-left">
+                                <h4 class="card-title">Invoice</h4>
+                            </div>
+
+                            <div class="btn-group col-md-5 pull-right">
+                                <a class="btn btn-success dropdown-toggle button-padding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                                    Export Data
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Copy</a>
+                                    <a class="dropdown-item" href="#">CSV</a>
+                                    <a class="dropdown-item" href="#">Excel</a>
+                                    <a class="dropdown-item" href="#">PDF</a>
+                                    <a class="dropdown-item" href="#">Print</a>
+
+                                </div>
+
+                                <a asp-action="AddInvoice" asp-controller="Invoice" class="btn btn-info btn-md  btn-responsive" style="color: #fff;">
+                                    <span class="btn-label">
+                                        <i class="now-ui-icons travel_info"></i>
+                                    </span>
+
+                                    Create New
+
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                    <button class="btn btn-info btn-md pull-right btn-responsive btn-round">
-                        <span class="btn-label">
-                            <i class="now-ui-icons travel_info"></i>
-                        </span>
 
-                        Create New
 
-                    </button>
-                    
 
-                    <h4 class="card-title">Invoices</h4>
                 </div>
                 <div class="card-body body-card">
-                    
-                        <div class="table-responsive-sm">
-                            <table id="datatable" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th><strong>S/N</strong></th>
-                                        <th scope="col"><strong>Name</strong></th>
-                                        <th scope="col"><strong>Position</strong></th>
-                                        <th scope="col"><strong>Office</strong></th>
-                                        <th scope="col"><strong>Age</strong></th>
-                                        <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fontweight">
-                                    <tr>
-                                        <td scope="row" class="table-font">1</td>
-                                        <td scope="row">Jackson Bradshaw</td>
-                                        <td scope="row">Director</td>
-                                        <td scope="row">New York</td>
-                                        <td scope="row">65</td>
-                                        <td class="">
 
-                                            <a href="#" class="btn btn-md btn-info btn-sm like"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Olivia Liang</td>
-                                        <td>Support Engineer</td>
-                                        <td>Singapore</td>
-                                        <td>64</td>
-                                        <td class="">
+                    <div class="table-responsive"  style="overflow: hidden;">
+                        <table id="datatable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><strong>ID</strong></th>
+                                    <th scope="col"><strong>Date Created</strong></th>
+                                    <th scope="col"><strong>Customer Name</strong></th>
+                                    <th scope="col"><strong>Title</strong></th>
 
-                                            <a href="#" class="btn btn-md btn-info btn-sm like"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                       
-                    
+                                    <th scope="col"><strong>Amount</strong></th>
+                                    <th scope="col"><strong>Status</strong></th>
+                                    <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="fontweight">
+                                <tr>
+                                    <td scope="row" class="table-font">1</td>
+                                    <td scope="row">Jackson Bradshaw</td>
+                                    <td scope="row">Director</td>
+                                    <td scope="row">New York</td>
+
+                                    <td scope="row">65</td>
+                                    <td scope="row"><button class="btn btn-danger">Not paid</button></td>
+                                    <td class="">
+
+                                        <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"><i class="fa fa-credit-card"></i></a>
+                                        <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Olivia Liang</td>
+                                    <td>Support Engineer</td>
+                                    <td>Singapore</td>
+                                    <td>64</td>
+                                    <td scope="row"><button class="btn btn-danger">Not paid</button></td>
+
+                                    <td class="">
+                                        <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"><i class="fa fa-credit-card"></i></a>
+                                        <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
             </div>
 
         </div>
-    </div>
+        
 </div>

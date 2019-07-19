@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\AccountInventory\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Shared\_LayoutHumanResouces1.cshtml" />
     <Content Remove="wwwroot\assets\scss\now-ui-dashboard\cards\_cards-background.scss" />
   </ItemGroup>
