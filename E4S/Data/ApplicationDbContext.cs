@@ -63,6 +63,8 @@ namespace E4S.Data
 
     public DbSet<AppraisalTemplateCategory> AppraisalTemplateCategories { get; set; }
 
+    public DbSet<AssignedSubordinate> AssignedSubordinates { get; set; }
+    public DbSet<AssignedSupervisor> AssignedSupervisors { get; set; }
 
   }
 }
