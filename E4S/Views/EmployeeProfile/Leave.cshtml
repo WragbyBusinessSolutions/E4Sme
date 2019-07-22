@@ -9,10 +9,10 @@
     <div class="card">
         <div class="card-header text-center" data-background-color="orange">
             <h3 class="card-title">
-                Leaves
+                Leave Management Portal
             </h3>
             <h5 class="description">
-                Apply For A New Leave.
+                
             </h5>
         </div>
         @*<h4 class="card-title"> Employee Jobs</h4>*@
@@ -28,7 +28,7 @@
 
                         <div class="card-header">
                             <div class="justify-content-end align-items-center ">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">Create New</button>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#noticeModal">Apply</button>
                             </div>
                         </div>
                         <!-- notice modal -->
@@ -149,8 +149,9 @@
 
 
                                                 <td class="text-right">
-                                                    @*<a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" delLeaveId="@item.Id" Select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Leave="@item.LeaveTitle" Selected-Description="@item.Description" Selected-StartDate="@item.StartDate.ToString("MMMM dd, yyyy")" Selected-EndDate="@item.EndDate.ToString("MMMM dd, yyyy")" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+                                                    @*<a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
                                                         <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>*@
+                                                    <button  class="btn btn-sm btn-success"> Resume</button>
                                                 </td>
                                             }
                                             else if (item.Status == "Declined")
