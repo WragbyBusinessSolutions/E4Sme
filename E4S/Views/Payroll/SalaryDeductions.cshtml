@@ -27,10 +27,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <h4 class="card-title"> Salary Deduction</h4>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
                             <button class="btn btn-info " data-toggle="modal" data-target="#noticeModal">
                                 <span class="btn-label">
@@ -122,8 +122,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Employee Name</label>
-                                                        <select class="form-control" placeholder="Employee Name" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                                        <select class="form-control" placeholder="Employee Name"  id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                            @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
                                                         </select>
                                                     </div>
                                                 </div>
@@ -132,8 +132,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Deduction Type</label>
-                                                        <select type="text" class="form-control" asp-items="ViewBag.Deductions" id="eDeductionType" name="eDeductionType">
-                                                            <option> -- Select Deduction Type -- </option>
+                                                        <select type="text" class="form-control"  asp-items="ViewBag.Deductions" id="eDeductionType" name="eDeductionType">
+                                                            @*<option> -- Select Deduction Type -- </option>*@
                                                         </select>
                                                     </div>
                                                 </div>
@@ -398,8 +398,8 @@
         //  console.log(aEditAssetId);
 
         $('input[name=DedSalId]').val(aEditDedId);
-        $('input[name=eemployeeId]').val(employeeDetailsId);
-        $('input[name=eDeductionType]').val(deductionId);
+        $('select[name=eemployeeId]').val(employeeDetailsId);
+        $('select[name=eDeductionType]').val(deductionId);
         $('input[name=eAmount]').val(amount);
         $('textarea[name=eDescription]').val(description);
 
