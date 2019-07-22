@@ -1,8 +1,245 @@
-﻿
+﻿@model E4S.ViewModel.AppraisalTemplateEdit
+
 @{
-    ViewData["Title"] = "EditTemplate";
-    Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+  ViewData["Title"] = "Edit Template";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>EditTemplate</h2>
+<div class="content">
 
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h4 class="card-title">Edit Template</h4>
+      </div>
+      <div class="card-body ">
+        <form method="post" class="form-horizontal">
+          <input asp-for="AppraisalTemplate.Id" hidden />
+          <div class="row">
+            <label class="col-sm-2 col-form-label">Template Name</label>
+            <div class="col-sm-10">
+              <div class="form-group">
+                <input type="text" asp-for="AppraisalTemplate.Template" class="form-control" placeholder="Template Name" required>
+              </div>
+            </div>
+          </div>
+
+          @*<div class="row">
+            <label class="col-sm-2 col-form-label"> </label>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                  <input asp-for="AppraisalCategory.PreFilled" value="true" class="form-check-input" type="checkbox">
+                  <span class="form-check-sign"></span>
+                  Prefiled
+                </label>
+              </div>
+            </div>
+          </div>*@
+
+          <div class="row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+              <div class="form-group">
+                <button type="submit" class="btn btn-fill btn-info">Save</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-12 ">
+    <div class="card card-body ">
+
+      <div class="card-header">
+        <h5 class="card-title">Set Categories</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+            <th class="text-center">
+              #
+            </th>
+            <th>
+              Category Name
+            </th>
+            <th class="text-right">
+              Assign To
+            </th>
+
+            <th class="text-right">
+              Weight %
+            </th>
+            <th class="text-right">
+              Actions
+            </th>
+            </thead>
+
+            <tbody>
+
+              @{
+                int i = 1;
+
+                @*@if (Model.AppraisalKPIs.Count() < 1)
+            {
+            <td></td>
+            <td></td>
+            <td>No Data to Display</td>
+            <td></td>
+
+          }*@
+
+
+                foreach (var item in Model.Categories)
+                {
+                  <tr>
+                    <td class="text-center">
+                      @i
+                    </td>
+                    <td>
+                      @item.AppraisalCategory.Category
+                    </td>
+                    <td class="text-right">
+                      @item.AssignTo
+                    </td>
+                    <td class="text-right">
+                      @item.Weight
+                    </td>
+                    <td class="text-right">
+                      <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+
+                  { i = i + 1; }
+
+                }
+              }
+
+
+
+              <tr>
+                <td class="text-center">
+                  >>
+                </td>
+                <td>
+                  <select type="text" class="form-control" asp-items="ViewBag.AppraisalCategory" placeholder="Appraisal Category" id="AppraisalCategoryId" name="AppraisalCategoryId"></select>
+                </td>
+                <td class="text-right">
+                  <select class="form-control" id="AssignTo" name="AssignTo">
+                    <option value="Appraisee">Appraisee</option>
+                    <option value="Team">Team</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Management">Management</option>
+                  </select>
+                  @*<input style="width:75px" type="number" id="weighttext" name="weighttext" class="form-control pull-right" placeholder="25%">*@
+                </td>
+                <td class="text-right">
+                  <input style="width:75px" type="number" id="weighttext" name="weighttext" class="form-control pull-right" placeholder="25%">
+                </td>
+
+                <td class="text-right">
+                  <button type="button" rel="tooltip" id="btnadd" name="btnadd" class="btn btn-success btn-icon btn-sm ">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+              <div class="form-group">
+                <a asp-action="ViewTemplate" asp-route-id="AppraisalTemplate.Id" class="btn btn-fill btn-warning pull-right">View</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+  <script>
+      $('#myModal').modal(options)
+  </script>
+
+
+  @section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+          $("#btnadd").click(function (event) {
+
+            event.preventDefault();
+
+            var AppraisalTemplateCategory = {
+
+              AppraisalTemplateId: $("#AppraisalTemplate_Id").val(),
+              AppraisalCategoryId: $("#AppraisalCategoryId").val(),
+              AssignTo: $("#AssignTo").val(),
+              Weight: $("#weighttext").val(),
+            };
+
+
+            // console.log(Items);
+            console.log(AppraisalTemplateCategory);
+
+            $.ajax({
+              type: "POST",
+              url: "/Appraisal/addAppTempCat",
+              data: JSON.stringify(AppraisalTemplateCategory),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+
+                  window.location.reload();
+
+                } else if (r.msg == "Fail") {
+
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  alert(r.msg);
+
+                } else if (r.msg == "Exceed") {
+                  alert("Not Added. Total KPIs exceeds 100.");
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                alert(r.msg);
+              }
+            });
+          });
+
+
+        });
+
+
+    </script>
+
+  }

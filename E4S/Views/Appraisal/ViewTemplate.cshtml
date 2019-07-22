@@ -1,8 +1,1394 @@
 ﻿
 @{
-    ViewData["Title"] = "ViewTemplate";
+    ViewData["Title"] = "View Template";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>ViewTemplate</h2>
+  <div class="content">
+
+
+    <div class="row">
+      <!-- Column -->
+      @*<div class="d-flex justify-content-end align-items-center">*@
+      @*<div class="float-right col-md-offset-10">*@
+
+      @*<div class="row">
+        <div class="col-md-11 align-self-end text-right">
+          <div class="d-flex justify-content-end align-items-center">
+            <a asp-action="AddUser" asp-controller="Users" class="btn btn-primary btn-lg">Create New</a>
+          </div>
+        </div>
+      </div>*@
+
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Add New Appraisal</h4>
+          </div>
+          <div class="card-body ">
+            <form class="form-horizontal">
+              <div class="row">
+                <label class="col-md-3 col-form-label">Employee Name</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Employee ID No.</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Job Title</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Department</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Devops</option>
+                      <option>Sales</option>
+                      <option>Customer Success</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Period Under Review</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>--Select Review Quarter--</option>
+                      <option>January - March(First Quarter)</option>
+                      <option>April - June(Second Quarter)</option>
+                      <option>July - September(Third Quarter)</option>
+                      <option>October - December(Fourth Quarter)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-9">
+                <h4 class="card-title">Rating Categories</h4>
+                <p><b>5. Exceptional Performance: </b> Outstanding performance that far exceeds goals in all performance elements </p> <br />
+                <p><b>4. Exceeds Expectations: </b>Performance that consistently goes beyond meeting goals </p> <br />
+                <p><b>3. Fully Meets Expectations: </b> Commendable performance that meets goals </p> <br />
+                <p><b>2. Partially Meets Expectations: </b> Inconsistent aspects of performance requiring improvement to meet some goals </p> <br />
+                <p><b>1. Does Not Meet Expectations: </b> Goals unmet, skills not demonstrated, drastic improvement needed </p> <br />
+                <p><b>0. Not Applicable</b></p>
+              </div>
+
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    @*<h4 class="card-title"> Striped Table with Checkboxes</h4>*@
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead class="text-primary">
+                        <th class="text-center">
+                          S/N
+                        </th>
+                        <th>Item</th>
+                        <th class="text-center">
+                          5.
+                        </th>
+                        <th class="text-center">
+                          4.
+                        </th>
+                        <th class="text-center">
+                          3.
+                        </th>
+                        <th class="text-center">
+                          2.
+                        </th>
+                        <th class="text-center">
+                          1.
+                        </th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-center">
+                              1.
+                            </td>
+                            <td><b>Work Quality</b></td>
+
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                          </tr>
+                          <tr class="progress-striped">
+                            <td class="text-center">
+                              @*1.*@
+                            </td>
+                            <td >
+                                <p>Work quality is professional, clear and comprehensive</p>
+                                <p>Work quality is professional, clear and comprehensive</p>
+                                <p>Work quality is professional, clear and comprehensive</p>
+                            </td>
+
+                            <td class="text-center">
+                              <p>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="target" id="exampleRadios2" value="option2">
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                              </p>
+                              <p>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="target" id="exampleRadios2" value="option2">
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                              </p>
+                              <p>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="target" id="exampleRadios2" value="option2">
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                              </p>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+
+
+
+
+                          <tr>
+                            <td class="text-center">
+                              2.
+                            </td>
+                            <td><h4>Productivity</h4><p>Produces targeted outcomes and results efficiently and effectively</p></td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">
+                              3.
+                            </td>
+                            <td><h4>Customer Focus</h4><p>Establishes and maintains good working relationships with customers, <br /> by understanding and responding promptly to customers needs and expectations</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">
+                              4.
+                            </td>
+                            <td><h4>Functional/Technical Knowledge</h4><p>Demonstrates expertise in the functional aspects of the job</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Proficient use of work-related equipment, tools and software/technology</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Follows established guidelines and procedures</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">5.</td>
+                            <td><h4>Communication (Oral, Written And Presentation)</h4><p>Uses clear and appropriate language in writing</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Verbally conveys information in a clear, accurate and appropriate manner in a variety of situations.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Produces and delivers formal presentations to a variety of audiences, where applicable.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">6.</td>
+                            <td><h4>Teamwork/Interpersonal Relations/Flexibility</h4><p>Builds productive rapport with employees at all levels within and outside the department. <br /> Treats others with respect, dignity, and fosters the value of diversity and inclusion.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Adjusts performance to accommodate changes in departmental direction and processes</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">8.</td>
+                            <td><h4>Problem Solving</h4><p>Analyzes facts and data, using sound judgment, to arrive at effective solutions</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">9.</td>
+                            <td><h4>Dependability/Self Mananagement</h4><p>Consistently adheres to work schedule and completes assignments in a timely fashion.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Demonstrates initiative by setting priorities, regularly completing work on schedule, and fulfilling commitments</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">10.</td>
+                            <td><h4>Supervisory And Management Elements</h4><p>Demonstrates leadership by creating a culture that supports individual motivation, <br />high levels of individual and team performance, and quality of service</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Fosters the value of diversity and inclusiveness, treating all employees with respect,<br /> dignity, and fairness in support of equal employment opportunity and affirmative action objectives.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Supports staff development for employees supervised and maximizes existing skills in all employees.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Provides employees with performance standards, expectations, <br />and ongoing feedback regarding progress and constructively addresses performance issues.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Conducts annual performance evaluations for all direct reports and ensures completion <br /> for units under one’s organizational responsibility.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Manages the recruitment process effectively to attract, select and hire the best talent <br /> to meet organizational objectives.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center">11.</td>
+                            <td><h4>Financial/Resource Management</h4><p>Manages financial performance in area of responsibility in accordance with budget and department goals</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-center"></td>
+                            <td><p>Manages assets effectively, including technology, equipment, budget and space, where applicable.</p></td>
+
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios2" value="option2">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios3" value="option3">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios4" value="option4">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios5" value="option5">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" name="target" id="exampleRadios6" value="option6">
+                                  <span class="form-check-sign"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @*<div class="row">
+      <label class="col-md-3 col-form-label"></label>
+      <div class="col-md-9">
+        <div class="form-group">
+          <button type="submit" class="btn btn-fill btn-primary">Create</button>
+        </div>
+      </div>
+    </div>*@
+
+              </form>
+
+</div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Part Two : Summary Review Of Employee Performance</h4><br />
+            <p>
+              Supervisor describes employee’s major assignments and accomplishments, key strengths, <br /> any
+              performance shortfalls, and other performance elements that characterize the employee’s <br /> performance during the review period.
+              Please include examples or supporting information below.
+            </p>
+          </div>
+          <div class="card-body ">
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"></div>
+                  <textarea @*asp-for="Description" *@ class="form-control" cols="4" rows="6" placeholder="Enter Review Of Employee Perfrormance"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <h4 class="card-title">Part Three : Overall Performance Rating</h4><br />
+
+            <table class="table table-borderless">
+
+              <tr>
+
+                <td>
+
+
+                  <div class="row">
+                    <label class="col-md-3"></label>
+                    <div class="col-md-9">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          Exceptional Performance
+                        </label>
+                        <input class="form-check-input" type="checkbox">
+                        <span class="form-check-sign"></span>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  @*<div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Exceptional Performance
+                      </label>
+                    </div>
+                  </td>*@
+
+                <td>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      Exceeds Expectations
+                    </label>
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+
+                  </div>
+                </td>
+
+                <td>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      Partaially Meets Expectations
+                    </label>
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+
+                  </div>
+                </td>
+
+                <td>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      Does Not Meet Expecations
+                    </label>
+                    <input class="form-check-input" type="checkbox">
+                    <span class="form-check-sign"></span>
+
+                  </div>
+                </td>
+
+
+              </tr>
+
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Part Four A : Performance Goals For The Next Period</h4><br />
+            <p>List goals for the upcoming review period to ensure continued contributions from the employee for success <br /> within the organization. </p>
+          </div>
+          <div class="card-body ">
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"></div>
+                  <textarea @*asp-for="Description" *@ class="form-control" cols="4" rows="6" placeholder="List Goals For Next Review Period."></textarea>
+                </div>
+
+                <br />
+
+                <div>
+                  <h4 class="card-title">Part Four B : Goals For Progress On Personal Development</h4><br />
+                  <p>List goals related to the employee’s professional (or managerial) development. Consider the employee’s <br /> performance improvement needs and action plan, training recommendations, future goals and expectations.</p>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend"></div>
+                      <textarea class="form-control" cols="4" rows="6" placeholder="List Goals For Personal Development."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+            @*<div class="card ">*@
+
+            <div class="card-body ">
+              <form class="form-horizontal">
+
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Manager</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Employee Comments</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <textarea @*asp-for="Description" *@ class="form-control" cols="4" rows="6" placeholder="Enter Employee Comments."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                    <div class="row">
+                      <label class="col-md-3 col-form-label"></label>
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-fill btn-primary">Submit Appraisal</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+
+
+
 

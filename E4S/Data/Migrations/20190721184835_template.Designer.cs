@@ -11,9 +11,10 @@ using System;
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190721184835_template")]
+    partial class template
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,36 +248,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppraisalTemplates");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalTemplateCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("AppraisalCategoryId");
-
-                    b.Property<Guid>("AppraisalTemplateId");
-
-                    b.Property<string>("AssignTo");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<float>("Weight");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppraisalCategoryId");
-
-                    b.ToTable("AppraisalTemplateCategories");
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.ContactDetail", b =>
@@ -1249,14 +1220,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalTemplateCategory", b =>
-                {
-                    b.HasOne("E4S.Models.HumanResource.AppraisalCategory", "AppraisalCategory")
-                        .WithMany()
-                        .HasForeignKey("AppraisalCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.ContactDetail", b =>

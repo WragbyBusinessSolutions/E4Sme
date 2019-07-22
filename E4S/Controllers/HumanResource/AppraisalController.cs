@@ -5,8 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.HumanResource;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
@@ -45,7 +49,9 @@ namespace E4S.Controllers.HumanResource
         {
       var orgId = getOrg();
 
-      return View();
+      var appCategory = _context.AppraisalCategories.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(appCategory);
         }
     public IActionResult AddCategory()
     {
@@ -55,16 +61,142 @@ namespace E4S.Controllers.HumanResource
       return View();
 
     }
-
-
-    public IActionResult EditCategory()
+    [HttpPost]
+    public IActionResult AddCategory(AppraisalCategory appraisalCategory)
     {
       var orgId = getOrg();
 
+      appraisalCategory.OrganisationId = orgId;
+      appraisalCategory.Id = Guid.NewGuid();
 
-      return View();
+
+      try
+      {
+        _context.Add(appraisalCategory);
+        _context.SaveChanges();
+      }
+      catch
+      {
+
+      }
+
+      return RedirectToAction("CatgoryList");
+    }
+
+
+
+    public IActionResult EditCategory(Guid id)
+    {
+      var orgId = getOrg();
+
+      AppraisalCategoryEdit apeVM = new AppraisalCategoryEdit();
+
+      var category = _context.AppraisalCategories.Where(x => x.Id == id).FirstOrDefault();
+      var kpi = _context.AppraisalKPIs.Where(x => x.AppraisalCategoryId == id).ToList();
+
+
+      apeVM.AppraisalCategory = category;
+      apeVM.AppraisalKPIs = kpi;
+
+      return View(apeVM);
 
     }
+
+
+    [HttpPost]
+    public async Task<IActionResult> AddKPI([FromBody]AppraisalKPI kpi)
+    {
+      if (kpi == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+
+      kpi.Id = Guid.NewGuid();
+      kpi.OrganisationId = orgId;
+
+      var kpis = _context.AppraisalKPIs.Where(x => x.AppraisalCategoryId == kpi.AppraisalCategoryId).ToList().Sum(x => x.Weight) + kpi.Weight;
+
+      if (kpis > 100)
+      {
+        return Json(new
+        {
+          msg = "Exceed"
+        });
+
+      }
+
+      try
+      {
+        _context.Add(kpi);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> AddTemplate([FromBody]AppraisalTemplate temp)
+    {
+      if (temp == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+
+      temp.Id = Guid.NewGuid();
+      temp.OrganisationId = orgId;
+
+
+      try
+      {
+        _context.Add(temp);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
     public IActionResult VeiwCatgory()
         {
       var orgId = getOrg();
@@ -75,8 +207,80 @@ namespace E4S.Controllers.HumanResource
         {
       var orgId = getOrg();
 
-      return View();
+      List<TemplateListViewModel> tlVM = new List<TemplateListViewModel>();
+
+      TemplateListViewModel temp;
+
+      var temps = _context.AppraisalTemplates.Where(x => x.OrganisationId == orgId).ToList();
+
+      foreach (var item in temps)
+      {
+        temp = new TemplateListViewModel();
+        var appTemp = _context.AppraisalTemplateCategories.Where(x => x.AppraisalTemplateId == item.Id).ToList();
+
+        temp.AppraisalTemplate = item;
+        temp.NoOfCategory = appTemp.Count();
+        temp.TotalWeight = appTemp.Sum(x => x.Weight);
+
+        tlVM.Add(temp);
+      }
+
+      return View(tlVM);
         }
+
+    [HttpPost]
+    public async Task<IActionResult> AddAppTempCat([FromBody]AppraisalTemplateCategory appTemp)
+    {
+      if (appTemp == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var appTemps = _context.AppraisalTemplateCategories.Where(x => x.AppraisalTemplateId == appTemp.AppraisalTemplateId).ToList().Sum(x => x.Weight) + appTemp.Weight;
+
+      if (appTemps > 100)
+      {
+        return Json(new
+        {
+          msg = "Exceed"
+        });
+
+      }
+
+      var orgId = getOrg();
+
+      appTemp.Id = Guid.NewGuid();
+      appTemp.OrganisationId = orgId;
+
+
+      try
+      {
+        _context.Add(appTemp);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+    
 
     public IActionResult AddTemplate()
     {
@@ -85,19 +289,31 @@ namespace E4S.Controllers.HumanResource
       return View();
     }
 
-    public IActionResult EditTemplate()
+    public IActionResult EditTemplate(Guid id)
     {
       var orgId = getOrg();
+
+      AppraisalTemplateEdit apeVM = new AppraisalTemplateEdit();
+
+      var appTemp = _context.AppraisalTemplates.Where(x => x.Id == id).FirstOrDefault();
+      var appTempCat = _context.AppraisalTemplateCategories.Where(x => x.AppraisalTemplateId == appTemp.Id).Include(x => x.AppraisalCategory).ToList();
+
+      apeVM.AppraisalTemplate = appTemp;
+      apeVM.Categories = appTempCat;
+      ViewData["AppraisalCategory"] = new SelectList(_context.AppraisalCategories.Where(x => x.OrganisationId == orgId), "Id", "Category");
+
+
+
+      return View(apeVM);
+    }
+
+    public IActionResult ViewTemplate(Guid id)
+    {
+      var orgId = getOrg();
+
 
       return View();
     }
 
-
-    public IActionResult ViewTemplate()
-        {
-      var orgId = getOrg();
-
-      return View();
-        }
     }
 }

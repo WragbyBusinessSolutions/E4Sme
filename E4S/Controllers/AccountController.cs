@@ -481,7 +481,7 @@ namespace E4S.Controllers
       var useremail = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
 
       ViewData["OrgImageURL"] = _context.Organisations.Where(x => x.Id == useremail.OrganisationId).FirstOrDefault().ImageUrl;
-
+      model.Email = useremail.Email;
       ViewData["Email"] = useremail.Email;
       return View(model);
     }
@@ -491,16 +491,21 @@ namespace E4S.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
     {
+      var user = await _userManager.FindByEmailAsync(model.Email);
+      ViewData["OrgImageURL"] = _context.Organisations.Where(x => x.Id == user.OrganisationId).FirstOrDefault().ImageUrl;
+      ViewData["Email"] = model.Email;
+
       if (!ModelState.IsValid)
       {
         return View(model);
       }
-      var user = await _userManager.FindByEmailAsync(model.Email);
       if (user == null)
       {
         // Don't reveal that the user does not exist
         return RedirectToAction(nameof(ResetPasswordConfirmation));
       }
+
+
       var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
       if (result.Succeeded)
       {
@@ -521,6 +526,7 @@ namespace E4S.Controllers
         return RedirectToAction(nameof(ResetPasswordConfirmation));
       }
       AddErrors(result);
+
       return View();
     }
 
