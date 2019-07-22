@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewData["Title"] = "Add Customer";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+    <style>
+        .body-card {
+            margin-left: 2%;
+            margin-right: 2%;
+            margin-top: 1%;
+            margin-bottom: 2%;
+        }
+
+        .table-font {
+            font-weight: 500;
+        }
+
+   
+.labeltext{
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #000 !important;
+    text-align: right;
+}
+    </style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header body-card">
+                    <h5>Add a customer</h5>
+
+                </div>
+
+                <div class="card-body body-card">
+                    <form class="form">
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Customer Name</label>
+                            <input type="text" class="form-control col-sm-4" placeholder="John Doe" />
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3" style="text-align:left;">Email</label>
+                            <input type="text" class="form-control col-sm-4" placeholder="Johndoe@gmail.com" />
+
+                        </div>
+
+                        <br />
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Phone Number</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="+234958437538" />
+                        </div>
+
+                        <br />
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Country</label>
+                            <select class="form-control col-sm-4">
+                                <option>Nigeria</option>
+                            </select>
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">State</label>
+                            <select class="form-control col-md-4">
+                                <option>Lagos</option>
+                            </select>
+                        </div>
+
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">City</label>
+                            <select class="form-control col-sm-4">
+                                <option>Oshodi</option>
+                            </select>
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Bank Name</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="First Bank" />
+                        </div>
+
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Account Name</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="Lamboroki Ojulari" />
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Account Number</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="3059737374" />
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Bank Sort Code</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="23456" />
+                        </div>
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Website</label>
+                            <input type="tel" class="form-control col-sm-4" placeholder="www.wragbysolutions.com" />
+                        </div>
+
+                        <br />
+
+                        <div class="form-inline">
+                            <label class="labeltext col-sm-3">Status</label>
+                            <select class="form-control col-md-4">
+
+                                <option>Active</option>
+                                <option>Pending</option>
+                            </select>
+                        </div>
+
+                        <br />
+
+
+                        <hr />
+                        <div class="form-inline">
+                            <input type="submit" value="Create Customer" class="btn btn-info content-center" />
+
+                            <input type="submit" value="Cancel" class="btn btn-danger content-center" />
+                        </div>
+                        
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
