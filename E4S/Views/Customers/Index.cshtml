@@ -22,31 +22,44 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header body-card">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export Data
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Copy</a>
-                            <a class="dropdown-item" href="#">CSV</a>
-                            <a class="dropdown-item" href="#">Excel</a>
-                            <a class="dropdown-item" href="#">PDF</a>
-                            <a class="dropdown-item" href="#">Print</a>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pull-left">
+                                <h4 class="card-title">Customers</h4>
+                            </div>
+
+                            <div class="btn-group col-md-5 pull-right">
+                                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                                    Export Data
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Copy</a>
+                                    <a class="dropdown-item" href="#">CSV</a>
+                                    <a class="dropdown-item" href="#">Excel</a>
+                                    <a class="dropdown-item" href="#">PDF</a>
+                                    <a class="dropdown-item" href="#">Print</a>
+
+                                </div>
+
+                                <a asp-action="AddCustomer" asp-controller="Customers" class="btn btn-info btn-md pull-right btn-responsive">
+
+                                    <span class="btn-label">
+                                        <i class="now-ui-icons travel_info"></i>
+                                    </span>
+
+                                    Add New Customer
+
+                                </a>
+                            </div>
+
+
 
                         </div>
+                        
+
                     </div>
 
-                    <a asp-action="AddCustomer" asp-controller="Customers" class="btn btn-info btn-md pull-right btn-responsive">
-
-                        <span class="btn-label">
-                            <i class="now-ui-icons travel_info"></i>
-                        </span>
-
-                        Add New Customer
-
-                    </a>
-
-                    <h4 class="card-title">Customers</h4>
                 </div>
                 <div class="card-body body-card">
 

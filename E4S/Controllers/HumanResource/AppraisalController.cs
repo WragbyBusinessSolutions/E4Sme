@@ -311,6 +311,48 @@ namespace E4S.Controllers.HumanResource
     {
       var orgId = getOrg();
 
+      AppraisalViewTemplateViewModel avtVM = new AppraisalViewTemplateViewModel();
+
+      List<AppCat> appCat = new List<AppCat>();
+      List<AppraisalKPI> kPIs;
+      AppCat sAppCat;
+
+      var temp = _context.AppraisalTemplates.Where(x => x.Id == id).FirstOrDefault();
+      var appCats = _context.AppraisalTemplateCategories.Where(x => x.AppraisalTemplateId == id).Include(x => x.AppraisalCategory).ToList();
+      var kpi = _context.AppraisalKPIs.Where(x => x.OrganisationId == orgId);
+      avtVM.TemplateName = temp.Template;
+
+
+      AppraisalCategoryEdit ace;
+      
+      foreach (var item in appCats)
+      {
+
+        sAppCat = new AppCat();
+        ace = new AppraisalCategoryEdit();
+        kPIs = new List<AppraisalKPI>();
+
+        sAppCat.AppraisalTemplateCategory = item;
+        ace.AppraisalCategory = item.AppraisalCategory;
+        kPIs = kpi.Where(x => x.AppraisalCategoryId == item.AppraisalCategoryId).ToList();
+
+        
+        ace.AppraisalKPIs = kPIs;
+        sAppCat.AppraisalCategoryEdit = ace;
+
+        appCat.Add(sAppCat);
+      }
+
+      avtVM.AppCat = appCat;
+      return View(avtVM);
+    }
+
+
+    public IActionResult StartAppraisal()
+    {
+      var orgId = getOrg();
+
+
 
       return View();
     }

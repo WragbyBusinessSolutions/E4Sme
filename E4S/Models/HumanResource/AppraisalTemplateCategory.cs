@@ -15,4 +15,5 @@ namespace E4S.Models.HumanResource
     public float Weight { get; set; }
 
   }
+
 }
