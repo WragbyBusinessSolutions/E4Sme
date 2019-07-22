@@ -22,66 +22,78 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header body-card">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export Data
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Copy</a>
-                            <a class="dropdown-item" href="#">CSV</a>
-                            <a class="dropdown-item" href="#">Excel</a>
-                            <a class="dropdown-item" href="#">PDF</a>
-                            <a class="dropdown-item" href="#">Print</a>
-
-                        </div>
-                    </div>
-
-                    <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
-
-                        <span class="btn-label">
-                            <i class="now-ui-icons travel_info"></i>
-                        </span>
-
-                        Create New
-
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Product</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form>
-                                        <label class="pull-left">Name</label>
-                                        <input type="text" class="form-control" />
-                                        <br />
-                                        <label class="pull-left">Description</label>
-                                        <input type="text" class="form-control" />
-                                        <br />
-                                       
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-info">Create</button>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pull-left">
+                                <h4 class="card-title">Products / Services</h4>
                             </div>
+
+                            <div class="btn-group col-md-5 pull-right">
+                                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                                    Export Data
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Copy</a>
+                                    <a class="dropdown-item" href="#">CSV</a>
+                                    <a class="dropdown-item" href="#">Excel</a>
+                                    <a class="dropdown-item" href="#">PDF</a>
+                                    <a class="dropdown-item" href="#">Print</a>
+
+                                </div>
+
+                                <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+
+                                    <span class="btn-label">
+                                        <i class="now-ui-icons travel_info"></i>
+                                    </span>
+
+                                    Create New
+
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Add New Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form>
+                                                    <label class="pull-left">Name</label>
+                                                    <input type="text" class="form-control" />
+                                                    <br />
+                                                    <label class="pull-left">Description</label>
+                                                    <input type="text" class="form-control" />
+                                                    <br />
+
+                                                </form>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-info">Create</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
-                    <h4 class="card-title">Product/Services</h4>
+
+
                 </div>
+                
                 <div class="card-body body-card">
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow: auto;">
                         <table id="datatable" class="table table-hover">
                             <thead>
                                 <tr>
