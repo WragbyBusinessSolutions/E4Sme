@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.HumanResource.AppraisalCategory>
+
 @{
     ViewData["Title"] = "CatgoryList";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
@@ -39,7 +40,7 @@
                             </thead>
 
 
-                            @*<tbody>
+                            <tbody>
 
                                 @{
                                     int i = 1;
@@ -49,7 +50,6 @@
                                     <td></td>
                                     <td></td>                                    
                                     <td>No Data to Display</td>                                    
-                                    <td></td>
                                     <td></td>
 
                                 }
@@ -65,17 +65,14 @@
 
                                             
                                             <td>
-                                                @item.Model
+                                                @item.Category
                                             </td>
                                             <td>
-                                                @item.SerialNumber
+                                                @item.PreFilled
                                             </td>
                                             <td>
-                                                @item.EmployeeName
-                                            </td>
-                                            <td>
-                                                <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
-                                                <a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="modal" data-target="#noticeModal1" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="far fa-calendar-alt"></i></a>
+                                                @*<a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>*@
+                                                <a asp-action="EditCategory" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm" title="Edit"  ><i class="far fa-calendar-alt"></i></a>
                                                 <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
 
                                             </td>
@@ -85,7 +82,7 @@
                                     }
                                 }
 
-                                </tbody>*@
+                                </tbody>
                             </table>
                         </div>
                     </div>

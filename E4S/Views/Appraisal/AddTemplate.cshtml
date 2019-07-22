@@ -1,8 +1,126 @@
 ﻿
 @{
-    ViewData["Title"] = "AddTemplate";
+    ViewData["Title"] = "Add Template";
     Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
-<h2>AddTemplate</h2>
+<style>
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
+    }
+
+    .button-padding {
+        margin-right: 10px
+    }
+</style>
+
+<div class="content">
+  <div class="row">
+
+    
+
+
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header body-card">
+          @*<div class="btn-group pull-right">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export Data
+              </button>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Copy</a>
+                  <a class="dropdown-item" href="#">CSV</a>
+                  <a class="dropdown-item" href="#">Excel</a>
+                  <a class="dropdown-item" href="#">PDF</a>
+                  <a class="dropdown-item" href="#">Print</a>
+
+              </div>
+          </div>*@
+          @*<button class="btn btn-info btn-md button-padding pull-right btn-responsive">
+              <span class="btn-label">
+                  <i class="now-ui-icons travel_info"></i>
+              </span>
+
+              Create New
+
+          </button>*@
+
+        </div>
+
+        <div class="col-md-10">
+          @*<div class="card ">*@
+          <div class="card-header ">
+            <h4 class="card-title">Add Template Name</h4>
+            <br />
+          </div>
+          @*<div class="card-body ">*@
+          <form class="form-horizontal">
+          <div class="row">
+            <label class="col-md-3 col-form-label">Template Name</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          </form>
+          @*</div>*@
+          @*</div>*@
+        </div>
+
+        <div class="card-body body-card">
+          <h4 class="card-title col-md-4">Add Template</h4>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-responsive table-responsive-sm" style="overflow:auto;">
+                <table id="datatable" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th><strong>S/N</strong></th>
+                      <th scope="col"><strong>Template Name</strong></th>
+                      <th scope="col"><strong>Assigned To</strong></th>
+                      @*<th scope="col"><strong>Amount</strong></th>*@
+                      <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody class="fontweight">
+                    <tr>
+                      <td scope="row" class="table-font">1</td>
+                      <td scope="row">Associates Template</td>
+                      <td scope="row">Devops Associates</td>
+                      @*<td scope="row">20000</td>*@
+
+                      <td class="">
+                        <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
+                        <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
+                        <a href="#" class="btn btn-primary btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Convert to Invoice"><i class="far fa-file-alt"></i></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Consultants Template</td>
+                      <td>TSS Consultants</td>
+                      @*<td>2333</td>*@
+
+                      <td class="">
+                        <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
+                        <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
+                        <a href="#" class="btn btn-primary btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Convert to Invoice"><i class="far fa-file-alt"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
 
