@@ -347,5 +347,15 @@ namespace E4S.Controllers.HumanResource
       return View(avtVM);
     }
 
+
+    public IActionResult StartAppraisal()
+    {
+      var orgId = getOrg();
+
+
+
+      return View();
+    }
+
     }
 }
