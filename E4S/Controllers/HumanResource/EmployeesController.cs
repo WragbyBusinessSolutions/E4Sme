@@ -1136,5 +1136,67 @@ namespace E4S.Controllers.HumanResource
      );
 
     }
-  }
+
+        public IActionResult AssisgnedSubordinate()
+        {
+            var ordId = getOrg();
+            ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
+            var orgId = getOrg();
+
+            var AssignSubordinate = _context.AssignedSubordinates.Where(x => x.OrganisationId == ordId).ToList();
+
+            return View(AssignSubordinate);
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> AssisgnedSubordinates([FromBody]PostNewSalaryAdditions postNewSalaryAdditions)
+        //{
+        //    if (postNewSalaryAdditions == null)
+        //    {
+        //        return Json(new
+        //        {
+        //            msg = "No Data"
+        //        }
+        //       );
+        //    }
+
+        //    var orgId = getOrg();
+
+        //    try
+        //    {
+        //        SalaryAddition orgSalaryAddition = new SalaryAddition()
+        //        {
+        //            Id = Guid.NewGuid(),
+        //            EmployeeDetailId = postNewSalaryAdditions.EmployeeDetailsId,
+        //            AdditionId = postNewSalaryAdditions.AdditonId,
+        //            Amount = postNewSalaryAdditions.Amount,
+        //            Description = postNewSalaryAdditions.Description,
+        //            OrganisationId = orgId,
+
+        //        };
+
+        //        _context.Add(orgSalaryAddition);
+        //        _context.SaveChanges();
+
+
+        //        return Json(new
+        //        {
+        //            msg = "Success"
+        //        }
+        //     );
+        //    }
+        //    catch (Exception ee)
+        //    {
+
+        //    }
+
+        //    return Json(
+        //    new
+        //    {
+        //        msg = "Fail"
+        //    });
+        //}
+
+
+    }
 }
