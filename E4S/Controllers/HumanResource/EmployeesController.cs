@@ -1111,65 +1111,32 @@ namespace E4S.Controllers.HumanResource
 
     }
 
-        public IActionResult AssisgnedSubordinate()
-        {
-            var ordId = getOrg();
-            var orgId = getOrg();
 
-            var AssignSubordinate = _context.AssignedSubordinates.Where(x => x.OrganisationId == ordId).ToList();
-
-            return View(AssignSubordinate);
-        }
-
-        //[HttpPost]
-        //public async Task<IActionResult> AssisgnedSubordinates([FromBody]PostNewSalaryAdditions postNewSalaryAdditions)
-        //{
-        //    if (postNewSalaryAdditions == null)
-        //    {
-        //        return Json(new
-        //        {
-        //            msg = "No Data"
-        //        }
-        //       );
-        //    }
-
-        //    var orgId = getOrg();
-
-        //    try
-        //    {
-        //        SalaryAddition orgSalaryAddition = new SalaryAddition()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            EmployeeDetailId = postNewSalaryAdditions.EmployeeDetailsId,
-        //            AdditionId = postNewSalaryAdditions.AdditonId,
-        //            Amount = postNewSalaryAdditions.Amount,
-        //            Description = postNewSalaryAdditions.Description,
-        //            OrganisationId = orgId,
-
-        //        };
-
-        //        _context.Add(orgSalaryAddition);
-        //        _context.SaveChanges();
+    public IActionResult Report()
+    {
+      var orgId = getOrg();
+      var reports = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var job = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
+      var salary = _context.Salaries.Where(x => x.OrganisationId == orgId).ToList();
+      var contactDetails = _context.ContactDetails.Where(x => x.OrganisationId == orgId).ToList();
 
 
-        //        return Json(new
-        //        {
-        //            msg = "Success"
-        //        }
-        //     );
-        //    }
-        //    catch (Exception ee)
-        //    {
+      var vm = new ReportViewModel
+      {
 
-        //    }
+        EmployeeDetails = reports,
+        Job = job,
+        Salary = salary,
+        ContactDetail = contactDetails
 
-        //    return Json(
-        //    new
-        //    {
-        //        msg = "Fail"
-        //    });
-        //}
-
-
+      };
+      return View(vm);
     }
+
+
+
+
+
+
+  }
 }
