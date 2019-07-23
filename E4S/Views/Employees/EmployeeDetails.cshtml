@@ -659,7 +659,7 @@
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label>Supervisor Name</label>
-                                                                                    <select class="form-control" placeholder="Employee Details" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                                    <select class="form-control" placeholder="Employee Details" id="EmployeeDetailsId" asp-items="ViewBag.EmployeeDetails" required>
                                                                                         @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
                                                                                     </select>
                                                                                 </div>
@@ -1699,7 +1699,7 @@
             event.preventDefault();
                 var PostAssignSupervisor = {
                     EmployeeId: $("#Id").val(),
-                    EmployeeDetailsId: $("#employeeId").val(),
+                    EmployeeDetailsId: $("#Id").val(),
                     ReportMethod: $("#ReportMethod").val(),
                     AutoList: $("#AutoList").val(),
 

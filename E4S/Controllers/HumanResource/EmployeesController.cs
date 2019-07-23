@@ -1139,5 +1139,66 @@ namespace E4S.Controllers.HumanResource
 
       return View(allRVM);
     }
-  }
+
+
+        public IActionResult AssignedSupervisor()
+        {
+            var orgId = getOrg();
+            var orgAssignedSupervisor = _context.AssignedSupervisors.Where(x => x.OrganisationId == orgId).ToList();
+
+            return View(orgAssignedSupervisor);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AssisgnedSupervisor([FromBody]PostNewAssignSupervisors postNewAssignSupervisors)
+        {
+            if (postNewAssignSupervisors == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+
+            if (postNewAssignSupervisors.AutoList)
+            {
+                try
+                {
+                    AssignedSupervisor orgAssignedSuper = new AssignedSupervisor()
+                    {
+                        Id = Guid.NewGuid(),                       
+                        SupervisorId = postNewAssignSupervisors.EmployeeDetailsId,
+                        ReportMethod = postNewAssignSupervisors.ReportMethod,
+                        OrganisationId = orgId,
+
+                    };
+
+                    _context.Add(orgAssignedSuper);
+                    _context.SaveChanges();
+
+
+                    return Json(new
+                    {
+                        msg = "Success"
+                    }
+                 );
+                }
+                catch (Exception ee)
+                {
+
+                }
+            }
+          
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+    }
 }
