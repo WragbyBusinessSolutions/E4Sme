@@ -749,10 +749,9 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.WorkExperiences = _context.WorkExperiences.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.Leaves = _context.Leaves.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.OrganisationAssets = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == id).ToList();
-      employeeDetailsVM.AssignedSupervisors = _context.AssignedSupervisors.Where(x => x.EmployeeDetailId == id).ToList();
 
 
-            var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
+      var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
       var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
 
       if (jobEmployee != null)
@@ -1112,69 +1111,33 @@ namespace E4S.Controllers.HumanResource
 
     }
 
-        public IActionResult AssisgnedSupervisor()
-        {
-            var ordId = getOrg();
-            var orgId = getOrg();
 
-            var AssignSubordinate = _context.AssignedSubordinates.Where(x => x.OrganisationId == ordId).ToList();
+    public IActionResult Report()
+    {
+      var orgId = getOrg();
+      List<ReportViewModel> allRVM = new List<ReportViewModel>();
+      ReportViewModel rVM;
 
-            return View(AssignSubordinate);
-        }
+      var allEmployeeDetails = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
+      var allSalary = _context.Salaries.Where(x => x.OrganisationId == orgId).ToList();
+      var allContactDetails = _context.ContactDetails.Where(x => x.OrganisationId == orgId).ToList();
 
+      foreach (var item in allEmployeeDetails)
+      {
+        rVM = new ReportViewModel();
 
-        [HttpPost]
-        public async Task<IActionResult> AssisgnedSupervisor([FromBody]PostNewAssignSupervisors postNewAssignSupervisors)
-        {
-            if (postNewAssignSupervisors == null)
-            {
-                return Json(new
-                {
-                    msg = "No Data"
-                }
-               );
-            }
+        rVM.EmployeeDetails = item;
+        rVM.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
+        rVM.Salary = allSalary.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
+        rVM.ContactDetail = allContactDetails.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
 
-            var orgId = getOrg();
+        allRVM.Add(rVM);
 
-            if(postNewAssignSupervisors.AutoList)
-            {
-                try
-                {
-                    AssignedSupervisor orgAssignedSupervisor = new AssignedSupervisor()
-                    {
-
-                        Id = Guid.NewGuid(),
-                        EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
-                        ReportMethod = postNewAssignSupervisors.ReportMethod,
-                        OrganisationId = orgId,
-
-                    };
-
-                    _context.Add(orgAssignedSupervisor);
-                    _context.SaveChanges();
+      }
 
 
-                    return Json(new
-                    {
-                        msg = "Success"
-                    }
-                 );
-                }
-                catch (Exception ee)
-                {
-
-                }
-            }
-
-            
-            return Json(
-            new
-            {
-                msg = "Fail"
-            });
-        }
-
-
+      return View(allRVM);
     }
+  }
 }
