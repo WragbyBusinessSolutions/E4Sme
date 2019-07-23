@@ -106,7 +106,7 @@
 
               <tbody>
 
-                @{
+                @*@{
                   foreach (var item in Model.EmployeeDetails)
                   {
 
@@ -122,14 +122,18 @@
                 <td></td>
                 <td></td>
 
-                }
+                }*@
+                @{ 
 
+                  int i = 1;
 
-                @*foreach (var item in ReportViewModel)
-                    {
+                  foreach (var item in Model)
+                  {
 
                       <tr>
-                        <td class="text-center"></td>
+                        <td class="text-center">@i</td>
+                        <td>@item.EmployeeDetails.FirstName</td>
+                        <td>@item.EmployeeDetails.LastName</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -138,9 +142,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td> No Data to Display </td>
+                        <td> </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -167,7 +169,7 @@
 
                       { i = i + 1; }
                     }
-                  }*@
+                  }
 
                 </tbody>
               </table>

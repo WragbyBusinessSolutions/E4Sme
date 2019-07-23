@@ -1115,28 +1115,29 @@ namespace E4S.Controllers.HumanResource
     public IActionResult Report()
     {
       var orgId = getOrg();
-      var reports = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
-      var job = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
-      var salary = _context.Salaries.Where(x => x.OrganisationId == orgId).ToList();
-      var contactDetails = _context.ContactDetails.Where(x => x.OrganisationId == orgId).ToList();
+      List<ReportViewModel> allRVM = new List<ReportViewModel>();
+      ReportViewModel rVM;
 
+      var allEmployeeDetails = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
+      var allSalary = _context.Salaries.Where(x => x.OrganisationId == orgId).ToList();
+      var allContactDetails = _context.ContactDetails.Where(x => x.OrganisationId == orgId).ToList();
 
-      var vm = new ReportViewModel
+      foreach (var item in allEmployeeDetails)
       {
+        rVM = new ReportViewModel();
 
-        EmployeeDetails = reports,
-        Job = job,
-        Salary = salary,
-        ContactDetail = contactDetails
+        rVM.EmployeeDetails = item;
+        rVM.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
+        rVM.Salary = allSalary.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
+        rVM.ContactDetail = allContactDetails.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
 
-      };
-      return View(vm);
+        allRVM.Add(rVM);
+
+      }
+
+
+      return View(allRVM);
     }
-
-
-
-
-
-
   }
 }

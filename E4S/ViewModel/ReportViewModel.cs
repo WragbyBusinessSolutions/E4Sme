@@ -9,21 +9,10 @@ namespace E4S.ViewModel
 {
   public class ReportViewModel
   {
-
-  
-
-   
-    public List<Job> Job { get; set; }
-    public List<EmployeeDetail> EmployeeDetails { get; set; }
-    public List<Salary> Salary { get; set; }
-    public List<ContactDetail> ContactDetail { get; set; }
-
-
-
-
-
-
-
+    public EmployeeDetail EmployeeDetails { get; set; }
+    public Job Job { get; set; }
+    public Salary Salary { get; set; }
+    public ContactDetail ContactDetail { get; set; }
 
 
   }
