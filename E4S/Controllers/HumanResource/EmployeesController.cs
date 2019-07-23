@@ -749,9 +749,10 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.WorkExperiences = _context.WorkExperiences.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.Leaves = _context.Leaves.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.OrganisationAssets = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == id).ToList();
+      employeeDetailsVM.AssignedSupervisors = _context.AssignedSupervisors.Where(x => x.EmployeeDetailId == id).ToList();
 
 
-      var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
+            var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
       var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
 
       if (jobEmployee != null)
@@ -1111,7 +1112,7 @@ namespace E4S.Controllers.HumanResource
 
     }
 
-        public IActionResult AssisgnedSubordinate()
+        public IActionResult AssisgnedSupervisor()
         {
             var ordId = getOrg();
             var orgId = getOrg();
@@ -1121,54 +1122,58 @@ namespace E4S.Controllers.HumanResource
             return View(AssignSubordinate);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AssisgnedSubordinates([FromBody]PostNewSalaryAdditions postNewSalaryAdditions)
-        //{
-        //    if (postNewSalaryAdditions == null)
-        //    {
-        //        return Json(new
-        //        {
-        //            msg = "No Data"
-        //        }
-        //       );
-        //    }
 
-        //    var orgId = getOrg();
+        [HttpPost]
+        public async Task<IActionResult> AssisgnedSupervisor([FromBody]PostNewAssignSupervisors postNewAssignSupervisors)
+        {
+            if (postNewAssignSupervisors == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
 
-        //    try
-        //    {
-        //        SalaryAddition orgSalaryAddition = new SalaryAddition()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            EmployeeDetailId = postNewSalaryAdditions.EmployeeDetailsId,
-        //            AdditionId = postNewSalaryAdditions.AdditonId,
-        //            Amount = postNewSalaryAdditions.Amount,
-        //            Description = postNewSalaryAdditions.Description,
-        //            OrganisationId = orgId,
+            var orgId = getOrg();
 
-        //        };
+            if(postNewAssignSupervisors.AutoList)
+            {
+                try
+                {
+                    AssignedSupervisor orgAssignedSupervisor = new AssignedSupervisor()
+                    {
 
-        //        _context.Add(orgSalaryAddition);
-        //        _context.SaveChanges();
+                        Id = Guid.NewGuid(),
+                        EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
+                        ReportMethod = postNewAssignSupervisors.ReportMethod,
+                        OrganisationId = orgId,
+
+                    };
+
+                    _context.Add(orgAssignedSupervisor);
+                    _context.SaveChanges();
 
 
-        //        return Json(new
-        //        {
-        //            msg = "Success"
-        //        }
-        //     );
-        //    }
-        //    catch (Exception ee)
-        //    {
+                    return Json(new
+                    {
+                        msg = "Success"
+                    }
+                 );
+                }
+                catch (Exception ee)
+                {
 
-        //    }
+                }
+            }
 
-        //    return Json(
-        //    new
-        //    {
-        //        msg = "Fail"
-        //    });
-        //}
+            
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
 
 
     }
