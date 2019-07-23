@@ -787,6 +787,9 @@ namespace E4S.Controllers.HumanResource
       ViewData["Branch"] = new SelectList(_context.Branches.Where(x => x.OrganisationId == orgId), "Id", "BranchName", employeeDetailsVM.BranchId);
       ViewData["PayGrade"] = new SelectList(_context.PayGrades.Where(x => x.OrganisationId == orgId), "Id", "PayGradeName", employeeDetailsVM.PayGradeId);
 
+      ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == orgId), "Id", "FirstName", "LastName");
+
+
       return View(employeeDetailsVM);
         }
 
@@ -838,35 +841,6 @@ namespace E4S.Controllers.HumanResource
       }
 
 
-     // try
-     // {
-     //   var newEmployeeSalary = new Salary()
-     //   {
-     //     Id = Guid.NewGuid(),
-     //     Amount = postSalary.Amount,
-     //     OrganisationId = orgId,
-     //     EmployeeDetailId = postSalary.EmployeeId,
-     //     Currency = postSalary.Currency,
-     //     PayFrequency = postSalary.PayFrequency,
-     //     Comment = postSalary.Comments,
-     //     IsActive = true
-
-     //   };
-
-     //   _context.Add(newEmployeeSalary);
-     //   _context.SaveChanges();
-
-
-     //   return Json(new
-     //   {
-     //     msg = "Success"
-     //   }
-     //);
-     // }
-     // catch (Exception ee)
-     // {
-
-     // }
 
       return Json(
       new

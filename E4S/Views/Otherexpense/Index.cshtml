@@ -21,66 +21,76 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+
                 <div class="card-header body-card">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export Data
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Copy</a>
-                            <a class="dropdown-item" href="#">CSV</a>
-                            <a class="dropdown-item" href="#">Excel</a>
-                            <a class="dropdown-item" href="#">PDF</a>
-                            <a class="dropdown-item" href="#">Print</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3 pull-left">
+                                <h4 class="card-title">Other Expenses</h4>
+                            </div>
 
-                        </div>
-                    </div>
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Export Data
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Copy</a>
+                                    <a class="dropdown-item" href="#">CSV</a>
+                                    <a class="dropdown-item" href="#">Excel</a>
+                                    <a class="dropdown-item" href="#">PDF</a>
+                                    <a class="dropdown-item" href="#">Print</a>
 
-                    <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
-
-                        <span class="btn-label">
-                            <i class="now-ui-icons travel_info"></i>
-                        </span>
-
-                        Add New Expenses
-
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Expenses</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form>
-                                        <label class="pull-left">Date</label>
-                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" />
-                                        <br />
-                                        <label class="pull-left">Description</label>
-                                        <input type="text" class="form-control" />
-                                        <br />
-                                        <label class="pull-left">Amount</label>
-                                        <input type="text" class="form-control" />
-                                        <br />
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-info">Add</button>
                                 </div>
                             </div>
+
+                            <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+
+                                Add New Expenses
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Add New Expenses</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form>
+                                                <label class="pull-left">Date</label>
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" />
+                                                <br />
+                                                <label class="pull-left">Description</label>
+                                                <input type="text" class="form-control" />
+                                                <br />
+                                                <label class="pull-left">Amount</label>
+                                                <input type="text" class="form-control" />
+                                                <br />
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-info">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                    <h4 class="card-title">Other Expenses</h4>
                 </div>
+                
                 <div class="card-body body-card">
 
                     <div class="table-responsive-sm">
