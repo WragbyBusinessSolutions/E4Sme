@@ -36,7 +36,7 @@ namespace E4S.ViewModel
     public List<Dependant> Dependants { get; set; }
 
         public List<AssignedSubordinate> AssignedSubordinates  { get; set; }
-        public List<PostNewAssignSupervisors> AssignedSupervisors { get; set; }
+        public List<AssignedSupervisor> AssignedSupervisors { get; set; }
         public List<InstitutionQualification> InstitutionQualifications { get; set; }
         public List<Skill> Skills { get; set; }
         public List<WorkExperience> WorkExperiences { get; set; }
