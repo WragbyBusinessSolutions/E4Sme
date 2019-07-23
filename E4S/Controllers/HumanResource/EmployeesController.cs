@@ -1136,5 +1136,33 @@ namespace E4S.Controllers.HumanResource
      );
 
     }
+
+
+    public IActionResult Report()
+    {
+      var orgId = getOrg();
+      var reports = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var job = _context.Jobs.Where(x => x.OrganisationId == orgId).ToList();
+      var salary = _context.Salaries.Where(x => x.OrganisationId == orgId).ToList();
+      var contactDetails = _context.ContactDetails.Where(x => x.OrganisationId == orgId).ToList();
+
+
+      var vm = new ReportViewModel
+      {
+
+        EmployeeDetails = reports,
+        Job = job,
+        Salary = salary,
+        ContactDetail = contactDetails
+
+      };
+      return View(vm);
+    }
+
+
+
+
+
+
   }
 }

@@ -1,0 +1,227 @@
+﻿@model IEnumerable<E4S.ViewModel.ReportViewModel>
+
+
+@*@model E4S.ViewModel.ReportViewModel*@
+
+@{
+  ViewData["Title"] = "Report";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+
+}
+
+<div class="content">
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-10">
+              <h4 class="card-title"> Reports</h4>
+            </div>
+            <div class="col-md-2">
+              @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+              @*<button class="btn btn-info pull-right" data-toggle="modal" data-target="#noticeModal">
+                  <span class="btn-label">
+                    <i class="now-ui-icons travel_info"></i>
+                  </span>
+                  Add New Asset
+                </button>*@
+            </div>
+          </div>
+
+
+        </div>
+        <input id="AssetId" name="AssetId" hidden />
+
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+              <thead class="text-primary">
+
+                <tr>
+                  <th class="text-center" colspan="10">
+                    Employee Profile
+                  </th>
+                  <th class="text-center" colspan="8">
+                    Job Details
+                  </th>
+                  <th class="text-center" colspan="6">
+                    Salary
+                  </th>
+                  <th class="text-center" colspan="6">
+                    Contact Details
+                  </th>
+
+
+                </tr>
+                <tr>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+                  <th>Employee ID</th>
+                  <th>Other ID</th>
+                  <th>Gender</th>
+                  <th>Marital Status</th>
+                  <th>D.O.B.</th>
+                  <th>E-mail</th>
+                  <th>Phone Number</th>
+
+
+                  <th>Job Title</th>
+                  <th>Department</th>
+                  <th>Employment Type</th>
+                  <th>Job Category</th>
+                  <th>Joined Date</th>
+                  <th>Branch</th>
+                  <th>Employment Start Date</th>
+                  <th>Employment End Date</th>
+
+
+                  <th>Pay Frequency</th>
+                  <th>Amount</th>
+                  <th>Currency</th>
+                  <th>Bank Name</th>
+                  <th>Account Name</th>
+                  <th>Account Number</th>
+
+
+
+                  <th>Address</th>
+                  <th>ZIP/Postal Code</th>
+                  <th>Country</th>
+                  <th>State</th>
+                  <th>Local Government</th>
+                  <th>Mobile Phone Number</th>
+                  <th>Work Phone Number</th>
+                  <th>Work E-Mail</th>
+                  <th>Personal E-Mail</th>
+                </tr>
+
+
+
+              </thead>
+
+
+              <tbody>
+
+                @{
+                  foreach (var item in Model.EmployeeDetails)
+                  {
+
+                  }
+
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>No Data to Display</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                }
+
+
+                @*foreach (var item in ReportViewModel)
+                    {
+
+                      <tr>
+                        <td class="text-center"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td> No Data to Display </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      { i = i + 1; }
+                    }
+                  }*@
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <script>
+    $(document).ready(function () {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function () {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+
+
+  </script>
+
