@@ -58,7 +58,7 @@
         <h5 class="card-title">Set Categories</h5>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive" style="overflow:auto;">
           <table class="table">
             <thead class="text-primary">
             <th class="text-center">
@@ -84,14 +84,6 @@
               @{
                 int i = 1;
 
-                @*@if (Model.AppraisalKPIs.Count() < 1)
-            {
-            <td></td>
-            <td></td>
-            <td>No Data to Display</td>
-            <td></td>
-
-          }*@
 
 
                 foreach (var item in Model.Categories)
@@ -157,7 +149,7 @@
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
               <div class="form-group">
-                <a asp-action="ViewTemplate" asp-route-id="AppraisalTemplate.Id" class="btn btn-fill btn-warning pull-right">View</a>
+                <a asp-action="ViewTemplate" asp-route-id="@Model.AppraisalTemplate.Id" class="btn btn-fill btn-warning pull-right">View</a>
               </div>
             </div>
           </div>
