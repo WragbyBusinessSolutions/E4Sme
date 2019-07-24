@@ -149,8 +149,8 @@ namespace E4S.Controllers
 
       var leaves = _context.Leaves.Where(x => x.OrganisationId == orgId);
 
-      HRDVM.ActiveLeaves = leaves.Where(c => c.Status != "Declined").ToList();
-      HRDVM.PendingLeave = leaves.Where(c => c.Status == "Pending").ToList().Count();
+      HRDVM.ActiveLeaves = leaves.Where(c => c.Status == "Pending").ToList();
+      HRDVM.PendingLeave = leaves.Where(c => c.Status == "Approved").Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now).ToList().Count();
 
 
 
