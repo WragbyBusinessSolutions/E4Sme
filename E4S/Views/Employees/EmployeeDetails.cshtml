@@ -659,7 +659,7 @@
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label>Supervisor Name</label>
-                                                                                    <select class="form-control" placeholder="Employee Details" id="EmployeeDetailsId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                                    <select class="form-control" placeholder="Employee Details" id="SupervisorId" asp-items="ViewBag.EmployeeDetails" required>
                                                                                         @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
                                                                                     </select>
                                                                                 </div>
@@ -718,7 +718,7 @@
                                                                     </th>
                                                                     </thead>
 
-                                                                      <tbody>
+                                                                      @*<tbody>
 
                                           
                                                                         @foreach (var item in Model.AssignedSupervisors)
@@ -739,7 +739,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                         }
-                                                                    </tbody>
+                                                                    </tbody>*@
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -1698,8 +1698,8 @@
 
             event.preventDefault();
                 var PostAssignSupervisor = {
-                    EmployeeId: $("#Id").val(),
                     EmployeeDetailsId: $("#Id").val(),
+                    SupervisorId: $("#SupervisorId").val(),
                     ReportMethod: $("#ReportMethod").val(),
                     AutoList: $("#AutoList").val(),
 

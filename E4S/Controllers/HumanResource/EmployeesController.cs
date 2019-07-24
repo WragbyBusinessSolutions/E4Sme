@@ -1164,14 +1164,15 @@ namespace E4S.Controllers.HumanResource
 
             var orgId = getOrg();
 
-            if (postNewAssignSupervisors.AutoList)
+            if (postNewAssignSupervisors.AutoList == on)
             {
                 try
                 {
                     AssignedSupervisor orgAssignedSuper = new AssignedSupervisor()
                     {
-                        Id = Guid.NewGuid(),                       
-                        SupervisorId = postNewAssignSupervisors.EmployeeDetailsId,
+                        Id = Guid.NewGuid(),  
+                        EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
+                        SupervisorId = postNewAssignSupervisors.SupervisorId,
                         ReportMethod = postNewAssignSupervisors.ReportMethod,
                         OrganisationId = orgId,
 

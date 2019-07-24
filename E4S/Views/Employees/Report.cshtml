@@ -131,42 +131,49 @@
                   foreach (var item in Model)
                   {
 
-                      <tr>
-                        <td class="text-center">@i</td>
-                        <td>@item.EmployeeDetails.FirstName</td>
-                        <td>@item.EmployeeDetails.MiddleName</td>
-                        <td>@item.EmployeeDetails.LastName</td>
-                        <td>@item.EmployeeDetails.EmployeeId</td>
-                        <td>@item.EmployeeDetails.OtherId</td>
-                        <td>@item.EmployeeDetails.Gender</td>
-                        <td>@item.EmployeeDetails.MaritalStatus</td>
-                        <td>@item.EmployeeDetails.DateOfBirth</td>
-                        <td>@item.EmployeeDetails.Email</td>
-                        <td>@item.EmployeeDetails.PhoneNumber</td>
-                        <td>@item.Job.JobTitle</td>
-                        <td>@item.Job.Department</td>
-                        <td>@item.Job.EmploymentStatusId</td>
-                        <td>@item.Job.JobCategoryId</td>
-                        <td>@item.Job.JoinedDate</td>
-                        <td>@item.Job.BranchId</td>
-                        <td>@item.Job.StartDate</td>
-                        <td>@item.Job.EndDate</td>
-                        <td>@item.Salary.PayFrequency</td>
-                        <td>@item.Salary.Amount</td>
-                        <td>@item.Salary.Currency</td>
-                        <td>@item.Salary.BankName</td>
-                        <td>@item.Salary.AccountName</td>
-                        <td>@item.Salary.AccountNo</td>
-                        <td>@item.ContactDetail.AddressOne</td>
-                        <td>@item.ContactDetail.Zip</td>
-                        <td>@item.ContactDetail.Country</td>
-                        <td>@item.ContactDetail.State</td>
-                        <td>@item.ContactDetail.City</td>
-                        <td>@item.ContactDetail.Mobile</td>
-                        <td>@item.ContactDetail.WorkTelephone</td>
-                        <td>@item.ContactDetail.WorkEmail</td>
-                        <td>@item.ContactDetail.OtherEmail</td>
-                      </tr>
+                                  <tr>
+                                      <td class="text-center">@i</td>
+                                      <td>@item.EmployeeDetails.FirstName</td>
+                                      <td>@item.EmployeeDetails.MiddleName</td>
+                                      <td>@item.EmployeeDetails.LastName</td>
+                                      <td>@item.EmployeeDetails.EmployeeId</td>
+                                      <td>@item.EmployeeDetails.OtherId</td>
+                                      <td>@item.EmployeeDetails.Gender</td>
+                                      <td>@item.EmployeeDetails.MaritalStatus</td>
+                                      <td>@item.EmployeeDetails.DateOfBirth</td>
+                                      <td>@item.EmployeeDetails.Email</td>
+                                      <td>@item.EmployeeDetails.PhoneNumber</td>
+                                      
+
+                                     
+
+                                      <td>@item.Job.Department</td>
+                                      <td>@item.Job.EmploymentStatusId</td>
+                                      <td>@item.Job.JobCategoryId</td>
+                                      <td>@item.Job.JoinedDate</td>
+                                      <td>@item.Job.BranchId</td>
+                                      <td>@item.Job.StartDate</td>
+                                      <td>@item.Job.EndDate</td>
+
+
+                                      <td>@item.Salary.PayFrequency</td>
+                                      <td>@item.Salary.Amount</td>
+                                      <td>@item.Salary.Currency</td>
+                                      <td>@item.Salary.BankName</td>
+                                      <td>@item.Salary.AccountName</td>
+                                      <td>@item.Salary.AccountNo</td>
+
+                                              
+                                      <td>@*@item.ContactDetail.AddressOne*@</td>
+                                      <td>@*@item.ContactDetail.Zip*@</td>
+                                      <td>@*@item.ContactDetail.Country*@</td>
+                                      <td>@*@item.ContactDetail.State*@</td>
+                                      <td>@*@item.ContactDetail.City*@</td>
+                                      <td>@*@item.ContactDetail.Mobile*@</td>
+                                      <td>@*@item.ContactDetail.WorkTelephone*@</td>
+                                      <td>@*@item.ContactDetail.WorkEmail*@</td>
+                                      <td>@*@item.ContactDetail.OtherEmail*@</td>
+                                  </tr>
 
                       { i = i + 1; }
                     }
