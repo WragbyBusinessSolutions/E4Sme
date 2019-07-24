@@ -16,8 +16,9 @@ namespace E4S.ViewModel
 
   public class EmployeeAppraisal
   {
-    public EmployeeDetail EmployeeDetail { get; set; }
-    public Job Job { get; set; }
-    public EmployeeDetail AssignedSupervisor { get; set; }
+        public string AId { get; set; }
+        public EmployeeDetail EmployeeDetail { get; set; }
+        public Job Job { get; set; }
+        public EmployeeDetail AssignedSupervisor { get; set; }
   }
 }
