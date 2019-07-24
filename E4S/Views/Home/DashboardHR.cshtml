@@ -44,7 +44,7 @@
                   <div class="icon icon-info">
                     <i class="now-ui-icons objects_support-17"></i>
                   </div>
-                  <h3 class="info-title">0</h3>
+                  <h3 class="info-title">@Model.PendingLeave</h3>
                   <h6 class="stats-title">TOTAL EMPLOYEES ON LEAVE</h6>
                 </div>
               </div>
@@ -56,7 +56,7 @@
                     <i class="now-ui-icons ui-2_chat-round"></i>
 
                   </div>
-                  <h3 class="info-title">@Model.PendingLeave</h3>
+                  <h3 class="info-title">0</h3>
                   <h6 class="stats-title">TOTAL PENDING REQUESTS</h6>
                 </div>
               </div>
@@ -73,7 +73,7 @@
 
         <div class="card-header">
           <h4 class="card-title">Departments</h4>
-          <h5 class="card-category">Head Count Per Department</h5>
+          <p class="category">Head Count Per Department</p>
         </div>
         <div class="card-body">
           <div class="chart-area">
@@ -245,7 +245,7 @@
                     </td>
                     <td>
                       @item.LeaveTitle
-                    </td>`
+                    </td>
 
                     @*<td class="text-left">
                       <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
