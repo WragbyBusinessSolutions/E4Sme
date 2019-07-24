@@ -42,7 +42,9 @@ namespace E4S.Controllers.HumanResource
         {
       var orgId = getOrg();
 
-      return View();
+      var appraisal = _context.Appraisals.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(appraisal);
         }
 
         public IActionResult CatgoryList()
@@ -357,5 +359,81 @@ namespace E4S.Controllers.HumanResource
       return View();
     }
 
+    [HttpPost]
+    public IActionResult StartAppraisal(Appraisal appraisal)
+    {
+      var orgId = getOrg();
+
+      if (appraisal == null)
+      {
+        return View();
+      }
+
+      appraisal.Id = Guid.NewGuid();
+      appraisal.OrganisationId = orgId;
+      appraisal.IsActive = true;
+
+
+      try
+      {
+        _context.Add(appraisal);
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+
+      }
+      catch
+      {
+
+      }
+      return View();
+
     }
+
+    public IActionResult OngoingAppraisals()
+    {
+      var orgId = getOrg();
+
+      var appraisal = _context.Appraisals.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(appraisal);
+    }
+
+    public IActionResult OngoingAppraisal(Guid id)
+    {
+      var orgId = getOrg();
+      OngoingAppraisalViewModel oAVM = new OngoingAppraisalViewModel();
+      List<EmployeeAppraisal> allEmployeeApp = new List<EmployeeAppraisal>();
+      EmployeeAppraisal singleEmployeApp;
+
+
+      oAVM.Appraisal = _context.Appraisals.Where(x => x.Id == id).FirstOrDefault();
+
+      var allEmployee = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var allSupervisor = _context.AssignedSupervisors.Where(x => x.OrganisationId == orgId).ToList();
+      var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId).Include(c => c.Department).ToList();
+
+      foreach (var item in allEmployee)
+      {
+        singleEmployeApp = new EmployeeAppraisal();
+
+        singleEmployeApp.EmployeeDetail = item;
+        singleEmployeApp.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
+        //singleEmployeApp.AssignedSupervisor = allEmployee.Where(x => x.Id == allSupervisor.Where(c => c.EmployeeDetailId == item.Id).FirstOrDefault().SupervisorId).FirstOrDefault();
+
+        allEmployeeApp.Add(singleEmployeApp);
+
+      }
+
+
+      oAVM.EmployeeAppraisalList = allEmployeeApp.OrderBy(x => x.Job.Department.DepartmentName).ToList();
+
+      ViewData["Templates"] = new SelectList(_context.AppraisalTemplates.Where(x => x.OrganisationId == orgId), "Id", "Template");
+
+
+
+      return View(oAVM);
+    }
+
+  }
 }

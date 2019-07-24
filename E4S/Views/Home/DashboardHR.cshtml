@@ -56,7 +56,7 @@
                     <i class="now-ui-icons ui-2_chat-round"></i>
 
                   </div>
-                  <h3 class="info-title">0</h3>
+                  <h3 class="info-title">@Model.PendingLeave</h3>
                   <h6 class="stats-title">TOTAL PENDING REQUESTS</h6>
                 </div>
               </div>
@@ -237,113 +237,29 @@
               <th class="text-right"></th>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    Joba Agabi-Eleshin
-                  </td>
-                  <td>
-                    Honeymoon Leave
-                  </td>
+                @foreach (var item in Model.ActiveLeaves)
+                {
+                  <tr>
+                    <td>
+                      @item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName
+                    </td>
+                    <td>
+                      @item.LeaveTitle
+                    </td>`
 
-                  <td class="text-left">
-                    <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
-
-
-                    @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Temofe Anene
-                  </td>
-                  <td>
-                    Paternity Leave
-                  </td>
-
-                  <td class="text-left">
-                    <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
+                    @*<td class="text-left">
+                      <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
 
 
-                    @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Clement Dike
-                  </td>
-                  <td>
-                    Casual Leave
-                  </td>
-
-                  <td class="text-left">
-                    <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
-
-                    @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Fortunate Nneji
-                  </td>
-                  <td>
-                    Maternity Leave
-                  </td>
-
-                  <td class="text-left">
-                    <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
-
-                    @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Uche Onugha
-                  </td>
-                  <td>
-                    Study Leave
-                  </td>
-
-                  <td class="text-left">
-                    <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
-
-
-                    @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                      Busuyi Adewuyi
-                </td>
-                  <td>
-                Maternity Leave
-                </td>
-
-                  <td class="text-left">
-                  <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
-
-
-                   @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-                      </td>
+                    </td>*@
                   </tr>
-                <tr>
-                <td>
-                  Elijah Adewuyi
-                </td>
-                  <td>
-                  Paternity Leave
-                </td>
 
-                  <td class="text-left">
-                <a href="#" class="btn btn-round btn-info btn-icon btn-sm like" title="View Profile"><i class="fas fa-angle-right"></i></a>
+                }
 
-
-               @*<a href="#" class="btn btn-sm btn-info">Profile</a>*@
-              </td>
-                </tr>
               </tbody>
             </table>
             <div>
-              <a href="#" class="pull-right">View more...</a>
+              <a asp-action="Index" asp-controller="Leaves" class="pull-right">View more...</a>
             </div>
 
           </div>
