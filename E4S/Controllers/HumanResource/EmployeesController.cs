@@ -1164,7 +1164,7 @@ namespace E4S.Controllers.HumanResource
 
             var orgId = getOrg();
 
-            if (postNewAssignSupervisors.AutoList == on)
+            if (postNewAssignSupervisors.AutoList == "On")
             {
                 try
                 {
