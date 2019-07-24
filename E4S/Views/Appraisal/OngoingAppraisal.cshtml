@@ -72,106 +72,152 @@
       <div class="card ">
         <div class="card-header ">
           <h5 class="card-title">
-            Navigation Pills -
+            @*Navigation Pills -*@
             @*<small class="description">Horizontal Tabs</small>*@
           </h5>
         </div>
         <div class="card-body ">
 
-          <ul class="nav nav-pills nav-pills-primary" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
-                Unassigned
+            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                        Unassigned
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                        Assigned
+                    </a>
+                </li>
+                @*<li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+                Options
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
-                Assigned
-              </a>
-            </li>
-            @*<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
-                  Options
-                </a>
-              </li>*@
-          </ul>
+            </li>*@
+            </ul>
 
-
-          <div class="tab-content tab-space">
-            <div class="tab-pane active" id="link1">
-
-
-              <div class="card-body">
-                <div class="table-responsive" style="overflow:auto;">
-
-                  @*<table class="table">*@
-                  <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-                    <thead class="text-primary">
-                      <tr>
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                          Department
-                        </th>
-                        @*<th class="text-center">
-            Supervisor
-          </th>*@
-                        <th class="text-left">
-                          Template
-                        </th>
-                        <th class="text-right">
-                          Action
-                        </th>
-
-                      </tr>
-
-                    </thead>
-                    <tbody>
-
-                      @foreach (var item in Model.EmployeeAppraisalList)
-                      {
-                        <tr>
-
-                          <td>
-                            @item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName
-                          </td>
-                          <td>
-                            @item.Job.Department.DepartmentName
-                          </td>
-                          @*<td class="text-center"></td>*@
-                          <td class="text-left">
-                            <select id="@item.EmployeeDetail.Id" class="form-control" asp-items="@ViewBag.Templates"></select>
-                          </td>
-                          <td class="text-right">
-                            <a asp- ="" id="assignTemp" name="assignTemp" employeeId="@item.EmployeeDetail.Id" class="btn btn-round btn-info btn-icon btn-sm" title="Click to View"><i class="far fa-calendar-alt"></i></a>
-
-                            @*<a asp-action="OngoingAppraisal" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to View"><i class="far fa-calendar-alt"></i></a>*@
-
-                          </td>
-
-                        </tr>
-
-                      }
-
-
-                    </tbody>
-                  </table>
+            <!-- The Edit-->
+            <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <h5 class="modal-title" id="myModalLabel"> Assign Templates</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="instruction">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Employee Name</label>
+                                                <input type="text" class="form-control" placeholder="Employee Name" id="EmployeeName" name="EmployeeName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Department</label>
+                                                <input type="text" class="form-control" placeholder="Department" id="Department" name="Department">
+                                                <input id="onAppId" name="onAppId" hidden />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Templates</label>
+                                                @*<select class="form-control" placeholder="Template Name" id="Templates" name="Templates"></select>*@
+                                                <select class="form-control" asp-items="@ViewBag.Templates"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="card-footer ">
+                                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitTemplate">Submit</button>
+                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </div>
+            <!-- The End of the modal-->
 
+            <div class="tab-content tab-space">
+                <div class="tab-pane active" id="link1">
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow:auto;">
+
+                            @*<table class="table">*@
+                            <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Department
+                                        </th>
+                                        @*<th class="text-center">
+                                      Supervisor
+                                    </th>*@
+                                        @*<th class="text-left">
+                                            Template
+                                        </th>*@
+                                        <th class="text-center">
+                                            Action
+                                        </th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.EmployeeAppraisalList)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                @item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName
+                                            </td>
+                                            <td>
+                                                @item.Job.Department.DepartmentName
+                                            </td>
+                                            @*<td class="text-center"></td>*@
+                                            @*<td class="text-left">
+                                                <select id="@item.EmployeeDetail.Id" class="form-control" asp-items="@ViewBag.Templates"></select>
+                                            </td>*@
+                                            <td class="text-center">
+                                                <a class="btn btn-round btn-info btn-icon btn-sm" title="Click to View"  id="Editbtn" EditOnAppId="@item.AId" select-EmployeeName="@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName" Selected-Templates="@item" Selected-Department="@item.Job.Department.DepartmentName"><i class="far fa-calendar-alt" data-toggle="modal" data-target="#noticeModal"></i></a>
+
+                                                @*<a asp-action="OngoingAppraisal" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to View"><i class="far fa-calendar-alt"></i></a>*@
+
+                                            </td>
+
+                                        </tr>
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="link2">
+                    Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                    <br />
+                    <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                </div>
 
             </div>
-
-
-            <div class="tab-pane" id="link2">
-              Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-              <br />
-              <br />Dramatically maintain clicks-and-mortar solutions without functional solutions.
-            </div>
-
-          </div>
         </div>
 
 
@@ -339,6 +385,33 @@
         //        //});
         //    });
 
+
+
+
+      //Code for pulling the Records on the Table
+            var aEditOnAppId;
+
+            $(document).delegate('#Editbtn',
+                'click',
+                function (e) {
+
+                    aEditOnAppId = $(this).attr('EditOnAppId');
+                    employeeName = $(this).attr('select-EmployeeName');
+                    department = $(this).attr('Selected-Department');
+                    templates = $(this).attr('Selected-Templates');
+
+
+                    //console.log(varstartDate, varendDate);
+                    //  console.log(aEditAssetId);
+
+                    $('input[name=onAppId]').val(aEditOnAppId);
+                    $('input[name=EmployeeName]').val(employeeName);
+                    $('input[name=Department]').val(department);
+                    $('input[name=Templates]').val(templates);
+
+                });
+
+            //End of the code
   </script>
 
 
