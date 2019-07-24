@@ -12,5 +12,16 @@ namespace E4S.Controllers.WragbyAdmin
         {
             return View();
         }
+
+
+        public IActionResult CompanyListing()
+        {
+            return View();
+        }
+
+        public IActionResult UpdateOrganizationDetails()
+        {
+            return View();
+        }
     }
 }
