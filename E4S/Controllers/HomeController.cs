@@ -133,18 +133,24 @@ namespace E4S.Controllers
 
       List<HeadCount> headCounts = new List<HeadCount>();
       var department = _context.Departments.Where(x => x.OrganisationId == orgId).ToList();
+
+      var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId);
       HeadCount hC;
       foreach (var item in department)
       {
         hC = new HeadCount();
 
         hC.Department = item.DepartmentName;
-        hC.Female = _context.Jobs.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Female").ToList().Count();
-        hC.Male = _context.Jobs.Where(x => x.OrganisationId == orgId).Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Male").ToList().Count();
+        hC.Female = allJobs.Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Female").ToList().Count();
+        hC.Male = allJobs.Where(x => x.DepartmentId == item.Id).Where(x => x.EmployeeDetail.Gender == "Male").ToList().Count();
 
         headCounts.Add(hC);
       }
 
+      var leaves = _context.Leaves.Where(x => x.OrganisationId == orgId);
+
+      HRDVM.ActiveLeaves = leaves.Where(c => c.Status == "Pending").ToList();
+      HRDVM.PendingLeave = leaves.Where(c => c.Status == "Approved").Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now).ToList().Count();
 
 
 

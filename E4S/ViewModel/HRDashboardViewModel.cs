@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E4S.Models.HumanResource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,9 @@ namespace E4S.ViewModel
     public List<LatestEmployeeVM> LatestEmployeeVMs { get; set; }
     public List<LeaveDashVM> LeaveDashVMs { get; set; }
     public List<RecentApplication> RecentApplications { get; set; }
+
+
+    public List<Leave> ActiveLeaves { get; set; }
   }
 
   public class LatestEmployeeVM
