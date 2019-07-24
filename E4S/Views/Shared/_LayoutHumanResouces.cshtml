@@ -141,12 +141,12 @@
                             </a>
                         </li>
 
-                        <li>
+                        @*<li>
                             <a asp-action="Report" asp-controller="Employees">
                                 <span class="sidebar-mini-icon">R</span>
                                 <span class="sidebar-normal">Report </span>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </li>
@@ -166,7 +166,12 @@
                                 <span class="sidebar-normal">Leaves</span>
                             </a>
                         </li>
-                        
+                        <li>
+                            <a asp-action="LeaveConfiguration" asp-controller="Jobs">
+                                <span class="sidebar-mini-icon">L C </span>
+                                <span class="sidebar-normal"> Leave Configuration </span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
