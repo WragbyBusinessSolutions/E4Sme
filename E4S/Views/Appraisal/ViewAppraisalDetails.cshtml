@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "ViewAppraisalDetails";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-stats card-raised">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Appraisal Details</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <br />
+                        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Appraisal Score</th>
+                                    <th>Remark</th>
+
+                                    <th class="disabled-sorting text-right">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Adewuyi Elijah</td>
+                                    <td>70</td>
+                                    <td>Satisfactory</td>
+
+                                    <td class="text-right">
+                                        <a class="btn  btn-success " title="Click to View" style="color:white;">View Details</a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Femi Olayode</td>
+                                    <td>90</td>
+                                    <td>Satisfactory</td>
+
+                                    <td class="text-right">
+                                        <a class="btn  btn-success " title="Click to View"  style="color:white;">View Details</a>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                    @*<div class="card-body ">
+
+                      <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons shopping_box"></i>
+
+                        </div>
+
+                        <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="ReportAccountBalance">Account Balance</a></h5>
+                          <p class="col-md-12">
+                            Summary view of balances and activity for all account
+
+                          </p>
+
+                        </div>
+
+                      </div>
+                      <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons files_single-copy-04"></i>
+                        </div>
+
+                        <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="ReportTrialBalance">Trail Balance</a></h5>
+                          <p class="col-md-12">Summary of your balance expenses that datermine the profit you made</p>
+                        </div>
+
+                      </div>
+                      <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons shopping_credit-card"></i>
+                        </div>
+
+                        <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="ReportAccountTransaction">Account Transactions (General Ledger)</a></h5>
+                          <p class="col-md-12">
+                            Snapshot of what your business owns or
+                            is due to receive from other (assets), whats its own to others
+                            (liabilities) and what you've invested ar retained in your company (Equity)
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    </div>*@
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+

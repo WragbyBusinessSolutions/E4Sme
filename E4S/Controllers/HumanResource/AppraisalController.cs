@@ -47,6 +47,21 @@ namespace E4S.Controllers.HumanResource
       return View(appraisal);
         }
 
+
+        public IActionResult AppraisalReport()
+        {
+           
+            return View();
+        }
+
+
+        public IActionResult ViewAppraisalDetails()
+        {
+
+            return View();
+        }
+
+
         public IActionResult CatgoryList()
         {
       var orgId = getOrg();
