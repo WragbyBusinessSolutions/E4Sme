@@ -11,6 +11,7 @@
 
 
 <div class="content">
+    @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
@@ -18,48 +19,48 @@
                     <h4 class="card-title"> Employee List</h4>
                 </div>
                 @*<div class="card-body ">
-                    <form method="#" action="#">
-                        <div class="row">
-                            <div class="col-md-4">
+                        <form method="#" action="#">
+                            <div class="row">
+                                <div class="col-md-4">
 
-                                <label>Job Title</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
-                                        <option disabled selected>Job Title</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
+                                    <label>Job Title</label>
+                                    <div class="">
+                                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Job Title">
+                                            <option disabled selected>Job Title</option>
+                                            <option value="2">Foobar</option>
+                                            <option value="3">Is great</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <label>Department</label>
+                                    <div class="">
+                                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
+                                            <option disabled selected>Department</option>
+                                            <option value="2">Foobar</option>
+                                            <option value="3">Is great</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <label>Employment Status</label>
+                                    <div class="">
+                                        <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
+                                            <option disabled selected>Employment Status</option>
+                                            <option value="2">Foobar</option>
+                                            <option value="3">Is great</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-
-                                <label>Department</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Department">
-                                        <option disabled selected>Department</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-
-                                <label>Employment Status</label>
-                                <div class="">
-                                    <select class="selectpicker" data-size="7" data-style="btn btn-round" title="Employment Status">
-                                        <option disabled selected>Employment Status</option>
-                                        <option value="2">Foobar</option>
-                                        <option value="3">Is great</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer ">
-                    <button type="submit" class="btn btn-fill btn-success">Search</button>
-                </div>*@
+                        </form>
+                    </div>
+                    <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-success">Search</button>
+                    </div>*@
             </div>
         </div>
 

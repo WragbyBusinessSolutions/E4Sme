@@ -19,10 +19,15 @@ namespace E4S.Controllers.HumanResource
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
 
+    [TempData]
+    public string StatusMessage { get; set; }
+
     public LeavesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
       _context = context;
       _userManager = userManager;
+
+
 
     }
     private Guid getOrg()
@@ -42,6 +47,9 @@ namespace E4S.Controllers.HumanResource
       var orgId = getOrg();
 
       var leaveList = _context.Leaves.Where(x => x.OrganisationId == orgId).Include(x => x.EmployeeDetail).OrderByDescending(x => x.DateCreated).ToList();
+
+            ViewData["StatusMessage"] = StatusMessage;
+            ViewData["StatusMessage"] = StatusMessage;
             return View(leaveList);
         }
 
@@ -60,8 +68,6 @@ namespace E4S.Controllers.HumanResource
       var orgId = getOrg();
 
 
-
-
       try
       {
         var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
@@ -72,8 +78,9 @@ namespace E4S.Controllers.HumanResource
         _context.Update(leave);
         _context.SaveChanges();
 
+         StatusMessage = "Leave has been successfully Approved!.";
 
-        return Json(new
+           return Json(new
         {
           msg = "Success"
         }
@@ -118,6 +125,7 @@ namespace E4S.Controllers.HumanResource
         _context.Update(leave);
         _context.SaveChanges();
 
+        StatusMessage = "Leave has been successfully Declined!.";
 
         return Json(new
         {

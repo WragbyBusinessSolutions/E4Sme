@@ -27,15 +27,17 @@ namespace E4S.Controllers.HumanResource
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailSender _emailSender;
 
+    [TempData]
+    public string StatusMessage { get; set; }
 
 
-    public EmployeesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
-    {
-      _context = context;
-      _userManager = userManager;
-      _emailSender = emailSender;
+        public EmployeesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        {
+          _context = context;
+          _userManager = userManager;
+          _emailSender = emailSender;
 
-    }
+        }
 
     private Guid getOrg()
     {
@@ -106,23 +108,23 @@ namespace E4S.Controllers.HumanResource
 
         employeeList.Add(singleEmployee);
       }
+            ViewData["StatusMessage"] = StatusMessage;
 
 
-
-      return View(employeeList);
+            return View(employeeList);
         }
     
         public IActionResult AddEmployee()
         {
-      var orgId = getOrg();
-      ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId), "Id", "JobTitleName");
-      ViewData["EmploymentStatus"] = new SelectList(_context.EmploymentStatuses.Where(x => x.OrganisationId == orgId), "Id", "EmploymentStatusName");
-      ViewData["Department"] = new SelectList(_context.Departments.Where(x => x.OrganisationId == orgId), "Id", "DepartmentName");
-      ViewData["JobCategory"] = new SelectList(_context.JobCategories.Where(x => x.OrganisationId == orgId), "Id", "JobCategoryName");
-      ViewData["Branch"] = new SelectList(_context.Branches.Where(x => x.OrganisationId == orgId), "Id", "BranchName");
-      ViewData["PayGrade"] = new SelectList(_context.PayGrades.Where(x => x.OrganisationId == orgId), "Id", "PayGradeName");
+          var orgId = getOrg();
+          ViewData["JobTitle"] = new SelectList(_context.JobTitles.Where(x => x.OrganisationId == orgId), "Id", "JobTitleName");
+          ViewData["EmploymentStatus"] = new SelectList(_context.EmploymentStatuses.Where(x => x.OrganisationId == orgId), "Id", "EmploymentStatusName");
+          ViewData["Department"] = new SelectList(_context.Departments.Where(x => x.OrganisationId == orgId), "Id", "DepartmentName");
+          ViewData["JobCategory"] = new SelectList(_context.JobCategories.Where(x => x.OrganisationId == orgId), "Id", "JobCategoryName");
+          ViewData["Branch"] = new SelectList(_context.Branches.Where(x => x.OrganisationId == orgId), "Id", "BranchName");
+          ViewData["PayGrade"] = new SelectList(_context.PayGrades.Where(x => x.OrganisationId == orgId), "Id", "PayGradeName");
 
-      return View();
+          return View();
         }
 
     [HttpPost]
@@ -221,7 +223,11 @@ namespace E4S.Controllers.HumanResource
 
           _context.Add(employeeSal);
           _context.SaveChanges();
-        }
+
+                    StatusMessage = "Employee is successfully Added.";
+
+                 return RedirectToAction("Index");
+           }
         catch
         {
 
@@ -234,8 +240,9 @@ namespace E4S.Controllers.HumanResource
         return NotFound();
       }
 
+            return View();
 
-      return RedirectToAction("Index");
+            
     }
 
     [HttpPost] 
@@ -310,7 +317,7 @@ namespace E4S.Controllers.HumanResource
 
 
         }
-        }
+      }
       return RedirectToAction("Index");
     }
 
