@@ -25,44 +25,93 @@
                                 <h4 class="card-title">List of Branches</h4>
                             </div>
                             <div class="card-body">
-                                <br />
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-lg-12">
-                                        <div class="table-responsive" style="overflow:auto">
-                                            <table id="datatable" class="table table-">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>E-mail</th>
-                                                        <th>Phone</th>
-                                                        <th>City</th>
-                                                        <th class="disabled-sorting text-right">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    @foreach (var item in Model)
-                                                    {
-                                                        <tr>
-                                                            <td>@item.BranchName</td>
-                                                            <td>@item.Email</td>
-                                                            <td>@item.PhoneNo</td>
-                                                            <td>@item.City</td>
-                                                            <td class="text-right">
-                                                                <a class="btn btn-round btn-warning btn-icon btn-sm edit" asp-action="editbranch" asp-controller="Organisation"><i class="far fa-edit"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
-
-                                                    }
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
+                              <br />
+                              <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-notice">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                      </button>
+                                      <h5 class="modal-title" id="myModalLabel"> Delete Branch </h5><br />
                                     </div>
+                                    <div><h6 class="modal-title">Are You Sure You Want To Delete This Branch?</h6></div>
+
+                                    <div class="modal-body">
+                                      <div class="instruction">
+                                        <form>
+                                          <input id="ebranchid" name="ebranchid" hidden />
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <div class="form-group">
+                                                <label>Branch Name</label>
+                                                <input type="text" class="form-control" id="BranchName" name="BranchName" required>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          @*<div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
+                                          @*</div>
+      </div>
+    </div>*@
+
+
+                                          <hr />
+                                          <div class="card-footer">
+                                            <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment" @*disabled="disabled"*@>Delete</button>
+                                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Cancel</button>
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
-                               
+                              </div>
+
+                              <div class="row">
+                                <div class="col-12 col-sm-12 col-lg-12">
+                                  <div class="table-responsive" style="overflow:auto">
+                                    <table id="datatable" class="table table-">
+                                      <thead>
+                                        <tr>
+                                          <th>Name</th>
+                                          <th>E-mail</th>
+                                          <th>Phone</th>
+                                          <th>City</th>
+                                          <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                          <tr>
+                                            <td>@item.BranchName</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.PhoneNo</td>
+                                            <td>@item.City</td>
+                                            <td class="text-right">
+                                              <a class="btn btn-round btn-warning btn-icon btn-sm edit" asp-action="editbranch" asp-controller="Organisation"><i class="far fa-edit"></i></a>
+                                              @*<a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>*@
+                                              <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top" id="DelBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName"><i class="fas fa-times"></i></a></span>
+
+</td>
+                                          </tr>
+
+                                        }
+
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                </div>
+                              </div>
+
                             </div>
                             <!-- end content-->
                         </div>
@@ -77,3 +126,24 @@
 </div>
 
 
+<script>
+          //Code for pulling the Records on the Table  
+        var adelBranchId;
+
+         $(document).delegate('#DelBranch',
+        'click',
+        function (e) {
+
+            adelBranchId = $(this).attr('BranchId');
+            branchName = $(this).attr('Selected-BranchName');
+            
+            //console.log(description, department);
+
+
+            $('input[name=ebranchid]').val(adelBranchId);
+            $('input[name=BranchName]').val(branchName);
+            
+        });
+
+        //End of the code
+</script>
