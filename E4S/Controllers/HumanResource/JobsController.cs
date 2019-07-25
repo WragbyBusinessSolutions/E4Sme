@@ -567,7 +567,6 @@ namespace E4S.Controllers.HumanResource
 
 
         // Edit the Department
-
         [HttpPost]
         public async Task<IActionResult> editDepartment([FromBody]PostNewDepartment postNewDepartment)
         {
@@ -583,13 +582,6 @@ namespace E4S.Controllers.HumanResource
             var orgId = getOrg();
             var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
             
-
-            //bool isAssign = true;
-
-            //if (postNewDepartment. == Guid.Empty)
-            //{
-            //    isAssign = false;
-            //}
 
             try
             {
@@ -621,38 +613,59 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        // Ednf of Edit for Department
+    // Ednf of Edit for Department
+    private bool DepartmentExists(Guid id)
+    {
+      return _context.Departments.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteDepartment([FromBody]string deptId)
+    {
+      if (deptId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var department =  _context.Departments.SingleOrDefault(m => m.Id == Guid.Parse(deptId));
+        _context.Departments.Remove(department);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
 
 
 
-        public IActionResult LeaveConfiguration()
+    public IActionResult LeaveConfiguration()
     {
       var orgId = getOrg();
       var LeaveConfiguration = _context.LeaveConfigurations.Where(x => x.OrganisationId == orgId).ToList();
 
       return View(LeaveConfiguration);
     }
-
-    //[HttpPost]
-    //public async Task<IActionResult> LeaveConfiguration(LeaveConfiguration leaveConfiguration)
-    //{
-    //  var orgId = getOrg();
-
-    //  if (leaveConfiguration != null)
-    //  {
-    //    leaveConfiguration.OrganisationId = orgId;
-    //    leaveConfiguration.Id = Guid.NewGuid();
-
-    //    _context.Add(leaveConfiguration);
-    //    await _context.SaveChangesAsync();
-
-    //    return RedirectToAction("LeaveConfiguration");
-
-    //  }
-
-
-    //  return RedirectToAction("LeaveConfiguration");
-    //}
 
   
   [HttpPost]
@@ -767,16 +780,6 @@ namespace E4S.Controllers.HumanResource
       }
 
 
-      //var orgId = getOrg();
-      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-
-
-      //bool isAssign = true;
-
-      //if (postNewDepartment. == Guid.Empty)
-      //{
-      //    isAssign = false;
-      //}
 
       try
       {
