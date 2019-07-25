@@ -96,6 +96,7 @@ namespace E4S.Services
       var apiKey = "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";
       //new code
 
+
       string domain = "http://erp4smes.azurewebsites.net";
 
       EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
@@ -124,6 +125,7 @@ namespace E4S.Services
     {
       var apiKey = "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";
       //new code
+
 
       string domain = "http://erp4smes.azurewebsites.net";
       
