@@ -428,6 +428,8 @@ namespace E4S.Controllers.HumanResource
       var allSupervisor = _context.AssignedSupervisors.Where(x => x.OrganisationId == orgId).ToList();
       var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId).Include(c => c.Department).ToList();
 
+      oAVM.AppraisalAssignedTemplates = _context.AppraisalAssignedTemplates.Where(x => x.OrganisationId == orgId).Where(x => x.AppraisalId == id).Include(x => x.AppraisalTemplate).Include(x => x.EmployeeDetail).ToList();
+
       foreach (var item in allEmployee)
       {
         singleEmployeApp = new EmployeeAppraisal();
@@ -436,12 +438,20 @@ namespace E4S.Controllers.HumanResource
         singleEmployeApp.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
         //singleEmployeApp.AssignedSupervisor = allEmployee.Where(x => x.Id == allSupervisor.Where(c => c.EmployeeDetailId == item.Id).FirstOrDefault().SupervisorId).FirstOrDefault();
 
-        allEmployeeApp.Add(singleEmployeApp);
+        if (oAVM.AppraisalAssignedTemplates.FindAll(x => x.EmployeeDetail == item).Count() < 1)
+        {
+          allEmployeeApp.Add(singleEmployeApp);
+
+        }
+
+
 
       }
 
 
       oAVM.EmployeeAppraisalList = allEmployeeApp.OrderBy(x => x.Job.Department.DepartmentName).ToList();
+
+      oAVM.Jobs = allJobs;
 
       ViewData["Templates"] = new SelectList(_context.AppraisalTemplates.Where(x => x.OrganisationId == orgId), "Id", "Template");
 
@@ -449,6 +459,47 @@ namespace E4S.Controllers.HumanResource
 
       return View(oAVM);
     }
+
+    [HttpPost]
+    public IActionResult AssignTemp([FromBody]AppraisalAssignedTemplate assignTemp)
+    {
+      var orgId = getOrg();
+
+      if (assignTemp == null)
+      {
+        return View();
+      }
+
+      assignTemp.Id = Guid.NewGuid();
+      assignTemp.OrganisationId = orgId;
+      //appraisal.IsActive = true;
+
+
+      try
+      {
+        _context.Add(assignTemp);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
 
   }
 }

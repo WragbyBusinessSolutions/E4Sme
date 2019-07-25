@@ -8,6 +8,8 @@ namespace E4S.Models.HumanResource
   public class AppraisalAssignedTemplate : BaseClass
   {
     public Guid Id { get; set; }
+
+    public Guid AppraisalId { get; set; }
     public Guid EmployeeDetailId { get; set; }
     public virtual EmployeeDetail EmployeeDetail { get; set; }
 
