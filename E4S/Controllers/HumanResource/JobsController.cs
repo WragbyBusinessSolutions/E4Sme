@@ -328,7 +328,7 @@ namespace E4S.Controllers.HumanResource
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostNewJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
+    public async Task<IActionResult> NewJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
     {
       if (postNewJobCategory == null)
       {
@@ -376,7 +376,7 @@ namespace E4S.Controllers.HumanResource
     }
 
 
-        // Edit the Job Cartegory
+        // Edit the Job Category
 
         [HttpPost]
         public async Task<IActionResult> editJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
@@ -427,27 +427,51 @@ namespace E4S.Controllers.HumanResource
 
 
         // Delete of Edit for Category
-        [HttpPost]
-        public JsonResult Delete(int Id)
+
+        private bool JobCategoriesExists(Guid id)
         {
+            return _context.JobCategories.Any(e => e.Id == id);
+        }
+
+
+        [HttpPost]
+        public IActionResult deleteJobCategory([FromBody]string jobCatId)
+        {
+            if (jobCatId == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
             try
             {
-                //ClientManagement cdb = new ClientManagement();
-                //if (cdb.DeleteClient(id))
-                //{
-                //    TempData["Message"] = "Client Deleted Successfully";
-                //}
-                //Session.Abandon();
-                return Json("Delete");
+                var JobCategories = _context.JobCategories.SingleOrDefault(m => m.Id == Guid.Parse(jobCatId));
+                _context.JobCategories.Remove(JobCategories);
+                _context.SaveChanges();
+
+                return Json(new
+                {
+                    msg = "Success"
+                });
+
             }
             catch
             {
-                return Json("Error");
+
             }
+
+            return Json(new
+            {
+                msg = "Fail"
+            });
+
 
         }
 
-            // Delete of Edit for Category
+        // Delete of Edit for Category
 
 
 
@@ -949,13 +973,13 @@ namespace E4S.Controllers.HumanResource
     // Deduction 
 
     public IActionResult AddDeduction()
-        {
-            var orgId = getOrg();
-            var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
+    {
+        var orgId = getOrg();
+        var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
 
-            return View(SalaryDeduct);
+        return View(SalaryDeduct);
 
-        }
+    }
 
 
 

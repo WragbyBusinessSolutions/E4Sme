@@ -238,7 +238,14 @@
                           @item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName
                         </td>
                         <td>
-                          @Model.Jobs.Where(x => x.EmployeeDetailId == @item.EmployeeDetail.Id).FirstOrDefault().Department.DepartmentName
+                          @try
+                          {
+                            @Model.Jobs.Where(x => x.EmployeeDetailId == @item.EmployeeDetail.Id).FirstOrDefault().Department.DepartmentName
+                          }
+                          catch
+                          {
+
+                          }
                         </td>
                         <td>
                           @item.AppraisalTemplate.Template
