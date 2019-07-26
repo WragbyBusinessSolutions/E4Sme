@@ -419,6 +419,7 @@ namespace E4S.Controllers.HumanResource
       var orgId = getOrg();
       OngoingAppraisalViewModel oAVM = new OngoingAppraisalViewModel();
       List<EmployeeAppraisal> allEmployeeApp = new List<EmployeeAppraisal>();
+      List<EmployeeAppraisal> removeEmployee = new List<EmployeeAppraisal>();
       EmployeeAppraisal singleEmployeApp;
 
 
@@ -437,10 +438,13 @@ namespace E4S.Controllers.HumanResource
         singleEmployeApp.EmployeeDetail = item;
         singleEmployeApp.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
         //singleEmployeApp.AssignedSupervisor = allEmployee.Where(x => x.Id == allSupervisor.Where(c => c.EmployeeDetailId == item.Id).FirstOrDefault().SupervisorId).FirstOrDefault();
-
-        if (oAVM.AppraisalAssignedTemplates.FindAll(x => x.EmployeeDetail == item).Count() < 1)
+        if (singleEmployeApp.Job != null)
         {
-          allEmployeeApp.Add(singleEmployeApp);
+          if (oAVM.AppraisalAssignedTemplates.FindAll(x => x.EmployeeDetail == item).Count() < 1)
+          {
+            allEmployeeApp.Add(singleEmployeApp);
+
+          }
 
         }
 
