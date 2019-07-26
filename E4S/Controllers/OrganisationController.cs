@@ -200,8 +200,59 @@ namespace E4S.Controllers
             }
             return RedirectToAction("Branch");
          }
-            
-                
+
+    private bool BranchExists(Guid id)
+    {
+      return _context.Branches.Any(e => e.Id == id);
+    }
+
+
+
+    [HttpPost]
+    public IActionResult DeleteBranch([FromBody]string branchId)
+    {
+      if (branchId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var branch = _context.Branches.SingleOrDefault(m => m.Id == Guid.Parse(branchId));
+        _context.Branches.Remove(branch);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
 
     }
+
+
+
+
+
+
+
+
+
+
+  }
 }
