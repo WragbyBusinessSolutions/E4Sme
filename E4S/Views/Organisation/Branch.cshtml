@@ -41,7 +41,8 @@
                       </div>
                       <div class="modal-body">
                         <div class="instruction">
-                          <form>
+                          <form method="post">
+                            <input id="ebranchid" name="ebranchid" hidden />
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
@@ -74,10 +75,18 @@
                                 </div>
                               </div>
                             </div>
-                            
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Country</label>
+                                  <input type="text" class="form-control" placeholder="Country" id="Country" name="Country" required>
+                                </div>
+                              </div>
+                            </div>
+
                             <hr />
                             <div class="card-footer ">
-                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editAsset">Submit</button>
+                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editBranch">Submit</button>
                               <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                             </div>
                           </form>
@@ -115,8 +124,8 @@
                               <td>@item.PhoneNo</td>
                               <td>@item.City</td>
                               <td class="text-right">
-                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit" data-toggle="tooltip" data-placement="top" id="EditBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName" Selected-eMail="@item.Email" Selected-Phone="@item.PhoneNo" Selected-City="@item.City"><i class="far fa-edit"></i></a></span>
-                                  <a href="#" BranchId="@item.Id" BranchName="@item.BranchName" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit" data-toggle="tooltip" data-placement="top" id="EditBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName" Selected-eMail="@item.Email" Selected-Phone="@item.PhoneNo" Selected-City="@item.City" Selected-Country="@item.Country"><i class="far fa-edit"></i></a></span>
+                                  <a href="#" BranchId="@item.Id" BranchName="@item.BranchName" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
                                   @*<span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top" id="DelBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName"><i class="fas fa-times"></i></a></span>*@
 
 </td>
@@ -162,15 +171,17 @@
           email = $(this).attr('Selected-eMail');
           phone = $(this).attr('Selected-Phone');
           city = $(this).attr('Selected-City');
+          country = $(this).attr('Selected-Country');
 
           //console.log(description, department);
 
 
-          $('input[name=edeptid]').val(aEditBranchId);
+          $('input[name=ebranchid]').val(aEditBranchId);
           $('input[name=branchName]').val(branchName);
           $('input[name=eMail]').val(email);
-        $('input[name=Phone]').val(phone);
-        $('input[name=City]').val(city);
+          $('input[name=Phone]').val(phone);
+          $('input[name=City]').val(city);
+          $('input[name=Country]').val(country);
 
         });
 
@@ -186,10 +197,11 @@
 
           var PostBranch = {
             AId: $("#ebranchid").val(),
-            BranchName: $("#eBranchName").val(),
-            Phone: $("#eDescription").val(),
-            Phone: $("#eDescription").val(),
-            City: $("#eDescription").val(),
+            BranchName: $("#branchName").val(),
+            Email: $("#eMail").val(),
+            PhoneNo: $("#Phone").val(),
+            City: $("#City").val(),
+            Country: $("#Country").val(),
 
           };
 
@@ -199,7 +211,7 @@
 
           $.ajax({
             type: "POST",
-            url: "/Jobs/editBranch",
+            url: "/Organisation/editBranch",
             data: JSON.stringify(PostBranch),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
