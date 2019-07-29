@@ -175,5 +175,51 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
-  }
-  }
+        // Delete of Edit for Category
+
+        private bool CompanyAssetsExists(Guid id)
+        {
+            return _context.OrganisationAssets.Any(e => e.Id == id);
+        }
+
+
+        [HttpPost]
+        public IActionResult deleteCompanyAssest([FromBody]string compAssestId)
+        {
+            if (compAssestId == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            try
+            {
+                var orgAsset = _context.OrganisationAssets.SingleOrDefault(m => m.Id == Guid.Parse(compAssestId));
+                _context.OrganisationAssets.Remove(orgAsset);
+                _context.SaveChanges();
+
+                return Json(new
+                {
+                    msg = "Success"
+                });
+
+            }
+            catch
+            {
+
+            }
+
+            return Json(new
+            {
+                msg = "Fail"
+            });
+
+
+        }
+
+        // Delete of Edit for Category
+    }
+}
