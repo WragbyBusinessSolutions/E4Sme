@@ -158,8 +158,15 @@ namespace E4S.Controllers.HumanResource
 
     // Ednf of Edit for Job Title
 
+    
+    private bool JobTitleExists(Guid id)
+    {
+      return _context.Departments.Any(e => e.Id == id);
+    }
+
+
     [HttpPost]
-    public async Task<IActionResult> DelJobTitle([FromBody]string jobId)
+    public IActionResult DeleteJobTitle([FromBody]string jobId)
     {
       if (jobId == null)
       {
@@ -170,45 +177,31 @@ namespace E4S.Controllers.HumanResource
        );
       }
 
-
-      //var orgId = getOrg();
-      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-
-
-      //bool isAssign = true;
-
-      //if (postNewDepartment. == Guid.Empty)
-      //{
-      //    isAssign = false;
-      //}
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var jobTitle = await _context.JobTitles.FindAsync(Guid.Parse(jobId));
+        var jobTitle = _context.JobTitles.SingleOrDefault(m => m.Id == Guid.Parse(jobId));
         _context.JobTitles.Remove(jobTitle);
-        await _context.SaveChangesAsync();
-
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
+
 
 
 
