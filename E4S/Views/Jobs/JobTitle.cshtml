@@ -134,8 +134,8 @@
         </div>
 
         <div class="card-body">
-          <div class="table-responsive" style="overflow:auto">
-            <table id="datatable2" class="table table-striped">
+          <div class="table" >
+            <table id="datatable2" class="table table-striped" cellspacing="10" width="100%">
               <thead class="text-primary">
                 <tr>
                   <th class="text-center">
@@ -162,7 +162,7 @@
                       <td></td>
                       <td>No Data to Display</td>
                       <td></td>
-
+                      
                     </tr>
 
                   }
@@ -198,138 +198,125 @@
 
   </div>
 </div>
-<div id="loading-overlay">
-  <div class="loading-icon"></div>
-</div>
+
 
 
 
 @section Scripts {
 
-  <link href="@Url.Content("~/css/ajaxoverlay.css")" rel="stylesheet" />
 
 
   <script>
-    $(document).ready(function () {
+      $(document).ready(function () {
 
-      $('#datatable2').DataTable({
-        "pagingType": "full_numbers",
-        dom: "Bfrtip",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-
-
-        buttons: [
-          'copy',
-          'excel',
-          'csv',
-          'pdf',
-          'print',
-        ],
+          $('#datatable2').DataTable({
+              "pagingType": "full_numbers",
+              dom: "Bfrtip",
+              "lengthMenu": [
+                  [10, 25, 50, -1],
+                  [10, 25, 50, "All"]
+              ],
 
 
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-
-      });
-
-      var table = $('#datatable2').DataTable();
-
-      // Edit record
-      //table.on('click', '.edit', function () {
-      //  $tr = $(this).closest('tr');
-
-      //  var data = table.row($tr).data();
-      //  alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
-
-      // Delete a record
-      table.on('click', '.remove', function (e) {
-        $tr = $(this).closest('tr');
-
-        jobId = $(this).attr('JobId');
-        jobTitle = $(this).attr('JobTitle');
-
-        swal({
-          title: 'Are you sure?',
-          text: "You are about to delete '" + jobTitle + "'",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'btn btn-danger',
-          confirmButtonText: 'Yes, delete it!',
-          buttonsStyling: false
-        }).then(function () {
-
-          $.ajax({
-            type: "POST",
-            url: "/Jobs/deleteJobTitle",
-            data: JSON.stringify(jobId),
-            dataType: "json",
-            contentType: 'application/json; charset=utf-8',
-            headers: {
-              RequestVerificationToken:
-                $('input:hidden[name="__RequestVerificationToken"]').val()
-            },
-            success: function (r) {
-
-              if (r.msg == "Success") {
-
-                swal({
-                  title: 'Deleted!',
-                  text: 'Your file has been deleted.',
-                  type: 'success',
-                  confirmButtonClass: "btn btn-success",
-                  buttonsStyling: false
-                });
+              buttons: [
+                  'copy',
+                  'excel',
+                  'csv',
+                  'pdf',
+                  'print',
+              ],
 
 
-              } else if (r.msg == "Fail") {
-
-                alert(r.msg);
-
-              } else if (r.msg == "No Data") {
-                alert(r.msg);
-
-              } else {
-                alert(r.msg);
+              responsive: true,
+              language: {
+                  search: "_INPUT_",
+                  searchPlaceholder: "Search records",
               }
-              //alert(r.msg);
-              // window.location.reload();
 
-            },
-            error: function () {
-              alert(r.msg);
-            }
           });
 
+          var table = $('#datatable2').DataTable();          
 
-          table.row($tr).remove().draw();
+          // Delete a record
+          table.on('click', '.remove', function (e) {
+              $tr = $(this).closest('tr');
 
-        }).catch(swal.noop);
+                jobId = $(this).attr('JobId');
+                jobTitle = $(this).attr('JobTitle');
 
 
-        e.preventDefault();
+              swal({
+                  title: 'Are you sure?',
+                  text: "You are about to delete '" + jobTitle + "'",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonClass: 'btn btn-success',
+                  cancelButtonClass: 'btn btn-danger',
+                  confirmButtonText: 'Yes, delete it!',
+                  buttonsStyling: false
+              }).then(function () {
+
+                  $.ajax({
+                      type: "POST",
+                      url: "/Jobs/deleteJobTitle",
+                      data: JSON.stringify(jobId),
+                      dataType: "json",
+                      contentType: 'application/json; charset=utf-8',
+                      headers: {
+                          RequestVerificationToken:
+                              $('input:hidden[name="__RequestVerificationToken"]').val()
+                      },
+                      success: function (r) {
+
+                          if (r.msg == "Success") {
+
+                              swal({
+                                  title: 'Deleted!',
+                                  text: 'Your file has been deleted.',
+                                  type: 'success',
+                                  confirmButtonClass: "btn btn-success",
+                                  buttonsStyling: false
+                              });
+
+
+                          } else if (r.msg == "Fail") {
+
+                              alert(r.msg);
+
+                          } else if (r.msg == "No Data") {
+                              alert(r.msg);
+
+                          } else {
+                              alert(r.msg);
+                          }
+                          //alert(r.msg);
+                          // window.location.reload();
+
+                      },
+                      error: function () {
+                          alert(r.msg);
+                      }
+                  });
+
+
+                  table.row($tr).remove().draw();
+
+              }).catch(swal.noop);
+
+
+              e.preventDefault();
+          });
+
+          //Like record
+          table.on('click', '.like', function () {
+              alert('You clicked on Like button');
+          });
       });
-
-      //Like record
-      table.on('click', '.like', function () {
-        alert('You clicked on Like button');
-      });
-    });
   </script>
 
+
+
   <script type="text/javascript">
-
-    $(document).ready(function () {
-
-
-    });
 
 
     $("#SubmitNewJobTitle").click(function (event) {
