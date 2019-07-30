@@ -1,10 +1,9 @@
-﻿@model E4S.Models.AccountInventory.Vendor
+﻿@model E4S.Models.AccountInventory.Customer
 
 @{
-  ViewData["Title"] = "Add Vendor";
+  ViewData["Title"] = "Edit Customer";
   Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
-
 
 <style>
   .body-card {
@@ -31,19 +30,21 @@
   @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
 
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header body-card">
-          <h5>Add a Vendor</h5>
+          <h5>Edit Customer</h5>
 
         </div>
 
         <div class="card-body body-card">
-          <form class="form" asp-action="AddVendor">
+          <form class="form" asp-action="EditCustomer">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="OrganisationId" />
+
             <div class="form-inline">
-              <label class="labeltext col-sm-3">Vendor Name</label>
-              <input asp-for="VendorName" type="text" class="form-control col-sm-4" placeholder="John Doe" />
+              <label class="labeltext col-sm-3">Customer Name*</label>
+              <input asp-for="CustomerName" type="text" class="form-control col-sm-4" placeholder="John Doe" required />
             </div>
             <br />
 
@@ -57,12 +58,6 @@
             <div class="form-inline">
               <label class="labeltext col-sm-3">Phone Number</label>
               <input asp-for="Phone" type="tel" class="form-control col-sm-4" placeholder="+234958437538" />
-            </div>
-
-            <br />
-            <div class="form-inline">
-              <label class="labeltext col-sm-3">Address</label>
-              <input asp-for="Address" type="tel" class="form-control col-sm-4" placeholder="21 Olubunmi Olurotimi" />
             </div>
 
             <br />
@@ -92,8 +87,29 @@
             <br />
 
             <div class="form-inline">
-              <label class="labeltext col-sm-3">Zip code</label>
-              <input asp-for="ZipCode" type="tel" class="form-control col-sm-4" placeholder="12345" />
+              <label class="labeltext col-sm-3">Bank Name</label>
+              <input asp-for="BankName" type="text" class="form-control col-sm-4" placeholder="First Bank" />
+            </div>
+
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Account Name</label>
+              <input asp-for="AccountName" type="text" class="form-control col-sm-4" placeholder="Lamboroki Ojulari" />
+            </div>
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Account Number</label>
+              <input asp-for="AccountNumber" type="tel" class="form-control col-sm-4" placeholder="3059737374" />
+            </div>
+            <br />
+
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Website</label>
+              <input asp-for="Website" type="text" class="form-control col-sm-4" placeholder="www.wragbysolutions.com" />
             </div>
 
             <br />
@@ -102,8 +118,7 @@
             <hr />
             <div class="form-inline">
               <label class="labeltext col-sm-3"></label>
-
-              <input type="submit" value="Create Vendor" class="btn btn-info content-center" />
+              <input type="submit" value="Save Customer" class="btn btn-info content-center" />
 
               @*<input type="submit" value="Cancel" class="btn btn-danger content-center" />*@
             </div>

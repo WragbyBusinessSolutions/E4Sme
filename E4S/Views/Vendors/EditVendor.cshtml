@@ -1,10 +1,9 @@
 ﻿@model E4S.Models.AccountInventory.Vendor
 
 @{
-  ViewData["Title"] = "Add Vendor";
+  ViewData["Title"] = "Edit Vendor";
   Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
-
 
 <style>
   .body-card {
@@ -35,12 +34,14 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header body-card">
-          <h5>Add a Vendor</h5>
+          <h5>Edit Vendor</h5>
 
         </div>
 
         <div class="card-body body-card">
-          <form class="form" asp-action="AddVendor">
+          <form class="form" asp-action="EditVendor">
+            <input asp-for="Id" hidden />
+            <input asp-for="OrganisationId" hidden />
             <div class="form-inline">
               <label class="labeltext col-sm-3">Vendor Name</label>
               <input asp-for="VendorName" type="text" class="form-control col-sm-4" placeholder="John Doe" />
@@ -103,7 +104,7 @@
             <div class="form-inline">
               <label class="labeltext col-sm-3"></label>
 
-              <input type="submit" value="Create Vendor" class="btn btn-info content-center" />
+              <input type="submit" value="Save" class="btn btn-info content-center" />
 
               @*<input type="submit" value="Cancel" class="btn btn-danger content-center" />*@
             </div>
