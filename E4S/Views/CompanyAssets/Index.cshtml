@@ -26,7 +26,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <!-- notice modal -->
                     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-notice">
@@ -91,8 +91,8 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                    </div>*@
+                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -161,8 +161,8 @@
                                     </div>
                                 </div>
                                 @*<div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-                    </div>*@
+                                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -172,8 +172,8 @@
                 <input id="AssetId" name="AssetId" hidden />
 
                 <div class="card-body">
-                    <div >
-                        <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+                    <div>
+                        <table class="table table-striped" id="datatable2" cellspacing="10" width="100%">
                             <thead class="text-primary">
                             <th class="text-center">
                                 #
@@ -243,10 +243,10 @@
                                                 @item.EmployeeName
                                             </td>
                                             <td>
-                                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="tooltip" data-placement="top" title="Click to Edit"  EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="fa fa-edit"></i></a></span>
-                                                    <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
+                                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="Editbtn" data-toggle="tooltip" data-placement="top" title="Click to Edit" EditAssetId="@item.Id" select-DeviceName="@item.DeviceName" Selected-Brand="@item.Brand" Selected-Model="@item.Model" Selected-SerialNo="@item.SerialNumber"><i class="fa fa-edit"></i></a></span>
+                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" CompAssestId="@item.Id" employeeId="@item.EmployeeName" DeviceName="@item.DeviceName" Brand="@item.Brand" Model="@item.Model" SerialNo="@item.SerialNumber" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
 
-</td>
+                                            </td>
                                         </tr>
 
                                         { i = i + 1; }
@@ -267,53 +267,132 @@
 
 
 
-    <script>
-        $(document).ready(function () {
-            $('#datatable').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                responsive: true,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search records",
-                }
-
-            });
-
-            var table = $('#datatable').DataTable();
-
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
-
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
-
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
-
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
-            });
-        });
-
-
-    </script>
 
 
     @section Scripts {
 
-        <!--  DataTables.net Plugin, full documentation here  -->
-        <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+      
+
+        <script>
+            $(document).ready(function () {
+
+                $('#datatable2').DataTable({
+                    "pagingType": "full_numbers",
+                    dom: "Bfrtip",
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+
+
+                    buttons: [
+                        'copy',
+                        'excel',
+                        'csv',
+                        'pdf',
+                        'print',
+                    ],
+
+
+                    responsive: true,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Search records",
+                    }
+
+                });
+
+                var table = $('#datatable2').DataTable();
+
+                // Edit record
+                table.on('click', '.edit', function () {
+                    $tr = $(this).closest('tr');
+
+                    var data = table.row($tr).data();
+                    alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+                });
+
+                // Delete a record
+                table.on('click', '.remove', function (e) {
+                    $tr = $(this).closest('tr');
+
+                    compAssestId = $(this).attr('CompAssestId');
+                    employeeDetailId = $(this).attr('employeeId');
+                    deviceName = $(this).attr('DeviceName');
+                    brand = $(this).attr('Brand');
+                    model = $(this).attr('Model');
+                    serialNumber = $(this).attr('SerialNo');
+
+                    
+                    swal({
+                        title: 'Are you sure?',
+                        text: "You are about to delete '" + deviceName + "'",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        confirmButtonText: 'Yes, delete it!',
+                        buttonsStyling: false
+                    }).then(function () {
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/CompanyAssets/deleteCompanyAssest",
+                            data: JSON.stringify(compAssestId),
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            headers: {
+                                RequestVerificationToken:
+                                    $('input:hidden[name="__RequestVerificationToken"]').val()
+                            },
+                            success: function (r) {
+
+                                if (r.msg == "Success") {
+
+                                    swal({
+                                        title: 'Deleted!',
+                                        text: 'Your file has been deleted.',
+                                        type: 'success',
+                                        confirmButtonClass: "btn btn-success",
+                                        buttonsStyling: false
+                                    });
+
+
+                                } else if (r.msg == "Fail") {
+
+                                    alert(r.msg);
+
+                                } else if (r.msg == "No Data") {
+                                    alert(r.msg);
+
+                                } else {
+                                    alert(r.msg);
+                                }
+                                //alert(r.msg);
+                                // window.location.reload();
+
+                            },
+                            error: function () {
+                                alert(r.msg);
+                            }
+                        });
+
+
+                        table.row($tr).remove().draw();
+
+                    }).catch(swal.noop);
+
+
+                    e.preventDefault();
+                });
+
+                //Like record
+                table.on('click', '.like', function () {
+                    alert('You clicked on Like button');
+                });
+            });
+        </script>
+
 
         <script type="text/javascript">
 

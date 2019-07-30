@@ -158,8 +158,15 @@ namespace E4S.Controllers.HumanResource
 
     // Ednf of Edit for Job Title
 
+    
+    private bool JobTitleExists(Guid id)
+    {
+      return _context.Departments.Any(e => e.Id == id);
+    }
+
+
     [HttpPost]
-    public async Task<IActionResult> DelJobTitle([FromBody]string jobId)
+    public IActionResult DeleteJobTitle([FromBody]string jobId)
     {
       if (jobId == null)
       {
@@ -170,45 +177,31 @@ namespace E4S.Controllers.HumanResource
        );
       }
 
-
-      //var orgId = getOrg();
-      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-
-
-      //bool isAssign = true;
-
-      //if (postNewDepartment. == Guid.Empty)
-      //{
-      //    isAssign = false;
-      //}
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var jobTitle = await _context.JobTitles.FindAsync(Guid.Parse(jobId));
+        var jobTitle = _context.JobTitles.SingleOrDefault(m => m.Id == Guid.Parse(jobId));
         _context.JobTitles.Remove(jobTitle);
-        await _context.SaveChangesAsync();
-
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
+
 
 
 
@@ -316,10 +309,57 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        // Ednf of Edit for Department
+    // Ednf of Edit for Department
+
+    // Delete of Edit for Category
+
+    private bool EmploymentStatusExists(Guid id)
+    {
+      return _context.EmploymentStatuses.Any(e => e.Id == id);
+    }
 
 
-        public IActionResult JobCategory()
+    [HttpPost]
+    public IActionResult DeleteEmploymentStatus([FromBody]string statusId)
+    {
+      if (statusId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var status = _context.EmploymentStatuses.SingleOrDefault(m => m.Id == Guid.Parse(statusId));
+        _context.EmploymentStatuses.Remove(status);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+    // end of Delete for employment status
+
+
+    public IActionResult JobCategory()
     {
       var orgId = getOrg();
       var jobCategory = _context.JobCategories.Where(x => x.OrganisationId == orgId).ToList();
@@ -328,7 +368,7 @@ namespace E4S.Controllers.HumanResource
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostNewJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
+    public async Task<IActionResult> NewJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
     {
       if (postNewJobCategory == null)
       {
@@ -376,7 +416,7 @@ namespace E4S.Controllers.HumanResource
     }
 
 
-        // Edit the Job Cartegory
+        // Edit the Job Category
 
         [HttpPost]
         public async Task<IActionResult> editJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
@@ -427,27 +467,51 @@ namespace E4S.Controllers.HumanResource
 
 
         // Delete of Edit for Category
-        [HttpPost]
-        public JsonResult Delete(int Id)
+
+        private bool JobCategoriesExists(Guid id)
         {
+            return _context.JobCategories.Any(e => e.Id == id);
+        }
+
+
+        [HttpPost]
+        public IActionResult deleteJobCategory([FromBody]string jobCatId)
+        {
+            if (jobCatId == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
             try
             {
-                //ClientManagement cdb = new ClientManagement();
-                //if (cdb.DeleteClient(id))
-                //{
-                //    TempData["Message"] = "Client Deleted Successfully";
-                //}
-                //Session.Abandon();
-                return Json("Delete");
+                var JobCategories = _context.JobCategories.SingleOrDefault(m => m.Id == Guid.Parse(jobCatId));
+                _context.JobCategories.Remove(JobCategories);
+                _context.SaveChanges();
+
+                return Json(new
+                {
+                    msg = "Success"
+                });
+
             }
             catch
             {
-                return Json("Error");
+
             }
+
+            return Json(new
+            {
+                msg = "Fail"
+            });
+
 
         }
 
-            // Delete of Edit for Category
+        // Delete of Edit for Category
 
 
 
@@ -767,10 +831,19 @@ namespace E4S.Controllers.HumanResource
 
     // Ednf of Edit for Leave Configuration
 
-    [HttpPost]
-    public async Task<IActionResult> DelLeaveConfig([FromBody]string LeaveId)
+      //Delete for leave configuration
+
+
+    private bool LeaveConfigurationExists(Guid id)
     {
-      if (LeaveId == null)
+      return _context.LeaveConfigurations.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteLeaveConfiguration([FromBody]string leaveId)
+    {
+      if (leaveId == null)
       {
         return Json(new
         {
@@ -779,44 +852,34 @@ namespace E4S.Controllers.HumanResource
        );
       }
 
-
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var LeaveTitle = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
-        _context.LeaveConfigurations.Remove(LeaveTitle);
-        var LeaveDuration = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
-        _context.LeaveConfigurations.Remove(LeaveDuration);
-        var description = await _context.LeaveConfigurations.FindAsync(Guid.Parse(LeaveId));
-        _context.LeaveConfigurations.Remove(description);
-
-
-        await _context.SaveChangesAsync();
-
+        var leaveTitle = _context.LeaveConfigurations.SingleOrDefault(m => m.Id == Guid.Parse(leaveId));
+        _context.LeaveConfigurations.Remove(leaveTitle);
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
 
 
-        public IActionResult PayrollConfiguration()
+
+    public IActionResult PayrollConfiguration()
         {
            
             var orgId = getOrg();
@@ -943,19 +1006,62 @@ namespace E4S.Controllers.HumanResource
     }
 
 
+    private bool AdditionTypeExists(Guid id)
+    {
+      return _context.Additions.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteAdditionType([FromBody]string additionId)
+    {
+      if (additionId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var additionType = _context.Additions.SingleOrDefault(m => m.Id == Guid.Parse(additionId));
+        _context.Additions.Remove(additionType);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
 
 
 
     // Deduction 
 
     public IActionResult AddDeduction()
-        {
-            var orgId = getOrg();
-            var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
+    {
+        var orgId = getOrg();
+        var SalaryDeduct = _context.Deductions.Where(x => x.OrganisationId == orgId).ToList();
 
-            return View(SalaryDeduct);
+        return View(SalaryDeduct);
 
-        }
+    }
 
 
 
@@ -1061,6 +1167,49 @@ namespace E4S.Controllers.HumanResource
       {
         msg = "Fail"
       });
+    }
+
+    private bool DeductionTypeExists(Guid id)
+    {
+      return _context.Deductions.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteDeductionType([FromBody]string deductionId)
+    {
+      if (deductionId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var deductionType = _context.Deductions.SingleOrDefault(m => m.Id == Guid.Parse(deductionId));
+        _context.Deductions.Remove(deductionType);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
     }
 
 
