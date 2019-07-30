@@ -125,7 +125,6 @@
                                                     <label>Job Title</label>
                                                     <div class="input-group mb-2">
                                                         <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
-                                                            <option> -- Select Job Title -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
                                                             <span data-toggle="modal" data-target="#noticeModal"><button class="btn btn-success" type="button" title="Add Job Title" data-toggle="tooltip" data-placement="top">+</button></span>
@@ -346,31 +345,29 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Job Title</label>
-                                            <input type="text" class="form-control" placeholder="Job Title" id="JobTitle" required>
+                                            <input type="text" class="form-control" placeholder="Job Title" id="aJobTitle" name="aJobTitle" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 @*<div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" id="Description" rows="3"></textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Note</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Note</label>
+                                            <textarea class="form-control" id="Note" rows="3"></textarea>
                                         </div>
-                                    </div>*@
+                                    </div>
+                                </div>*@
 
-
-
-                                <div class="card-footer ">
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobTitle">Submit</button>
                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                 </div>
@@ -707,7 +704,7 @@
       $("#loading-overlay").show();
 
       var JobTitle = {
-        JobTitle: $("#JobTitle").val(),
+        JobTitles: $("#aJobTitle").val(),
         Description: $("#Description").val(),
         Note: $("#Note").val(),
       };
