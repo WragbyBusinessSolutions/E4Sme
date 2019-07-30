@@ -125,10 +125,9 @@
                                                     <label>Job Title</label>
                                                     <div class="input-group mb-2">
                                                         <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitle" name="JobTitle">
-                                                            <option> -- Select Job Title -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal">+</button>
+                                                            <span data-toggle="modal" data-target="#noticeModal"><button class="btn btn-success" type="button" title="Add Job Title" data-toggle="tooltip" data-placement="top">+</button></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,7 +140,7 @@
                                                             <option> -- Select Department -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal1">+</button>
+                                                            <span data-toggle="modal" data-target="#noticeModal1"><button class="btn btn-success" type="button" title="Add Department" data-toggle="tooltip" data-placement="top">+</button></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,7 +154,7 @@
                                                             <option> -- Select Job Category -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal2">+</button>
+                                                            <span data-toggle="modal" data-target="#noticeModal2"><button class="btn btn-success" type="button" title="Add Job Category" data-toggle="tooltip" data-placement="top">+</button></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -169,7 +168,7 @@
                                                             <option> -- Select Job Employement Status -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal3">+</button>
+                                                            <span data-toggle="modal" data-target="#noticeModal3"><button class="btn btn-success" type="button" title="Add Employement Status" data-toggle="tooltip" data-placement="top">+</button></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -183,7 +182,7 @@
                                                             <option> -- Select Branch -- </option>
                                                         </select>
                                                         <div class="input-group-append " style="position:relative; top:-10px;">
-                                                            <button class="btn btn-success" type="button" title="Click to add Employee Status" data-toggle="modal" data-target="#noticeModal4">+</button>
+                                                            <span data-toggle="modal" data-target="#noticeModal4"><button class="btn btn-success" type="button" title="Add Branch" data-toggle="tooltip" data-placement="top">+</button></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -346,15 +345,16 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Job Title</label>
-                                            <input type="text" class="form-control" placeholder="Job Title" id="JobTitle" required>
+                                            <input type="text" class="form-control" placeholder="Job Title" id="aJobTitle" name="aJobTitle" required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+
+                                @*<div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="Description" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -362,11 +362,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Note</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="Note" rows="3"></textarea>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer ">
+                                </div>*@
+
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobTitle">Submit</button>
                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                                 </div>
@@ -403,14 +404,17 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                                            @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card-footer ">
-                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment">Submit</button>
-                                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                <br />
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment" @*disabled="disabled"*@>Create</button>
+                                    @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
                                 </div>
                             </form>
                         </div>
@@ -447,11 +451,10 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card-footer ">
                                     <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
                                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
@@ -481,7 +484,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Employment Status Name</label>
-                                            <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                                            <input type="text" class="form-control" placeholder="Employment Type" id="EmploymentStatusName" required>
                                         </div>
                                     </div>
                                 </div>
@@ -490,7 +493,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label> Description </label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -689,3 +692,67 @@
     }
 
 </script>
+
+
+@section Scripts {
+
+<script>
+    $("#SubmitNewJobTitle").click(function (event) {
+
+      event.preventDefault();
+
+      $("#loading-overlay").show();
+
+      var JobTitle = {
+        JobTitles: $("#aJobTitle").val(),
+        Description: $("#Description").val(),
+        Note: $("#Note").val(),
+      };
+
+
+      // console.log(Items);
+      console.log(JobTitle);
+
+      $.ajax({
+        type: "POST",
+        url: "/Jobs/postNewJobTitle",
+        data: JSON.stringify(JobTitle),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+            $("#loading-overlay").hide();
+            demo.showSwal('success-message');
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+          //alert(r.msg);
+          // window.location.reload();
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+</script>
+
+
+}

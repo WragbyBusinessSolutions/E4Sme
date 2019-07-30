@@ -1198,5 +1198,54 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostNewJobTitle([FromBody]PostNewJobTitle postNewJobTitle)
+        {
+            if (postNewJobTitle == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                JobTitle newJobTitle = new JobTitle()
+                {
+                    Id = Guid.NewGuid(),
+                    JobTitleName = postNewJobTitle.JobTitle,
+                    Description = postNewJobTitle.Description,
+                    Note = postNewJobTitle.Note,
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newJobTitle);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
     }
 }
