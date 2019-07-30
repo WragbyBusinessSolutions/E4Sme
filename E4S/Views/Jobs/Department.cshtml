@@ -152,7 +152,7 @@
                       </td>
                       <td>
                         <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" data-toggle="tooltip" data-placement="top" id="Editbtn" DepartmentId="@item.Id" Selected-Departmentname="@item.DepartmentName" Selected-Description="@item.Description"><i class="fa fa-edit"></i></a></span>
-                        <a href="#" DepartmentId="@item.Id" DepartmentName="@item.DepartmentName" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delDept" name="delDept" title="Click to Delete" data-toggle="tooltip" data-placement="top" ><i class="fas fa-times"></i></a>
+                        <a href="#" DepartmentId="@item.Id" DepartmentName="@item.DepartmentName" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delDept" name="delDept" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
                       </td>
                     </tr>
 
@@ -204,12 +204,12 @@
         var table = $('#datatable2').DataTable();
 
         // Edit record
-        table.on('click', '.edit', function () {
-          $tr = $(this).closest('tr');
+        //table.on('click', '.edit', function () {
+        //  $tr = $(this).closest('tr');
 
-          var data = table.row($tr).data();
-          alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-        });
+        //  var data = table.row($tr).data();
+        //  alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        //});
 
         // Delete a record
         table.on('click', '.remove', function (e) {
