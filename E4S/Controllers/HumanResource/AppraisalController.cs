@@ -7,6 +7,7 @@ using E4S.Data;
 using E4S.Models;
 using E4S.Models.HumanResource;
 using E4S.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
+  [Authorize]
     public class AppraisalController : Controller
     {
     private readonly ApplicationDbContext _context;
@@ -50,15 +52,23 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult AppraisalReport()
         {
-           
-            return View();
+      var orgId = getOrg();
+
+      var appraisal = _context.Appraisals.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(appraisal);
+
+
         }
 
 
-        public IActionResult ViewAppraisalDetails()
+        public IActionResult ViewAppraisalDetails(Guid id)
         {
+      var orgId = getOrg();
 
-            return View();
+      var appEmpResult = _context.AppraisalEmployeeResults.Where(x => x.AppraisalId == id).Include(x => x.Appraisal).Include(x => x.EmployeeDetail).ToList();
+
+      return View(appEmpResult);
         }
 
 

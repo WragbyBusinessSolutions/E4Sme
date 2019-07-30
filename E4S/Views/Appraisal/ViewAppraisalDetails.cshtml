@@ -1,7 +1,8 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.HumanResource.AppraisalEmployeeResult>
+
 @{
-    ViewData["Title"] = "ViewAppraisalDetails";
-    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+    ViewData["Title"] = "View Appraisal Details";
+  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 
@@ -13,7 +14,19 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <h4>Appraisal Details</h4>
+                              <h4>
+                                Appraisal Result -
+                                @try
+                                {
+                                  <b>@Model.FirstOrDefault().Appraisal.AppraisalTitle</b>
+
+                                }
+                                catch
+                                {
+                                  <b>No Result Yet.</b>
+                                }
+
+                              </h4>
                             </div>
 
                         </div>
@@ -42,17 +55,25 @@
 
                             <tbody>
 
-                                <tr>
-                                    <td>Adewuyi Elijah</td>
-                                    <td>70</td>
-                                    <td>Satisfactory</td>
+                              <tr>
+                                @foreach (var item in Model)
+                                {
+                                  <td>@item.EmployeeDetail.FirstName @item.EmployeeDetail.LastName</td>
+                                  <td>@item.AppraisalScore</td>
+                                  <td>-</td>
+                                  <td></td>
+                                }
 
-                                    <td class="text-right">
-                                        <a class="btn  btn-success " title="Click to View" style="color:white;">View Details</a>
+                                @*<td>Adewuyi Elijah</td>
+                                <td>70</td>
+                                <td>Satisfactory</td>
 
-                                    </td>
-                                </tr>
-                                <tr>
+                                <td class="text-right">
+                                  <a class="btn  btn-success " title="Click to View" style="color:white;">View Details</a>
+
+                                </td>*@
+                              </tr>
+                                @*<tr>
                                     <td>Femi Olayode</td>
                                     <td>90</td>
                                     <td>Satisfactory</td>
@@ -61,7 +82,7 @@
                                         <a class="btn  btn-success " title="Click to View"  style="color:white;">View Details</a>
 
                                     </td>
-                                </tr>
+                                </tr>*@
 
                             </tbody>
                         </table>

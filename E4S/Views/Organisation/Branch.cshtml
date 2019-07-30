@@ -2,7 +2,6 @@
 
 @{
   ViewData["Title"] = "Branch";
-  Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
 }
 
 <style>
@@ -12,6 +11,8 @@
 </style>
 
 <div class="content">
+  @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
+
   <div class="row">
     <!-- Column -->
     <div class="container-fluid">
@@ -93,8 +94,8 @@
                         </div>
                       </div>
                       @*<div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-          </div>*@
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                        </div>*@
                     </div>
                   </div>
                 </div>
@@ -125,10 +126,10 @@
                               <td>@item.City</td>
                               <td class="text-right">
                                 <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit" data-toggle="tooltip" data-placement="top" id="EditBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName" Selected-eMail="@item.Email" Selected-Phone="@item.PhoneNo" Selected-City="@item.City" Selected-Country="@item.Country"><i class="far fa-edit"></i></a></span>
-                                  <a href="#" BranchId="@item.Id" BranchName="@item.BranchName" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
-                                  @*<span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top" id="DelBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName"><i class="fas fa-times"></i></a></span>*@
+                                <a href="#" BranchId="@item.Id" BranchName="@item.BranchName" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
+                                @*<span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top" id="DelBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName"><i class="fas fa-times"></i></a></span>*@
 
-</td>
+                              </td>
                             </tr>
 
                           }

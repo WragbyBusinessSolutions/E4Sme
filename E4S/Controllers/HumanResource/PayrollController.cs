@@ -434,10 +434,15 @@ namespace E4S.Controllers.HumanResource
 
           var AllPayrollUser = _context.Salaries.Where(x => x.OrganisationId == orgId).Include(x => x.EmployeeDetail).ToList();
           var GenId = Guid.NewGuid();
+      var salaryAdditions = _context.SalaryAdditions.Where(x => x.OrganisationId == orgId).Where(x => x.DateCreated.Year == DateTime.Now.Year && x.DateCreated.Month == DateTime.Now.Month).ToList();
+      var salaryDedyuction = _context.SalaryDeductions.Where(x => x.OrganisationId == orgId).Where(x => x.DateCreated.Year == DateTime.Now.Year && x.DateCreated.Month == DateTime.Now.Month).ToList();
 
-          foreach (var item in AllPayrollUser)
+      foreach (var item in AllPayrollUser)
           {
-            var result = this.ComputePaySlip(item, DateTime.Now.Month.ToString(), GenId);
+        var additions = salaryAdditions.Where(x => x.EmployeeDetailId == item.EmployeeDetailId).Select(x => x.Amount).Sum();
+        var deductions = salaryDedyuction.Where(x => x.EmployeeDetailId == item.EmployeeDetailId).Select(x => x.Amount).Sum();
+
+        var result = this.ComputePaySlip(item, DateTime.Now.Month.ToString(), GenId, additions, deductions);
           }
 
           var payrolllist = await _context.Payrolls.Where(x => x.GenerationId == GenId).ToListAsync();
@@ -446,7 +451,7 @@ namespace E4S.Controllers.HumanResource
         }
 
 
-    private async Task ComputePaySlip(Salary employeeInformation, string Paymonth, Guid genId)
+    private async Task ComputePaySlip(Salary employeeInformation, string Paymonth, Guid genId, float additions, float deductions)
     {
       Payroll payrollDetails = new Payroll();
       //var employeeSalaryDetails = await _context.Salaries.Where(x => x.EmployeeDetailId == employeeInformation.Id).FirstOrDefaultAsync();
@@ -510,19 +515,19 @@ namespace E4S.Controllers.HumanResource
 
       payrollDetails.CooperativeDeduction = 0;
 
-      payrollDetails.OtherDeductions = 0;
+      payrollDetails.OtherDeductions = deductions;
 
       IList<float> intDeductionList = new List<float>() { payrollDetails.MonthlyActualTaxPayable, payrollDetails.PensionDeductionMonthly ,
                 payrollDetails.StaffLoan, payrollDetails.AbsentDeductions,  payrollDetails.CooperativeDeduction, payrollDetails.OtherDeductions   };
 
       payrollDetails.TotalDeduction = intDeductionList.Sum();
 
-      payrollDetails.Addition = 0;
+      payrollDetails.Addition = additions;
       payrollDetails.PayrollMonth = Paymonth;
 
       payrollDetails.OrganisationId = employeeInformation.OrganisationId;
 
-      payrollDetails.PayableToStaff = payrollDetails.GrossMonthlyEmolument - (payrollDetails.TotalDeduction + payrollDetails.Addition);
+      payrollDetails.PayableToStaff = payrollDetails.GrossMonthlyEmolument - (payrollDetails.TotalDeduction + payrollDetails.OtherDeductions) + payrollDetails.Addition;
 
       _context.Add(payrollDetails);
       _context.SaveChanges();

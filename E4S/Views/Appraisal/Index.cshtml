@@ -112,7 +112,7 @@
 
             <div class="col-md-9">
               <h5><a asp-action="StartAppraisal">Start Appraisal</a></h5>
-              <p class="col-md-12">Summary of your balance expenses that datermine the profit you made</p>
+              <p class="col-md-12">Start a new appraisal and check the performance of your employee.</p>
 
             </div>
 
@@ -124,7 +124,7 @@
 
             <div class="col-md-9">
               <h5><a asp-action="OngoingAppraisals">Ongoing Appraisal</a></h5>
-              <p class="col-md-12">Summary of your balance expenses that datermine the profit you made</p>
+              <p class="col-md-12">Assign appraisal templates to your employee and check their status.</p>
 
             </div>
 
@@ -137,9 +137,7 @@
             <div class="col-md-9">
               <h5><a asp-action="AppraisalReport">Report</a></h5>
               <p class="col-md-12">
-                Snapshot of what your business owns or
-                is due to receive from other (assets), whats its own to others
-                (liabilities) and what you've invested ar retained in your company (Equity)
+                Check the performance result of both previous appraisal and on going appraisals.
               </p>
 
             </div>
@@ -156,8 +154,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header ">
-          <h5 class="body-card">Dig deeper</h5>
-          <p class="col-md-8">Drill into the detail of financial transactions over the life of your company.</p>
+          <h5 class="body-card">Ongoing Appraisal.</h5>
 
         </div>
 
@@ -185,7 +182,7 @@
                     @item.IsActive
                   </td>
                   <td class="text-right">
-                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+                    <a asp-action="OngoingAppraisal" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
                     <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                   </td>
                 </tr>

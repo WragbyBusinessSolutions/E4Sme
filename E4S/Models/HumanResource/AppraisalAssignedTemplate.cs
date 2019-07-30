@@ -10,10 +10,14 @@ namespace E4S.Models.HumanResource
     public Guid Id { get; set; }
 
     public Guid AppraisalId { get; set; }
+    public virtual Appraisal Appraisal { get; set; }
+
     public Guid EmployeeDetailId { get; set; }
     public virtual EmployeeDetail EmployeeDetail { get; set; }
 
     public Guid AppraisalTemplateId { get; set; }
     public virtual AppraisalTemplate AppraisalTemplate { get; set; }
+
+    public string Status { get; set; }
   }
 }

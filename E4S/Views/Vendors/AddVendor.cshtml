@@ -1,114 +1,119 @@
-﻿
+﻿@model E4S.Models.AccountInventory.Vendor
+
 @{
-    ViewData["Title"] = "AddVendor";
-    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+  ViewData["Title"] = "Add Vendor";
+  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
 
 <style>
-    .body-card {
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1%;
-        margin-bottom: 2%;
-    }
+  .body-card {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
 
-    .table-font {
-        font-weight: 500;
-    }
+  .table-font {
+    font-weight: 500;
+  }
 
 
-    .labeltext {
-        padding-left: 20px;
-        padding-right: 20px;
-        color: #000 !important;
-        text-align: right;
-    }
+  .labeltext {
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #000 !important;
+    text-align: right;
+  }
 </style>
 
 <div class="content">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header body-card">
-                    <h5>Add a Vendor</h5>
+  @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
 
-                </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header body-card">
+          <h5>Add a Vendor</h5>
 
-                <div class="card-body body-card">
-                    <form class="form">
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">Vendor Name</label>
-                            <input type="text" class="form-control col-sm-4" placeholder="John Doe" />
-                        </div>
-                        <br />
+        </div>
 
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3" style="text-align:left;">Email</label>
-                            <input type="text" class="form-control col-sm-4" placeholder="Johndoe@gmail.com" />
+        <div class="card-body body-card">
+          <form class="form" asp-action="AddVendor">
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Vendor Name</label>
+              <input asp-for="VendorName" type="text" class="form-control col-sm-4" placeholder="John Doe" />
+            </div>
+            <br />
 
-                        </div>
-
-                        <br />
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">Phone Number</label>
-                            <input type="tel" class="form-control col-sm-4" placeholder="+234958437538" />
-                        </div>
-
-                        <br />
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">Address</label>
-                            <input type="tel" class="form-control col-sm-4" placeholder="21 Olubunmi Olurotimi" />
-                        </div>
-
-                        <br />
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">Country</label>
-                            <select class="form-control col-sm-4">
-                                <option>Nigeria</option>
-                            </select>
-                        </div>
-                        <br />
-
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">State</label>
-                            <select class="form-control col-md-4">
-                                <option>Lagos</option>
-                            </select>
-                        </div>
-
-                        <br />
-
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">City</label>
-                            <select class="form-control col-sm-4">
-                                <option>Oshodi</option>
-                            </select>
-                        </div>
-                        <br />
-
-                        <div class="form-inline">
-                            <label class="labeltext col-sm-3">Zip code</label>
-                            <input type="tel" class="form-control col-sm-4" placeholder="12345" />
-                        </div>
-
-                        <br />
-
-
-                        <hr />
-                        <div class="form-inline">
-                            <input type="submit" value="Create Vendor" class="btn btn-info content-center" />
-
-                            <input type="submit" value="Cancel" class="btn btn-danger content-center" />
-                        </div>
-
-
-                    </form>
-                </div>
+            <div class="form-inline">
+              <label class="labeltext col-sm-3" style="text-align:left;">Email</label>
+              <input asp-for="Email" type="text" class="form-control col-sm-4" placeholder="Johndoe@gmail.com" />
 
             </div>
+
+            <br />
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Phone Number</label>
+              <input asp-for="Phone" type="tel" class="form-control col-sm-4" placeholder="+234958437538" />
+            </div>
+
+            <br />
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Address</label>
+              <input asp-for="Address" type="tel" class="form-control col-sm-4" placeholder="21 Olubunmi Olurotimi" />
+            </div>
+
+            <br />
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Country</label>
+              <select asp-for="Country" class="form-control col-sm-4">
+                <option value="Nigeria">Nigeria</option>
+              </select>
+            </div>
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">State</label>
+              <select asp-for="State" class="form-control col-md-4">
+                <option value="Lagos">Lagos</option>
+              </select>
+            </div>
+
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">City</label>
+              <select asp-for="City" class="form-control col-sm-4">
+                <option value="Oshodi">Oshodi</option>
+              </select>
+            </div>
+            <br />
+
+            <div class="form-inline">
+              <label class="labeltext col-sm-3">Zip code</label>
+              <input asp-for="ZipCode" type="tel" class="form-control col-sm-4" placeholder="12345" />
+            </div>
+
+            <br />
+
+
+            <hr />
+            <div class="form-inline">
+              <label class="labeltext col-sm-3"></label>
+
+              <input type="submit" value="Create Vendor" class="btn btn-info content-center" />
+
+              @*<input type="submit" value="Cancel" class="btn btn-danger content-center" />*@
+            </div>
+
+
+          </form>
         </div>
+
+      </div>
     </div>
+  </div>
 </div>
 
