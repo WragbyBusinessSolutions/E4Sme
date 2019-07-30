@@ -9,8 +9,10 @@ namespace E4S.ViewModel
   public class AppraisalViewTemplateViewModel
   {
     public Guid Id { get; set; }
+    public Guid AppTemId { get; set; }
     public string TemplateName { get; set; }
     public List<AppCat> AppCat { get; set; }
+    public List<Guid> kpiId { get; set; }
   }
 
   public class AppCat

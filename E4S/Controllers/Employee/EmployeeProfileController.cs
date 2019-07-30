@@ -1087,8 +1087,290 @@ namespace E4S.Controllers.Employee
 
     public IActionResult Performance()
     {
-      return View();
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      EmployeePerformanceViewModel epVM = new EmployeePerformanceViewModel();
+
+      var empTemplate = _context.AppraisalAssignedTemplates.Where(x => x.OrganisationId == orgId).Where(x => x.EmployeeDetailId == employeeDetails.Id).Where(x => x.Status != "Completed").Include(x => x.AppraisalTemplate).Include(x => x.Appraisal).ToList();
+      epVM.AppraisalAssignedTemplates = empTemplate;
+
+      
+
+      return View(epVM);
     }
 
+    public IActionResult AppraisalTemplate(string id)
+    {
+      var orgId = getOrg();
+
+      var idsplit = id.Split(',');
+      Guid ids = Guid.Parse(idsplit[0]);
+      Guid appId = Guid.Parse(idsplit[1]);
+
+      AppraisalViewTemplateViewModel avtVM = new AppraisalViewTemplateViewModel();
+
+      List<AppCat> appCat = new List<AppCat>();
+      List<AppraisalKPI> kPIs;
+      AppCat sAppCat;
+
+      List<Guid> kpiId = new List<Guid>();
+
+      var temp = _context.AppraisalTemplates.Where(x => x.Id == ids).FirstOrDefault();
+      var appCats = _context.AppraisalTemplateCategories.Where(x => x.AppraisalTemplateId == ids).Include(x => x.AppraisalCategory).ToList();
+      var kpi = _context.AppraisalKPIs.Where(x => x.OrganisationId == orgId);
+      avtVM.TemplateName = temp.Template;
+
+
+      AppraisalCategoryEdit ace;
+
+      foreach (var item in appCats)
+      {
+
+        sAppCat = new AppCat();
+        ace = new AppraisalCategoryEdit();
+        kPIs = new List<AppraisalKPI>();
+
+        sAppCat.AppraisalTemplateCategory = item;
+        ace.AppraisalCategory = item.AppraisalCategory;
+        kPIs = kpi.Where(x => x.AppraisalCategoryId == item.AppraisalCategoryId).ToList();
+
+        kpiId.AddRange(kPIs.Select(x => x.Id));
+
+        ace.AppraisalKPIs = kPIs;
+        sAppCat.AppraisalCategoryEdit = ace;
+
+        appCat.Add(sAppCat);
+      }
+
+      avtVM.AppCat = appCat;
+      avtVM.kpiId = kpiId;
+      avtVM.AppTemId = appId;
+      return View(avtVM);
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EmpAppResult([FromBody]AppraisalResponse empAppResult)
+    {
+      if (empAppResult == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var appsKPI = _context.AppraisalKPIs.Where(x => x.OrganisationId == orgId).ToList();
+      var appsCat = _context.AppraisalTemplateCategories.Where(x => x.OrganisationId == orgId).ToList();
+
+      AppraisalEmployeeResult appEmployeeResult = new AppraisalEmployeeResult()
+      {
+        Id = Guid.NewGuid(),
+        AppraisalId = empAppResult.AppraisalId,
+        EmployeeDetailId = employeeDetails.Id,
+        DateSubmited = DateTime.Now,
+        OrganisationId = orgId
+      };
+
+      List<KPIEmployeeResult> KPIListResult = new List<KPIEmployeeResult>();
+      KPIEmployeeResult singleKPI;
+      float point = 0;
+      float points = 0;
+
+      foreach (var item in empAppResult.KPIs)
+      {
+        singleKPI = new KPIEmployeeResult()
+        {
+          Id = Guid.NewGuid(),
+          AppraisalId = appEmployeeResult.AppraisalId,
+          EmployeeDetailId = appEmployeeResult.EmployeeDetailId,
+          AppraisalEmployeeResultId = appEmployeeResult.Id,
+          KPIId = item.KPIId,
+          KPISelection = item.KPIResult,
+          OrganisationId = orgId
+        };
+
+        var kpi = appsKPI.Where(x => x.Id == singleKPI.KPIId).FirstOrDefault();
+        var cat = appsCat.Where(x => x.AppraisalCategoryId == kpi.AppraisalCategoryId).FirstOrDefault();
+
+        point = point + (kpi.Weight * Int32.Parse(singleKPI.KPISelection) * 20 * cat.Weight);
+        points = points + (kpi.Weight * cat.Weight);
+
+        KPIListResult.Add(singleKPI);
+      }
+
+      appEmployeeResult.AppraisalScore = point / points;
+
+
+
+
+      try
+      {
+
+        _context.Add(appEmployeeResult);
+        _context.SaveChanges();
+
+        _context.AddRange(KPIListResult);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> FinishAppResult([FromBody]AppraisalResponse empAppResult)
+    {
+      if (empAppResult == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+
+      var appsKPI = _context.AppraisalKPIs.Where(x => x.OrganisationId == orgId).ToList();
+      var appsCat = _context.AppraisalTemplateCategories.Where(x => x.OrganisationId == orgId).ToList();
+
+      var appExisit = _context.AppraisalEmployeeResults.Where(x => x.AppraisalId == empAppResult.AppraisalId).Where(x => x.EmployeeDetailId == employeeDetails.Id).FirstOrDefault();
+      float point = 0;
+      float points = 0;
+
+
+      if (appExisit != null)
+      {
+        var kpiResults = _context.KPIEmployeeResults.Where(x => x.AppraisalEmployeeResultId == appExisit.Id).Where(x => x.EmployeeDetailId == employeeDetails.Id).ToList();
+
+        foreach (var item in empAppResult.KPIs)
+        {
+          var editKPI = kpiResults.Where(x => x.KPIId == item.KPIId).FirstOrDefault();
+
+          var kpi = appsKPI.Where(x => x.Id == editKPI.KPIId).FirstOrDefault();
+          var cat = appsCat.Where(x => x.AppraisalCategoryId == kpi.AppraisalCategoryId).FirstOrDefault();
+          editKPI.KPISelection = item.KPIResult;
+
+          point = point + (kpi.Weight * Int32.Parse(editKPI.KPISelection) * 20 * cat.Weight);
+          points = points + (kpi.Weight * cat.Weight);
+
+          _context.KPIEmployeeResults.Update(editKPI);
+          _context.SaveChanges();
+        }
+
+
+        appExisit.Status = "Finished";
+        appExisit.AppraisalScore = point / points;
+
+        _context.AppraisalEmployeeResults.Update(appExisit);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+);
+
+      }
+
+
+
+      AppraisalEmployeeResult appEmployeeResult = new AppraisalEmployeeResult()
+      {
+        Id = Guid.NewGuid(),
+        AppraisalId = empAppResult.AppraisalId,
+        EmployeeDetailId = employeeDetails.Id,
+        DateSubmited = DateTime.Now,
+        OrganisationId = orgId,
+        Status = "Finished"
+      };
+
+      List<KPIEmployeeResult> KPIListResult = new List<KPIEmployeeResult>();
+      KPIEmployeeResult singleKPI;
+      point = 0;
+      points = 0;
+
+      foreach (var item in empAppResult.KPIs)
+      {
+        singleKPI = new KPIEmployeeResult()
+        {
+          Id = Guid.NewGuid(),
+          AppraisalId = appEmployeeResult.AppraisalId,
+          EmployeeDetailId = appEmployeeResult.EmployeeDetailId,
+          AppraisalEmployeeResultId = appEmployeeResult.Id,
+          KPIId = item.KPIId,
+          KPISelection = item.KPIResult,
+          OrganisationId = orgId
+        };
+
+        var kpi = appsKPI.Where(x => x.Id == singleKPI.KPIId).FirstOrDefault();
+        var cat = appsCat.Where(x => x.AppraisalCategoryId == kpi.AppraisalCategoryId).FirstOrDefault();
+
+        point = point + (kpi.Weight * Int32.Parse(singleKPI.KPISelection) * 20 * cat.Weight);
+        points = points + (kpi.Weight * cat.Weight);
+
+        KPIListResult.Add(singleKPI);
+      }
+
+      appEmployeeResult.AppraisalScore = point / points;
+
+
+
+
+      try
+      {
+
+        _context.Add(appEmployeeResult);
+        _context.SaveChanges();
+
+        _context.AddRange(KPIListResult);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    
   }
+
 }

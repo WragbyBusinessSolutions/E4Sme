@@ -55,7 +55,7 @@ namespace E4S.Controllers.HumanResource
         {
       var orgId = getOrg();
 
-      var employeeListDb = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList();
+      var employeeListDb = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId).ToList().OrderByDescending(x => x.DateCreated);
       List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
 
       EmployeeListViewModel singleEmployee;
@@ -95,16 +95,6 @@ namespace E4S.Controllers.HumanResource
           };
 
         }
-        //var empDetails = _context.Jobs.Where(x => x.EmployeeDetailId == item.Id).Include(x => x.JobTitle).Include(x => x.Department).Include(x => x.EmploymentStatus).FirstOrDefault();
-        //singleEmployee = new EmployeeListViewModel()
-        //{
-        //  Id = item.Id,
-        //  EmployeeName = item.FirstName + " " + item.LastName,
-        //  Department = empDetails.Department.DepartmentName,
-        //  EmployeeStatus = empDetails.EmploymentStatus.EmploymentStatusName,
-        //  JobTitle = empDetails.JobTitle.JobTitleName,
-        //  Supervisor = ""
-        //};
 
         employeeList.Add(singleEmployee);
       }

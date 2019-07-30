@@ -4,14 +4,16 @@ using E4S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190729174210_appEmployeeResult")]
+    partial class appEmployeeResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,10 +294,6 @@ namespace E4S.Data.Migrations
                     b.Property<string>("Status");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AppraisalId");
-
-                    b.HasIndex("EmployeeDetailId");
 
                     b.ToTable("AppraisalEmployeeResults");
                 });
@@ -1450,19 +1448,6 @@ namespace E4S.Data.Migrations
                     b.HasOne("E4S.Models.HumanResource.AppraisalTemplate", "AppraisalTemplate")
                         .WithMany()
                         .HasForeignKey("AppraisalTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
-                        .WithMany()
-                        .HasForeignKey("EmployeeDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("E4S.Models.HumanResource.AppraisalEmployeeResult", b =>
-                {
-                    b.HasOne("E4S.Models.HumanResource.Appraisal", "Appraisal")
-                        .WithMany()
-                        .HasForeignKey("AppraisalId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("E4S.Models.HumanResource.EmployeeDetail", "EmployeeDetail")
