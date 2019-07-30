@@ -1247,5 +1247,210 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Department([FromBody]PostNewDepartment postNewDepartment)
+        {
+            if (postNewDepartment == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                Department newDepartment = new Department()
+                {
+                    Id = Guid.NewGuid(),
+                    DepartmentName = postNewDepartment.DepartmentName,
+                    Description = postNewDepartment.Description,
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newDepartment);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NewJobCategory([FromBody]PostNewJobCategory postNewJobCategory)
+        {
+            if (postNewJobCategory == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                JobCategory newJobCategory = new JobCategory()
+                {
+                    Id = Guid.NewGuid(),
+                    JobCategoryName = postNewJobCategory.JobCategory,
+                    Description = postNewJobCategory.Description,
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newJobCategory);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostNewEmploymentStatus([FromBody]PostNewEmploymentStatus postNewEmploymentStatus)
+        {
+            if (postNewEmploymentStatus == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                EmploymentStatus newEmploymentStatus = new EmploymentStatus()
+                {
+                    Id = Guid.NewGuid(),
+                    EmploymentStatusName = postNewEmploymentStatus.EmploymentStatusName,
+                    Description = postNewEmploymentStatus.Description,
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newEmploymentStatus);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PostNewBranch([FromBody]PostBranch postBranch)
+        {
+            if (postBranch == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+            var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+            int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+            try
+            {
+                Branch newBranch = new Branch()
+                {
+                    Id = Guid.NewGuid(),
+                    BranchName = postBranch.BranchName,
+                    Email = postBranch.Email,
+                    PhoneNo = postBranch.PhoneNo,
+                    City = postBranch.City,
+                    Country = postBranch.Country,
+                    OrganisationId = orgId
+                };
+
+                _context.Add(newBranch);
+                _context.SaveChanges();
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+             );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+
+
+
+        
+        
+
+
     }
 }
