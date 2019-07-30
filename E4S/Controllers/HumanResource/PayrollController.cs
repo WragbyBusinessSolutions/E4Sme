@@ -211,9 +211,60 @@ namespace E4S.Controllers.HumanResource
 
 
 
-        // Ednf of Edit for Salary Additions
+    // Ednf of Edit for Salary Additions
 
-        public IActionResult SalaryDeductions()
+
+    //Delete Salary Additions
+    private bool SalaryAdditionExists(Guid id)
+    {
+      return _context.SalaryAdditions.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteSalaryAddition([FromBody]string additionId)
+    {
+      if (additionId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var additionType = _context.SalaryAdditions.SingleOrDefault(m => m.Id == Guid.Parse(additionId));
+        _context.SalaryAdditions.Remove(additionType);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+
+
+
+
+
+
+    public IActionResult SalaryDeductions()
         {
             var ordId = getOrg();
             ViewData["EmployeeDetails"] = new SelectList(_context.EmployeeDetails.Where(x => x.OrganisationId == ordId), "Id", "FirstName", "LastName");
@@ -325,11 +376,59 @@ namespace E4S.Controllers.HumanResource
         }
 
 
+    //Delete Salary Additions
+    private bool SalaryDeductionExists(Guid id)
+    {
+      return _context.SalaryDeductions.Any(e => e.Id == id);
+    }
 
-        // Edit for Salary deductions
+
+    [HttpPost]
+    public IActionResult DeleteSalaryDeduction([FromBody]string deductionId)
+    {
+      if (deductionId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var deductionType = _context.SalaryDeductions.SingleOrDefault(m => m.Id == Guid.Parse(deductionId));
+        _context.SalaryDeductions.Remove(deductionType);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
 
 
-        public async Task<IActionResult> GeneratePayroll()
+    }
+
+
+
+
+
+
+    // Edit for Salary deductions
+
+
+    public async Task<IActionResult> GeneratePayroll()
         {
           var orgId = getOrg();
 
