@@ -982,14 +982,14 @@ namespace E4S.Controllers.Employee
 
         public IActionResult Leave()
         {
-      var orgId = getOrg();
-      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var orgId = getOrg();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-      var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
-      ViewData["LeaveTitle"] = new SelectList(_context.LeaveConfigurations.Where(x => x.OrganisationId == orgId), "Id", "LeaveTitle");
+            var leaveList = _context.Leaves.Where(x => x.EmployeeDetail.UserId == Guid.Parse(userId)).ToList();
+            ViewData["LeaveTitle"] = new SelectList(_context.LeaveConfigurations.Where(x => x.OrganisationId == orgId), "Id", "LeaveTitle");
 
 
-      return View(leaveList);
+            return View(leaveList);
         }
 
     [HttpPost]
