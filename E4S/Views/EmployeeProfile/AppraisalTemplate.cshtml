@@ -1,0 +1,557 @@
+﻿@model E4S.ViewModel.AppraisalViewTemplateViewModel
+
+@{
+  ViewData["Title"] = "Appraisal Template";
+  Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<div class="content">
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+          <h4 class="card-title">Template Name: <b>@Model.TemplateName</b></h4>
+          <input asp-for="Id" hidden />
+        </div>
+        <div class="card-body ">
+          <form class="form-horizontal">
+            @*<div class="row">
+                <label class="col-md-3 col-form-label">Employee Name</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Employee ID No.</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Job Title</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Department</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>Devops</option>
+                      <option>Sales</option>
+                      <option>Customer Success</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 col-form-label">Period Under Review</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option>--Select Review Quarter--</option>
+                      <option>January - March(First Quarter)</option>
+                      <option>April - June(Second Quarter)</option>
+                      <option>July - September(Third Quarter)</option>
+                      <option>October - December(Fourth Quarter)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>*@
+
+            <div class="col-md-9">
+              <h4 class="card-title">Rating Categories</h4>
+              <p><b>5. Exceptional Performance: </b> Outstanding performance that far exceeds goals in all performance elements </p>
+              <p><b>4. Exceeds Expectations: </b>Performance that consistently goes beyond meeting goals </p>
+              <p><b>3. Fully Meets Expectations: </b> Commendable performance that meets goals </p>
+              <p><b>2. Partially Meets Expectations: </b> Inconsistent aspects of performance requiring improvement to meet some goals </p>
+              <p><b>1. Does Not Meet Expectations: </b> Goals unmet, skills not demonstrated, drastic improvement needed </p>
+              <p><b>0. Not Applicable</b></p>
+              <input asp-for="AppTemId" hidden />
+            </div>
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  @*<h4 class="card-title"> Striped Table with Checkboxes</h4>*@
+                </div>
+
+                <div class="col-md-12">
+                  <div class="card-body">
+                    <div class="table-responsive" style="overflow: auto;">
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+
+
+                            <th rowspan="2"><strong>ITEMS</strong> </th>
+
+                            <th colspan="5" style="text-align: center;"><strong>RATINGS</strong></th>
+
+
+
+                          </tr>
+                          <tr>
+
+
+                            <th style="text-align:right;">1</th>
+                            <th style="text-align:right;">2</th>
+                            <th style="text-align:right;">3</th>
+                            <th style="text-align:right;">4</th>
+                            <th style="text-align:right;">5</th>
+
+                          </tr>
+                        </thead>
+
+
+
+                        <tbody>
+                        <tbody>
+
+                          @foreach (var item in Model.AppCat)
+                          {
+
+
+                            <tr style="background-color: #e2e2e2;">
+                              <td rowspan="2"><strong>@item.AppraisalTemplateCategory.AppraisalCategory.Category (@item.AppraisalTemplateCategory.Weight%)</strong></td>
+                            </tr>
+                            <tr style="background-color: #e2e2e2;">
+                              <td style="text-align:right;"><p style="visibility: hidden;">1</p></td>
+                              <td style="text-align:right;"></td>
+                              <td style="text-align:right;"></td>
+                              <td style="text-align:right;"></td>
+                              <td style="text-align:right;"></td>
+                            </tr>
+                            @foreach (var kpiitem in item.AppraisalCategoryEdit.AppraisalKPIs)
+                            {
+                              <tr>
+                                <td rowspan="2">@kpiitem.KPI</td>
+                              </tr>
+                              <tr>
+
+
+                                <td style="text-align:right;"><input type="radio" name="@kpiitem.Id" value="1"></td>
+                                <td style="text-align:right;"><input type="radio" name="@kpiitem.Id" value="2"></td>
+                                <td style="text-align:right;"><input type="radio" name="@kpiitem.Id" value="3"></td>
+                                <td style="text-align:right;"><input type="radio" name="@kpiitem.Id" value="4"></td>
+                                <td style="text-align:right;"><input type="radio" name="@kpiitem.Id" value="5" /></td>
+                              </tr>
+
+                            }
+                          }
+
+                        </tbody>
+
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+
+      <div class="card ">
+        <div class="card-header ">
+          <h4 class="card-title">Part Two : Summary Review Of Employee Performance</h4><br />
+          <p>
+            Supervisor describes employee’s major assignments and accomplishments, key strengths, <br /> any
+            performance shortfalls, and other performance elements that characterize the employee’s <br /> performance during the review period.
+            Please include examples or supporting information below.
+          </p>
+        </div>
+        <div class="card-body ">
+
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend"></div>
+                <textarea name="empReview" id="empReview" class="form-control" cols="4" rows="6" placeholder="Enter Review Of Employee Perfrormance"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div>
+            @*<button type="button" id="btncheck" name="btncheck"> Check</button>*@
+
+
+            <button id="btnFinish" type="button" name="btnfinish" class="btn btn-info pull-right">Finish</button>
+            <button id="btncheck" type="button" name="btncheck" class="btn btn-danger pull-right">Save</button>
+
+          </div>
+
+          @*<h4 class="card-title">Part Three : Overall Performance Rating</h4><br />*@
+
+          @*<table class="table table-borderless">
+
+      <tr>
+
+        <td>
+
+
+          <div class="row">
+            <label class="col-md-3"></label>
+            <div class="col-md-9">
+              <div class="form-check">
+                <label class="form-check-label">
+                  Exceptional Performance
+                </label>
+                <input class="form-check-input" type="checkbox">
+                <span class="form-check-sign"></span>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        <td>
+          <div class="form-check">
+            <label class="form-check-label">
+              Exceeds Expectations
+            </label>
+            <input class="form-check-input" type="checkbox">
+            <span class="form-check-sign"></span>
+
+          </div>
+        </td>
+
+        <td>
+          <div class="form-check">
+            <label class="form-check-label">
+              Partaially Meets Expectations
+            </label>
+            <input class="form-check-input" type="checkbox">
+            <span class="form-check-sign"></span>
+
+          </div>
+        </td>
+
+        <td>
+          <div class="form-check">
+            <label class="form-check-label">
+              Does Not Meet Expecations
+            </label>
+            <input class="form-check-input" type="checkbox">
+            <span class="form-check-sign"></span>
+
+          </div>
+        </td>
+
+
+      </tr>
+
+    </table>*@
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    @*<div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Part Four A : Performance Goals For The Next Period</h4><br />
+            <p>List goals for the upcoming review period to ensure continued contributions from the employee for success <br /> within the organization. </p>
+          </div>
+          <div class="card-body ">
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <div class="input-group-prepend"></div>
+                  <textarea class="form-control" cols="4" rows="6" placeholder="List Goals For Next Review Period."></textarea>
+                </div>
+
+                <br />
+
+                <div>
+                  <h4 class="card-title">Part Four B : Goals For Progress On Personal Development</h4><br />
+                  <p>List goals related to the employee’s professional (or managerial) development. Consider the employee’s <br /> performance improvement needs and action plan, training recommendations, future goals and expectations.</p>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend"></div>
+                      <textarea class="form-control" cols="4" rows="6" placeholder="List Goals For Personal Development."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+
+            <div class="card-body ">
+              <form class="form-horizontal">
+
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Manager</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Employee Comments</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <textarea class="form-control" cols="4" rows="6" placeholder="Enter Employee Comments."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-md-3 col-form-label"></label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-fill btn-primary">Submit Appraisal</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+        </div>
+      </div>*@
+
+
+
+
+
+  </div>
+</div>
+
+@section Scripts {
+
+  <script>
+  $(document).ready(function () {
+
+    var radios = [@foreach (var item in Model.kpiId)
+    {
+      @:"@item",
+      }];
+
+    $("#btncheck").click(function (event) {
+
+      var result = [];
+
+      for (i = 0; i < radios.length; i++) {
+
+        var eachrd = radios[i];
+        var rbtn = document.getElementsByName(eachrd);
+        var kpi = {
+          KPIId: eachrd,
+          KPIResult: "0"
+        }
+
+        for (c = 0; c < rbtn.length; c++) {
+          if (rbtn[c].checked) {
+            kpi.KPIResult = rbtn[c].value;
+          }
+
+
+
+        }
+        console.log(kpi);
+        result.push(kpi);
+        
+      }
+
+      var AppraisalResponse = {
+        KPIs: result,
+        EmpReview: $("#empReview").val(),
+        AppraisalId: $("#AppTemId").val()
+      }
+      
+      console.log(AppraisalResponse);
+
+                  $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/EmpAppResult",
+              data: JSON.stringify(AppraisalResponse),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+
+                          	swal({
+                title: "Success!",
+                text: "Appraisal Saved!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+
+            window.location.replace("/EmployeeProfile/Performance");
+
+          }).catch(swal.noop);
+
+                } else if (r.msg == "Fail") {
+
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  alert(r.msg);
+
+                } else if (r.msg == "Exceed") {
+                  alert("Not Added. Total KPIs exceeds 100.");
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                alert(r.msg);
+              }
+            });
+
+
+
+
+
+    });
+
+    $("#btnFinish").click(function (event) {
+
+      var result = [];
+
+      for (i = 0; i < radios.length; i++) {
+
+        var eachrd = radios[i];
+        var rbtn = document.getElementsByName(eachrd);
+        var kpi = {
+          KPIId: eachrd,
+          KPIResult: "0"
+        }
+
+        for (c = 0; c < rbtn.length; c++) {
+          if (rbtn[c].checked) {
+            kpi.KPIResult = rbtn[c].value;
+          }
+
+
+
+        }
+        console.log(kpi);
+        result.push(kpi);
+        
+      }
+
+      var AppraisalResponse = {
+        KPIs: result,
+        EmpReview: $("#empReview").val(),
+        AppraisalId: $("#AppTemId").val()
+      }
+      
+      console.log(AppraisalResponse);
+
+                  $.ajax({
+              type: "POST",
+              url: "/EmployeeProfile/FinishAppResult",
+              data: JSON.stringify(AppraisalResponse),
+              dataType: "json",
+              contentType: 'application/json; charset=utf-8',
+              headers: {
+                RequestVerificationToken:
+                  $('input:hidden[name="__RequestVerificationToken"]').val()
+              },
+              success: function (r) {
+
+                if (r.msg == "Success") {
+
+                          	swal({
+                title: "Success!",
+                text: "Appraisal Submitted!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+
+            window.location.replace("/EmployeeProfile/Performance");
+
+          }).catch(swal.noop);
+
+
+
+                } else if (r.msg == "Fail") {
+
+                  alert(r.msg);
+
+                } else if (r.msg == "No Data") {
+                  alert(r.msg);
+
+                } else if (r.msg == "Exceed") {
+                  alert("Not Added. Total KPIs exceeds 100.");
+                }
+                //alert(r.msg);
+                // window.location.reload();
+
+              },
+              error: function () {
+                alert(r.msg);
+              }
+            });
+
+
+
+
+
+    });
+
+  });
+
+
+
+  </script>
+}

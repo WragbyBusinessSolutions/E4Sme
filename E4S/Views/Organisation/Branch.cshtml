@@ -1,79 +1,381 @@
-﻿@model  IEnumerable<E4S.Models.Branch>
+﻿@model IEnumerable<E4S.Models.Branch>
 
 @{
-    ViewData["Title"] = "Branch";
+  ViewData["Title"] = "Branch";
 }
 
 <style>
-    .body-pad{
-        padding: 2%;
-    }
+  .body-pad {
+    padding: 2%;
+  }
 </style>
 
 <div class="content">
-    <div class="row">
-        <!-- Column -->
-        <div class="container-fluid">
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card body-pad">
-                            <div class="card-header">
-                                @*<div class="justify-content-end align-items-center pull-right">*@
-                                    <a asp-action="createbranch" asp-controller="Organisation" class="btn btn-info">Create New</a>
-                                @*</div>*@
-                                <h4 class="card-title">List of Branches</h4>
-                            </div>
-                            <div class="card-body">
-                                <br />
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-lg-12">
-                                        <div class="table-responsive" style="overflow:auto">
-                                            <table id="datatable" class="table table-">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>E-mail</th>
-                                                        <th>Phone</th>
-                                                        <th>City</th>
-                                                        <th class="disabled-sorting text-right">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+  <div class="row">
+    <!-- Column -->
+    <div class="container-fluid">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card body-pad">
+              <div class="card-header">
+                @*<div class="justify-content-end align-items-center pull-right">*@
+                <a asp-action="createbranch" asp-controller="Organisation" class="btn btn-info">Create New</a>
+                @*</div>*@
 
-                                                    @foreach (var item in Model)
-                                                    {
-                                                        <tr>
-                                                            <td>@item.BranchName</td>
-                                                            <td>@item.Email</td>
-                                                            <td>@item.PhoneNo</td>
-                                                            <td>@item.City</td>
-                                                            <td class="text-right">
-                                                                <a class="btn btn-round btn-warning btn-icon btn-sm edit" asp-action="editbranch" asp-controller="Organisation"><i class="far fa-edit"></i></a>
-                                                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                                            </td>
-                                                        </tr>
+                <h4 class="card-title">List of Branches</h4>
+              </div>
+              <div class="card-body">
+                <br />
 
-                                                    }
 
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
+                <div class="modal fade" id="noticeModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notice">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h5 class="modal-title" id="myModalLabel">Edit Branch Details</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="instruction">
+                          <form method="post">
+                            <input id="ebranchid" name="ebranchid" hidden />
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" placeholder="Branch Name" id="branchName" name="branchName" required>
                                 </div>
-                               
+                              </div>
                             </div>
-                            <!-- end content-->
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>E-Mail</label>
+                                  <input type="text" class="form-control" placeholder="E-Mail" id="eMail" name="eMail" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Phone</label>
+                                  <input type="text" class="form-control" placeholder="Phone" id="Phone" name="Phone" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>City</label>
+                                  <input type="text" class="form-control" placeholder="City" id="City" name="City" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Country</label>
+                                  <input type="text" class="form-control" placeholder="Country" id="Country" name="Country" required>
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr />
+                            <div class="card-footer ">
+                              <button type="submit" class="btn btn-fill btn-primary btn-round" id="editBranch">Submit</button>
+                              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                            </div>
+                          </form>
                         </div>
-                        <!--  end card  -->
+                      </div>
+                      @*<div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+          </div>*@
                     </div>
-                    <!-- end col-md-12 -->
+                  </div>
                 </div>
-                <!-- end row -->
+
+
+
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-lg-12">
+                    <div class="table-responsive" style="overflow:auto">
+                      <table id="datatable2" class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th class="disabled-sorting text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          @foreach (var item in Model)
+                          {
+                            <tr>
+                              <td>@item.BranchName</td>
+                              <td>@item.Email</td>
+                              <td>@item.PhoneNo</td>
+                              <td>@item.City</td>
+                              <td class="text-right">
+                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" title="Click to Edit" data-toggle="tooltip" data-placement="top" id="EditBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName" Selected-eMail="@item.Email" Selected-Phone="@item.PhoneNo" Selected-City="@item.City" Selected-Country="@item.Country"><i class="far fa-edit"></i></a></span>
+                                  <a href="#" BranchId="@item.Id" BranchName="@item.BranchName" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
+                                  @*<span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete" data-toggle="tooltip" data-placement="top" id="DelBranch" BranchId="@item.Id" Selected-BranchName="@item.BranchName"><i class="fas fa-times"></i></a></span>*@
+
+</td>
+                            </tr>
+
+                          }
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <!-- end content-->
             </div>
+            <!--  end card  -->
+          </div>
+          <!-- end col-md-12 -->
         </div>
+        <!-- end row -->
+      </div>
     </div>
+  </div>
 </div>
 
 
+
+
+@section Scripts {
+
+  <script>
+    //Code for pulling the Records on the Table
+      var aEditBranchId;
+
+      $(document).delegate('#EditBranch',
+        'click',
+        function (e) {
+
+          aEditBranchId = $(this).attr('BranchId');
+          branchName = $(this).attr('Selected-BranchName');
+          email = $(this).attr('Selected-eMail');
+          phone = $(this).attr('Selected-Phone');
+          city = $(this).attr('Selected-City');
+          country = $(this).attr('Selected-Country');
+
+          //console.log(description, department);
+
+
+          $('input[name=ebranchid]').val(aEditBranchId);
+          $('input[name=branchName]').val(branchName);
+          $('input[name=eMail]').val(email);
+          $('input[name=Phone]').val(phone);
+          $('input[name=City]').val(city);
+          $('input[name=Country]').val(country);
+
+        });
+
+      //End of the code
+
+
+    //edit the branch
+     $(document).ready(function () {
+
+        $("#editBranch").click(function (event) {
+
+          event.preventDefault();
+
+          var PostBranch = {
+            AId: $("#ebranchid").val(),
+            BranchName: $("#branchName").val(),
+            Email: $("#eMail").val(),
+            PhoneNo: $("#Phone").val(),
+            City: $("#City").val(),
+            Country: $("#Country").val(),
+
+          };
+
+
+          // console.log(Items);
+          console.log(PostBranch);
+
+          $.ajax({
+            type: "POST",
+            url: "/Organisation/editBranch",
+            data: JSON.stringify(PostBranch),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                demo.showSwal('success-message');
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+        });
+
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //delete the branch
+    $(document).ready(function () {
+
+      $('#datatable2').DataTable({
+        "pagingType": "full_numbers",
+        dom: "Bfrtip",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+
+
+        buttons: [
+          'copy',
+          'excel',
+          'csv',
+          'pdf',
+          'print',
+        ],
+
+
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable2').DataTable();
+
+      //// Edit record
+      //table.on('click', '.edit', function () {
+      //  $tr = $(this).closest('tr');
+
+      //  var data = table.row($tr).data();
+      //  alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      //});
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+
+        branchId = $(this).attr('BranchId');
+        branchName = $(this).attr('BranchName');
+        //eMail = $(this).attr('EMail');
+        //phoneNo = $(this).attr('PhoneNo');
+        //city = $(this).attr('city');
+
+
+
+        swal({
+          title: 'Are you sure?',
+          text: "You are about to delete '" + branchName + "'",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          confirmButtonText: 'Yes, delete it!',
+          buttonsStyling: false
+        }).then(function () {
+
+          $.ajax({
+            type: "POST",
+            url: "/Organisation/deleteBranch",
+            data: JSON.stringify(branchId),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                swal({
+                  title: 'Deleted!',
+                  text: 'Your file has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                });
+
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+
+
+          table.row($tr).remove().draw();
+
+        }).catch(swal.noop);
+
+
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+
+  }

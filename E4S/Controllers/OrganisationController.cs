@@ -1,5 +1,6 @@
 ﻿using E4S.Data;
 using E4S.Models;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -171,37 +172,138 @@ namespace E4S.Controllers
       return RedirectToAction("Branch");
     }
 
-        [HttpPost]
-        public IActionResult editbranch(Branch branch)
+    //[HttpPost]
+    //public IActionResult editbranch(Branch branch)
+    //{
+    //    var org = getOrg();
+
+    //    var bran = _context.Branches.Where(x => x.Id == branch.Id).FirstOrDefault();
+
+
+    //    if (branch == null)
+    //    {
+    //        return View();
+    //    }
+
+    //    try
+    //    {
+    //        branch.OrganisationId = bran.Id;                 
+    //        branch.Id = Guid.NewGuid();
+
+    //        _context.Update(branch);
+    //        _context.SaveChangesAsync();
+    //    }
+    //    catch (DbUpdateConcurrencyException)
+    //    {              
+    //        {
+    //            throw;
+    //        }
+    //    }
+    //    return RedirectToAction("Branch");
+    // }
+
+
+    [HttpPost]
+    public async Task<IActionResult> editBranch([FromBody]PostBranch postBranch)
+    {
+      if (postBranch == null)
+      {
+        return Json(new
         {
-            var org = getOrg();
+          msg = "No Data"
+        }
+       );
+      }
 
-            var bran = _context.Branches.Where(x => x.Id == branch.Id).FirstOrDefault();
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
 
 
-            if (branch == null)
-            {
-                return View();
-            }
+      try
+      {
 
-            try
-            {
-                branch.OrganisationId = bran.Id;                 
-                branch.Id = Guid.NewGuid();
+        var branch = _context.Branches.Where(x => x.Id == Guid.Parse(postBranch.AId)).FirstOrDefault();
+        branch.BranchName = postBranch.BranchName;
+        branch.Email = postBranch.Email;
+        branch.PhoneNo = postBranch.PhoneNo;
+        branch.City = postBranch.City;
+        branch.Country = postBranch.Country;
 
-                _context.Update(branch);
-                _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {              
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction("Branch");
-         }
-            
-                
+
+        _context.Update(branch);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+    private bool BranchExists(Guid id)
+    {
+      return _context.Branches.Any(e => e.Id == id);
+    }
+
+
+
+    [HttpPost]
+    public IActionResult DeleteBranch([FromBody]string branchId)
+    {
+      if (branchId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var branch = _context.Branches.SingleOrDefault(m => m.Id == Guid.Parse(branchId));
+        _context.Branches.Remove(branch);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
 
     }
+
+
+
+
+
+
+
+
+
+
+  }
 }

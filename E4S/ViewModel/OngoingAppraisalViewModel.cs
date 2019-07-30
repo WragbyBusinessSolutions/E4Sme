@@ -10,7 +10,9 @@ namespace E4S.ViewModel
   {
     public Appraisal Appraisal { get; set; }
     public List<EmployeeAppraisal> EmployeeAppraisalList { get; set; }
+    public List<AppraisalAssignedTemplate> AppraisalAssignedTemplates { get; set; }
 
+    public List<Job> Jobs { get; set; }
   }
 
 

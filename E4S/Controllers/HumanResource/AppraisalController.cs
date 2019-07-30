@@ -50,15 +50,23 @@ namespace E4S.Controllers.HumanResource
 
         public IActionResult AppraisalReport()
         {
-           
-            return View();
+      var orgId = getOrg();
+
+      var appraisal = _context.Appraisals.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(appraisal);
+
+
         }
 
 
-        public IActionResult ViewAppraisalDetails()
+        public IActionResult ViewAppraisalDetails(Guid id)
         {
+      var orgId = getOrg();
 
-            return View();
+      var appEmpResult = _context.AppraisalEmployeeResults.Where(x => x.AppraisalId == id).Include(x => x.Appraisal).Include(x => x.EmployeeDetail).ToList();
+
+      return View(appEmpResult);
         }
 
 
@@ -419,6 +427,7 @@ namespace E4S.Controllers.HumanResource
       var orgId = getOrg();
       OngoingAppraisalViewModel oAVM = new OngoingAppraisalViewModel();
       List<EmployeeAppraisal> allEmployeeApp = new List<EmployeeAppraisal>();
+      List<EmployeeAppraisal> removeEmployee = new List<EmployeeAppraisal>();
       EmployeeAppraisal singleEmployeApp;
 
 
@@ -428,6 +437,8 @@ namespace E4S.Controllers.HumanResource
       var allSupervisor = _context.AssignedSupervisors.Where(x => x.OrganisationId == orgId).ToList();
       var allJobs = _context.Jobs.Where(x => x.OrganisationId == orgId).Include(c => c.Department).ToList();
 
+      oAVM.AppraisalAssignedTemplates = _context.AppraisalAssignedTemplates.Where(x => x.OrganisationId == orgId).Where(x => x.AppraisalId == id).Include(x => x.AppraisalTemplate).Include(x => x.EmployeeDetail).ToList();
+
       foreach (var item in allEmployee)
       {
         singleEmployeApp = new EmployeeAppraisal();
@@ -435,13 +446,24 @@ namespace E4S.Controllers.HumanResource
         singleEmployeApp.EmployeeDetail = item;
         singleEmployeApp.Job = allJobs.Where(x => x.EmployeeDetailId == item.Id).FirstOrDefault();
         //singleEmployeApp.AssignedSupervisor = allEmployee.Where(x => x.Id == allSupervisor.Where(c => c.EmployeeDetailId == item.Id).FirstOrDefault().SupervisorId).FirstOrDefault();
+        if (singleEmployeApp.Job != null)
+        {
+          if (oAVM.AppraisalAssignedTemplates.FindAll(x => x.EmployeeDetail == item).Count() < 1)
+          {
+            allEmployeeApp.Add(singleEmployeApp);
 
-        allEmployeeApp.Add(singleEmployeApp);
+          }
+
+        }
+
+
 
       }
 
 
       oAVM.EmployeeAppraisalList = allEmployeeApp.OrderBy(x => x.Job.Department.DepartmentName).ToList();
+
+      oAVM.Jobs = allJobs;
 
       ViewData["Templates"] = new SelectList(_context.AppraisalTemplates.Where(x => x.OrganisationId == orgId), "Id", "Template");
 
@@ -449,6 +471,47 @@ namespace E4S.Controllers.HumanResource
 
       return View(oAVM);
     }
+
+    [HttpPost]
+    public IActionResult AssignTemp([FromBody]AppraisalAssignedTemplate assignTemp)
+    {
+      var orgId = getOrg();
+
+      if (assignTemp == null)
+      {
+        return View();
+      }
+
+      assignTemp.Id = Guid.NewGuid();
+      assignTemp.OrganisationId = orgId;
+      //appraisal.IsActive = true;
+
+
+      try
+      {
+        _context.Add(assignTemp);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
 
   }
 }
