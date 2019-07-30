@@ -23,5 +23,30 @@ namespace E4S.Controllers.WragbyAdmin
         {
             return View();
         }
+
+        public IActionResult Support()
+        {
+            return View();
+        }
+
+        public IActionResult SupportDetails()
+        {
+            return View();
+        }
+
+        public IActionResult License()
+        {
+            return View();
+        }
+
+        public IActionResult AddLicense()
+        {
+            return View();
+        }
+
+        public IActionResult ViewLicense()
+        {
+            return View();
+        }
     }
 }

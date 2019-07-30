@@ -182,7 +182,7 @@
                     @item.IsActive
                   </td>
                   <td class="text-right">
-                    <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
+                    <a asp-action="OngoingAppraisal" asp-route-id="@item.Id" class="btn btn-round btn-warning btn-icon btn-sm " title="Click to Approve" data-toggle="modal" data-target="#noticeModal" id="Approvebtn"><i class="far fa-calendar-alt"></i></a>
                     <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
                   </td>
                 </tr>

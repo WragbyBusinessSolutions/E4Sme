@@ -39,7 +39,7 @@ namespace E4S.Models.AccountViewModels
     [Display (Name = "Organisation")]
     public Guid OrganisationId { get; set; }
     [Required]
-    [Display(Name = "Ogranisation Name")]
+    [Display(Name = "Organisation Name")]
     public string OrganisationName { get; set; }
     [Required]
     [Display(Name = "First Name")]

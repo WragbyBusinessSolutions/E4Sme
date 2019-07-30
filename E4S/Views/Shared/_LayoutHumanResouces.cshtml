@@ -166,12 +166,6 @@
                                 <span class="sidebar-normal">Leaves</span>
                             </a>
                         </li>
-                        <li>
-                            <a asp-action="LeaveConfiguration" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon">L C </span>
-                                <span class="sidebar-normal"> Leave Configuration </span>
-                            </a>
-                        </li>
 
                     </ul>
                 </div>
@@ -312,38 +306,45 @@
                     </p>
                 </a>
                 <div class="collapse " id="jobs">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Department" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon">D</span>
-                                <span class="sidebar-normal"> Departments </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="JobTitle" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon"> J T</span>
-                                <span class="sidebar-normal"> Job Title</span>
-                            </a>
-                        </li>
-                        @*<li>
-                      <a asp-action="PayGrade" asp-controller="Jobs">
-                        <span class="sidebar-mini-icon"> P G</span>
-                        <span class="sidebar-normal"> Pay Grade </span>
+                  <ul class="nav">
+                    <li>
+                      <a asp-action="Department" asp-controller="Jobs">
+                        <span class="sidebar-mini-icon">D</span>
+                        <span class="sidebar-normal"> Departments </span>
                       </a>
-                    </li>*@
-                        <li>
-                            <a asp-action="JobCategory" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon"> J G</span>
-                                <span class="sidebar-normal"> Job Category </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="EmploymentStatus" asp-controller="Jobs">
-                                <span class="sidebar-mini-icon">E T</span>
-                                <span class="sidebar-normal"> Employment Type </span>
-                            </a>
-                        </li>
-                    </ul>
+                    </li>
+                    <li>
+                      <a asp-action="JobTitle" asp-controller="Jobs">
+                        <span class="sidebar-mini-icon"> J T</span>
+                        <span class="sidebar-normal"> Job Title</span>
+                      </a>
+                    </li>
+                    @*<li>
+      <a asp-action="PayGrade" asp-controller="Jobs">
+        <span class="sidebar-mini-icon"> P G</span>
+        <span class="sidebar-normal"> Pay Grade </span>
+      </a>
+    </li>*@
+                    <li>
+                      <a asp-action="JobCategory" asp-controller="Jobs">
+                        <span class="sidebar-mini-icon"> J G</span>
+                        <span class="sidebar-normal"> Job Category </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a asp-action="EmploymentStatus" asp-controller="Jobs">
+                        <span class="sidebar-mini-icon">E T</span>
+                        <span class="sidebar-normal"> Employment Type </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a asp-action="LeaveConfiguration" asp-controller="Jobs">
+                        <span class="sidebar-mini-icon">L C </span>
+                        <span class="sidebar-normal"> Leave Configuration </span>
+                      </a>
+                    </li>
+
+                  </ul>
                 </div>
             </li>
 
