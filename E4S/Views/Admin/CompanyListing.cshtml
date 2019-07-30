@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewData["Title"] = "CompanyListing";
-    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+    ViewData["Title"] = "Company Listing";
+    Layout = "~/Views/Shared/_LayoutWragbyAdmin.cshtml";
 }
 
 
@@ -28,9 +28,6 @@
                             <div class="col-md-6 pull-left">
                                 <h4 class="card-title">Company Listing</h4>
                             </div>
-
-                           
-
                         </div>
                     </div>
 
@@ -46,42 +43,51 @@
                                         <tr>
                                             <th><strong>S/N</strong></th>
                                             <th scope="col"><strong>Organisation Name</strong></th>
-                                            <th scope="col"><strong>Total License </strong></th>
-                                            <th scope="col"><strong>Total Active License</strong></th>
-                                            <th scope="col"><strong>Status</strong></th>
+                                            <th scope="col" class="text-center"><strong>Total License </strong></th>
+                                            <th scope="col" class="text-center"><strong>Total Active License</strong></th>
+                                            <th scope="col" class="text-center"><strong>Status</strong></th>
                                             <th scope="col" class="pull-right"><strong>Actions</strong></th>
                                         </tr>
                                     </thead>
                                     <tbody class="fontweight">
                                         <tr>
                                             <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            <td scope="row">2-10-2019</td>
-                                            <td scope="row">20000</td>
-                                            <td scope="row"> <button class="btn btn-success">Active</button></td>
+                                            <td scope="row">Jackson Bradshaw Organization</td>
+                                            <td scope="row" class="text-center">201</td>
+                                            <td scope="row" class="text-center">2</td>
+                                            <td scope="row" class="text-center"> <button class="btn btn-success">Active</button></td>
                                             <td class="">
-                                                <button class="btn btn-info pull-right">View Details</button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            <td scope="row">2-10-2019</td>
-                                            <td scope="row">20000</td>
-                                            <td scope="row"> <button class="btn btn-success">Active</button></td>
-                                            <td class="">
-                                                <button class="btn btn-info pull-right">View Details</button>
+                                                <a asp-action="UpdateOrganizationDetails" asp-controller="Admin" class="btn btn-info pull-right" data-toggle="tooltip" title="View Details"><i class="fa fa-eye"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            <td scope="row">2-10-2019</td>
-                                            <td scope="row">20000</td>
-                                            <td scope="row"> <button class="btn btn-primary">Inactive</button></td>
+                                            <td scope="row" class="table-font">3</td>
+                                            <td scope="row">Devops Buildings and co</td>
+                                            <td scope="row" class="text-center">21</td>
+                                            <td scope="row" class="text-center" s>2</td>
+                                            <td scope="row" class="text-center"> <button class="btn btn-primary">Inactive</button></td>
                                             <td class="">
-                                                <button class="btn btn-info pull-right"s>View Details</button>
+                                                <a asp-action="UpdateOrganizationDetails" asp-controller="Admin" class="btn btn-info pull-right" data-toggle="tooltip" title="View Details"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row" class="table-font">2</td>
+                                            <td scope="row">Wragby Business Solutions</td>
+                                            <td scope="row" class="text-center">20</td>
+                                            <td scope="row" class="text-center">17</td>
+                                            <td scope="row" class="text-center"> <button class="btn btn-success">Active</button></td>
+                                            <td class="">
+                                                <a asp-action="UpdateOrganizationDetails" asp-controller="Admin" class="btn btn-info pull-right"  data-toggle="tooltip" title="View Details"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row" class="table-font">3</td>
+                                            <td scope="row">Devops Buildings and co</td>
+                                            <td scope="row" class="text-center">21</td>
+                                            <td scope="row" class="text-center" s>2</td>
+                                            <td scope="row" class="text-center"> <button class="btn btn-primary">Inactive</button></td>
+                                            <td class="">
+                                                <a asp-action="UpdateOrganizationDetails" asp-controller="Admin" class="btn btn-info pull-right" data-toggle="tooltip" title="View Details"><i class="fa fa-eye"></i></a>
                                             </td>
                                         </tr>
 

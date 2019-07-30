@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "View License";
+    Layout = "~/Views/Shared/_LayoutWragbyAdmin.cshtml";
+}
+
+<style>
+    .btnwidth{
+        width: 100px;
+    }
+</style>
+
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header body-card">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6 pull-left">
+                                    <h4 class="card-title">View Licenses</h4>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body body-card">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive" style="overflow:auto;">
+                                    <table id="datatable compact" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><strong>S/N</strong></th>
+                                                <th><strong>License ID</strong></th>
+                                                <th><strong>Bundle Details</strong></th>
+                                                <th class="text-center"><strong>Date Created</strong></th>
+
+                                                <th class="pull-right"><strong>Status</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fontweight">
+                                            <tr>
+                                                <td class="table-font">1</td>
+                                                <td>111-1111-3333-2222</td>
+                                                <td>Premium Pack, with all starter and premium pack description </td>
+                                                <td class="text-center">Jul 20, 2019</td>
+                                                
+                                                <td class="">
+                                                    <button class="btn btn-info btnwidth pull-right">Used</button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td scope="row" class="table-font">2</td>
+                                                <td scope="row">111-1001-4433-2222</td>
+                                                <td scope="row">Plus Pack, with all plus pack description </td>
+                                                <td scope="row" class="text-center">July 20,2019</td>
+                                                
+                                                <td class="">
+                                                    <button class="btn btn-secondary btnwidth btn-block pull-right">Unused</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="table-font">3</td>
+                                                <td>111-1101-3763-2672</td>
+                                                <td>Starter Pack, with all starter pack description </td>
+                                                <td class="text-center">July 20, 2019</td>
+
+                                                <td class="">
+                                                    <button class="btn btn-secondary btnwidth btn-block pull-right">Unused</button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
