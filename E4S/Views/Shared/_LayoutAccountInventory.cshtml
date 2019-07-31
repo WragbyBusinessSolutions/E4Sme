@@ -9,453 +9,490 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title> @ViewBag.Title - E4S</title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- CSS Files -->
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title> @ViewBag.Title - E4S</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <script>
+        $(function () {
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+
+          $('.dropdown-trigger').dropdown();
+    </script>
+
 </head>
 
 <body class=" sidebar-normal">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="red">
-      <!--
-          Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-      -->
-      <div class="logo">
-        <a href="#" class="simple-text logo-mini">
-          E4S
-        </a>
-        <a href="#" class="simple-text logo-normal">
-          ERP 4 SME
-        </a>
-        <div class="navbar-minimize">
-          @*<button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">
-              <i class="now-ui-icons text_align-center visible-on-sidebar-regular"></i>
-              <i class="now-ui-icons design_bullet-list-67 visible-on-sidebar-mini"></i>
-            </button>*@
-        </div>
-      </div>
-      <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="../assets/img/james.jpg" />
-          </div>
-          <div class="info">
-            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span>
-                @UserManager.GetUserName(User)
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="clearfix"></div>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">EP</span>
-                    <span class="sidebar-normal">Edit Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">S</span>
-                    <span class="sidebar-normal">Settings</span>
-                  </a>
-                </li>
-              </ul>
+    <div class="wrapper ">
+        <div class="sidebar" data-color="red">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+            -->
+            <div class="logo">
+                <a href="#" class="simple-text logo-mini">
+                    E4S
+                </a>
+                <a href="#" class="simple-text logo-normal">
+                    ERP 4 SME
+                </a>
+                <div class="navbar-minimize">
+                    @*<button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">
+                          <i class="now-ui-icons text_align-center visible-on-sidebar-regular"></i>
+                          <i class="now-ui-icons design_bullet-list-67 visible-on-sidebar-mini"></i>
+                        </button>*@
+                </div>
             </div>
-          </div>
-        </div>
-
-
-        <ul class="nav">
-            <li class="active">
-                <a asp-action="Index" asp-controller="Home">
-                    <i class="now-ui-icons design_app"></i>
-                    <p>Home</p>
-                </a>
-            </li>
-
-            <li>
-                <a asp-action="Index" asp-controller="Dashboard">
-                    <i class="now-ui-icons design_app"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#pagesExamples">
-                    <i class="now-ui-icons design_image"></i>
-                    <p>
-                        Sales
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="pagesExamples">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Quote">
-                                <span class="sidebar-mini-icon">Q</span>
-                                <span class="sidebar-normal"> Quotes </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="Index" asp-controller="Invoice">
-                                <span class="sidebar-mini-icon">I</span>
-                                <span class="sidebar-normal"> Invoice </span>
-                            </a>
-                        </li>
-                    </ul>
+            <div class="sidebar-wrapper">
+                <div class="user">
+                    <div class="photo">
+                        <img src="../assets/img/james.jpg" />
+                    </div>
+                    <div class="info">
+                        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                            <span>
+                                @UserManager.GetUserName(User)
+                                <b class="caret"></b>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+                        <div class="collapse" id="collapseExample">
+                            <ul class="nav">
+                                <li>
+                                    <a href="#">
+                                        <span class="sidebar-mini-icon">MP</span>
+                                        <span class="sidebar-normal">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="sidebar-mini-icon">EP</span>
+                                        <span class="sidebar-normal">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="sidebar-mini-icon">S</span>
+                                        <span class="sidebar-normal">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#componentsExamples">
-                    <i class="now-ui-icons education_atom"></i>
-                    <p>
-                        Inventory
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="componentsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Product">
-                                <span class="sidebar-mini-icon">P</span>
-                                <span class="sidebar-normal"> Products/Service </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="Index" asp-controller="NewStock">
-                                <span class="sidebar-mini-icon">NS</span>
-                                <span class="sidebar-normal"> New Stock </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
 
 
-            <li>
-                <a data-toggle="collapse" href="#formsExamples">
-                    <i class="now-ui-icons education_paper"></i>
-                    <p>
-                        Expenses
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="formsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="VendorPurchase">
-                                <span class="sidebar-mini-icon">VP</span>
-                                <span class="sidebar-normal">Vendor Purchase </span>
-                            </a>
-                        </li>
+                <ul class="nav">
+                    <li class="active">
+                        <a asp-action="Index" asp-controller="Home">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a asp-action="Index" asp-controller="Otherexpense">
-                                <span class="sidebar-mini-icon">OE</span>
-                                <span class="sidebar-normal">Operating Expenses </span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <li>
-                <a data-toggle="collapse" href="#mapsExamples">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>
-                        Customers
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="mapsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Customers">
-                                <span class="sidebar-mini-icon">C</span>
-                                <span class="sidebar-normal">Customers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="Index" asp-controller="CustomerStatement">
-                                <span class="sidebar-mini-icon">CS</span>
-                                <span class="sidebar-normal">Customer Statement </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-
-
-            <li>
-                <a data-toggle="collapse" href="#mapExample">
-                    <i class="now-ui-icons users_circle-08"></i>
-                    <p>
-                        Vendors
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="mapExample">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Vendors">
-                                <span class="sidebar-mini-icon">V</span>
-                                <span class="sidebar-normal">Vendors</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-action="Index" asp-controller="VendorStatement">
-                                <span class="sidebar-mini-icon">VS</span>
-                                <span class="sidebar-normal">Vendor Statement </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-
-            <li>
-                <a data-toggle="collapse" href="#apExample">
-                    <i class="now-ui-icons loader_gear"></i>
-                    <p>
-                        Configuration
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse " id="apExample">
-                    <ul class="nav">
-                        <li>
-                            <a asp-action="Index" asp-controller="Banks">
-                                <span class="sidebar-mini-icon">B</span>
-                                <span class="sidebar-normal">Bank</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-
-            <li>
-                <a asp-action="Index" asp-controller="Report">
-                    <i class="now-ui-icons files_single-copy-04"></i>
-                    <p>Reports</p>
-                </a>
-            </li>
-
-
-            <!---  <li class="">
-        <a href="../estimates">
-            <i class="now-ui-icons design_app"></i>
-            <p>Estimate</p>
-        </a>
-    </li>
-    <li class="">
-        <a href="../examples/dashboard.html">
-            <i class="now-ui-icons design_app"></i>
-            <p>Invoice</p>
-        </a>
-    </li>
-    <li>
-        <a data-toggle="collapse" href="#pagesExamples">
-            <i class="now-ui-icons design_image"></i>
-            <p>
-                ACCOUNT
-                <b class="caret"></b>
-            </p>
-        </a>
-        <div class="collapse " id="pagesExamples">
-            <ul class="nav">
-                <li>
-                    <a href="../organisation">
-                        <span class="sidebar-mini-icon">OD</span>
-                        <span class="sidebar-normal"> Organisation Details </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../organisation/branch">
-                        <span class="sidebar-mini-icon">B</span>
-                        <span class="sidebar-normal"> Branch </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </li>
-    <li class="">
-        <a asp-action="Index" asp-controller="Invoice">
-            <i class="now-ui-icons design_app"></i>
-            <p>Invoices</p>
-        </a>
-
-    </li>
-    <li class="">
-        <a href="../examples/dashboard.html">
-            <i class="now-ui-icons users_circle-08"></i>
-            <p>Users</p>
-        </a>
-    </li>
-    <li class="">
-        <a href="../examples/dashboard.html">
-            <i class="now-ui-icons users_circle-08"></i>
-            <p>Log Out</p>
-        </a>
-    </li>
-    -->
-        </ul>
-      </div>
-    </div>
-
-
-
-    <div class="main-panel">
-
-      <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">@ViewBag.Title</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <span class="input-group-addon">
-                  <i class="now-ui-icons ui-1_zoom-bold"></i>
-                </span>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-
-
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      @*@if (SignInManager.IsSignedIn(User))
-        {
-              <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-                <ul class="nav navbar-nav navbar-right">
-                  <li>
-                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                  </li>
-                  <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
-                  </li>
-                </ul>
-              </form>
-        }*@
-
-      <div class="panel-header panel-header-sm">
-
-      </div>
-
-
-      @RenderBody()
-
-    <footer class="footer">
-        <div class="container-fluid">
-            <nav>
-                <ul>
                     <li>
-                        <a href="https://wragbysolutions.com">
-                            Wragby Business Solutions and Technology Limited
+                        <a asp-action="Index" asp-controller="Dashboard">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a href="https://wragbysolutions.azurewebsites.net/contact/">
-                            Contact Us
+                        <a data-toggle="collapse" href="#pagesExamples">
+                            <i class="now-ui-icons design_image"></i>
+                            <p>
+                                Sales
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="pagesExamples">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Quote">
+                                        <span class="sidebar-mini-icon">Q</span>
+                                        <span class="sidebar-normal"> Quotes </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Invoice">
+                                        <span class="sidebar-mini-icon">I</span>
+                                        <span class="sidebar-normal"> Invoice </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#componentsExamples">
+                            <i class="now-ui-icons education_atom"></i>
+                            <p>
+                                Inventory
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="componentsExamples">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Product">
+                                        <span class="sidebar-mini-icon">P</span>
+                                        <span class="sidebar-normal"> Products/Service </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="NewStock">
+                                        <span class="sidebar-mini-icon">NS</span>
+                                        <span class="sidebar-normal"> New Stock </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a data-toggle="collapse" href="#formsExamples">
+                            <i class="now-ui-icons education_paper"></i>
+                            <p>
+                                Expenses
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="formsExamples">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="VendorPurchase">
+                                        <span class="sidebar-mini-icon">VP</span>
+                                        <span class="sidebar-normal">Vendor Purchase </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a asp-action="Index" asp-controller="Otherexpense">
+                                        <span class="sidebar-mini-icon">OE</span>
+                                        <span class="sidebar-normal">Operating Expenses </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a data-toggle="collapse" href="#mapsExamples">
+                            <i class="now-ui-icons users_single-02"></i>
+                            <p>
+                                Customers
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="mapsExamples">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Customers">
+                                        <span class="sidebar-mini-icon">C</span>
+                                        <span class="sidebar-normal">Customers</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="CustomerStatement">
+                                        <span class="sidebar-mini-icon">CS</span>
+                                        <span class="sidebar-normal">Customer Statement </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+
+                    <li>
+                        <a data-toggle="collapse" href="#mapExample">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>
+                                Vendors
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="mapExample">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Vendors">
+                                        <span class="sidebar-mini-icon">V</span>
+                                        <span class="sidebar-normal">Vendors</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="VendorStatement">
+                                        <span class="sidebar-mini-icon">VS</span>
+                                        <span class="sidebar-normal">Vendor Statement </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a data-toggle="collapse" href="#apExample">
+                            <i class="now-ui-icons loader_gear"></i>
+                            <p>
+                                Configuration
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="apExample">
+                            <ul class="nav">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Banks">
+                                        <span class="sidebar-mini-icon">B</span>
+                                        <span class="sidebar-normal">Bank</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a asp-action="Index" asp-controller="Report">
+                            <i class="now-ui-icons files_single-copy-04"></i>
+                            <p>Reports</p>
                         </a>
                     </li>
-                    @*<li>
-                      <a href="#">
-                        Blog
-                      </a>
-                    </li>*@
+
+
+                    <!---  <li class="">
+                        <a href="../estimates">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Estimate</p>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="../examples/dashboard.html">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Invoice</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="collapse" href="#pagesExamples">
+                            <i class="now-ui-icons design_image"></i>
+                            <p>
+                                ACCOUNT
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse " id="pagesExamples">
+                            <ul class="nav">
+                                <li>
+                                    <a href="../organisation">
+                                        <span class="sidebar-mini-icon">OD</span>
+                                        <span class="sidebar-normal"> Organisation Details </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../organisation/branch">
+                                        <span class="sidebar-mini-icon">B</span>
+                                        <span class="sidebar-normal"> Branch </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="">
+                        <a asp-action="Index" asp-controller="Invoice">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Invoices</p>
+                        </a>
+
+                    </li>
+                    <li class="">
+                        <a href="../examples/dashboard.html">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="../examples/dashboard.html">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Log Out</p>
+                        </a>
+                    </li>
+                    -->
                 </ul>
+            </div>
+        </div>
+
+
+
+        <div class="main-panel">
+
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo">@ViewBag.Title</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form>
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                </span>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="now-ui-icons media-2_sound-wave"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="now-ui-icons location_world"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
             </nav>
-            <div class="copyright">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>
-                <a href="https://wragbysolutions.com" target="_blank">Wragby Solutions</a>
-                @*<a href="#" target="_blank">Creative Tim</a>.*@
+
+            @*@if (SignInManager.IsSignedIn(User))
+                {
+                      <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                          <li>
+                            <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                          </li>
+                          <li>
+                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                          </li>
+                        </ul>
+                      </form>
+                }*@
+
+            <div class="panel-header panel-header-sm">
+
             </div>
+
+
+            @RenderBody()
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="https://wragbysolutions.com">
+                                    Wragby Business Solutions and Technology Limited
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wragbysolutions.azurewebsites.net/contact/">
+                                    Contact Us
+                                </a>
+                            </li>
+                            @*<li>
+                                  <a href="#">
+                                    Blog
+                                  </a>
+                                </li>*@
+                        </ul>
+                    </nav>
+                    <div class="copyright">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="https://wragbysolutions.com" target="_blank">Wragby Solutions</a>
+                        @*<a href="#" target="_blank">Creative Tim</a>.*@
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
+
+
+
     </div>
-
-
-
-  </div>
 
 </body>
 
@@ -465,6 +502,8 @@
 
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -504,127 +543,127 @@
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/demo/demo.js"></script>
 @*<script>
-    $(document).ready(function () {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
+      $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
 
-      demo.initVectorMap();
+        demo.initVectorMap();
 
-    });
-  </script>*@
+      });
+    </script>*@
 
 <script>
-  $(document).ready(function () {
-    $('#datatable').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
 
+        });
+
+        var table = $('#datatable').DataTable();
+
+        // Edit record
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // Delete a record
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //Like record
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
     });
-
-    var table = $('#datatable').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function () {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function (e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function () {
-      alert('You clicked on Like button');
-    });
-  });
 </script>
 
 
 
 
 @*<!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DeleteMainTest</title>
+    <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>@ViewData["Title"] - DeleteMainTest</title>
 
-    <environment include="Development">
-      <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-      <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-      <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-      <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">DeleteMainTest</a>
+      <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+      </environment>
+      <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+      </environment>
+    </head>
+    <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">DeleteMainTest</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+              <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+              <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+            </ul>
+            @await Html.PartialAsync("_LoginPartial")
+          </div>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-          </ul>
-          @await Html.PartialAsync("_LoginPartial")
-        </div>
+      </nav>
+      <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+          <p>&copy; 2019 - DeleteMainTest</p>
+        </footer>
       </div>
-    </nav>
-    <div class="container body-content">
-      @RenderBody()
-      <hr />
-      <footer>
-        <p>&copy; 2019 - DeleteMainTest</p>
-      </footer>
-    </div>
 
-    <environment include="Development">
-      <script src="~/lib/jquery/dist/jquery.js"></script>
-      <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-      <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-      <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-              asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-              asp-fallback-test="window.jQuery"
-              crossorigin="anonymous"
-              integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-      </script>
-      <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-              asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-              asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-              crossorigin="anonymous"
-              integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-      </script>
-      <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+      <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+      </environment>
+      <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+      </environment>
 
-    @RenderSection("Scripts", required: false)
-  </body>
-  </html>*@
+      @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@
