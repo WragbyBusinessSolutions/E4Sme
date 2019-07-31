@@ -318,11 +318,56 @@ namespace E4S.Controllers.Employee
             });
         }
 
-        // Ednf of Edit for Emergency Contact
+    // Ednf of Edit for Emergency Contact
+
+    //Delete Emergency Contact
+
+    private bool EmergencyContactExists(Guid id)
+    {
+      return _context.EmergencyContacts.Any(e => e.Id == id);
+    }
 
 
+    [HttpPost]
+    public IActionResult DeleteEmergencyContact([FromBody]string emergencyContactId)
+    {
+      if (emergencyContactId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
 
-        public IActionResult Dependents()
+      try
+      {
+        var emergencyContact = _context.EmergencyContacts.SingleOrDefault(m => m.Id == Guid.Parse(emergencyContactId));
+        _context.EmergencyContacts.Remove(emergencyContact);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+    // end of emergency contacts
+
+    public IActionResult Dependents()
         {
 
       var orgId = getOrg();
@@ -442,10 +487,54 @@ namespace E4S.Controllers.Employee
             });
         }
 
-        // Ednf of Edit for Dependents
+    // Ednf of Edit for Dependents
+
+    //delete dependents
+
+    private bool DependentExists(Guid id)
+    {
+      return _context.Dependants.Any(e => e.Id == id);
+    }
 
 
-        public IActionResult Jobs()
+    [HttpPost]
+    public IActionResult DeleteDependent([FromBody]string dependentId)
+    {
+      if (dependentId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var dependent = _context.Dependants.SingleOrDefault(m => m.Id == Guid.Parse(dependentId));
+        _context.Dependants.Remove(dependent);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+    public IActionResult Jobs()
         {
       var orgId = getOrg();
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
