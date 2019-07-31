@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E4S.Models.AccountInventory.ProductService>
+﻿@model IEnumerable<E4S.Models.AccountInventory.StockRecord>
 
 
 @{
@@ -30,19 +30,7 @@
                 <h4 class="card-title">Products / Services</h4>
               </div>
 
-              <div class="btn-group col-md-5 pull-right">
-                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
-                  Export Data
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Copy</a>
-                  <a class="dropdown-item" href="#">CSV</a>
-                  <a class="dropdown-item" href="#">Excel</a>
-                  <a class="dropdown-item" href="#">PDF</a>
-                  <a class="dropdown-item" href="#">Print</a>
-
-                </div>
-
+              <div class="btn-group pull-right">
                 <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
 
                   <span class="btn-label">
@@ -52,6 +40,19 @@
                   Create New
 
                 </button>
+
+                <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                  Export Data
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Copy</a>
+                  <a class="dropdown-item" href="#">CSV</a>
+                  <a class="dropdown-item" href="#">Excel</a>
+                  <a class="dropdown-item" href="#">PDF</a>
+                  <a class="dropdown-item" href="#">Print</a>
+
+                </div>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -67,13 +68,17 @@
                       <div class="modal-body">
                         <form>
                           <label class="pull-left">Product/Service*</label>
-                          <input type="text" class="form-control" />
+                          <input id="productName" name="productName" type="text" class="form-control" />
                           <br />
                           <label class="pull-left">Description</label>
-                          <input type="text" class="form-control" />
+                          <input id="description" name="description" type="text" class="form-control" />
                           <br />
                           <label class="pull-left">Vendor Name <i>(if any)</i></label>
-                          <input type="text" class="form-control" />
+                          <select id="vendorId" name="vendorId" asp-items="@ViewBag.Vendors" class="form-control">
+                            <option value="00000000-0000-0000-0000-000000000000">None</option>
+                          </select>
+
+                          @*<input id="loadVendor" name="loadVendor" autocomplete="on" type="text" />*@
                           <br />
 
                         </form>
@@ -81,7 +86,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-info">Create</button>
+                        <button id="SubmitNewProduct" name="SubmitNewProduct" type="button" class="btn btn-info">Create</button>
                       </div>
                     </div>
                   </div>
@@ -102,6 +107,7 @@
             <table id="datatable" class="table table-hover">
               <thead>
                 <tr>
+                  <th><strong>S/N</strong></th>
                   <th><strong>Products</strong></th>
                   <th scope="col"><strong>Description</strong></th>
                   <th scope="col"><strong>Cost Price</strong></th>
@@ -111,30 +117,29 @@
                 </tr>
               </thead>
               <tbody class="fontweight">
-                <tr>
-                  <td scope="row" class="table-font">1</td>
-                  <td scope="row">Jackson Bradshaw</td>
-                  <td scope="row">Director</td>
-                  <td scope="row">New York</td>
-                  <td scope="row">65</td>
-                  <td class="">
-                    <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>
 
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Olivia Liang</td>
-                  <td>Support Engineer</td>
-                  <td>Singapore</td>
-                  <td>64</td>
-                  <td class="">
-                    <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>
+                @{
+                  int i = 1;
 
-                  </td>
-                </tr>
+                  @foreach (var item in Model)
+                  {
+                    <tr>
+                      <td scope="row" class="table-font">@i</td>
+                      <td scope="row">@item.ProductService.ProductServiceName</td>
+                      <td scope="row">@item.ProductService.Description</td>
+                      <td scope="row">@item.CostPrice</td>
+                      <td scope="row">@item.QuantityRemain</td>
+                      <td scope="row">@item.QuantitySold</td>
+                      <td class="">
+                        <a href="#" class="btn btn-warning btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>
+
+                      </td>
+                    </tr>
+
+                    i++;
+                  }
+                }
               </tbody>
             </table>
           </div>
@@ -147,4 +152,92 @@
   </div>
 </div>
 
+@section Scripts {
 
+  @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">*@
+  @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+     $("#SubmitNewProduct").click(function (event) {
+
+      event.preventDefault();
+
+      $("#loading-overlay").show();
+
+      var ProductService = {
+        ProductServiceName: $("#productName").val(),
+        Description: $("#description").val(),
+        VendorId: $("#vendorId").val(),
+      };
+
+
+      // console.log(Items);
+      console.log(ProductService);
+
+      $.ajax({
+        type: "POST",
+        url: "/Product/AddNewProduct",
+        data: JSON.stringify(ProductService),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "Product Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+            window.location.reload();
+          }).catch(swal.noop);
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+          //alert(r.msg);
+          // window.location.reload();
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+
+    $('#loadVendor').autocomplete({
+
+        source: '/api/Vendor/search'
+
+      });
+
+    $('#addItem').autocomplete({
+
+      source: '/api/Estimates/productsearch'
+
+    });
+
+
+})
+  </script>
+
+}

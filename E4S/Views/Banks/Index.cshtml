@@ -1,89 +1,218 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.AccountInventory.AccountBank>
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+  ViewData["Title"] = "Bank/Account";
+  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
 
 <style>
-    .body-card {
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1%;
-        margin-bottom: 2%;
-    }
+  .body-card {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
 
-    .table-font {
-        font-weight: 500;
-    }
+  .table-font {
+    font-weight: 500;
+  }
 </style>
 
 <div class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header body-card">
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Export Data
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Copy</a>
-                            <a class="dropdown-item" href="#">CSV</a>
-                            <a class="dropdown-item" href="#">Excel</a>
-                            <a class="dropdown-item" href="#">PDF</a>
-                            <a class="dropdown-item" href="#">Print</a>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header body-card">
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-success btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Export Data
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Copy</a>
+              <a class="dropdown-item" href="#">CSV</a>
+              <a class="dropdown-item" href="#">Excel</a>
+              <a class="dropdown-item" href="#">PDF</a>
+              <a class="dropdown-item" href="#">Print</a>
 
-                        </div>
-                    </div>
-                    
-                    <h4 class="card-title">Banks</h4>
-                </div>
-                <div class="card-body body-card">
-
-                    <div class="table-responsive-sm">
-                        <table id="datatable" class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th><strong>S/N</strong></th>
-                                    <th scope="col"><strong>Bank Name</strong></th>
-                                    <th scope="col"><strong>Last Name</strong></th>
-                                    <th scope="col"><strong>Account Number</strong></th>
-                                    <th scope="col"><strong>Date Created</strong></th>
-                                    <th scope="col" class="disabled-sorting"><strong>Account Balance</strong></th>
-                                </tr>
-                            </thead>
-                            <tbody class="fontweight">
-                                <tr>
-                                    <td scope="row" class="table-font">1</td>
-                                    <td scope="row">Jackson Bradshaw</td>
-                                    <td scope="row">Director</td>
-                                    <td scope="row">New York</td>
-                                    <td scope="row">65</td>
-                                    <td class="">
-
-                                       46478
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Olivia Liang</td>
-                                    <td>Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td class="">
-
-                                        46478
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                </div>
             </div>
+          </div>
+
+          <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+
+            <span class="btn-label">
+              <i class="now-ui-icons travel_info"></i>
+            </span>
+
+            Create New
+
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Enter New Account Record</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <form>
+                    <label class="pull-left">Account Type</label>
+                    <select id="accountType" name="accountType" type="text" class="form-control">
+                      <option disabled style="background-color:lightgrey;">Assets</option>
+                      <option value="CB">Cash and Bank</option>
+                      <option value="MT">Money in Transit</option>
+                      <option disabled style="background-color:lightgrey;">Liabilities & Credit Cards</option>
+                      <option value="CC">CreditCard</option>
+                      <option value="CB">Loan and Line of Credit</option>
+                    </select>
+                    <br />
+                    <label class="pull-left">Account Name</label>
+                    <input id="accountName" name="accountName" type="text" class="form-control" />
+                    <br />
+                    <label class="pull-left">Account No</label>
+                    <input id="accountNo" name="accountNo" type="text" class="form-control" />
+                    <br />
+                    <label class="pull-left">Bank Name</label>
+                    <input id="bankName" name="bankName" type="text" class="form-control" />
+                    <br />
+                    <label class="pull-left">Description</label>
+                    <textarea id="description" name="description" type="text" class="form-control"></textarea>
+                    <br />
+
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button id="SubmitNewAccount" name="SubmitNewVendor" type="button" class="btn btn-info">Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="card-title">Banks/Account</h4>
+        </div>
+        <div class="card-body body-card">
+
+          <div class="table-responsive-sm">
+            <table id="datatable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th><strong>S/N</strong></th>
+                  <th scope="col"><strong>Account Name</strong></th>
+                  <th scope="col"><strong>Bank Name</strong></th>
+                  <th scope="col"><strong>Account Number</strong></th>
+                  <th scope="col"><strong>Account Type</strong></th>
+                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                </tr>
+              </thead>
+              <tbody class="fontweight">
+
+                @{
+                  int i = 1;
+
+                  @foreach (var item in Model)
+                  {
+                    <tr>
+                      <td scope="row" class="table-font">@i</td>
+                      <td scope="row">@item.AccountName</td>
+                      <td scope="row">@item.BankName</td>
+                      <td scope="row">@item.AccountNo</td>
+                      <td scope="row">@item.AccountType</td>
+                      <td class="">
+
+                      </td>
+                    </tr>
+
+                    i++;
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
 
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
+
+@section Scripts {
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+     $("#SubmitNewAccount").click(function (event) {
+
+      event.preventDefault();
+
+      //$("#loading-overlay").show();
+
+       var AccountBank = {
+        AccountType: $("#accountType").val(),
+        AccountName: $("#accountName").val(),
+        AccountNo: $("#accountNo").val(),
+        BankName: $("#bankName").val(),
+        Description: $("#description").val(),
+      };
+
+
+      console.log(AccountBank);
+
+      $.ajax({
+        type: "POST",
+        url: "/Banks/AddAccount",
+        data: JSON.stringify(AccountBank),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "Account Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+            window.location.reload();
+          }).catch(swal.noop);
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+})
+  </script>
+
+}
