@@ -1127,6 +1127,52 @@ namespace E4S.Controllers.Employee
       });
     }
 
+    private bool LeaveExists(Guid id)
+    {
+      return _context.Leaves.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteLeave([FromBody]string leaveId)
+    {
+      if (leaveId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var leave = _context.Leaves.SingleOrDefault(m => m.Id == Guid.Parse(leaveId));
+        _context.Leaves.Remove(leave);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+
+
+
 
     public IActionResult Performance()
     {
