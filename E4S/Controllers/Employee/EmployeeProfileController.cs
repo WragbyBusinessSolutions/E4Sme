@@ -675,10 +675,14 @@ namespace E4S.Controllers.Employee
       });
     }
 
+    private bool SkillsExists(Guid id)
+    {
+      return _context.Skills.Any(e => e.Id == id);
+    }
 
 
     [HttpPost]
-    public async Task<IActionResult> DelSkills([FromBody]string skillId)
+    public IActionResult DeleteSkills([FromBody]string skillId)
     {
       if (skillId == null)
       {
@@ -689,51 +693,31 @@ namespace E4S.Controllers.Employee
        );
       }
 
-
-      //var orgId = getOrg();
-      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-
-
-      //bool isAssign = true;
-
-      //if (postNewDepartment. == Guid.Empty)
-      //{
-      //    isAssign = false;
-      //}
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var skillTitle = await _context.Skills.FindAsync(Guid.Parse(skillId));
-        _context.Skills.Remove(skillTitle);
-        var skillDescription = await _context.Skills.FindAsync(Guid.Parse(skillId));
-        _context.Skills.Remove(skillDescription);
-        var skillExperience = await _context.Skills.FindAsync(Guid.Parse(skillId));
-        _context.Skills.Remove(skillExperience);
-
-
-        await _context.SaveChangesAsync();
-
+        var skill = _context.Skills.SingleOrDefault(m => m.Id == Guid.Parse(skillId));
+        _context.Skills.Remove(skill);
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
+
 
 
 
@@ -794,10 +778,16 @@ namespace E4S.Controllers.Employee
     }
 
 
-    [HttpPost]
-    public async Task<IActionResult> DelInstitutionRecords([FromBody]string RecordId)
+    private bool RecordsExists(Guid id)
     {
-      if (RecordId == null)
+      return _context.InstitutionQualifications.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteRecords([FromBody]string institutionId)
+    {
+      if (institutionId == null)
       {
         return Json(new
         {
@@ -806,47 +796,29 @@ namespace E4S.Controllers.Employee
        );
       }
 
-
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var school = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(school);
-        var course = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(course);
-        var degree = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(degree);
-        var grade = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(grade);
-        var year = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(year);
-        var ImageUrl = await _context.InstitutionQualifications.FindAsync(Guid.Parse(RecordId));
-        _context.InstitutionQualifications.Remove(ImageUrl);
-        
-
-
-        await _context.SaveChangesAsync();
-
+        var institution = _context.InstitutionQualifications.SingleOrDefault(m => m.Id == Guid.Parse(institutionId));
+        _context.InstitutionQualifications.Remove(institution);
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
 
 
@@ -899,10 +871,16 @@ namespace E4S.Controllers.Employee
       });
     }
 
-    [HttpPost]
-    public async Task<IActionResult> DelWorkExperience([FromBody]string workId)
+    private bool WorkExperienceExists(Guid id)
     {
-      if (workId == null)
+      return _context.WorkExperiences.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteWorkExperience([FromBody]string companyId)
+    {
+      if (companyId == null)
       {
         return Json(new
         {
@@ -911,55 +889,31 @@ namespace E4S.Controllers.Employee
        );
       }
 
-
-      //var orgId = getOrg();
-      //var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
-
-
-      //bool isAssign = true;
-
-      //if (postNewDepartment. == Guid.Empty)
-      //{
-      //    isAssign = false;
-      //}
-
       try
       {
-
-        //var orgJobTitle = _context.JobTitles.Where(x => x.Id == Guid.Parse(postNewJobTitle.AId)).FirstOrDefault();
-        //orgJobTitle.JobTitleName = postNewJobTitle.JobTitle;
-
-        var workTitle = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
-        _context.WorkExperiences.Remove(workTitle);
-        var jobTitle = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
-        _context.WorkExperiences.Remove(jobTitle);
-        var startDate = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
-        _context.WorkExperiences.Remove(startDate);
-        var endDate = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
-        _context.WorkExperiences.Remove(endDate);
-        var comment = await _context.WorkExperiences.FindAsync(Guid.Parse(workId));
-        _context.WorkExperiences.Remove(comment);
-       
-        
-        await _context.SaveChangesAsync();
-
+        var workExperience = _context.WorkExperiences.SingleOrDefault(m => m.Id == Guid.Parse(companyId));
+        _context.WorkExperiences.Remove(workExperience);
+        _context.SaveChanges();
 
         return Json(new
         {
           msg = "Success"
         });
+
       }
-      catch (Exception ee)
+      catch
       {
 
       }
 
-      return Json(
-      new
+      return Json(new
       {
         msg = "Fail"
       });
+
+
     }
+
 
 
 
