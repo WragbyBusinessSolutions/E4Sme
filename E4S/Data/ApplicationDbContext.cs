@@ -70,6 +70,9 @@ namespace E4S.Data
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Vendor> Vendors { get; set; }
     public DbSet<ProductService> ProductServices { get; set; }
+    public DbSet<NewInventory> NewInventories { get; set; }
+    public DbSet<StockRecord> StockRecords { get; set; }
+    public DbSet<AccountBank> AccountBanks { get; set; }
 
 
   }

@@ -4,50 +4,22 @@ using E4S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190731065903_newInventory")]
+    partial class newInventory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.AccountBank", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AccountName");
-
-                    b.Property<string>("AccountNo");
-
-                    b.Property<string>("AccountType");
-
-                    b.Property<string>("BankName");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AccountBanks");
-                });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.Customer", b =>
                 {
@@ -169,8 +141,6 @@ namespace E4S.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<float>("AllTimeQuantity");
-
-                    b.Property<float>("CostPrice");
 
                     b.Property<DateTime>("DateCreated");
 
