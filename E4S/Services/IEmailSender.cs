@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E4S.Models.HumanResource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,5 +17,6 @@ namespace E4S.Services
 
     Task GmailSendEmail(string email, string CallbackUrl, string role);
     Task SendGridEmailConfrimationAsync(string emailAdd, string subject, string message, string firstname);
+    Task SendGridLeaveRequestAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave);
   }
 }
