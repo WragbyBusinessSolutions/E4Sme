@@ -136,7 +136,6 @@
                           <label>Department</label>
                           <div class="input-group mb-2">
                             <select type="text" class="form-control" asp-items="ViewBag.Department" id="Department" name="Department">
-                              <option> -- Select Department -- </option>
                             </select>
                             <div class="input-group-append " style="position:relative; top:-10px;">
                               <span data-toggle="modal" data-target="#noticeModal1"><button class="btn btn-success" type="button" title="Add Department" data-toggle="tooltip" data-placement="top">+</button></span>
@@ -377,29 +376,24 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Department Name</label>
-                      <input type="text" class="form-control" placeholder="Department Name" id="DepartmentName" required>
+                      <input type="text" class="form-control" placeholder="Department Name" id="aDepartmentName" name="aDepartmentName" required>
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row">               
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Description</label>
-                      <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
-                      @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
-
+                      <textarea class="form-control" placeholder="Description" id="aDescription" name="aDescription" required rows="3"></textarea>
                     </div>
                   </div>
                 </div>
-
-                <br />
-                <div class="card-footer">
-                  <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment" @*disabled="disabled"*@>Create</button>
-                  @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
+                <div>
+                  <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment"> Add New</button>
+                  <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                 </div>
               </form>
             </div>
-            @*<p>If you have more questions, don't hesitate to contact us or send us a tweet  creativetim. We're here to help!</p>*@
           </div>
         </div>
       </div>
@@ -423,7 +417,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Job Category</label>
-                      <input type="text" class="form-control" placeholder="Job Category" id="JobCategory" required>
+                      <input type="text" class="form-control" placeholder="Job Category" id="aJobCategory" name="aJobCategory" required>
                     </div>
                   </div>
                 </div>
@@ -432,12 +426,12 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Description</label>
-                      <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                      <textarea class="form-control" placeholder="Description" id="aDescription" name="aDescription" required rows="3"></textarea>
                     </div>
                   </div>
                 </div>
-                <div class="card-footer ">
-                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Submit</button>
+                <div>
+                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewJobCategory">Add New</button>
                   <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -465,7 +459,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Employment Status Name</label>
-                      <input type="text" class="form-control" placeholder="Employment Type" id="EmploymentStatusName" required>
+                      <input type="text" class="form-control" placeholder="Employment Type" id="aEmploymentStatusName" name="aEmploymentStatusName" required>
                     </div>
                   </div>
                 </div>
@@ -474,13 +468,13 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label> Description </label>
-                      <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                      <textarea class="form-control" placeholder="Description" id="aDescription" name="aDescription" required rows="3"></textarea>
                     </div>
                   </div>
                 </div>
 
-                <div class="card-footer ">
-                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                <div>
+                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Add New</button>
                   <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -506,8 +500,8 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Employment Status Name</label>
-                      <input type="text" class="form-control" placeholder="Employment Status" id="EmploymentStatusName" required>
+                      <label>Branch Name</label>
+                      <input type="text" class="form-control" placeholder="Branch Name" id="aBranchName" name="aBranchName" required>
                     </div>
                   </div>
                 </div>
@@ -515,7 +509,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="text" class="form-control" placeholder="Email" id="Email" required>
+                      <input type="text" class="form-control" placeholder="Email" id="aEmail" name="aEmail" required>
                     </div>
                   </div>
                 </div>
@@ -523,7 +517,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Phone Number</label>
-                      <input type="text" class="form-control" placeholder="Phone Number" id="Phone Number" required>
+                      <input type="text" class="form-control" placeholder="Phone Number" id="aPhoneNo" name="aPhoneNo" required>
                     </div>
                   </div>
                 </div>
@@ -531,7 +525,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label> City </label>
-                      <input type="text" class="form-control" placeholder="City" id="City" required>
+                      <input type="text" class="form-control" placeholder="City" id="aCity" name="aCity" required>
                     </div>
                   </div>
                 </div>
@@ -539,12 +533,12 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label> Country </label>
-                      <input type="text" class="form-control" placeholder="country" id="country" required>
+                      <input type="text" class="form-control" placeholder="country" id="aCountry" name="aCountry" required>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer ">
-                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewEmploymentStatus">Submit</button>
+                  <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewBranch">Submit</button>
                   <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -740,7 +734,274 @@
       });
     });
 
+
   </script>
 
+    <script>
+        $("#SubmitNewDepartment").click(function (event) {
 
+          event.preventDefault();
+
+          $("#loading-overlay").show();
+
+          var Department = {
+                DepartmentName: $("#aDepartmentName").val(),
+                Description: $("#aDescription").val(),
+          };
+
+
+          // console.log(Items);
+          console.log(Department);
+
+          $.ajax({
+            type: "POST",
+            url: "/Employees/Department",
+            data: JSON.stringify(Department),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+        	    swal({
+                    title: "Success!",
+                    text: "Department Added!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                type: "success"
+              }).then(function () {
+
+                //window.location.reload();
+
+              }).catch(swal.noop);
+
+              } else if (r.msg == "Fail") {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+
+              } else {
+                $("#loading-overlay").hide();
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+            }
+          });
+        });      
+
+    </script>
+
+    <script>
+        $("#SubmitNewJobCategory").click(function (event) {
+
+            event.preventDefault();
+
+            $("#loading-overlay").show();
+
+            var jobCategory = {
+                JobCategory: $("#aJobCategory").val(),
+                Description: $("#aDescription").val(),
+            };
+
+
+            // console.log(Items);
+            console.log(jobCategory);
+
+            $.ajax({
+                type: "POST",
+                url: "/Employees/NewJobCategory",
+                data: JSON.stringify(jobCategory),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                headers: {
+                    RequestVerificationToken:
+                        $('input:hidden[name="__RequestVerificationToken"]').val()
+                },
+                success: function (r) {
+
+                    if (r.msg == "Success") {
+                        swal({
+                            title: "Success!",
+                            text: "JobCategory Added!",
+                            buttonsStyling: false,
+                            confirmButtonClass: "btn btn-success",
+                            type: "success"
+                        }).then(function () {
+
+                            //window.location.reload();
+
+                        }).catch(swal.noop);
+
+                    } else if (r.msg == "Fail") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                },
+                error: function () {
+                    $("#loading-overlay").hide();
+                    alert(r.msg);
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        $("#SubmitNewEmploymentStatus").click(function (event) {
+
+            event.preventDefault();
+
+            $("#loading-overlay").show();
+
+            var employmentStatus = {
+                EmploymentStatusName: $("#aEmploymentStatusName").val(),
+                Description: $("#aDescription").val(),
+            };
+
+
+            // console.log(Items);
+            console.log(employmentStatus);
+
+            $.ajax({
+                type: "POST",
+                url: "/Employees/PostNewEmploymentStatus",
+                data: JSON.stringify(employmentStatus),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                headers: {
+                    RequestVerificationToken:
+                        $('input:hidden[name="__RequestVerificationToken"]').val()
+                },
+                success: function (r) {
+
+                    if (r.msg == "Success") {
+                        swal({
+                            title: "Success!",
+                            text: "Employment Type Added!",
+                            buttonsStyling: false,
+                            confirmButtonClass: "btn btn-success",
+                            type: "success"
+                        }).then(function () {
+
+                            //window.location.reload();
+
+                        }).catch(swal.noop);
+
+                    } else if (r.msg == "Fail") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                },
+                error: function () {
+                    $("#loading-overlay").hide();
+                    alert(r.msg);
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        $("#SubmitNewBranch").click(function (event) {
+
+            event.preventDefault();
+
+            $("#loading-overlay").show();
+
+            var branch = {
+                BranchName: $("#aBranchName").val(),
+                Email: $("#aEmail").val(),
+                PhoneNo: $("#aPhoneNo").val(),
+                City: $("#aCity").val(),
+                Country: $("#aCountry").val(),
+
+            };
+
+
+            // console.log(Items);
+            console.log(branch);
+
+            $.ajax({
+                type: "POST",
+                url: "/Employees/PostNewBranch",
+                data: JSON.stringify(branch),
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                headers: {
+                    RequestVerificationToken:
+                        $('input:hidden[name="__RequestVerificationToken"]').val()
+                },
+                success: function (r) {
+
+                    if (r.msg == "Success") {
+                        swal({
+                            title: "Success!",
+                            text: "Branch Added!",
+                            buttonsStyling: false,
+                            confirmButtonClass: "btn btn-success",
+                            type: "success"
+                        }).then(function () {
+
+                            //window.location.reload();
+
+                        }).catch(swal.noop);
+
+                    } else if (r.msg == "Fail") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                    } else {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                },
+                error: function () {
+                    $("#loading-overlay").hide();
+                    alert(r.msg);
+                }
+            });
+        });
+
+    </script>
 }

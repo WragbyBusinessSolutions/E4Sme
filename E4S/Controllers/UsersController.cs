@@ -184,5 +184,51 @@ namespace E4S.Controllers
       return View(newuser);
     }
 
+
+    private bool UserExists(Guid id)
+    {
+      return _context.Deductions.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteUser([FromBody]string deductionId)
+    {
+      if (deductionId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var deductionType = _context.Deductions.SingleOrDefault(m => m.Id == Guid.Parse(deductionId));
+        _context.Deductions.Remove(deductionType);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+
+
   }
 }

@@ -23,7 +23,7 @@
               <label class="col-md-3 col-form-label">Name</label>
               <div class="col-md-9">
                 <div class="form-group">
-                  <input type="text" asp-for="Username" class="form-control">
+                  <input type="text" asp-for="Username" class="form-control" placeholder="Enter Name">
                 </div>
               </div>
             </div>
@@ -31,7 +31,7 @@
               <label class="col-md-3 col-form-label">Email</label>
               <div class="col-md-9">
                 <div class="form-group">
-                  <input type="email" asp-for="Email" class="form-control">
+                  <input type="email" asp-for="Email" class="form-control" placeholder="Enter E-mail">
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@
               <label class="col-md-3 col-form-label">Phone Number</label>
               <div class="col-md-9">
                 <div class="form-group">
-                  <input type="text" asp-for="PhoneNumber" class="form-control">
+                  <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone Number">
                 </div>
               </div>
             </div>
@@ -48,6 +48,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <select id="region" class="form-control" asp-for="UserRole" required>
+                    <option value="Super Admin">--Select User Role--</option>
                     <option value="Super Admin">Super Admin</option>
                     <option value="Admin">Admin</option>
                     <option value="Human Resources">Human Resources</option>
