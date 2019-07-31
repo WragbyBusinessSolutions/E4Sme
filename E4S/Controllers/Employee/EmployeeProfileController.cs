@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.Models.HumanResource;
+using E4S.Services;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -23,12 +24,13 @@ namespace E4S.Controllers.Employee
     {
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailSender _emailSender;
 
-    public EmployeeProfileController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public EmployeeProfileController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
       _context = context;
       _userManager = userManager;
-
+      _emailSender = emailSender;
     }
 
     public IActionResult Index()
@@ -1114,6 +1116,7 @@ namespace E4S.Controllers.Employee
       var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
 
       var leaveDetails = _context.LeaveConfigurations.Where(x => x.OrganisationId == orgId).Where(x => x.Id == Guid.Parse(postLeave.LeaveTitle)).FirstOrDefault();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
       int days = int.Parse((postLeave.EndDate.Date - postLeave.StartDate.Date).TotalDays.ToString());
       int weekendCount = 0;
@@ -1153,6 +1156,19 @@ namespace E4S.Controllers.Employee
 
         _context.Add(leave);
         _context.SaveChanges();
+
+        leave.EmployeeDetail = employeeDetails;
+
+        var hrs = _context.Users.Where(x => x.OrganisationId == orgId).Where(x => x.UserRole == "Human Resources").ToList();
+
+        foreach (var item in hrs)
+        {
+          var response = _emailSender.SendGridLeaveRequestAsync(item.Email, "Pending Leave Request",
+"/Leaves", item.FirstName, "leaveRequest", organisationDetails.OrganisationName, leave);
+
+        }
+
+
 
 
         return Json(new
