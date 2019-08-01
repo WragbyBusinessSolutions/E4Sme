@@ -208,8 +208,6 @@ namespace E4S.Services
 
         var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", domain + message).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#EmployeeFirstname", leave.EmployeeDetail.FirstName + " " + leave.EmployeeDetail.LastName).Replace("#LeaveTitle", leave.LeaveTitle).Replace("#StartDate", leave.StartDate.ToString("dd, MMM, yy")).Replace("#EndDate", leave.EndDate.ToString("dd, MMM, yy"));
        
-            //string 
-
         var client = new SendGridClient(apiKey);
         var msg = new SendGridMessage()
         {

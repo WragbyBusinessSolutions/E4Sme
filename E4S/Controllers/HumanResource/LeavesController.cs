@@ -70,13 +70,12 @@ namespace E4S.Controllers.HumanResource
       }
 
       var orgId = getOrg();
-      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
 
       try
       {
-        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
+        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).Include(c => c.EmployeeDetail).FirstOrDefault();
         leave.Comment = postApprove.Comment;
         leave.ApproveDate = DateTime.Now;
         leave.Status = "Approved";
@@ -84,11 +83,9 @@ namespace E4S.Controllers.HumanResource
         _context.Update(leave);
         _context.SaveChanges();
        
-         var appro = _context.Users.Where(x => x.OrganisationId == orgId).Where(x => x.UserRole == "Employee").ToList();
 
          
-         var response = await _emailSender.SendGridLeaveApprovalAsync(employeeDetails.Email, "Approved Leave Request",
-            employeeDetails.FirstName, "approvalLeave", orgId, leave);
+         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave",            employeeDetails.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
 
                 
 
