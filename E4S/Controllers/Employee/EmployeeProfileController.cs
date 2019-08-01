@@ -1118,7 +1118,7 @@ namespace E4S.Controllers.Employee
         foreach (var item in hrs)
         {
           var response = _emailSender.SendGridLeaveRequestAsync(item.Email, "Pending Leave Request",
-"/Leaves", item.FirstName, "leaveRequest", organisationDetails.OrganisationName, leave);
+          "/Leaves", item.FirstName, "leaveRequest", organisationDetails.OrganisationName, leave);
 
         }
 
