@@ -9,10 +9,12 @@ namespace E4S.Models.AccountInventory
   {
     public Guid Id { get; set; }
 
+    public string TransactionType { get; set; }
+    //public
     public string Description { get; set; }
     public string Type { get; set; }
 
     public float Amount { get; set; }
-   // public 
+
   }
 }
