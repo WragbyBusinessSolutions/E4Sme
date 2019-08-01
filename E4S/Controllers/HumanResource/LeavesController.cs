@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.HumanResource;
+using E4S.Services;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,18 +20,20 @@ namespace E4S.Controllers.HumanResource
     {
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailSender _emailSender;
+    private EmployeeDetail employeeDetails;
 
-    [TempData]
+        [TempData]
     public string StatusMessage { get; set; }
 
-    public LeavesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public LeavesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
       _context = context;
       _userManager = userManager;
+      _emailSender = emailSender;
 
 
-
-    }
+        }
     private Guid getOrg()
     {
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -66,6 +70,8 @@ namespace E4S.Controllers.HumanResource
       }
 
       var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      var employeeDetails = _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefault();
 
 
       try
@@ -77,8 +83,17 @@ namespace E4S.Controllers.HumanResource
 
         _context.Update(leave);
         _context.SaveChanges();
+       
+         var appro = _context.Users.Where(x => x.OrganisationId == orgId).Where(x => x.UserRole == "Employee").ToList();
 
-         StatusMessage = "Leave has been successfully Approved!.";
+         
+         var response = await _emailSender.SendGridLeaveApprovalAsync(employeeDetails.Email, "Approved Leave Request",
+            employeeDetails.FirstName, "approvalLeave", orgId, leave);
+
+                
+
+
+        StatusMessage = "Leave has been successfully Approved!.";
 
            return Json(new
         {
@@ -112,9 +127,6 @@ namespace E4S.Controllers.HumanResource
 
       var orgId = getOrg();
 
-
-
-
       try
       {
         var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
@@ -147,5 +159,5 @@ namespace E4S.Controllers.HumanResource
 
 
 
-  }
+    }
 }

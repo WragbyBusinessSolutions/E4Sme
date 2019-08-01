@@ -18,5 +18,7 @@ namespace E4S.Services
     Task GmailSendEmail(string email, string CallbackUrl, string role);
     Task SendGridEmailConfrimationAsync(string emailAdd, string subject, string message, string firstname);
     Task SendGridLeaveRequestAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave);
+     Task SendGridLeaveApprovalAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
   }
 }
+
