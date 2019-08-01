@@ -447,7 +447,7 @@
                                             <div class="form-group">
                                                 <label>Job Title</label>
                                                 <div class="input-group mb-2">
-                                                    <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitleId" name="JobTitleId">
+                                                    <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTitle" id="JobTitleId" name="JobTitleId">
                                                         <option> -- Select Job Title -- </option>
                                                     </select>
                                                     <div class="input-group-append " style="position:relative; top:-10px;">
@@ -665,6 +665,7 @@
                                                             <div class="modal-body">
                                                                 <div class="instruction">
                                                                     <form>
+                                                                      <input asp-for="Id" id="empId" hidden />
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
@@ -1561,6 +1562,58 @@
                     type: "POST",
                     url: "/Employees/SaveJob",
                     data: JSON.stringify(PostJob),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+      $("#SubmitAssignSupervisor").click(function (event) {
+
+                event.preventDefault();
+
+                var PostAssignSupervisor = {
+                  EmployeeDetailsId: $("#Id").val(),
+                  SupervisorId: $("#SupervisorId").val(),
+                  ReportMethod: $("#ReportMethod").val(),
+                  AutoList: $("#AutoList").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostAssignSupervisor);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/PostAssignSupervisor",
+                    data: JSON.stringify(PostAssignSupervisor),
                     dataType: "json",
                     contentType: 'application/json; charset=utf-8',
                     headers: {
