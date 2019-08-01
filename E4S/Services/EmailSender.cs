@@ -197,5 +197,32 @@ namespace E4S.Services
       await client.SendEmailAsync(msg);
       //var response = 
     }
+
+
+    public async Task SendGridLeaveApprovalAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
+    {
+
+        string domain = "http://erp4smes.azurewebsites.net";
+
+        EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
+
+        var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", domain + message).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#EmployeeFirstname", leave.EmployeeDetail.FirstName + " " + leave.EmployeeDetail.LastName).Replace("#LeaveTitle", leave.LeaveTitle).Replace("#StartDate", leave.StartDate.ToString("dd, MMM, yy")).Replace("#EndDate", leave.EndDate.ToString("dd, MMM, yy"));
+       
+        var client = new SendGridClient(apiKey);
+        var msg = new SendGridMessage()
+        {
+            From = new EmailAddress("no-reply@erp4sme.ng", "ERP4SME"),
+            Subject = "New Leave Approval on ERP4SME.",
+            //PlainTextContent = "You have been registered on ERP4SME platform. Kindly use the link below to create your account.",
+            HtmlContent = body
+
+
+        };
+        msg.AddTo(new EmailAddress(emailAdd, emailAdd));
+        await client.SendEmailAsync(msg);
+        //var response = 
+    }
+
+        
   }
 }

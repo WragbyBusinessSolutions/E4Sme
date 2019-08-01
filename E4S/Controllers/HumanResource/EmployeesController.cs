@@ -704,23 +704,6 @@ namespace E4S.Controllers.HumanResource
 
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       return unsuccessfullyEmployeeList;
     }
 
