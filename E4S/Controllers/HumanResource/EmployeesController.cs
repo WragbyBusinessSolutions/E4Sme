@@ -1150,9 +1150,9 @@ namespace E4S.Controllers.HumanResource
                 {
                     AssignedSupervisor orgAssignedSuper = new AssignedSupervisor()
                     {
-                        Id = Guid.NewGuid(),  
-                        EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
-                        SupervisorId = postNewAssignSupervisors.SupervisorId,
+                        Id = Guid.NewGuid(),
+                      EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
+                      SupervisorId = postNewAssignSupervisors.SupervisorId,
                         ReportMethod = postNewAssignSupervisors.ReportMethod,
                         OrganisationId = orgId,
 
