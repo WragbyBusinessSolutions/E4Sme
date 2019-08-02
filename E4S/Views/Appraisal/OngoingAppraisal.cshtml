@@ -10,10 +10,24 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <div class="card">
-        <div class="card-header body-card">
-          <h5>Ongoing Appraisal Details</h5>
-          <input hidden id="appraisalId" asp-for="Appraisal.Id" />
-        </div>
+          <div class="card-header body-card">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="col-md-6 pull-left">
+                          <h4 class="card-title">Ongoing Appraisal</h4>
+                          <input hidden id="appraisalId" asp-for="Appraisal.Id" />
+                      </div>
+                      <div class="btn-group col-md-2 pull-right">
+                          <a class="btn btn-light pull-left text-right" onClick="javascript:history.go(-1)" style="color:#fff;">
+                              <i class="now-ui-icons arrows-1_minimal-left"></i> <span>Back</span>
+                          </a>
+
+                      </div>
+                  </div>
+              </div>
+             
+             
+          </div>
 
         <div class="card-body body-card">
           <div>
