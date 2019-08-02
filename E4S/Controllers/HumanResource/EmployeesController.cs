@@ -716,8 +716,11 @@ namespace E4S.Controllers.HumanResource
 
     public IActionResult EmployeeDetails(Guid id)
         {
-      var singleEmployee = _context.EmployeeDetails.Where(x => x.Id == id).FirstOrDefault();
       var orgId = getOrg();
+      var emplist = _context.EmployeeDetails.Where(x => x.OrganisationId == orgId);
+      var singleEmployee = emplist.Where(x => x.Id == id).FirstOrDefault();
+
+
       EmployeeDetailsViewModel employeeDetailsVM = new EmployeeDetailsViewModel();
       employeeDetailsVM.Id = id;
       employeeDetailsVM.EmployeeDetail = singleEmployee;
@@ -729,8 +732,22 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.WorkExperiences = _context.WorkExperiences.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.Leaves = _context.Leaves.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.OrganisationAssets = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == id).ToList();
+      var supervisors = _context.AssignedSupervisors.Where(x => x.EmployeeDetailId == id).ToList();
 
+      employeeDetailsVM.AssignedSupervisors = new List<AssignedSupervisor>();
 
+      EmployeeDetail super;
+      foreach (var item in supervisors)
+      {
+        super = new EmployeeDetail();
+        super = emplist.Where(x => x.Id == item.SupervisorId).FirstOrDefault();
+        item.Supervisor = super;
+
+        employeeDetailsVM.AssignedSupervisors.Add(item);
+      }
+      
+      
+        
       var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
       var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
 
@@ -1144,8 +1161,6 @@ namespace E4S.Controllers.HumanResource
 
             var orgId = getOrg();
 
-            if (postNewAssignSupervisors.AutoList == "On")
-            {
                 try
                 {
                     AssignedSupervisor orgAssignedSuper = new AssignedSupervisor()
@@ -1154,15 +1169,33 @@ namespace E4S.Controllers.HumanResource
                       EmployeeDetailId = postNewAssignSupervisors.EmployeeDetailsId,
                       SupervisorId = postNewAssignSupervisors.SupervisorId,
                         ReportMethod = postNewAssignSupervisors.ReportMethod,
-                        OrganisationId = orgId,
+                        OrganisationId = orgId
 
                     };
 
                     _context.Add(orgAssignedSuper);
                     _context.SaveChanges();
 
+                  if (postNewAssignSupervisors.AutoList == "on")
+                  {
 
-                    return Json(new
+                    AssignedSubordinate newsub = new AssignedSubordinate()
+                    {
+                      Id = Guid.NewGuid(),
+                      EmployeeDetailId = orgAssignedSuper.SupervisorId,
+                      SubordinateId = orgAssignedSuper.EmployeeDetailId,
+                      ReportMethod = postNewAssignSupervisors.ReportMethod,
+                      OrganisationId = orgId
+                    };
+
+          _context.Add(newsub);
+          _context.SaveChanges();
+
+
+                  }
+
+
+                  return Json(new
                     {
                         msg = "Success"
                     }
@@ -1172,7 +1205,6 @@ namespace E4S.Controllers.HumanResource
                 {
 
                 }
-            }
           
             return Json(
             new

@@ -717,7 +717,7 @@
                                                                 <table class="table">
                                                                     <thead class="text-primary">
                                                                     
-                                                                    <th class="text-center">
+                                                                    <th class="text-left">
                                                                         Name
                                                                     </th>
                                                                     <th class="text-center">
@@ -729,16 +729,16 @@
                                                                     </th>
                                                                     </thead>
 
-                                                                      @*<tbody>
+                                                                      <tbody>
 
                                           
                                                                         @foreach (var item in Model.AssignedSupervisors)
                                                                         {
                                                                             <tr>
                                                                                
-                                                                                <td class="text-center">
-                                                                                    @item.EmployeeDetail.FirstName
-                                                                                    @item.EmployeeDetail.LastName
+                                                                                <td class="text-left">
+                                                                                    @item.Supervisor.FirstName
+                                                                                    @item.Supervisor.LastName
                                                                                 </td>
                                                                                 <td class="text-center">
                                                                                     @item.ReportMethod
@@ -750,7 +750,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                         }
-                                                                    </tbody>*@
+                                                                    </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
