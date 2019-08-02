@@ -9,6 +9,8 @@ namespace E4S.Models.AccountInventory
   {
     public Guid Id { get; set; }
 
+    //FlowType type: Paid Invoice, Paid Inventory, Other Expenses, Other Income. 
+    //The reference also comes from the Id.
     public string FlowType { get; set; }
     public Guid FlowTypeId { get; set; }
 

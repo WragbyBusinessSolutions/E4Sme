@@ -9,9 +9,15 @@ namespace E4S.Models.AccountInventory
   {
     public Guid Id { get; set; }
 
+    //Transaction type: Invoice, Inventory, Other Expenses, Other Income. 
+    //The reference also comes from the Id.
     public string TransactionType { get; set; }
-    //public
-    public string Description { get; set; }
+    public Guid TransactionId { get; set; }
+
+    public string DebitCredit { get; set; }
+    public Guid BankId { get; set; }
+
+    public string TransactionDetails { get; set; }
     public string Type { get; set; }
 
     public float Amount { get; set; }
