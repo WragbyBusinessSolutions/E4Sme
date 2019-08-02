@@ -790,34 +790,35 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="instruction">
-                                                                    <form>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Employee Name</label>
-                                                                                    <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                                                        <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
+                                                                  <form>
+                                                                    <input asp-for="Id" id="subId" hidden />
+                                                                    <div class="row">
+                                                                      <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                          <label>Employee Name</label>
+                                                                          <select class="form-control" placeholder="Serial Number" id="eeemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                                                          </select>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Report Methods</label>
-                                                                                    <select class="form-control" placeholder="Template Name" id="ReportMethod">
-                                                                                        <option> direct</option>
-                                                                                        <option> Indirect</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                      <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                          <label>Report Methods</label>
+                                                                          <select class="form-control" placeholder="Template Name" id="eeReportMethod" name="eeReportMethod">
+                                                                            <option> direct</option>
+                                                                            <option> Indirect</option>
+                                                                          </select>
                                                                         </div>
-                                                                        <hr />
-                                                                        <div class="card-footer ">
-                                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitTemplate">Submit</button>
-                                                                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </form>
+                                                                      </div>
+                                                                    </div>
+                                                                    <hr />
+                                                                    <div class="card-footer ">
+                                                                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitAssignSubordinate">Submit</button>
+                                                                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                  </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1588,6 +1589,57 @@
                     type: "POST",
                     url: "/Employees/PostAssignSupervisor",
                     data: JSON.stringify(PostAssignSupervisor),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+      });
+
+      $("#SubmitAssignSubordinate").click(function (event) {
+
+                event.preventDefault();
+
+                var PostAssignSubordinate = {
+                  EmployeeDetailsId: $("#Id").val(),
+                  SubordinateId: $("#eeemployeeId").val(),
+                  ReportMethod: $("#eeReportMethod").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostAssignSubordinate);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/PostAssignSubordinate",
+                    data: JSON.stringify(PostAssignSubordinate),
                     dataType: "json",
                     contentType: 'application/json; charset=utf-8',
                     headers: {

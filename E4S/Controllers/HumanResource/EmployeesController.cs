@@ -1224,7 +1224,74 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
-        [HttpPost]
+    [HttpPost]
+    public async Task<IActionResult> AssisgnedSubordinate([FromBody]PostNewAssignSubordinates postNewAssignSubordinates)
+    {
+      if (postNewAssignSubordinates == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+
+      try
+      {
+        AssignedSubordinate orgAssignedSubordinate = new AssignedSubordinate()
+        {
+          Id = Guid.NewGuid(),
+          EmployeeDetailId = postNewAssignSubordinates.EmployeeDetailsId,
+          SubordinateId = postNewAssignSubordinates.SubordinateId,
+          ReportMethod = postNewAssignSubordinates.ReportMethod,
+          OrganisationId = orgId
+
+        };
+
+        _context.Add(orgAssignedSubordinate);
+        _context.SaveChanges();
+
+        //if (postNewAssignSupervisors.AutoList == "on")
+        //{
+
+          AssignedSupervisor newsuper = new AssignedSupervisor()
+          {
+            Id = Guid.NewGuid(),
+            EmployeeDetailId = orgAssignedSubordinate.SubordinateId,
+            SupervisorId = orgAssignedSubordinate.EmployeeDetailId,
+            ReportMethod = orgAssignedSubordinate.ReportMethod,
+            OrganisationId = orgId
+          };
+
+          _context.Add(newsuper);
+          _context.SaveChanges();
+
+
+        //}
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+       );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
+
+    [HttpPost]
         public async Task<IActionResult> PostNewJobTitle([FromBody]PostNewJobTitle postNewJobTitle)
         {
             if (postNewJobTitle == null)
