@@ -833,72 +833,46 @@
 
                                                     <div class="col-md-12 ">
                                                         <div class="card-body">
-                                                            <div class="table-responsive" style="overflow:auto;">
-                                                                <table class="table">
-                                                                    <thead class="text-primary">
-                                                                    
-                                                                    <th>
-                                                                        Name
-                                                                    </th>
-                                                                    <th class="text-right">
-                                                                        Report Methods
-                                                                    </th>
+                                                          <div class="table-responsive" style="overflow:auto;">
+                                                            <table class="table">
+                                                              <thead class="text-primary">
 
-                                                                    <th class="text-right">
-                                                                        Actions
-                                                                    </th>
-                                                                    </thead>
+                                                              <th class="text-left">
+                                                                Name
+                                                              </th>
+                                                              <th class="text-center">
+                                                                Report Methods
+                                                              </th>
 
-                                                                    @*<tbody>
+                                                              <th class="text-center">
+                                                                Actions
+                                                              </th>
+                                                              </thead>
 
-                                                @{
-                                                    int i = 1;
+                                                              <tbody>
 
 
+                                                                @foreach (var item in Model.AssignedSubordinates)
+                                                                {
+                                                                  <tr>
 
+                                                                    <td class="text-left">
+                                                                      @item.Subordinate.FirstName
+                                                                      @item.Subordinate.LastName
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                      @item.ReportMethod
+                                                                    </td>
 
-                                                    foreach (var item in Model)
-                                                    {
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                @i
-                                                            </td>
-                                                            <td>
-                                                                @item.AppraisalTemplate.Template
-                                                            </td>
-                                                            <td class="text-right">
-                                                                @item.NoOfCategory
-                                                            </td>
-                                                            <td class="text-right">
-                                                                @item.TotalWeight
-                                                            </td>
-                                                            <td class="text-right">
-                                                                <a asp-action="EditTemplate" asp-route-id="@item.AppraisalTemplate.Id" class="btn btn-warning btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-widget-content"></i>
-                                                                </a>
-                                                                <a asp-action="ViewTemplate" asp-route-id="@item.AppraisalTemplate.Id" class="btn btn-info btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-widget-content"></i>
-                                                                </a>
-
-                                                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>
-
-
-                                                        { i = i + 1; }
-
-                                                    }
-                                                }
-
-
-
-
-                                            </tbody>*@
-                                                                </table>
-                                                            </div>
+                                                                    <td class="text-center">
+                                                                      <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top"><i class="far fa-calendar-alt"></i></a></span>
+                                                                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                                                    </td>
+                                                                  </tr>
+                                                                }
+                                                              </tbody>
+                                                            </table>
+                                                          </div>
                                                         </div>
 
 

@@ -733,8 +733,10 @@ namespace E4S.Controllers.HumanResource
       employeeDetailsVM.Leaves = _context.Leaves.Where(x => x.EmployeeDetailId == id).ToList();
       employeeDetailsVM.OrganisationAssets = _context.OrganisationAssets.Where(x => x.EmployeeDetailId == id).ToList();
       var supervisors = _context.AssignedSupervisors.Where(x => x.EmployeeDetailId == id).ToList();
+      var subors = _context.AssignedSubordinates.Where(x => x.EmployeeDetailId == id).ToList();
 
       employeeDetailsVM.AssignedSupervisors = new List<AssignedSupervisor>();
+      employeeDetailsVM.AssignedSubordinates = new List<AssignedSubordinate>();
 
       EmployeeDetail super;
       foreach (var item in supervisors)
@@ -745,9 +747,18 @@ namespace E4S.Controllers.HumanResource
 
         employeeDetailsVM.AssignedSupervisors.Add(item);
       }
-      
-      
-        
+
+      EmployeeDetail subor;
+      foreach (var item in subors)
+      {
+        subor = new EmployeeDetail();
+        subor = emplist.Where(x => x.Id == item.SubordinateId).FirstOrDefault();
+        item.Subordinate = subor;
+
+        employeeDetailsVM.AssignedSubordinates.Add(item);
+      }
+
+
       var salaryEmployee = _context.Salaries.Where(x => x.EmployeeDetailId == singleEmployee.Id).FirstOrDefault();
       var jobEmployee = _context.Jobs.Where(x => x.EmployeeDetailId == id).FirstOrDefault();
 
