@@ -17,10 +17,19 @@
               </div>
               <div class="card-body">
                 <div class="author">
-                  <a asp-action="PersonalDetails">
-                    <img class="avatar border-gray" src="/@Model.ImageURL" alt="...">
-                    <h5 class="title">@Model.FirstName @Model.LastName</h5>
-                  </a>
+                    <a asp-action="PersonalDetails">
+                        @if (Model.ImageURL == null)
+                        {
+                            <img class="avatar border-gray" src="~/assets/img/default-avatar1.png" alt="---">
+
+                        }
+                        else
+                        {
+                            <img class="avatar border-gray" src="@Model.ImageURL" alt="Employee Profile Image">
+
+                        }
+                        <h5 class="title">@Model.FirstName @Model.LastName</h5>
+                    </a>
                   <p class="description">
                     @Model.JobTitle
                   </p>
@@ -30,11 +39,111 @@
                 </p>
               </div>
               <hr>
+              @*<div class="button-container">
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-facebook-square"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-google-plus-square"></i>
+                </button>
+              </div>*@
             </div>
           </div>
 
 
+          @*<div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Leaves</h4>
+                <p class="category">Most Recent Leave Requests</p>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Leave Request
+                    </th>
+                    <th>
+                      Days
+                    </th>
+                    <th>
+                      Is Approve
+                    </th>
+                    <th class="text-right">
+                      Action
+                    </th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Examination Leave
+                        </td>
+                        <td>
+                          10
+                        </td>
+                        <td>
+                          <a class="btn btn-sm btn-success">Approved</a>
+                        </td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-sm btn-info">Profile</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Netherlands
+                        </td>
+                        <td>
+                          Baileux
+                        </td>
+                        <td class="text-right">
+                          $56,142
+                        </td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-sm btn-info">Profile</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Korea, South
+                        </td>
+                        <td>
+                          Overland Park
+                        </td>
+                        <td class="text-right">
+                          $38,735
+                        </td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-sm btn-info">Profile</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Malawi
+                        </td>
+                        <td>
+                          Feldkirchen in Kärnten
+                        </td>
+                        <td class="text-right">
+                          $63,542
+                        </td>
+                        <td class="text-right">
+                          <a href="#" class="btn btn-sm btn-info">Profile</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a href="#" class="pull-right">View more...</a>
+                  </div>
 
+                </div>
+              </div>
+            </div>
+          </div>*@
 
         </div>
 
