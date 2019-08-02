@@ -4,6 +4,35 @@
   Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
+
+    <style>
+        .body-card {
+            margin-left: 2%;
+            margin-right: 2%;
+            margin-top: 1%;
+            margin-bottom: 2%;
+        }
+
+        .table-font {
+            font-weight: 500;
+        }
+
+        .iconstyle {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+
+        .picture {
+            background: fixed;
+        }
+
+            .picture:hover {
+                border-radius: 7px;
+                box-shadow: 0 0 11px rgba(33,33,33,.2);
+                padding: 10px;
+            }
+    </style>
+
 <div class="content">
   <div class="row">
     <div class="col-md-12">
@@ -12,38 +41,39 @@
           <div class="row">
             <div class="col-md-4">
               <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-info">
-                    <i class="now-ui-icons users_single-02"></i>
+                  <div class="info">
+                      <div class="icon icon-info">
+                          <i class="now-ui-icons users_single-02"></i>
+                      </div>
+                      
+                      <h3 class="info-title">859</h3>
+                      <h6 class="stats-title">Customers</h6>
                   </div>
-                  <h5 class="info-title">Customers</h5>
-
-                </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-success">
-                    <i class="now-ui-icons business_money-coins"></i>
+                  <div class="info">
+                      <div class="icon icon-success">
+                          <i class="now-ui-icons business_money-coins"></i>
+                      </div>
+                      
+                      <h3 class="info-title"><small>₦</small>859</h3>
+                      <h6 class="stats-title">Sales</h6>
                   </div>
-                  <h5 class="info-title">
-                    Sales
-                  </h5>
-
-                </div>
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-danger">
-                    <i class="now-ui-icons objects_support-17"></i>
-                  </div>
-                  <h5 class="info-title">Purchase</h5>
+                  <div class="info">
+                      <div class="icon icon-danger">
+                          <i class="now-ui-icons objects_support-17"></i>
+                      </div>
 
-                </div>
+                      <h3 class="info-title"><small>₦</small>859</h3>
+                      <h6 class="stats-title">Purchase</h6>
+                  </div>
               </div>
             </div>
           </div>
@@ -52,215 +82,268 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-md-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category">Active Users</h5>
-          <h2 class="card-title">34,252</h2>
-          <div class="dropdown">
-            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-              <i class="now-ui-icons loader_gear"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item text-danger" href="#">Remove Data</a>
-            </div>
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-header ">
+                  <h4 class="body-card">Get the big picture</h4>
+                  <p class="col-md-8"> How much profit are you making? Are your assets growing faster than your liabilities? Is cash flowing, or getting stuck?</p>
+
+              </div>
+              <div class="card-body ">
+
+                  <div class="row body-card picture">
+                      <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons business_chart-bar-32"></i>
+
+                      </div>
+
+                      <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="ProfitandLoss">Profit & Loss (Income Statement)</a></h5>
+                          <p class="col-md-12">Summary of your balance expenses that datermine the profit you made</p>
+
+                      </div>
+
+                  </div>
+                  <div class="row body-card picture">
+                      <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons shopping_tag-content"></i>
+                      </div>
+
+                      <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="ReportAccountTransaction">Transactions</a></h5>
+                          <p class="col-md-12">Summary of your balance expenses that datermine the profit you made</p>
+
+                      </div>
+
+                  </div>
+                  <div class="row body-card picture">
+                      <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons education_paper"></i>
+                      </div>
+
+                      <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="BalanceSheet">Balance Sheet</a></h5>
+                          <p class="col-md-12">
+                              Snapshot of what your business owns or
+                              is due to receive from other (assets), whats its own to others
+                              (liabilities) and what you've invested ar retained in your company (Equity)
+                          </p>
+
+                      </div>
+
+                  </div>
+
+                  <div class="row body-card picture">
+                      <div class="icon icon-info col-md-1 iconstyle">
+                          <i class="now-ui-icons business_money-coins"></i>
+                      </div>
+
+                      <div class="col-md-9">
+                          <h5><a asp-action="Index" asp-controller="AccountCashFlow">Cash Flow</a></h5>
+                          <p class="col-md-12">
+                              Cashing coming in and going out of your business.
+                              Includes items not included in the profit and loss such as repayment
+                              of loan principal and owner drawings (paying yourself)
+                          </p>
+
+                      </div>
+
+                  </div>
+              </div>
+
           </div>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas id="activeUsers"></canvas>
-          </div>
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/US.png">
-                    </div>
-                  </td>
-                  <td>USA</td>
-                  <td class="text-right">
-                    2.920
-                  </td>
-                  <td class="text-right">
-                    53.23%
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/DE.png">
-                    </div>
-                  </td>
-                  <td>Germany</td>
-                  <td class="text-right">
-                    1.300
-                  </td>
-                  <td class="text-right">
-                    20.43%
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/AU.png">
-                    </div>
-                  </td>
-                  <td>Australia</td>
-                  <td class="text-right">
-                    760
-                  </td>
-                  <td class="text-right">
-                    10.35%
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/GB.png">
-                    </div>
-                  </td>
-                  <td>United Kingdom</td>
-                  <td class="text-right">
-                    690
-                  </td>
-                  <td class="text-right">
-                    7.87%
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/RO.png">
-                    </div>
-                  </td>
-                  <td>Romania</td>
-                  <td class="text-right">
-                    600
-                  </td>
-                  <td class="text-right">
-                    5.94%
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="flag">
-                      <img src="../assets/img/BR.png">
-                    </div>
-                  </td>
-                  <td>Brasil</td>
-                  <td class="text-right">
-                    550
-                  </td>
-                  <td class="text-right">
-                    4.34%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category">Summer Email Campaign</h5>
-          <h2 class="card-title">55,300</h2>
-          <div class="dropdown">
-            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-              <i class="now-ui-icons loader_gear"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item text-danger" href="#">Remove Data</a>
-            </div>
+      <div class="col-md-6">
+          <div class="card card-chart">
+              <div class="card-header">
+                  <h5 class="card-category"></h5>
+                  <h2 class="card-title">34,252</h2>
+                  <div class="dropdown">
+                      <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                          <i class="now-ui-icons loader_gear"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area">
+                      <canvas id="activeUsers"></canvas>
+                  </div>
+                  <div class="table-responsive">
+                      <table class="table">
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/US.png">
+                                      </div>
+                                  </td>
+                                  <td>USA</td>
+                                  <td class="text-right">
+                                      2.920
+                                  </td>
+                                  <td class="text-right">
+                                      53.23%
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/DE.png">
+                                      </div>
+                                  </td>
+                                  <td>Germany</td>
+                                  <td class="text-right">
+                                      1.300
+                                  </td>
+                                  <td class="text-right">
+                                      20.43%
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/AU.png">
+                                      </div>
+                                  </td>
+                                  <td>Australia</td>
+                                  <td class="text-right">
+                                      760
+                                  </td>
+                                  <td class="text-right">
+                                      10.35%
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/GB.png">
+                                      </div>
+                                  </td>
+                                  <td>United Kingdom</td>
+                                  <td class="text-right">
+                                      690
+                                  </td>
+                                  <td class="text-right">
+                                      7.87%
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/RO.png">
+                                      </div>
+                                  </td>
+                                  <td>Romania</td>
+                                  <td class="text-right">
+                                      600
+                                  </td>
+                                  <td class="text-right">
+                                      5.94%
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>
+                                      <div class="flag">
+                                          <img src="../assets/img/BR.png">
+                                      </div>
+                                  </td>
+                                  <td>Brasil</td>
+                                  <td class="text-right">
+                                      550
+                                  </td>
+                                  <td class="text-right">
+                                      4.34%
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <div class="stats">
+                      <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas id="emailsCampaignChart"></canvas>
-          </div>
-          <div class="card-progress">
-            <div class="progress-container">
-              <span class="progress-badge">Delivery Rate</span>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                  <span class="progress-value">90%</span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-container progress-success">
-              <span class="progress-badge">Open Rate</span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                  <span class="progress-value">60%</span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-container progress-info">
-              <span class="progress-badge">Click Rate</span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">
-                  <span class="progress-value">12%</span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-container progress-warning">
-              <span class="progress-badge">Hard Bounce</span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                  <span class="progress-value">5%</span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-container progress-danger">
-              <span class="progress-badge">Spam Report</span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0.11%;">
-                  <span class="progress-value">0.11%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category">Active Countries</h5>
-          <h2 class="card-title">105</h2>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas id="activeCountries"></canvas>
+      <div class="col-md-6">
+          <div class="card card-chart">
+              <div class="card-header">
+                  <h5 class="card-category">Summer Email Campaign</h5>
+                  <h2 class="card-title">55,300</h2>
+                  <div class="dropdown">
+                      <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                          <i class="now-ui-icons loader_gear"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area">
+                      <canvas id="emailsCampaignChart"></canvas>
+                  </div>
+                  <div class="card-progress">
+                      <div class="progress-container">
+                          <span class="progress-badge">Delivery Rate</span>
+                          <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                                  <span class="progress-value">90%</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="progress-container progress-success">
+                          <span class="progress-badge">Open Rate</span>
+                          <div class="progress">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                  <span class="progress-value">60%</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="progress-container progress-info">
+                          <span class="progress-badge">Click Rate</span>
+                          <div class="progress">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 12%;">
+                                  <span class="progress-value">12%</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="progress-container progress-warning">
+                          <span class="progress-badge">Hard Bounce</span>
+                          <div class="progress">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+                                  <span class="progress-value">5%</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="progress-container progress-danger">
+                          <span class="progress-badge">Spam Report</span>
+                          <div class="progress">
+                              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0.11%;">
+                                  <span class="progress-value">0.11%</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <div class="stats">
+                      <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                  </div>
+              </div>
           </div>
-          <div id="worldMap" class="map"></div>
-        </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
-          </div>
-        </div>
       </div>
-    </div>
+
   </div>
   @*<div class="row">
     <div class="col-md-12">
