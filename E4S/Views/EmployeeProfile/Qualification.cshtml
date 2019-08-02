@@ -2,7 +2,12 @@
 
 @{
   ViewData["Title"] = "Qualification";
+
+  //Layout = "~/Views/Shared/_LayoutHumanResouces.cshtml";
+
+
   Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+
 }
 
 <div class="content">
@@ -372,7 +377,7 @@
 
               <div class="card-body">
                 <br />
-                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                <table id="datatable2" class="table table-striped " cellspacing="10" width="100%">
                   <thead>
                     <tr>
                       <th>Institution</th>
@@ -396,27 +401,14 @@
                         <td>@item.YearCompleted</td>
                         <td>@item.ImageURL</td>
                         <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="modal" data-target="#noticeModalEditRecords" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" Selected-ImageURL="@item.ImageURL" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delRecords" selected-id="@item.Id" selected-institution="@item.Institution" selected-courseOfStudy="@item.CourseOfStudy" selected-degree="@item.Degree" selected-grade="@item.Grade" selected-yearCompleted="@item.YearCompleted" selected-imageUrl="@item.ImageURL" title="Click to Delete"><i class="fas fa-times"></i></a>
-                        </td>
+                          <span data-toggle="modal" data-target="#noticeModalEditRecords"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editrcrd" data-toggle="tooltip" data-placement="top" EditRcrdId="@item.Id" select-Institution="@item.Institution" Selected-CourseOfStudy="@item.CourseOfStudy" Selected-Degree="@item.Degree" Selected-Grade="@item.Grade" Selected-YearCompleted="@item.YearCompleted" Selected-ImageURL="@item.ImageURL" title="Click to Edit"><i class="far fa-calendar-alt"></i></a></span>
+                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" InstitutionId="@item.Id" InstitutionName="@item.Institution" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
+</td>
                       </tr>
 
                     }
 
-                    @*"~/@item.ImageURL" target="_blank"*@
-
-                    @*<tr>
-                        <td>FUTA</td>
-                        <td>Mathematical Science</td>
-                        <td>B.Tech</td>
-                        <td>Second Class Lower</td>
-                        <td>2017</td>
-                        <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                        </td>
-                      </tr>*@
-
+                  
 
                   </tbody>
                 </table>
@@ -545,7 +537,7 @@
 
               <div class="card-body">
                 <br />
-                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                <table id="datatable3" class="table table-striped " cellspacing="10" width="100%">
                   <thead>
                     <tr>
                       <th>Skill</th>
@@ -563,8 +555,8 @@
                         <td>@item.Description</td>
                         <td>@item.YearsOfExperience</td>
                         <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm " id="Editbtn" data-toggle="modal" data-target="#noticeModalEditSkills" EditSkillsId="@item.Id" select-Skills="@item.SkillName" Selected-Description="@item.Description" Selected-YearsOfExperience="@item.YearsOfExperience" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delSkill" selected-id="@item.Id" selected-skill="@item.SkillName" selected-description="@item.Description" selected-experience="@item.YearsOfExperience" title="Click to Delete"><i class="fas fa-times"></i></a>
+                          <span data-toggle="modal" data-target="#noticeModalEditSkills"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm"  id="Editbtn" EditSkillsId="@item.Id" select-Skills="@item.SkillName" Selected-Description="@item.Description" Selected-YearsOfExperience="@item.YearsOfExperience" data-toggle="tooltip" data-placement="top" title="Click to Edit"><i class="far fa-calendar-alt"></i></a></span>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" SkillId="@item.Id" SkillName="@item.SkillName" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
                         </td>
                       </tr>
 
@@ -723,7 +715,7 @@
 
               <div class="card-body">
                 <br />
-                <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                <table id="datatable4" class="table table-striped " cellspacing="10" width="100%">
                   <thead>
                     <tr>
                       <th>Company</th>
@@ -746,8 +738,8 @@
                         <td>@item.EndDate.ToString("dd, MMM yyyy")</td>
                         <td>@item.Comment</td>
                         <td class="text-right">
-                          <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" data-toggle="modal" data-target="#noticeModalExperience" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate.ToString("dd, MMM yyyy")" Selected-EndDate="@item.EndDate.ToString("dd, MMM yyyy")" Selected-Comment="@item.Comment" title="Click to Edit"><i class="far fa-calendar-alt"></i></a>
-                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" id="delWork" selected-id="@item.Id" selected-organisation="@item.Organisation" selected-jobTitle="@item.JobTitle" selected-startDate="@item.StartDate.ToString("dd, MMM yyyy")" selected-endDate="@item.EndDate.ToString("dd, MMM yyyy")" selected-comment="@item.Comment" title="Click to Delete"><i class="fas fa-times"></i></a>
+                          <span data-toggle="modal" data-target="#noticeModalExperience"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" id="Editwrk" EditWorkId="@item.Id" select-Organisation="@item.Organisation" Selected-JobTitle="@item.JobTitle" Selected-StartDate="@item.StartDate.ToString("dd, MMM yyyy")" Selected-EndDate="@item.EndDate.ToString("dd, MMM yyyy")" Selected-Comment="@item.Comment" data-toggle="tooltip" data-placement="top" title="Click to Edit"><i class="far fa-calendar-alt"></i></a></span>
+                          <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" CompanyId="@item.Id" CompanyName="@item.Organisation" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
                         </td>
                       </tr>
 
@@ -773,6 +765,334 @@
 @section scripts {
 
   <link href="@Url.Content("~/css/ajaxoverlay.css")" rel="stylesheet" />
+
+
+  <script>
+    $(document).ready(function () {
+
+      $('#datatable2').DataTable({
+        "pagingType": "full_numbers",
+        dom: "Bfrtip",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+
+
+        buttons: [
+          'copy',
+          'excel',
+          'csv',
+          'pdf',
+          'print',
+        ],
+
+
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable2').DataTable();
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+
+        institutionId = $(this).attr('InstitutionId');
+        institutionName = $(this).attr('InstitutionName');
+
+
+
+        swal({
+          title: 'Are you sure?',
+          text: "You are about to delete '" + institutionName + "'",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          confirmButtonText: 'Yes, delete it!',
+          buttonsStyling: false
+        }).then(function () {
+
+          $.ajax({
+            type: "POST",
+            url: "/EmployeeProfile/deleteRecords",
+            data: JSON.stringify(institutionId),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                swal({
+                  title: 'Deleted!',
+                  text: 'Your file has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                });
+
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+
+
+          table.row($tr).remove().draw();
+
+        }).catch(swal.noop);
+
+
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+
+      $('#datatable3').DataTable({
+        "pagingType": "full_numbers",
+        dom: "Bfrtip",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+
+
+        buttons: [
+          'copy',
+          'excel',
+          'csv',
+          'pdf',
+          'print',
+        ],
+
+
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable3').DataTable();
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+
+        skillId = $(this).attr('SkillId');
+        skillName = $(this).attr('SkillName');
+
+
+
+        swal({
+          title: 'Are you sure?',
+          text: "You are about to delete '" + skillName + "'",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          confirmButtonText: 'Yes, delete it!',
+          buttonsStyling: false
+        }).then(function () {
+
+          $.ajax({
+            type: "POST",
+            url: "/EmployeeProfile/deleteSkills",
+            data: JSON.stringify(skillId),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                swal({
+                  title: 'Deleted!',
+                  text: 'Your file has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                });
+
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+
+
+          table.row($tr).remove().draw();
+
+        }).catch(swal.noop);
+
+
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+
+      $('#datatable4').DataTable({
+        "pagingType": "full_numbers",
+        dom: "Bfrtip",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+
+
+        buttons: [
+          'copy',
+          'excel',
+          'csv',
+          'pdf',
+          'print',
+        ],
+
+
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable4').DataTable();
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+
+        companyId = $(this).attr('CompanyId');
+        companyName = $(this).attr('CompanyName');
+
+
+
+        swal({
+          title: 'Are you sure?',
+          text: "You are about to delete '" + companyName + "'",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          confirmButtonText: 'Yes, delete it!',
+          buttonsStyling: false
+        }).then(function () {
+
+          $.ajax({
+            type: "POST",
+            url: "/EmployeeProfile/deleteWorkExperience",
+            data: JSON.stringify(companyId),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                swal({
+                  title: 'Deleted!',
+                  text: 'Your file has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                });
+
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+
+
+          table.row($tr).remove().draw();
+
+        }).catch(swal.noop);
+
+
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
 
   <script>
     var aEditSkillsId;
@@ -853,258 +1173,14 @@
 
 
 
-    $(document).ready(function () {
-       $("#delRecords").click(function (event) {
-
-          event.preventDefault();
-
-          var RecordId = $(this).attr('selected-id');
-          var school = $(this).attr('selected-institution');
-          var course = $(this).attr('selected-courseOfStudy');
-          var degree = $(this).attr('selected-degree');
-          var grade = $(this).attr('selected-grade');
-          var year = $(this).attr('selected-yearCompleted');
-          var ImageUrl = $(this).attr('selected-imageUrl');
-
-
-
-          // console.log(Items);
-          console.log(RecordId);
-
-          swal({
-
-            title: 'Are you sure?',
-            text: "You won't be able to revert!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Yes, delete it!',
-            buttonsStyling: false
-          }).then(function () {
-
-            $.ajax({
-              type: "POST",
-              url: "/EmployeeProfile/DelInstitutionRecords",
-              data: JSON.stringify(RecordId),
-              dataType: "json",
-              contentType: 'application/json; charset=utf-8',
-              headers: {
-                RequestVerificationToken:
-                  $('input:hidden[name="__RequestVerificationToken"]').val()
-              },
-              success: function (r) {
-
-                if (r.msg == "Success") {
-                  $("#loading-overlay").hide();
-                  swal({
-                    title: 'Deleted!',
-                    text: 'Your record has been deleted.',
-                    type: 'success',
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-
-                  });
-
-                              window.location.reload();
-
-
-                } else if (r.msg == "Fail") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else if (r.msg == "No Data") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-                }
-                //alert(r.msg);
-                // window.location.reload();
-
-              },
-              error: function () {
-                $("#loading-overlay").hide();
-                alert(r.msg);
-              }
-            });
-
-
-          }).catch(swal.noop);
-
-
-
-        });
-      });
+   
 
 
     $(document).ready(function () {
 
      
 
-        $("#delSkill").click(function (event) {
-
-          event.preventDefault();
-
-          var skillId = $(this).attr('selected-id');
-          var skillTitle = $(this).attr('selected-skill');
-          var skillDescription = $(this).attr('selected-description');
-          var skillExperience = $(this).attr('selected-experience');
-
-
-          // console.log(Items);
-          console.log(skillId);
-
-          swal({
-
-            title: 'Are you sure?',
-            text: "You won't be able to revert!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Yes, delete it!',
-            buttonsStyling: false
-          }).then(function () {
-
-            $.ajax({
-              type: "POST",
-              url: "/EmployeeProfile/DelSkills",
-              data: JSON.stringify(skillId),
-              dataType: "json",
-              contentType: 'application/json; charset=utf-8',
-              headers: {
-                RequestVerificationToken:
-                  $('input:hidden[name="__RequestVerificationToken"]').val()
-              },
-              success: function (r) {
-
-                if (r.msg == "Success") {
-                  $("#loading-overlay").hide();
-                  swal({
-                    title: 'Deleted!',
-                    text: 'Your record has been deleted.',
-                    type: 'success',
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-
-                  });
-
-                              window.location.reload();
-
-
-                } else if (r.msg == "Fail") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else if (r.msg == "No Data") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-                }
-                //alert(r.msg);
-                // window.location.reload();
-
-              },
-              error: function () {
-                $("#loading-overlay").hide();
-                alert(r.msg);
-              }
-            });
-
-
-          }).catch(swal.noop);
-
-
-
-        });
-
-      $("#delWork").click(function (event) {
-
-          event.preventDefault();
-
-          var workId = $(this).attr('selected-id');
-          var workTitle = $(this).attr('selected-organisation');
-          var jobTitle = $(this).attr('selected-jobTitle');
-          var startDate = $(this).attr('selected-startDate');
-          var endDate = $(this).attr('selected-endDate');
-          var comment = $(this).attr('selected-comment');
-
-
-          // console.log(Items);
-          console.log(workId);
-
-          swal({
-
-            title: 'Are you sure?',
-            text: "You won't be able to revert!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Yes, delete it!',
-            buttonsStyling: false
-          }).then(function () {
-
-            $.ajax({
-              type: "POST",
-              url: "/EmployeeProfile/DelWorkExperience",
-              data: JSON.stringify(workId),
-              dataType: "json",
-              contentType: 'application/json; charset=utf-8',
-              headers: {
-                RequestVerificationToken:
-                  $('input:hidden[name="__RequestVerificationToken"]').val()
-              },
-              success: function (r) {
-
-                if (r.msg == "Success") {
-                  $("#loading-overlay").hide();
-                  swal({
-                    title: 'Deleted!',
-                    text: 'Your record has been deleted.',
-                    type: 'success',
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-
-                  });
-
-                              window.location.reload();
-
-
-                } else if (r.msg == "Fail") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else if (r.msg == "No Data") {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-
-                } else {
-                  $("#loading-overlay").hide();
-                  alert(r.msg);
-                }
-                //alert(r.msg);
-                // window.location.reload();
-
-              },
-              error: function () {
-                $("#loading-overlay").hide();
-                alert(r.msg);
-              }
-            });
-
-
-          }).catch(swal.noop);
-
-
-
-      });
+       
 
      
 

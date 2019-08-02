@@ -2,6 +2,7 @@
 
 @{
   ViewData["Title"] = "Dependents";
+
   Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 
@@ -136,7 +137,7 @@
                 <!-- end notice modal -->
                 <div class="card-body">
                     <br />
-                    <table id="datatable" class="table table-striped " cellspacing="10" width="100%">
+                    <table id="datatable2" class="table table-striped " cellspacing="10" width="100%">
                         <thead>
                             <tr>
                                 <th> Name</th>
@@ -162,9 +163,9 @@
                                     <td>@item.Relationship</td>
                                     <td>@item.Address</td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit"data-toggle="modal" data-target="#noticeModal1" id="Editbtn" DependentsId="@item.Id" Selected-Name="@item.Name" Selected-Relationship="@item.Relationship" Selected-Address="@item.Address"><i class="far fa-calendar-alt"></i></a>
-                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                    </td>
+                                      <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Click to Edit" id="Editbtn" DependentsId="@item.Id" Selected-Name="@item.Name" Selected-Relationship="@item.Relationship" Selected-Address="@item.Address"><i class="far fa-calendar-alt"></i></a></span>
+                                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" DependentId="@item.Id" DependentName="@item.Name" title="Click to Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
+</td>
                                 </tr>
 
                             }
@@ -183,6 +184,115 @@
 
 
 @section Scripts {
+
+
+  <script>
+    $(document).ready(function () {
+
+      $('#datatable2').DataTable({
+        "pagingType": "full_numbers",
+        dom: "Bfrtip",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+
+
+        buttons: [
+          'copy',
+          'excel',
+          'csv',
+          'pdf',
+          'print',
+        ],
+
+
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable2').DataTable();
+
+      // Delete a record
+      table.on('click', '.remove', function (e) {
+        $tr = $(this).closest('tr');
+
+        dependentId = $(this).attr('DependentId');
+        dependentName = $(this).attr('DependentName');
+
+
+        swal({
+          title: 'Are you sure?',
+          text: "You are about to delete '" + dependentName + "'",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          confirmButtonText: 'Yes, delete it!',
+          buttonsStyling: false
+        }).then(function () {
+
+          $.ajax({
+            type: "POST",
+            url: "/EmployeeProfile/deleteDependent",
+            data: JSON.stringify(dependentId),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              if (r.msg == "Success") {
+
+                swal({
+                  title: 'Deleted!',
+                  text: 'Your file has been deleted.',
+                  type: 'success',
+                  confirmButtonClass: "btn btn-success",
+                  buttonsStyling: false
+                });
+
+
+              } else if (r.msg == "Fail") {
+
+                alert(r.msg);
+
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
+
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
+              alert(r.msg);
+            }
+          });
+
+
+          table.row($tr).remove().draw();
+
+        }).catch(swal.noop);
+
+
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function () {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
 
 
   <script type="text/javascript">

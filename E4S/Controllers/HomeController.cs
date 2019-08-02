@@ -160,5 +160,16 @@ namespace E4S.Controllers
 
       return View(HRDVM);
     }
+
+    public IActionResult DashboardAC()
+    {
+      var orgId = getOrg();
+
+
+
+      return View();
+    }
+
+    
   }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E4S.Models.HumanResource.SalaryAddition> 
+﻿@model IEnumerable<E4S.Models.HumanResource.SalaryAddition>
 
 
 @{
@@ -12,27 +12,20 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-            <div class="row">
-                <div class="col-md-10">
-                    <h4 class="card-title"> Salary Additions</h4>
-                </div>
-
-               
-                <div class="col-md-2">
-
-                    @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
-                    <button class="btn btn-info " data-toggle="modal" data-target="#noticeModal">
-                        <span class="btn-label">
-                            <i class="now-ui-icons travel_info"></i>
-                        </span>
-                        Create
-                    </button>
-
-                    <a class="btn btn-light " onClick="javascript:history.go(-1)" style="color:#fff;">
-                        <i class="now-ui-icons arrows-1_minimal-left"></i> <span>Back</span>
-                    </a>
-                </div>
+          <div class="row">
+            <div class="col-md-10">
+              <h4 class="card-title"> Salary Additions</h4>
             </div>
+            <div class="col-md-2">
+              @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+              <button class="btn btn-info " data-toggle="modal" data-target="#noticeModal">
+                <span class="btn-label">
+                  <i class="now-ui-icons travel_info"></i>
+                </span>
+                Create
+              </button>
+            </div>
+          </div>
           <!-- notice modal -->
           <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notice">
@@ -48,13 +41,13 @@
                     <form>
                       <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Employee Name</label>
-                                <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                    <option value="00000000-0000-0000-0000-000000000000"> --  Employee Name  -- </option>
-                                </select>
-                                @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
-                            </div>
+                          <div class="form-group">
+                            <label>Employee Name</label>
+                            <select class="form-control" placeholder="Serial Number" id="employeeId" asp-items="ViewBag.EmployeeDetails" required>
+                              <option value="00000000-0000-0000-0000-000000000000"> --  Employee Name  -- </option>
+                            </select>
+                            @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
+                          </div>
                         </div>
                       </div>
                       <div class="row">
@@ -67,7 +60,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
@@ -77,14 +70,14 @@
                         </div>
                       </div>
                       <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                  <label>Description</label>
-                                  <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
-                                  @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" placeholder="Description" id="Description" required rows="3"></textarea>
+                            @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
 
-                              </div>
                           </div>
+                        </div>
                       </div>
                       <div class="card-footer ">
                         <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAdditions">Submit</button>
@@ -111,55 +104,53 @@
                   <h5 class="modal-title" id="myModalLabel">Edit Asset Details</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="instruction">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Employee Name</label>
-                                        <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                        </select>
-                                        @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Addition Type</label>
-                                        <select type="text" class="form-control" asp-items="ViewBag.Additions" id="eAdditionType" name="eAdditionType">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                  <div class="instruction">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Employee Name</label>
+                            <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required></select>
+                            @*<input type="text" class="form-control" placeholder="Employee Name" autocomplete="on" id="autocom" required>*@
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Addition Type</label>
+                            <select type="text" class="form-control" asp-items="ViewBag.Additions" id="eAdditionType" name="eAdditionType"></select>
+                          </div>
+                        </div>
+                      </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Amount</label>
-                                        <input type="text" class="form-control" placeholder="Amount" id="eAmount" name="eAmount" required>
-                                        <input type="hidden" class="form-control" placeholder="" id="AddSalId" name="AddSalId" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
-                                        @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Amount</label>
+                            <input type="text" class="form-control" placeholder="Amount" id="eAmount" name="eAmount" required>
+                            <input type="hidden" class="form-control" placeholder="" id="AddSalId" name="AddSalId" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" placeholder="Description" id="eDescription" name="eDescription" required rows="3"></textarea>
+                            @*<input type="text" class="form-control" placeholder="Department Name" id="Description" name="Description" required>*@
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer ">
-                                <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEditAdditions">Submit</button>
-                                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer ">
+                        <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitEditAdditions">Submit</button>
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
 
 
-                    </div>
+                  </div>
                 </div>
                 @*<div class="modal-footer justify-content-center">
                       <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
@@ -170,11 +161,11 @@
           <!-- end notice Edit modal -->
           @*<button type="submit" class="btn btn-fill btn-info">Add Employee</button>*@
         </div>
-        
+
 
         <div class="card-body">
           <div>
-            <table class="table table-striped" id="datatable" cellspacing="10" width="100%">
+            <table class="table table-striped" id="datatable2" cellspacing="10" width="100%">
               <thead class="text-primary">
               <th class="text-center">
                 #
@@ -204,189 +195,261 @@
               <tbody>
 
                 @{
-                    int i = 1;
+                  int i = 1;
 
-                    @if (Model.Count() < 1)
-                    {
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>No Data to Display</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  @if (Model.Count() < 1)
+                  {
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>No Data to Display</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
 
                 }
 
 
-                    foreach (var item in Model)
-                    {
+                  foreach (var item in Model)
+                  {
 
-                        <tr>
-                            <td class="text-center">
-                                @i
-                            </td>
+                    <tr>
+                      <td class="text-center">
+                        @i
+                      </td>
 
-                            <td>
-                                @item.EmployeeDetail.FirstName
-                                @item.EmployeeDetail.LastName
-                            </td>
-                            <td>
-                                @item.Addition.AdditionType
-                            </td>
-                            <td>
-                                @item.Description
-                            </td>
-                            <td>
-                                @item.Amount
-                            </td>
-                            <td>
-                                @item.DateCreated.Month
-                            </td>
-                            <td>
-                                <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top" EditAddId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-AdditonId="@item.AdditionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a></span>
-                                <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                      <td>
+                        @item.EmployeeDetail.FirstName
+                        @item.EmployeeDetail.LastName
+                      </td>
+                      <td>
+                        @item.Addition.AdditionType
+                      </td>
+                      <td>
+                        @item.Description
+                      </td>
+                      <td>
+                        @item.Amount
+                      </td>
+                      <td>
+                        @item.DateCreated.Month
+                      </td>
+                      <td>
+                        <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top" EditAddId="@item.Id" select-EmployeeDetailsId="@item.EmployeeDetailId" Selected-AdditonId="@item.AdditionId" Selected-Amount="@item.Amount" Selected-Description="@item.Description"><i class="far fa-calendar-alt"></i></a></span>
+                        <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" AdditionId="@item.Id" AdditionName="@item.Addition.AdditionType" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
 
-                            </td>
-                        </tr>
+                      </td>
+                    </tr>
 
-                        { i = i + 1; }
-                    }
+                    { i = i + 1; }
+                  }
                 }
 
                 </tbody>
-            </table>
+              </table>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
 
   </div>
 
-</div>
 
 
 
 
-<script>
-  $(document).ready(function () {
-    $('#datatable').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
 
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
+
+
+  @section Scripts {
+
+    <!--  DataTables.net Plugin, full documentation here  -->
+    <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+
+    <script>
+    $(document).ready(function () {
+
+    $('#datatable2').DataTable({
+    "pagingType": "full_numbers",
+    dom: "Bfrtip",
+    "lengthMenu": [
+    [10, 25, 50, -1],
+    [10, 25, 50, "All"]
+    ],
+
+
+    buttons: [
+    'copy',
+    'excel',
+    'csv',
+    'pdf',
+    'print',
+    ],
+
+
+    responsive: true,
+    language: {
+    search: "_INPUT_",
+    searchPlaceholder: "Search records",
+    }
 
     });
 
-    var table = $('#datatable').DataTable();
+    var table = $('#datatable2').DataTable();
 
-    // Edit record
-    table.on('click', '.edit', function () {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
+   
 
     // Delete a record
     table.on('click', '.remove', function (e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
+    $tr = $(this).closest('tr');
+
+    additionId = $(this).attr('AdditionId');
+    additionName = $(this).attr('AdditionName');
+    
+
+
+
+    swal({
+    title: 'Are you sure?',
+    text: "You are about to delete '" + additionName + "'",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonClass: 'btn btn-success',
+    cancelButtonClass: 'btn btn-danger',
+    confirmButtonText: 'Yes, delete it!',
+    buttonsStyling: false
+    }).then(function () {
+
+    $.ajax({
+    type: "POST",
+    url: "/Payroll/deleteSalaryAddition",
+    data: JSON.stringify(additionId),
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8',
+    headers: {
+    RequestVerificationToken:
+    $('input:hidden[name="__RequestVerificationToken"]').val()
+    },
+    success: function (r) {
+
+    if (r.msg == "Success") {
+
+    swal({
+    title: 'Deleted!',
+    text: 'Your file has been deleted.',
+    type: 'success',
+    confirmButtonClass: "btn btn-success",
+    buttonsStyling: false
+    });
+
+
+    } else if (r.msg == "Fail") {
+
+    alert(r.msg);
+
+    } else if (r.msg == "No Data") {
+    alert(r.msg);
+
+    } else {
+    alert(r.msg);
+    }
+    //alert(r.msg);
+    // window.location.reload();
+
+    },
+    error: function () {
+    alert(r.msg);
+    }
+    });
+
+
+    table.row($tr).remove().draw();
+
+    }).catch(swal.noop);
+
+
+    e.preventDefault();
     });
 
     //Like record
     table.on('click', '.like', function () {
-      alert('You clicked on Like button');
+    alert('You clicked on Like button');
     });
-  });
-
-
-</script>
+    });
+    </script>
 
 
 
-@section Scripts {
+    <script type="text/javascript">
 
-  <!--  DataTables.net Plugin, full documentation here  -->
-  <script src="~/assets/js/plugins/jquery.dataTables.min.js"></script>
+      $(document).ready(function () {
 
-  @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
-  
+        $("#submitAdditions").click(function (event) {
 
-  <script type="text/javascript">
+          event.preventDefault();
 
-    $(document).ready(function () {
-
-      $("#submitAdditions").click(function (event) {
-
-        event.preventDefault();
-
-        var SalaryAddition = {
-          EmployeeDetailsId: $("#employeeId").val(),
-          AdditonId: $("#AdditionType").val(),
-          Amount: $("#Amount").val(),
-          Description: $("#Description").val(),                  
-        };
+          var SalaryAddition = {
+            EmployeeDetailsId: $("#employeeId").val(),
+            AdditonId: $("#AdditionType").val(),
+            Amount: $("#Amount").val(),
+            Description: $("#Description").val(),
+          };
 
 
-        // console.log(Items);
-        console.log(SalaryAddition);
+          // console.log(Items);
+          console.log(SalaryAddition);
 
-        $.ajax({
-          type: "POST",
-          url: "/Payroll/postSalaryAdditions",
-          data: JSON.stringify(SalaryAddition),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+          $.ajax({
+            type: "POST",
+            url: "/Payroll/postSalaryAdditions",
+            data: JSON.stringify(SalaryAddition),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
 
-            if (r.msg == "Success") {
+              if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+                demo.showSwal('success-message');
 
-            } else if (r.msg == "Fail") {
+              } else if (r.msg == "Fail") {
 
-              alert(r.msg);
+                alert(r.msg);
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
 
-            } else {
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
               alert(r.msg);
             }
-            //alert(r.msg);
-            // window.location.reload();
-
-          },
-          error: function () {
-            alert(r.msg);
-          }
+          });
         });
       });
-    });
 
 
-    //Code for pulling the Records on the Table
-    var aEditAddId;
+      //Code for pulling the Records on the Table
+      var aEditAddId;
 
-    $(document).delegate('#Editbtn',
-      'click',
-      function (e) {
+      $(document).delegate('#Editbtn',
+        'click',
+        function (e) {
 
           aEditAddId = $(this).attr('EditAddId');
           employeeDetailsId = $(this).attr('select-EmployeeDetailsId');
@@ -395,79 +458,79 @@
           description = $(this).attr('Selected-Description');
 
 
-        //console.log(varstartDate, varendDate);
-        //  console.log(aEditAssetId);
+          //console.log(varstartDate, varendDate);
+          //  console.log(aEditAssetId);
 
-        $('input[name=AddSalId]').val(aEditAddId);
-        $('select[name=eemployeeId]').val(employeeDetailsId);
-        $('select[name=eAdditionType]').val(additonId);
-        $('input[name=eAmount]').val(amount);
-        $('textarea[name=eDescription]').val(description);
+          $('input[name=AddSalId]').val(aEditAddId);
+          $('select[name=eemployeeId]').val(employeeDetailsId);
+          $('select[name=eAdditionType]').val(additonId);
+          $('input[name=eAmount]').val(amount);
+          $('textarea[name=eDescription]').val(description);
 
-      });
+        });
 
-    //End of the code
+      //End of the code
 
-    $(document).ready(function () {
+      $(document).ready(function () {
 
-      $("#submitEditAdditions").click(function (event) {
+        $("#submitEditAdditions").click(function (event) {
 
-        event.preventDefault();
+          event.preventDefault();
 
-        var PostSalaryDeduction = {
-          AId: $("#AddSalId").val(),
-          EmployeeDetailsId: $("#eemployeeId").val(),
-          AdditonId: $("#eAdditionType").val(),
-          Amount: $("#eAmount").val(),
-          Description: $("#eDescription").val(),
-        };
+          var PostSalaryDeduction = {
+            AId: $("#AddSalId").val(),
+            EmployeeDetailsId: $("#eemployeeId").val(),
+            AdditonId: $("#eAdditionType").val(),
+            Amount: $("#eAmount").val(),
+            Description: $("#eDescription").val(),
+          };
 
 
-        // console.log(Items);
-        console.log(PostSalaryDeduction);
+          // console.log(Items);
+          console.log(PostSalaryDeduction);
 
-        $.ajax({
-          type: "POST",
-          url: "/Payroll/editSalaryAdditions",
-          data: JSON.stringify(PostSalaryDeduction),
-          dataType: "json",
-          contentType: 'application/json; charset=utf-8',
-          headers: {
-            RequestVerificationToken:
-              $('input:hidden[name="__RequestVerificationToken"]').val()
-          },
-          success: function (r) {
+          $.ajax({
+            type: "POST",
+            url: "/Payroll/editSalaryAdditions",
+            data: JSON.stringify(PostSalaryDeduction),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
 
-            if (r.msg == "Success") {
+              if (r.msg == "Success") {
 
-              demo.showSwal('success-message');
+                demo.showSwal('success-message');
 
-            } else if (r.msg == "Fail") {
+              } else if (r.msg == "Fail") {
 
-              alert(r.msg);
+                alert(r.msg);
 
-            } else if (r.msg == "No Data") {
-              alert(r.msg);
+              } else if (r.msg == "No Data") {
+                alert(r.msg);
 
-            } else {
+              } else {
+                alert(r.msg);
+              }
+              //alert(r.msg);
+              // window.location.reload();
+
+            },
+            error: function () {
               alert(r.msg);
             }
-            //alert(r.msg);
-            // window.location.reload();
-
-          },
-          error: function () {
-            alert(r.msg);
-          }
+          });
         });
+
+
+
       });
 
+    </script>
 
-
-    });
-
-  </script>
-
-}
+  }
 
 

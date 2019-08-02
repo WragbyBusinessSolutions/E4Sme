@@ -7,6 +7,7 @@ using E4S.Data;
 using E4S.Models;
 using E4S.Models.HumanResource;
 using E4S.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.HumanResource
 {
+  [Authorize]
     public class AppraisalController : Controller
     {
     private readonly ApplicationDbContext _context;

@@ -19,6 +19,218 @@ namespace E4S.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("E4S.Models.AccountInventory.AccountBank", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AccountName");
+
+                    b.Property<string>("AccountNo");
+
+                    b.Property<string>("AccountType");
+
+                    b.Property<string>("BankName");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountBanks");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AccountName");
+
+                    b.Property<string>("AccountNumber");
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("BankName");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Mobile");
+
+                    b.Property<string>("Note");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("SortCode");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Status");
+
+                    b.Property<string>("Website");
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.NewInventory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<Guid>("ProductServiceId");
+
+                    b.Property<float>("Quantity");
+
+                    b.Property<string>("Status");
+
+                    b.Property<float>("TotalPrice");
+
+                    b.Property<float>("UnitPrice");
+
+                    b.Property<Guid>("VendorId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductServiceId");
+
+                    b.ToTable("NewInventories");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.ProductService", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<string>("ProductServiceName");
+
+                    b.Property<string>("Status");
+
+                    b.Property<Guid>("VendorId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductServices");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.StockRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<float>("AllTimeQuantity");
+
+                    b.Property<float>("CostPrice");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<Guid>("ProductServiceId");
+
+                    b.Property<float>("QuantityRemain");
+
+                    b.Property<float>("QuantitySold");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductServiceId");
+
+                    b.ToTable("StockRecords");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.Vendor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid>("OrganisationId");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("VendorName");
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vendors");
+                });
+
             modelBuilder.Entity("E4S.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -1438,6 +1650,22 @@ namespace E4S.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.NewInventory", b =>
+                {
+                    b.HasOne("E4S.Models.AccountInventory.ProductService", "ProductService")
+                        .WithMany()
+                        .HasForeignKey("ProductServiceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("E4S.Models.AccountInventory.StockRecord", b =>
+                {
+                    b.HasOne("E4S.Models.AccountInventory.ProductService", "ProductService")
+                        .WithMany()
+                        .HasForeignKey("ProductServiceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("E4S.Models.HumanResource.AppraisalAssignedTemplate", b =>

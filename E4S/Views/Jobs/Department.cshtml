@@ -49,7 +49,7 @@
                       <br />
                       <div class="card-footer">
                         <button type="button" class="btn btn-fill btn-primary btn-round" id="SubmitNewDepartment" @*disabled="disabled"*@>Create</button>
-                        @*<button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>*@
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                       </div>
                     </form>
                   </div>
@@ -371,17 +371,19 @@
             success: function (r) {
 
               if (r.msg == "Success") {
-
+                $("#loading-overlay").hide();
                 demo.showSwal('success-message');
 
               } else if (r.msg == "Fail") {
-
+                $("#loading-overlay").hide();
                 alert(r.msg);
 
               } else if (r.msg == "No Data") {
+                $("#loading-overlay").hide();
                 alert(r.msg);
 
               } else {
+                $("#loading-overlay").hide();
                 alert(r.msg);
               }
               //alert(r.msg);
@@ -389,6 +391,7 @@
 
             },
             error: function () {
+              $("#loading-overlay").hide();
               alert(r.msg);
             }
           });

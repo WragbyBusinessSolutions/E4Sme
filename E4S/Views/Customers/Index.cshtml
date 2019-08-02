@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.AccountInventory.Customer>
+
 @{
     ViewData["Title"] = " Customer ";
     Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
@@ -18,86 +19,101 @@
 </style>
 
 <div class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header body-card">
+  @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3 pull-left">
-                                <h4 class="card-title">Customers</h4>
-                            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header body-card">
 
-                            <div class="btn-group col-md-5 pull-right">
-                                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
-                                    Export Data
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Copy</a>
-                                    <a class="dropdown-item" href="#">CSV</a>
-                                    <a class="dropdown-item" href="#">Excel</a>
-                                    <a class="dropdown-item" href="#">PDF</a>
-                                    <a class="dropdown-item" href="#">Print</a>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-3 pull-left">
+                <h4 class="card-title">Customers</h4>
+              </div>
 
-                                </div>
-
-                                <a asp-action="AddCustomer" asp-controller="Customers" class="btn btn-info btn-md pull-right btn-responsive">
-
-                                    <span class="btn-label">
-                                        <i class="now-ui-icons travel_info"></i>
-                                    </span>
-
-                                    Add New Customer
-
-                                </a>
-                            </div>
-
-
-
-                        </div>
-                        
-
-                    </div>
+              <div class="btn-group col-md-5 pull-right">
+                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                  Export Data
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Copy</a>
+                  <a class="dropdown-item" href="#">CSV</a>
+                  <a class="dropdown-item" href="#">Excel</a>
+                  <a class="dropdown-item" href="#">PDF</a>
+                  <a class="dropdown-item" href="#">Print</a>
 
                 </div>
-                <div class="card-body body-card">
 
-                    <div class="table-responsive" style="overflow:auto;">
-                        <table id="datatable" class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th><strong>Customer Name</strong></th>
-                                    <th scope="col"><strong>Email</strong></th>
-                                    <th scope="col"><strong>Phone</strong></th>
+                <a asp-action="AddCustomer" asp-controller="Customers" class="btn btn-info btn-md pull-right btn-responsive">
 
-                                    <th scope="col"><strong>City</strong></th>
-                                    <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-                                </tr>
-                            </thead>
-                            <tbody class="fontweight">
+                  <span class="btn-label">
+                    <i class="now-ui-icons travel_info"></i>
+                  </span>
 
-                                <tr>
-                                    <td>1</td>
-                                    <td>Olivia Liang</td>
-                                    <td>Support Engineer</td>
+                  Add New Customer
 
-                                    <td>64</td>
-                                    <td class="">
-                                        <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                </a>
+              </div>
 
 
-                </div>
+
             </div>
 
+
+          </div>
+
         </div>
+        <div class="card-body body-card">
+
+          <div class="table-responsive" style="overflow:auto;">
+            <table id="datatable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th ><strong>S/N</strong></th>
+
+                  <th><strong>Customer Name</strong></th>
+                  <th scope="col"><strong>Email</strong></th>
+                  <th scope="col"><strong>Phone</strong></th>
+
+                  <th scope="col"><strong>City</strong></th>
+                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                </tr>
+              </thead>
+              <tbody class="fontweight">
+                @{
+                  int i = 1;
+
+                  @foreach (var item in Model)
+                  {
+                <tr>
+                  <td>@i</td>
+                  <td>@item.CustomerName</td>
+                  <td>@item.Email</td>
+
+                  <td>@item.Phone</td>
+                  <td>@item.City</td>
+
+                  <td class="">
+                    <a asp-action="EditCustomer" asp-route-id="@item.Id" class="btn btn-warning btn-icon btn-sm"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                  </td>
+                </tr>
+
+                    i = i + 1;
+                  }
+                }
+
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 
