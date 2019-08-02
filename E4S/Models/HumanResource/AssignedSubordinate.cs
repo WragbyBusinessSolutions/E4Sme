@@ -12,6 +12,7 @@ namespace E4S.Models.HumanResource
     public virtual EmployeeDetail EmployeeDetail { get; set; }
 
     public Guid SubordinateId { get; set; }
+    public EmployeeDetail Subordinate { get; set; }
     public string ReportMethod { get; set; }
 
   }

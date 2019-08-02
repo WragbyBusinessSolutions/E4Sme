@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.HumanResource;
+using E4S.Services;
 using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,18 +20,20 @@ namespace E4S.Controllers.HumanResource
     {
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IEmailSender _emailSender;
+    private EmployeeDetail employeeDetails;
 
-    [TempData]
+        [TempData]
     public string StatusMessage { get; set; }
 
-    public LeavesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+    public LeavesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
     {
       _context = context;
       _userManager = userManager;
+      _emailSender = emailSender;
 
 
-
-    }
+        }
     private Guid getOrg()
     {
       var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -66,19 +70,27 @@ namespace E4S.Controllers.HumanResource
       }
 
       var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
 
       try
       {
-        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
+        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).Include(c => c.EmployeeDetail).FirstOrDefault();
         leave.Comment = postApprove.Comment;
         leave.ApproveDate = DateTime.Now;
         leave.Status = "Approved";
 
         _context.Update(leave);
         _context.SaveChanges();
+       
 
-         StatusMessage = "Leave has been successfully Approved!.";
+         
+         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave",            employeeDetails.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
+
+                
+
+
+        StatusMessage = "Leave has been successfully Approved!.";
 
            return Json(new
         {
@@ -112,9 +124,6 @@ namespace E4S.Controllers.HumanResource
 
       var orgId = getOrg();
 
-
-
-
       try
       {
         var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
@@ -147,5 +156,5 @@ namespace E4S.Controllers.HumanResource
 
 
 
-  }
+    }
 }
