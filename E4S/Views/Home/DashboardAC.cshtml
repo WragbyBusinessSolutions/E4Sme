@@ -31,7 +31,12 @@
         height: 390px;
     }
 
-     #chartdivs {
+    #chartdivs {
+        width: 100%;
+        height: 500px;
+    }
+
+    #chartdive {
         width: 100%;
         height: 500px;
     }
@@ -193,9 +198,9 @@
                     <h4 class="body-card">Cash Flow</h4>
                 </div>
                 <div class="card-body">
-                  
 
 
+                    <div id="chartdive"></div>
 
                 </div>
             </div>
@@ -399,72 +404,296 @@
 
 <!-- Chart code -->
 <script>
-am4core.ready(function() {
+    am4core.ready(function () {
 
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
 
-// Create chart instance
-var chart = am4core.create("chartdivs", am4charts.XYChart);
+        // Create chart instance
+        var chart = am4core.create("chartdivs", am4charts.XYChart);
 
-// Add percent sign to all numbers
-chart.numberFormatter.numberFormat = "200'₦'";
+        // Add percent sign to all numbers
+        chart.numberFormatter.numberFormat = "200'₦'";
 
-// Add data
-chart.data = [{
-    "month": "Aug 18",
-    "year2004": 3.5,
-    "year2005": 4.2
-}, {
-    "month": "Sept 18",
-    "year2004": 1.7,
-    "year2005": 3.1
-}, {
-    "month": "Oct 18",
-    "year2004": 2.8,
-    "year2005": 2.9
-}, {
-    "month": "Novv 18",
-    "year2004": 2.6,
-    "year2005": 2.3
-}, {
-    "month": "Dec 18",
-    "year2004": 1.4,
-    "year2005": 2.1
-}, {
-    "month": "Jan 19",
-    "year2004": 2.6,
-    "year2005": 4.9
-}];
+        // Add data
+        chart.data = [{
+            "month": "Aug 18",
+            "year2004": 3.5,
+            "year2005": 4.2
+        }, {
+            "month": "Sept 18",
+            "year2004": 1.7,
+            "year2005": 3.1
+        }, {
+            "month": "Oct 18",
+            "year2004": 2.8,
+            "year2005": 2.9
+        }, {
+            "month": "Novv 18",
+            "year2004": 2.6,
+            "year2005": 2.3
+        }, {
+            "month": "Dec 18",
+            "year2004": 1.4,
+            "year2005": 2.1
+        }, {
+            "month": "Jan 19",
+            "year2004": 1.6,
+            "year2005": 4.9
+        }];
 
-// Create axes
-var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-categoryAxis.dataFields.category = "month";
-categoryAxis.renderer.grid.template.location = 0;
-categoryAxis.renderer.minGridDistance = 30;
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "month";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
 
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = "Profit and Loss Report";
-valueAxis.title.fontWeight = 800;
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = "Profit and Loss Report";
+        valueAxis.title.fontWeight = 800;
 
-// Create series
-var series = chart.series.push(new am4charts.ColumnSeries());
-series.dataFields.valueY = "year2004";
-series.dataFields.categoryX = "month";
-series.clustered = false;
-series.tooltipText = "Loss in  {categoryX} (2004): [bold]{valueY}[/]";
+        // Create series
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "year2004";
+        series.dataFields.categoryX = "month";
+        series.clustered = false;
+        series.tooltipText = "Expenses in  {categoryX}: [bold]{valueY}[/]";
 
-var series2 = chart.series.push(new am4charts.ColumnSeries());
-series2.dataFields.valueY = "year2005";
-series2.dataFields.categoryX = "month";
-series2.clustered = false;
-series2.columns.template.width = am4core.percent(50);
-series2.tooltipText = "Profit in {categoryX} (2005): [bold]{valueY}[/]";
+        var series2 = chart.series.push(new am4charts.ColumnSeries());
+        series2.dataFields.valueY = "year2005";
+        series2.dataFields.categoryX = "month";
+        series2.clustered = false;
+        series2.columns.template.width = am4core.percent(50);
+        series2.tooltipText = "Income in {categoryX}: [bold]{valueY}[/]";
 
-chart.cursor = new am4charts.XYCursor();
-chart.cursor.lineX.disabled = true;
-chart.cursor.lineY.disabled = true;
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.lineX.disabled = true;
+        chart.cursor.lineY.disabled = true;
 
-}); // end am4core.ready()
+    }); // end am4core.ready()
+</script>
+
+
+<!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("chartdive", am4charts.XYChart);
+
+        var data = [];
+
+        chart.data = [{
+            "year": "2014",
+            "income": 23.5,
+            "expenses": 21.1,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2015",
+            "income": 26.2,
+            "expenses": 30.5
+        }, {
+            "year": "2016",
+            "income": 30.1,
+            "expenses": 34.9
+        }, {
+            "year": "2017",
+            "income": 20.5,
+            "expenses": 23.1
+        }, {
+            "year": "2018",
+            "income": 30.6,
+            "expenses": 28.2,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2019",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2020",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2021",
+            "income": 34.1,
+            "expenses": 31.9,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2022",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2023",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2024",
+            "income": 34.1,
+            "expenses": 31.9
+        }];
+
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.ticks.template.disabled = true;
+        categoryAxis.renderer.line.opacity = 0;
+        categoryAxis.renderer.grid.template.disabled = true;
+        categoryAxis.renderer.minGridDistance = 40;
+        categoryAxis.dataFields.category = "year";
+        categoryAxis.startLocation = 0.4;
+        categoryAxis.endLocation = 0.6;
+
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+        valueAxis.renderer.line.opacity = 0;
+        valueAxis.renderer.ticks.template.disabled = true;
+        valueAxis.min = 0;
+
+        var lineSeries = chart.series.push(new am4charts.LineSeries());
+        lineSeries.dataFields.categoryX = "year";
+        lineSeries.dataFields.valueY = "income";
+        lineSeries.tooltipText = "income: {valueY.value}";
+        lineSeries.fillOpacity = 0.5;
+        lineSeries.strokeWidth = 3;
+        lineSeries.propertyFields.stroke = "lineColor";
+        lineSeries.propertyFields.fill = "lineColor";
+
+        var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
+        bullet.circle.radius = 6;
+        bullet.circle.fill = am4core.color("#fff");
+        bullet.circle.strokeWidth = 3;
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "panX";
+        chart.cursor.lineX.opacity = 0;
+        chart.cursor.lineY.opacity = 0;
+
+        chart.scrollbarX = new am4core.Scrollbar();
+        chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+    }); // end am4core.ready()
+</script>
+
+
+<!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("chartdive", am4charts.XYChart);
+
+        // Add data
+        chart.data = [{
+            "year": "1930",
+            "italy": 1,
+            "germany": 5,
+            "uk": 3
+        }, {
+            "year": "1934",
+            "italy": 1,
+            "germany": 2,
+            "uk": 6
+        }, {
+            "year": "1938",
+            "italy": 2,
+            "germany": 3,
+            "uk": 1
+        }, {
+            "year": "1950",
+            "italy": 3,
+            "germany": 4,
+            "uk": 1
+        }, {
+            "year": "1954",
+            "italy": 5,
+            "germany": 1,
+            "uk": 2
+        }, {
+            "year": "1958",
+            "italy": 3,
+            "germany": 2,
+            "uk": 1
+        }, {
+            "year": "1962",
+            "italy": 1,
+            "germany": 2,
+            "uk": 3
+        }, {
+            "year": "1966",
+            "italy": 2,
+            "germany": 1,
+            "uk": 5
+        }, {
+            "year": "1970",
+            "italy": 3,
+            "germany": 5,
+            "uk": 2
+        }, {
+            "year": "1974",
+            "italy": 4,
+            "germany": 3,
+            "uk": 6
+        }, {
+            "year": "1978",
+            "italy": 1,
+            "germany": 2,
+            "uk": 4
+        }];
+
+        // Create category axis
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "year";
+      
+
+        // Create value axis
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.inversed = true;
+        valueAxis.title.text = "Cash Flow";
+        valueAxis.renderer.minLabelPosition = 0.01;
+
+        // Create series
+        var series1 = chart.series.push(new am4charts.LineSeries());
+        series1.dataFields.valueY = "italy";
+        series1.dataFields.categoryX = "year";
+        series1.name = "Inflow";
+        series1.strokeWidth = 3;
+        series1.bullets.push(new am4charts.CircleBullet());
+        series1.tooltipText = "Cash {name}: {valueY}";
+        series1.legendSettings.valueText = "{valueY}";
+        series1.visible = false;
+
+        var series2 = chart.series.push(new am4charts.LineSeries());
+        series2.dataFields.valueY = "germany";
+        series2.dataFields.categoryX = "year";
+        series2.name = 'Outflow';
+        series2.strokeWidth = 3;
+        series2.bullets.push(new am4charts.CircleBullet());
+        series2.tooltipText = "Cash {name}: {valueY}";
+        series2.legendSettings.valueText = "{valueY}";
+
+        var series3 = chart.series.push(new am4charts.LineSeries());
+        series3.dataFields.valueY = "uk";
+        series3.dataFields.categoryX = "year";
+        series3.name = 'Net Change';
+        series3.strokeWidth = 3;
+        series3.bullets.push(new am4charts.CircleBullet());
+        series3.tooltipText = "Cash {name}: {valueY}";
+        series3.legendSettings.valueText = "{valueY}";
+
+        // Add chart cursor
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "zoomY";
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+
+    }); // end am4core.ready()
 </script>
