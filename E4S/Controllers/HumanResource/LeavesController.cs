@@ -81,22 +81,18 @@ namespace E4S.Controllers.HumanResource
         leave.Status = "Approved";
 
         _context.Update(leave);
-        _context.SaveChanges();
-       
-
+        _context.SaveChanges();       
          
-         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave",            employeeDetails.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
-
-                
-
+         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave", employeeDetails.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
+               
 
         StatusMessage = "Leave has been successfully Approved!.";
 
            return Json(new
-        {
-          msg = "Success"
-        }
-     );
+            {
+              msg = "Success"
+            }
+         );
       }
       catch (Exception ee)
       {
