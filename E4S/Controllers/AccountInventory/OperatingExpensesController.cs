@@ -5,11 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.AccountInventory;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E4S.Controllers.AccountInventory
 {
+  [Authorize]
     public class OperatingExpensesController : Controller
     {
     [TempData]
@@ -47,9 +50,58 @@ namespace E4S.Controllers.AccountInventory
     {
       var orgId = getOrg();
 
-      return View();
+      return View(_context.Expenses.Where(x => x.OrganisationId == orgId).ToList());
 
     }
+
+    
+
+    [HttpPost]
+    public async Task<IActionResult> AddExpenseType([FromBody]Expense expense)
+    {
+      var orgId = getOrg();
+
+      if (expense != null)
+      {
+
+        expense.Id = Guid.NewGuid();
+        expense.OrganisationId = orgId;
+
+
+        try
+        {
+          _context.Add(expense);
+          await _context.SaveChangesAsync();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+          return Json(new
+          {
+            msg = "Failed"
+          });
+
+        }
+
+
+        //StatusMessage = "Expense successfully created.";
+      }
+
+      //StatusMessage = "Error! Check fields...";
+      //ViewData["StatusMessage"] = StatusMessage;
+      return Json(new
+      {
+        msg = "No Data"
+      });
+
+    }
+
+
 
   }
 }

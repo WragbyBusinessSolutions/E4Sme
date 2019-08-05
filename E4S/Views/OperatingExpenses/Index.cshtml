@@ -80,7 +80,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-info">Add</button>
+                      <button id="btnAddExpense" name="btnAddExpense" type="button" class="btn btn-info">Add</button>
                     </div>
                   </div>
                 </div>
@@ -129,5 +129,74 @@
     </div>
   </div>
 </div>
+
+@section Scripts {
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+     $("#btnAddExpense").click(function (event) {
+
+      event.preventDefault();
+
+      //$("#loading-overlay").show();
+
+      var Expense = {
+        ExpenseType: $("#productName").val(),
+        Description: $("#unitprice").val(),
+      };
+
+
+      console.log(NewInventory);
+
+      $.ajax({
+        type: "POST",
+        url: "/NewStock/AddNewStock",
+        data: JSON.stringify(NewInventory),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "Product Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+            window.location.reload();
+          }).catch(swal.noop);
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+})
+  </script>
+
+}
 
 

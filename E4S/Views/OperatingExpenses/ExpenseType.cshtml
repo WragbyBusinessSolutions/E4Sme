@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.AccountInventory.Expense>
+
 @{
   ViewData["Title"] = "Expense Type";
   Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
@@ -64,17 +65,17 @@
                     <div class="modal-body">
                       <form>
                         <label class="pull-left">Expense Type</label>
-                        <input type="text" class="form-control" placeholder="Expense Type" />
+                        <input id="expenseType" name="expenseType" type="text" class="form-control" placeholder="Expense Type" />
                         <br />
                         <label class="pull-left">Description</label>
-                        <input type="text" class="form-control" />
+                        <input id="description" name="description" type="text" class="form-control" />
                         <br />
                       </form>
 
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-info">Add</button>
+                      <button id="btnAddExpense" name="btnAddExpense" type="submit" class="btn btn-info">Add</button>
                     </div>
                   </div>
                 </div>
@@ -97,16 +98,25 @@
                 </tr>
               </thead>
               <tbody class="fontweight">
+                @{
+                  int i = 1;
 
-                <tr>
-                  <td>1</td>
-                  <td>Support Engineer</td>
+                  foreach (var item in Model)
+                  {
+                    <tr>
+                      <td>@i</td>
+                      <td>@item.ExpenseType</td>
 
-                  <td class="">
-                    <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                  </td>
-                </tr>
+                      <td class="">
+                        <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+
+                    i++;
+
+                  }
+                }
               </tbody>
             </table>
           </div>
@@ -120,4 +130,72 @@
 </div>
 
 
+@section Scripts {
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+     $("#btnAddExpense").click(function (event) {
+
+      event.preventDefault();
+
+      //$("#loading-overlay").show();
+
+      var Expense = {
+        ExpenseType: $("#expenseType").val(),
+        Description: $("#description").val(),
+      };
+
+
+      console.log(Expense);
+
+      $.ajax({
+        type: "POST",
+        url: "/OperatingExpenses/AddExpenseType",
+        data: JSON.stringify(Expense),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "Expense Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+            window.location.reload();
+          }).catch(swal.noop);
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+})
+  </script>
+
+}
 
