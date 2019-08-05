@@ -123,10 +123,11 @@ namespace E4S.Controllers.HumanResource
       }
 
       var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
       try
       {
-        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).FirstOrDefault();
+        var leave = _context.Leaves.Where(x => x.Id == postApprove.Id).Include(y => y.EmployeeDetail).FirstOrDefault();
         leave.Comment = postApprove.Comment;
         leave.ApproveDate = DateTime.Now;
         leave.Status = "Declined";
@@ -134,13 +135,16 @@ namespace E4S.Controllers.HumanResource
         _context.Update(leave);
         _context.SaveChanges();
 
+        var response = _emailSender.SendGridLeaveDeclinedAsync(leave.EmployeeDetail.Email, "Declined Leave Request", "/EmployeeProfile/Leave", leave.EmployeeDetail.FirstName, "declinedLeave", organisationDetails.OrganisationName, leave);
+
+
         StatusMessage = "Leave has been successfully Declined!.";
 
         return Json(new
         {
           msg = "Success"
         }
-     );
+      );
       }
       catch (Exception ee)
       {

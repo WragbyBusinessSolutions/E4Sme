@@ -1,0 +1,201 @@
+﻿@model  IEnumerable<E4S.Models.AccountInventory.Expense>
+
+@{
+  ViewData["Title"] = "Expense Type";
+  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+}
+
+<style>
+  .body-card {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
+
+  .table-font {
+    font-weight: 500;
+  }
+</style>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header body-card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6 pull-left">
+                <h4 class="card-title">Expense Type</h4>
+              </div>
+
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export Data
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Copy</a>
+                  <a class="dropdown-item" href="#">CSV</a>
+                  <a class="dropdown-item" href="#">Excel</a>
+                  <a class="dropdown-item" href="#">PDF</a>
+                  <a class="dropdown-item" href="#">Print</a>
+
+                </div>
+              </div>
+
+              <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+                <span class="btn-label">
+                  <i class="now-ui-icons travel_info"></i>
+                </span>
+                New Expenses Type
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Expenses Type</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form>
+                        <label class="pull-left">Expense Type</label>
+                        <input id="expenseType" name="expenseType" type="text" class="form-control" placeholder="Expense Type" />
+                        <br />
+                        <label class="pull-left">Description</label>
+                        <input id="description" name="description" type="text" class="form-control" />
+                        <br />
+                      </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button id="btnAddExpense" name="btnAddExpense" type="submit" class="btn btn-info">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-body body-card">
+
+          <div class="table-responsive-sm">
+            <table id="datatable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th><strong>S/N</strong></th>
+                  <th scope="col"><strong>Expense</strong></th>
+                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                </tr>
+              </thead>
+              <tbody class="fontweight">
+                @{
+                  int i = 1;
+
+                  foreach (var item in Model)
+                  {
+                    <tr>
+                      <td>@i</td>
+                      <td>@item.ExpenseType</td>
+
+                      <td class="">
+                        <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                      </td>
+                    </tr>
+
+                    i++;
+
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+     $("#btnAddExpense").click(function (event) {
+
+      event.preventDefault();
+
+      //$("#loading-overlay").show();
+
+      var Expense = {
+        ExpenseType: $("#expenseType").val(),
+        Description: $("#description").val(),
+      };
+
+
+      console.log(Expense);
+
+      $.ajax({
+        type: "POST",
+        url: "/OperatingExpenses/AddExpenseType",
+        data: JSON.stringify(Expense),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+
+        	swal({
+                title: "Success!",
+                text: "Expense Added!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+            type: "success"
+          }).then(function () {
+            window.location.reload();
+          }).catch(swal.noop);
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+})
+  </script>
+
+}
+

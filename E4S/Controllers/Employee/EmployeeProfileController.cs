@@ -1111,6 +1111,9 @@ namespace E4S.Controllers.Employee
         _context.Add(leave);
         _context.SaveChanges();
 
+         var user_response = _emailSender.SendGridLeaveApplicationAsync(employeeDetails.Email, "Leave Application Request", "/EmployeeProfile/Leave", employeeDetails.FirstName, "leaveApplication", organisationDetails.OrganisationName, leave);
+
+
         leave.EmployeeDetail = employeeDetails;
 
         var hrs = _context.Users.Where(x => x.OrganisationId == orgId).Where(x => x.UserRole == "Human Resources").ToList();
@@ -1121,8 +1124,6 @@ namespace E4S.Controllers.Employee
           "/Leaves", item.FirstName, "leaveRequest", organisationDetails.OrganisationName, leave);
 
         }
-
-
 
 
         return Json(new

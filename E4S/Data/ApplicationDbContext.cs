@@ -73,7 +73,7 @@ namespace E4S.Data
     public DbSet<NewInventory> NewInventories { get; set; }
     public DbSet<StockRecord> StockRecords { get; set; }
     public DbSet<AccountBank> AccountBanks { get; set; }
-
+    public DbSet<Expense> Expenses { get; set; }
 
   }
 }
