@@ -1224,6 +1224,55 @@ namespace E4S.Controllers.HumanResource
             });
         }
 
+
+    private bool SupervisorExists(Guid id)
+    {
+      return _context.AssignedSupervisors.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteSupervisor([FromBody]string supervisorId)
+    {
+      if (supervisorId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var supervisor = _context.AssignedSupervisors.SingleOrDefault(m => m.Id == Guid.Parse(supervisorId));
+        _context.AssignedSupervisors.Remove(supervisor);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
+
+
+
+
+
     [HttpPost]
     public async Task<IActionResult> AssisgnedSubordinate([FromBody]PostNewAssignSubordinates postNewAssignSubordinates)
     {
@@ -1289,6 +1338,50 @@ namespace E4S.Controllers.HumanResource
         msg = "Fail"
       });
     }
+
+    private bool SubordinateExists(Guid id)
+    {
+      return _context.AssignedSubordinates.Any(e => e.Id == id);
+    }
+
+
+    [HttpPost]
+    public IActionResult DeleteSubordinate([FromBody]string subordinateId)
+    {
+      if (subordinateId == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      try
+      {
+        var subordinate = _context.AssignedSubordinates.SingleOrDefault(m => m.Id == Guid.Parse(subordinateId));
+        _context.AssignedSubordinates.Remove(subordinate);
+        _context.SaveChanges();
+
+        return Json(new
+        {
+          msg = "Success"
+        });
+
+      }
+      catch
+      {
+
+      }
+
+      return Json(new
+      {
+        msg = "Fail"
+      });
+
+
+    }
+
 
 
     [HttpPost]
