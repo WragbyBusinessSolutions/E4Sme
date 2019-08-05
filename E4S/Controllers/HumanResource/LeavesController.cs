@@ -85,7 +85,7 @@ namespace E4S.Controllers.HumanResource
        
 
          
-         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave",            employeeDetails.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
+         var response = _emailSender.SendGridLeaveApprovalAsync(leave.EmployeeDetail.Email, "Approved Leave Request", "/EmployeeProfile/Leave", leave.EmployeeDetail.FirstName, "approvalLeave", organisationDetails.OrganisationName, leave);
 
                 
 
