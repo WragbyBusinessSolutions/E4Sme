@@ -10,90 +10,59 @@
     <div class="row">
       <div class=" card-title">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="../../assets/img/bg5.jpg" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <div class="author">
-                            <a asp-action="PersonalDetails">
-                                @if (Model.ImageURL == null)
-                                {
-                                    <img class="avatar border-gray" src="~/assets/img/default-avatar1.png" alt="---">
+          <div class="col-md-4">
+            <div class="card card-user">
+              <div class="image">
+                <img src="../../assets/img/bg5.jpg" alt="...">
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <a asp-action="PersonalDetails">
+                    @if (Model.ImageURL == null)
+                    {
+                      <img class="avatar border-gray" src="~/assets/img/default-avatar1.png" alt="---">
 
-                                }
-                                else
-                                {
-                                    <img class="avatar border-gray" src="@Model.ImageURL" alt="Employee Profile Image">
+                    }
+                    else
+                    {
+                      <img class="avatar border-gray" src="@Model.ImageURL" alt="Employee Profile Image">
 
-                                }
-                                <h5 class="title">@Model.FirstName @Model.LastName</h5>
-                            </a>
-                            <p class="description">
-                                @Model.JobTitle
-                            </p>
-                        </div>
-                        <p class="description text-center">
-                            @Model.Department
-                        </p>
-                    </div>
-                    <hr>
-                    @*<div class="button-container">
-              <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                <i class="fab fa-facebook-square"></i>
-              </button>
-              <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                <i class="fab fa-twitter"></i>
-              </button>
-              <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                <i class="fab fa-google-plus-square"></i>
-              </button>
-            </div>*@
+                    }
+
+                    @if (Model.FirstName != null)
+                    {
+                      <h5 class="title">@Model.FirstName @Model.LastName</h5>
+
+                    }
+                    else
+                    {
+                      <h5 class="title">Please Update Profile</h5>
+
+                    }
+                  </a>
+                  <p class="description">
+                    @Model.JobTitle
+                  </p>
                 </div>
+                <p class="description text-center">
+                  @Model.Department
+                </p>
+              </div>
+              <hr>
+              @*<div class="button-container">
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-facebook-square"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-google-plus-square"></i>
+                </button>
+              </div>*@
             </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="table-responsive" style="overflow:auto;">
-                        <table class="table">
-                            <thead class="text-primary">
+          </div>
 
-                            <th class="text-left">
-                                Name
-                            </th>
-                            <th class="text-center">
-                                Report Methods
-                            </th>
-
-                            <th class="text-center">
-                                Actions
-                            </th>
-                            </thead>
-
-                            <tbody>
-
-                                    <tr>
-
-                                        <td class="text-left">
-                                            
-                                        </td>
-                                        <td class="text-center">
-                                           
-                                        </td>
-
-                                        <td class="text-center">
-                                            <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top"><i class="far fa-calendar-alt"></i></a></span>
-                                            <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-          
 
           @*<div class="col-md-8">
             <div class="card">
