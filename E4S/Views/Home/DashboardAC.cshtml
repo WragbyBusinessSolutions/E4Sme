@@ -1,362 +1,340 @@
 ﻿
 @{
-  ViewData["Title"] = "Account Dashboard";
-  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+    ViewData["Title"] = "Account Dashboard";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
-<style>
-  .panel-header-lg {
-    height: 530px;
-  }
-
-  .amcharts-chart-div > svg > g > g > g[role=menuitem] {
-    display: none !important;
-  }
-
-  .rate {
-    left: 30px
-  }
-
-  .amcharts-chart-div > a {
-    display: none !important;
-  }
-
-  .dataTables_info {
-    display: none;
-  }
-
-  .card-chart .card-footer {
-    margin-top: 0px;
-    padding-top: 0px;
-  }
-</style>
-
 
 <style>
-  .body-card {
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 1%;
-    margin-bottom: 2%;
-  }
-
-  .table-font {
-    font-weight: 500;
-  }
-
-  .iconstyle {
-    font-size: 25px;
-    margin-top: 20px;
-  }
-
-  .link {
-    text-decoration: none;
-  }
-
-  #chartdiv {
-    width: 100%;
-    height: 390px;
-  }
-
-  #chartdivs {
-    width: 100%;
-    height: 500px;
-  }
-
-  .picture {
-    background: fixed;
-  }
-
-    .picture:hover {
-      border-radius: 7px;
-      box-shadow: 0 0 11px rgba(33,33,33,.2);
-      padding: 10px;
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
     }
+
+    .table-font {
+        font-weight: 500;
+    }
+
+    .iconstyle {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 390px;
+    }
+
+    #chartdivs {
+        width: 100%;
+        height: 500px;
+    }
+
+    #chartdive {
+        width: 100%;
+        height: 500px;
+    }
+
+    .picture {
+        background: fixed;
+    }
+
+        .picture:hover {
+            border-radius: 7px;
+            box-shadow: 0 0 11px rgba(33,33,33,.2);
+            padding: 10px;
+        }
 </style>
 
 <div class="content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card card-stats card-raised">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-info">
-                    <i class="now-ui-icons users_single-02"></i>
-                  </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-info">
+                                        <i class="now-ui-icons users_single-02"></i>
+                                    </div>
 
-                  <h3 class="info-title">859</h3>
-                  <h6 class="stats-title">Customers</h6>
+                                    <h3 class="info-title">859</h3>
+                                    <h6 class="stats-title">Customers</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-success">
+                                        <i class="now-ui-icons business_money-coins"></i>
+                                    </div>
+
+                                    <h3 class="info-title"><small>₦</small>859</h3>
+                                    <h6 class="stats-title">Sales</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="statistics">
+                                <div class="info">
+                                    <div class="icon icon-danger">
+                                        <i class="now-ui-icons objects_support-17"></i>
+                                    </div>
+
+                                    <h3 class="info-title"><small>₦</small>859</h3>
+                                    <h6 class="stats-title">Purchase</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="body-card">Things you can do</h4>
+
+
+
+                </div>
+                <div class="card-body ">
+
+                    <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                            <i class="now-ui-icons emoticons_satisfied"></i>
+
+                        </div>
+
+                        <div class="col-md-10">
+                            <h5><a asp-action="Index" asp-controller="ProfitandLoss" class="link">Add a Customer</a></h5>
+                            <p class="col-md-12">A great way to start is to add your customers info.</p>
+
+                        </div>
+
+                    </div>
+                    <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                            <i class="now-ui-icons clothes_tie-bow"></i>
+                        </div>
+
+                        <div class="col-md-9">
+                            <h5><a asp-action="Index" asp-controller="ReportAccountTransaction" class="link">Add a vendor</a></h5>
+                            <p class="col-md-12">You dont want to miss out your reliable vendors</p>
+
+                        </div>
+
+                    </div>
+                    <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                            <i class="now-ui-icons design_vector"></i>
+                        </div>
+
+                        <div class="col-md-9">
+                            <h5><a asp-action="Index" asp-controller="BalanceSheet" class="link">Customize your invoice</a></h5>
+                            <p class="col-md-12">Ready to invoice your clients? Use our easy to use invoice to get started</p>
+                        </div>
+
+                    </div>
+
+                    <div class="row body-card picture">
+                        <div class="icon icon-info col-md-1 iconstyle">
+                            <i class="now-ui-icons design_palette"></i>
+                        </div>
+
+                        <div class="col-md-9">
+                            <h5><a asp-action="Index" asp-controller="AccountCashFlow" class="link">Customize your quote</a></h5>
+                            <p class="col-md-12">Now you can make a beautiful, well designed quotes</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="card card-chart">
+                <div class="card-header ">
+                    <h4 class="body-card">Expenses Breakdown</h4>
+                </div>
+                <div class="card-body">
+                    <div id="chartdiv"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="body-card">Profit and Loss</h4>
+
+                </div>
+                <div class="card-body ">
+
+                    <div id="chartdivs"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="card card-chart">
+                <div class="card-header ">
+                    <h4 class="body-card">Cash Flow</h4>
+                </div>
+                <div class="card-body">
+
+
+                    <div id="chartdive"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*<div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Best Selling Products</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-shopping">
+                    <thead class="">
+                    <th class="text-center"></th>
+                    <th>
+                      Product
+                    </th>
+                    <th>
+                      Color
+                    </th>
+                    <th>
+                      Size
+                    </th>
+                    <th class="text-right">
+                      Price
+                    </th>
+                    <th class="text-right">
+                      Qty
+                    </th>
+                    <th class="text-right">
+                      Amount
+                    </th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="img-container">
+                            <img src="../assets/img/saint-laurent.jpg" alt="...">
+                          </div>
+                        </td>
+                        <td class="td-name">
+                          <a href="#jacket">Suede Biker Jacket</a>
+                          <br />
+                          <small>by Saint Laurent</small>
+                        </td>
+                        <td>
+                          Black
+                        </td>
+                        <td>
+                          M
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>3,390
+                        </td>
+                        <td class="td-number">
+                          1
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>549
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="img-container">
+                            <img src="../assets/img/balmain.jpg" alt="...">
+                          </div>
+                        </td>
+                        <td class="td-name">
+                          <a href="#pants">Jersey T-Shirt</a>
+                          <br />
+                          <small>by Balmain</small>
+                        </td>
+                        <td>
+                          Black
+                        </td>
+                        <td>
+                          M
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>499
+                        </td>
+                        <td class="td-number">
+                          2
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>998
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="img-container">
+                            <img src="../assets/img/prada.jpg" alt="...">
+                          </div>
+                        </td>
+                        <td class="td-name">
+                          <a href="#nothing">Slim-Fit Swim Short</a>
+                          <br />
+                          <small>by Prada</small>
+                        </td>
+                        <td>
+                          Red
+                        </td>
+                        <td>
+                          M
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>200
+                        </td>
+                        <td class="td-number">
+                          1
+                        </td>
+                        <td class="td-number">
+                          <small>€</small>799
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="5"></td>
+                        <td class="td-total">
+                          Total
+                        </td>
+                        <td class="td-price">
+                          <small>€</small>2,346
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-success">
-                    <i class="now-ui-icons business_money-coins"></i>
-                  </div>
-
-                  <h3 class="info-title"><small>₦</small>859</h3>
-                  <h6 class="stats-title">Sales</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="statistics">
-                <div class="info">
-                  <div class="icon icon-danger">
-                    <i class="now-ui-icons objects_support-17"></i>
-                  </div>
-
-                  <h3 class="info-title"><small>₦</small>859</h3>
-                  <h6 class="stats-title">Purchase</h6>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header ">
-          <h4 class="body-card">Things you can do</h4>
-
-
-
-        </div>
-        <div class="card-body ">
-
-          <div class="row body-card picture">
-            <div class="icon icon-info col-md-1 iconstyle">
-              <i class="now-ui-icons emoticons_satisfied"></i>
-
-            </div>
-
-            <div class="col-md-10">
-              <h5><a asp-action="Index" asp-controller="ProfitandLoss" class="link">Add a Customer</a></h5>
-              <p class="col-md-12">A great way to start is to add your customers info.</p>
-
-            </div>
-
-          </div>
-          <div class="row body-card picture">
-            <div class="icon icon-info col-md-1 iconstyle">
-              <i class="now-ui-icons clothes_tie-bow"></i>
-            </div>
-
-            <div class="col-md-9">
-              <h5><a asp-action="Index" asp-controller="ReportAccountTransaction" class="link">Add a vendor</a></h5>
-              <p class="col-md-12">You dont want to miss out your reliable vendors</p>
-
-            </div>
-
-          </div>
-          <div class="row body-card picture">
-            <div class="icon icon-info col-md-1 iconstyle">
-              <i class="now-ui-icons design_vector"></i>
-            </div>
-
-            <div class="col-md-9">
-              <h5><a asp-action="Index" asp-controller="BalanceSheet" class="link">Customize your invoice</a></h5>
-              <p class="col-md-12">Ready to invoice your clients? Use our easy to use invoice to get started</p>
-            </div>
-
-          </div>
-
-          <div class="row body-card picture">
-            <div class="icon icon-info col-md-1 iconstyle">
-              <i class="now-ui-icons design_palette"></i>
-            </div>
-
-            <div class="col-md-9">
-              <h5><a asp-action="Index" asp-controller="AccountCashFlow" class="link">Customize your quote</a></h5>
-              <p class="col-md-12">Now you can make a beautiful, well designed quotes</p>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class="col-md-6">
-
-      <div class="card card-chart">
-        <div class="card-header ">
-          <h4 class="body-card">Expenses Breakdown</h4>
-        </div>
-        <div class="card-body">
-          <div id="chartdiv"></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header ">
-          <h4 class="body-card">Profit and Loss</h4>
-
-        </div>
-        <div class="card-body ">
-
-          <div id="chartdivs"></div>
-        </div>
-
-      </div>
-    </div>
-    <div class="col-md-6">
-
-      <div class="card card-chart">
-        <div class="card-header ">
-          <h4 class="body-card">Cash Flow</h4>
-        </div>
-        <div class="card-body">
-
-
-
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-  @*<div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title"> Best Selling Products</h4>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-shopping">
-                <thead class="">
-                <th class="text-center"></th>
-                <th>
-                  Product
-                </th>
-                <th>
-                  Color
-                </th>
-                <th>
-                  Size
-                </th>
-                <th class="text-right">
-                  Price
-                </th>
-                <th class="text-right">
-                  Qty
-                </th>
-                <th class="text-right">
-                  Amount
-                </th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="img-container">
-                        <img src="../assets/img/saint-laurent.jpg" alt="...">
-                      </div>
-                    </td>
-                    <td class="td-name">
-                      <a href="#jacket">Suede Biker Jacket</a>
-                      <br />
-                      <small>by Saint Laurent</small>
-                    </td>
-                    <td>
-                      Black
-                    </td>
-                    <td>
-                      M
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>3,390
-                    </td>
-                    <td class="td-number">
-                      1
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>549
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="img-container">
-                        <img src="../assets/img/balmain.jpg" alt="...">
-                      </div>
-                    </td>
-                    <td class="td-name">
-                      <a href="#pants">Jersey T-Shirt</a>
-                      <br />
-                      <small>by Balmain</small>
-                    </td>
-                    <td>
-                      Black
-                    </td>
-                    <td>
-                      M
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>499
-                    </td>
-                    <td class="td-number">
-                      2
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>998
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="img-container">
-                        <img src="../assets/img/prada.jpg" alt="...">
-                      </div>
-                    </td>
-                    <td class="td-name">
-                      <a href="#nothing">Slim-Fit Swim Short</a>
-                      <br />
-                      <small>by Prada</small>
-                    </td>
-                    <td>
-                      Red
-                    </td>
-                    <td>
-                      M
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>200
-                    </td>
-                    <td class="td-number">
-                      1
-                    </td>
-                    <td class="td-number">
-                      <small>€</small>799
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="5"></td>
-                    <td class="td-total">
-                      Total
-                    </td>
-                    <td class="td-price">
-                      <small>€</small>2,346
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>*@
+        </div>*@
 </div>
 
 
@@ -367,55 +345,55 @@
 
 <!-- Chart code -->
 <script>
-  am4core.ready(function () {
+    am4core.ready(function () {
 
-    // Themes begin
-    am4core.useTheme(am4themes_animated);
-    // Themes end
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
 
-    var chart = am4core.create("chartdiv", am4charts.PieChart3D);
-    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+        var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-    chart.data = [
-      {
-        country: "Lithuania",
-        litres: 501.9
-      },
-      {
-        country: "Czech Republic",
-        litres: 301.9
-      },
-      {
-        country: "Ireland",
-        litres: 201.1
-      },
-      {
-        country: "Germany",
-        litres: 165.8
-      },
-      {
-        country: "Australia",
-        litres: 139.9
-      },
-      {
-        country: "Austria",
-        litres: 128.3
-      }
-    ];
+        chart.data = [
+            {
+                country: "Lithuania",
+                litres: 501.9
+            },
+            {
+                country: "Czech Republic",
+                litres: 301.9
+            },
+            {
+                country: "Ireland",
+                litres: 201.1
+            },
+            {
+                country: "Germany",
+                litres: 165.8
+            },
+            {
+                country: "Australia",
+                litres: 139.9
+            },
+            {
+                country: "Austria",
+                litres: 128.3
+            }
+        ];
 
-    chart.innerRadius = am4core.percent(40);
-    chart.depth = 120;
+        chart.innerRadius = am4core.percent(40);
+        chart.depth = 120;
 
-    chart.legend = new am4charts.Legend();
+        chart.legend = new am4charts.Legend();
 
-    var series = chart.series.push(new am4charts.PieSeries3D());
-    series.dataFields.value = "litres";
-    series.dataFields.depthValue = "litres";
-    series.dataFields.category = "country";
-    series.slices.template.cornerRadius = 5;
-    series.colors.step = 3;
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "litres";
+        series.dataFields.depthValue = "litres";
+        series.dataFields.category = "country";
+        series.slices.template.cornerRadius = 5;
+        series.colors.step = 3;
 
-  }); // end am4core.ready()
+    }); // end am4core.ready()
 </script>
 
 
@@ -426,72 +404,296 @@
 
 <!-- Chart code -->
 <script>
-  am4core.ready(function () {
+    am4core.ready(function () {
 
-    // Themes begin
-    am4core.useTheme(am4themes_animated);
-    // Themes end
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
 
-    // Create chart instance
-    var chart = am4core.create("chartdivs", am4charts.XYChart);
+        // Create chart instance
+        var chart = am4core.create("chartdivs", am4charts.XYChart);
 
-    // Add percent sign to all numbers
-    chart.numberFormatter.numberFormat = "200'₦'";
+        // Add percent sign to all numbers
+        chart.numberFormatter.numberFormat = "200'₦'";
 
-    // Add data
-    chart.data = [{
-      "month": "Aug 18",
-      "year2004": 3.5,
-      "year2005": 4.2
-    }, {
-      "month": "Sept 18",
-      "year2004": 1.7,
-      "year2005": 3.1
-    }, {
-      "month": "Oct 18",
-      "year2004": 2.8,
-      "year2005": 2.9
-    }, {
-      "month": "Novv 18",
-      "year2004": 2.6,
-      "year2005": 2.3
-    }, {
-      "month": "Dec 18",
-      "year2004": 1.4,
-      "year2005": 2.1
-    }, {
-      "month": "Jan 19",
-      "year2004": 2.6,
-      "year2005": 4.9
-    }];
+        // Add data
+        chart.data = [{
+            "month": "Aug 18",
+            "year2004": 3.5,
+            "year2005": 4.2
+        }, {
+            "month": "Sept 18",
+            "year2004": 1.7,
+            "year2005": 3.1
+        }, {
+            "month": "Oct 18",
+            "year2004": 2.8,
+            "year2005": 2.9
+        }, {
+            "month": "Novv 18",
+            "year2004": 2.6,
+            "year2005": 2.3
+        }, {
+            "month": "Dec 18",
+            "year2004": 1.4,
+            "year2005": 2.1
+        }, {
+            "month": "Jan 19",
+            "year2004": 1.6,
+            "year2005": 4.9
+        }];
 
-    // Create axes
-    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = "month";
-    categoryAxis.renderer.grid.template.location = 0;
-    categoryAxis.renderer.minGridDistance = 30;
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "month";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
 
-    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = "Profit and Loss Report";
-    valueAxis.title.fontWeight = 800;
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = "Profit and Loss Report";
+        valueAxis.title.fontWeight = 800;
 
-    // Create series
-    var series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.valueY = "year2004";
-    series.dataFields.categoryX = "month";
-    series.clustered = false;
-    series.tooltipText = "Loss in  {categoryX} (2004): [bold]{valueY}[/]";
+        // Create series
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "year2004";
+        series.dataFields.categoryX = "month";
+        series.clustered = false;
+        series.tooltipText = "Expenses in  {categoryX}: [bold]{valueY}[/]";
 
-    var series2 = chart.series.push(new am4charts.ColumnSeries());
-    series2.dataFields.valueY = "year2005";
-    series2.dataFields.categoryX = "month";
-    series2.clustered = false;
-    series2.columns.template.width = am4core.percent(50);
-    series2.tooltipText = "Profit in {categoryX} (2005): [bold]{valueY}[/]";
+        var series2 = chart.series.push(new am4charts.ColumnSeries());
+        series2.dataFields.valueY = "year2005";
+        series2.dataFields.categoryX = "month";
+        series2.clustered = false;
+        series2.columns.template.width = am4core.percent(50);
+        series2.tooltipText = "Income in {categoryX}: [bold]{valueY}[/]";
 
-    chart.cursor = new am4charts.XYCursor();
-    chart.cursor.lineX.disabled = true;
-    chart.cursor.lineY.disabled = true;
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.lineX.disabled = true;
+        chart.cursor.lineY.disabled = true;
 
-  }); // end am4core.ready()
+    }); // end am4core.ready()
+</script>
+
+
+<!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("chartdive", am4charts.XYChart);
+
+        var data = [];
+
+        chart.data = [{
+            "year": "2014",
+            "income": 23.5,
+            "expenses": 21.1,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2015",
+            "income": 26.2,
+            "expenses": 30.5
+        }, {
+            "year": "2016",
+            "income": 30.1,
+            "expenses": 34.9
+        }, {
+            "year": "2017",
+            "income": 20.5,
+            "expenses": 23.1
+        }, {
+            "year": "2018",
+            "income": 30.6,
+            "expenses": 28.2,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2019",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2020",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2021",
+            "income": 34.1,
+            "expenses": 31.9,
+            "lineColor": chart.colors.next()
+        }, {
+            "year": "2022",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2023",
+            "income": 34.1,
+            "expenses": 31.9
+        }, {
+            "year": "2024",
+            "income": 34.1,
+            "expenses": 31.9
+        }];
+
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.ticks.template.disabled = true;
+        categoryAxis.renderer.line.opacity = 0;
+        categoryAxis.renderer.grid.template.disabled = true;
+        categoryAxis.renderer.minGridDistance = 40;
+        categoryAxis.dataFields.category = "year";
+        categoryAxis.startLocation = 0.4;
+        categoryAxis.endLocation = 0.6;
+
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+        valueAxis.renderer.line.opacity = 0;
+        valueAxis.renderer.ticks.template.disabled = true;
+        valueAxis.min = 0;
+
+        var lineSeries = chart.series.push(new am4charts.LineSeries());
+        lineSeries.dataFields.categoryX = "year";
+        lineSeries.dataFields.valueY = "income";
+        lineSeries.tooltipText = "income: {valueY.value}";
+        lineSeries.fillOpacity = 0.5;
+        lineSeries.strokeWidth = 3;
+        lineSeries.propertyFields.stroke = "lineColor";
+        lineSeries.propertyFields.fill = "lineColor";
+
+        var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
+        bullet.circle.radius = 6;
+        bullet.circle.fill = am4core.color("#fff");
+        bullet.circle.strokeWidth = 3;
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "panX";
+        chart.cursor.lineX.opacity = 0;
+        chart.cursor.lineY.opacity = 0;
+
+        chart.scrollbarX = new am4core.Scrollbar();
+        chart.scrollbarX.parent = chart.bottomAxesContainer;
+
+    }); // end am4core.ready()
+</script>
+
+
+<!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("chartdive", am4charts.XYChart);
+
+        // Add data
+        chart.data = [{
+            "year": "1930",
+            "italy": 1,
+            "germany": 5,
+            "uk": 3
+        }, {
+            "year": "1934",
+            "italy": 1,
+            "germany": 2,
+            "uk": 6
+        }, {
+            "year": "1938",
+            "italy": 2,
+            "germany": 3,
+            "uk": 1
+        }, {
+            "year": "1950",
+            "italy": 3,
+            "germany": 4,
+            "uk": 1
+        }, {
+            "year": "1954",
+            "italy": 5,
+            "germany": 1,
+            "uk": 2
+        }, {
+            "year": "1958",
+            "italy": 3,
+            "germany": 2,
+            "uk": 1
+        }, {
+            "year": "1962",
+            "italy": 1,
+            "germany": 2,
+            "uk": 3
+        }, {
+            "year": "1966",
+            "italy": 2,
+            "germany": 1,
+            "uk": 5
+        }, {
+            "year": "1970",
+            "italy": 3,
+            "germany": 5,
+            "uk": 2
+        }, {
+            "year": "1974",
+            "italy": 4,
+            "germany": 3,
+            "uk": 6
+        }, {
+            "year": "1978",
+            "italy": 1,
+            "germany": 2,
+            "uk": 4
+        }];
+
+        // Create category axis
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "year";
+      
+
+        // Create value axis
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.inversed = true;
+        valueAxis.title.text = "Cash Flow";
+        valueAxis.renderer.minLabelPosition = 0.01;
+
+        // Create series
+        var series1 = chart.series.push(new am4charts.LineSeries());
+        series1.dataFields.valueY = "italy";
+        series1.dataFields.categoryX = "year";
+        series1.name = "Inflow";
+        series1.strokeWidth = 3;
+        series1.bullets.push(new am4charts.CircleBullet());
+        series1.tooltipText = "Cash {name}: {valueY}";
+        series1.legendSettings.valueText = "{valueY}";
+        series1.visible = false;
+
+        var series2 = chart.series.push(new am4charts.LineSeries());
+        series2.dataFields.valueY = "germany";
+        series2.dataFields.categoryX = "year";
+        series2.name = 'Outflow';
+        series2.strokeWidth = 3;
+        series2.bullets.push(new am4charts.CircleBullet());
+        series2.tooltipText = "Cash {name}: {valueY}";
+        series2.legendSettings.valueText = "{valueY}";
+
+        var series3 = chart.series.push(new am4charts.LineSeries());
+        series3.dataFields.valueY = "uk";
+        series3.dataFields.categoryX = "year";
+        series3.name = 'Net Change';
+        series3.strokeWidth = 3;
+        series3.bullets.push(new am4charts.CircleBullet());
+        series3.tooltipText = "Cash {name}: {valueY}";
+        series3.legendSettings.valueText = "{valueY}";
+
+        // Add chart cursor
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "zoomY";
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+
+    }); // end am4core.ready()
 </script>

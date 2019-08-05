@@ -19,6 +19,9 @@ namespace E4S.Services
     Task SendGridEmailConfrimationAsync(string emailAdd, string subject, string message, string firstname);
     Task SendGridLeaveRequestAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave);
     Task SendGridLeaveApprovalAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
-  }
+    Task SendGridLeaveDeclinedAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
+    Task SendGridLeaveApplicationAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
+
+    }
 }
 
