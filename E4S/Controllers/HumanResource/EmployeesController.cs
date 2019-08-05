@@ -1339,6 +1339,58 @@ namespace E4S.Controllers.HumanResource
       });
     }
 
+    //edit assign subordinates
+    [HttpPost]
+    public async Task<IActionResult> editAssisgnedSubordinate([FromBody]PostNewAssignSubordinates postNewAssignSubordinates)
+    {
+      if (postNewAssignSubordinates == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = await _context.Organisations.Where(x => x.Id == orgId).FirstOrDefaultAsync();
+
+      //var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      //var employeeDetails = await _context.EmployeeDetails.Where(x => x.UserId == Guid.Parse(userId)).FirstOrDefaultAsync();
+      //var Assnsub = await _context.AssignedSubordinates.Where(x => x.OrganisationId == Guid.Parse(userId)).FirstOrDefaultAsync();
+
+      try
+      {
+
+        var AssignedSub = _context.AssignedSubordinates.Where(x => x.Id == Guid.Parse(postNewAssignSubordinates.AId)).FirstOrDefault();
+        AssignedSub.EmployeeDetailId = postNewAssignSubordinates.EmployeeDetailsId;
+        AssignedSub.SubordinateId = postNewAssignSubordinates.SubordinateId;
+        AssignedSub.ReportMethod = postNewAssignSubordinates.ReportMethod;
+        
+
+
+        _context.Update(AssignedSub);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
+    }
+
     private bool SubordinateExists(Guid id)
     {
       return _context.AssignedSubordinates.Any(e => e.Id == id);
