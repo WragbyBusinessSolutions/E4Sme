@@ -42,9 +42,18 @@
             <div class="card-body ">
               <div class="row">
                 <div class="col-md-3">
-                    <div class="col-md-12 ">
-                        <img src="~/assets/img/default-avatar1.png" style="width:150px; height:150px;" class="imgbox"/>
-                    </div>
+                  <div class="col-md-12 ">
+                    @if (Model.EmployeeDetail.ImageUrl == null)
+                    {
+                      <img src="~/assets/img/default-avatar1.png" style="width:150px; height:150px;" class="imgbox" />
+
+                    }
+                    else
+                    {
+                      <img src="/@Model.EmployeeDetail.ImageUrl" style="width:150px; height:150px;" class="imgbox" />
+
+                    }
+                  </div>
                     
                     <ul class="nav nav-pills nav-pills-primary flex-column" role="tablist">
                         <li class="nav-item">
@@ -447,7 +456,7 @@
                                             <div class="form-group">
                                                 <label>Job Title</label>
                                                 <div class="input-group mb-2">
-                                                    <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTile" id="JobTitleId" name="JobTitleId">
+                                                    <select type="text" class="form-control" asp-items="ViewBag.JobTitle" placeholder="JobTitle" id="JobTitleId" name="JobTitleId">
                                                         <option> -- Select Job Title -- </option>
                                                     </select>
                                                     <div class="input-group-append " style="position:relative; top:-10px;">
@@ -665,6 +674,7 @@
                                                             <div class="modal-body">
                                                                 <div class="instruction">
                                                                     <form>
+                                                                      <input asp-for="Id" id="empId" hidden />
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
@@ -716,7 +726,7 @@
                                                                 <table class="table">
                                                                     <thead class="text-primary">
                                                                     
-                                                                    <th class="text-center">
+                                                                    <th class="text-left">
                                                                         Name
                                                                     </th>
                                                                     <th class="text-center">
@@ -728,16 +738,16 @@
                                                                     </th>
                                                                     </thead>
 
-                                                                      @*<tbody>
+                                                                      <tbody>
 
                                           
                                                                         @foreach (var item in Model.AssignedSupervisors)
                                                                         {
                                                                             <tr>
                                                                                
-                                                                                <td class="text-center">
-                                                                                    @item.EmployeeDetail.FirstName
-                                                                                    @item.EmployeeDetail.LastName
+                                                                                <td class="text-left">
+                                                                                    @item.Supervisor.FirstName
+                                                                                    @item.Supervisor.LastName
                                                                                 </td>
                                                                                 <td class="text-center">
                                                                                     @item.ReportMethod
@@ -749,7 +759,7 @@
                                                                                 </td>
                                                                             </tr>
                                                                         }
-                                                                    </tbody>*@
+                                                                    </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -789,34 +799,35 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="instruction">
-                                                                    <form>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Employee Name</label>
-                                                                                    <select class="form-control" placeholder="Serial Number" id="eemployeeId" name="employeeId" asp-items="ViewBag.EmployeeDetails" required>
-                                                                                        <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
+                                                                  <form>
+                                                                    <input asp-for="Id" id="subId" hidden />
+                                                                    <div class="row">
+                                                                      <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                          <label>Employee Name</label>
+                                                                          <select class="form-control" placeholder="Serial Number" id="eeemployeeId" name="eemployeeId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                            <option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>
+                                                                          </select>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Report Methods</label>
-                                                                                    <select class="form-control" placeholder="Template Name" id="ReportMethod">
-                                                                                        <option> direct</option>
-                                                                                        <option> Indirect</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                      <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                          <label>Report Methods</label>
+                                                                          <select class="form-control" placeholder="Template Name" id="eeReportMethod" name="eeReportMethod">
+                                                                            <option> direct</option>
+                                                                            <option> Indirect</option>
+                                                                          </select>
                                                                         </div>
-                                                                        <hr />
-                                                                        <div class="card-footer ">
-                                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitTemplate">Submit</button>
-                                                                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </form>
+                                                                      </div>
+                                                                    </div>
+                                                                    <hr />
+                                                                    <div class="card-footer ">
+                                                                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitAssignSubordinate">Submit</button>
+                                                                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                  </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -832,72 +843,46 @@
 
                                                     <div class="col-md-12 ">
                                                         <div class="card-body">
-                                                            <div class="table-responsive" style="overflow:auto;">
-                                                                <table class="table">
-                                                                    <thead class="text-primary">
-                                                                    
-                                                                    <th>
-                                                                        Name
-                                                                    </th>
-                                                                    <th class="text-right">
-                                                                        Report Methods
-                                                                    </th>
+                                                          <div class="table-responsive" style="overflow:auto;">
+                                                            <table class="table">
+                                                              <thead class="text-primary">
 
-                                                                    <th class="text-right">
-                                                                        Actions
-                                                                    </th>
-                                                                    </thead>
+                                                              <th class="text-left">
+                                                                Name
+                                                              </th>
+                                                              <th class="text-center">
+                                                                Report Methods
+                                                              </th>
 
-                                                                    @*<tbody>
+                                                              <th class="text-center">
+                                                                Actions
+                                                              </th>
+                                                              </thead>
 
-                                                @{
-                                                    int i = 1;
+                                                              <tbody>
 
 
+                                                                @foreach (var item in Model.AssignedSubordinates)
+                                                                {
+                                                                  <tr>
 
+                                                                    <td class="text-left">
+                                                                      @item.Subordinate.FirstName
+                                                                      @item.Subordinate.LastName
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                      @item.ReportMethod
+                                                                    </td>
 
-                                                    foreach (var item in Model)
-                                                    {
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                @i
-                                                            </td>
-                                                            <td>
-                                                                @item.AppraisalTemplate.Template
-                                                            </td>
-                                                            <td class="text-right">
-                                                                @item.NoOfCategory
-                                                            </td>
-                                                            <td class="text-right">
-                                                                @item.TotalWeight
-                                                            </td>
-                                                            <td class="text-right">
-                                                                <a asp-action="EditTemplate" asp-route-id="@item.AppraisalTemplate.Id" class="btn btn-warning btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-widget-content"></i>
-                                                                </a>
-                                                                <a asp-action="ViewTemplate" asp-route-id="@item.AppraisalTemplate.Id" class="btn btn-info btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-widget-content"></i>
-                                                                </a>
-
-                                                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
-                                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>
-
-
-                                                        { i = i + 1; }
-
-                                                    }
-                                                }
-
-
-
-
-                                            </tbody>*@
-                                                                </table>
-                                                            </div>
+                                                                    <td class="text-center">
+                                                                      <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top"><i class="far fa-calendar-alt"></i></a></span>
+                                                                      <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" title="Click to Delete"><i class="fas fa-times"></i></a>
+                                                                    </td>
+                                                                  </tr>
+                                                                }
+                                                              </tbody>
+                                                            </table>
+                                                          </div>
                                                         </div>
 
 
@@ -1561,6 +1546,109 @@
                     type: "POST",
                     url: "/Employees/SaveJob",
                     data: JSON.stringify(PostJob),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+            });
+
+      $("#SubmitAssignSupervisor").click(function (event) {
+
+                event.preventDefault();
+
+                var PostAssignSupervisor = {
+                  EmployeeDetailsId: $("#Id").val(),
+                  SupervisorId: $("#SupervisorId").val(),
+                  ReportMethod: $("#ReportMethod").val(),
+                  AutoList: $("#AutoList").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostAssignSupervisor);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/PostAssignSupervisor",
+                    data: JSON.stringify(PostAssignSupervisor),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                        if (r.msg == "Success") {
+
+                            demo.showSwal('success-message');
+
+                        } else if (r.msg == "Fail") {
+
+                            alert(r.msg);
+
+                        } else if (r.msg == "No Data") {
+                            alert(r.msg);
+
+                        } else {
+                            alert(r.msg);
+                        }
+                        //alert(r.msg);
+                        // window.location.reload();
+
+                    },
+                    error: function () {
+                        alert(r.msg);
+                    }
+                });
+      });
+
+      $("#SubmitAssignSubordinate").click(function (event) {
+
+                event.preventDefault();
+
+                var PostAssignSubordinate = {
+                  EmployeeDetailsId: $("#Id").val(),
+                  SubordinateId: $("#eeemployeeId").val(),
+                  ReportMethod: $("#eeReportMethod").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostAssignSubordinate);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Employees/AssisgnedSubordinate",
+                    data: JSON.stringify(PostAssignSubordinate),
                     dataType: "json",
                     contentType: 'application/json; charset=utf-8',
                     headers: {

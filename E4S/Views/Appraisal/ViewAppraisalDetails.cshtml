@@ -11,25 +11,37 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-stats card-raised">
-                    <div class="card-body">
+                    <div class="card-header">
                         <div class="row">
-                            <div class="col-md-4">
-                              <h4>
-                                Appraisal Result -
-                                @try
-                                {
-                                  <b>@Model.FirstOrDefault().Appraisal.AppraisalTitle</b>
+                            <div class="col-md-12">
+                                <div class="col-md-6 pull-left">
+                                    
+                                    <h4>
+                                        Appraisal Result -
+                                        @try
+                                        {
+                                            <b>@Model.FirstOrDefault().Appraisal.AppraisalTitle</b>
 
-                                }
-                                catch
-                                {
-                                  <b>No Result Yet.</b>
-                                }
+                                        }
+                                        catch
+                                        {
+                                            <b>No Result Yet.</b>
+                                        }
 
-                              </h4>
+                                    </h4>
+                                </div>
+                                <div class="col-md-2 pull-right">
+                                    <a class="btn btn-light pull-left text-right" onClick="javascript:history.go(-1)" style="color:#fff;">
+                                        <i class="now-ui-icons arrows-1_minimal-left"></i> <span>Back</span>
+                                    </a>
+
+                                </div>
+
+
+
                             </div>
-
                         </div>
+                       
                     </div>
                 </div>
             </div>

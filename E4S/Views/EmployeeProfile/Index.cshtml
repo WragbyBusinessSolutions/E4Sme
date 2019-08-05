@@ -18,8 +18,27 @@
               <div class="card-body">
                 <div class="author">
                   <a asp-action="PersonalDetails">
-                    <img class="avatar border-gray" src="@Model.ImageURL" alt="...">
-                    <h5 class="title">@Model.FirstName @Model.LastName</h5>
+                    @if (Model.ImageURL == null)
+                    {
+                      <img class="avatar border-gray" src="~/assets/img/default-avatar1.png" alt="---">
+
+                    }
+                    else
+                    {
+                      <img class="avatar border-gray" src="@Model.ImageURL" alt="Employee Profile Image">
+
+                    }
+
+                    @if (Model.FirstName != null)
+                    {
+                      <h5 class="title">@Model.FirstName @Model.LastName</h5>
+
+                    }
+                    else
+                    {
+                      <h5 class="title">Please Update Profile</h5>
+
+                    }
                   </a>
                   <p class="description">
                     @Model.JobTitle
