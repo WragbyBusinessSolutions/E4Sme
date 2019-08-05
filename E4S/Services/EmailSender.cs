@@ -16,10 +16,10 @@ namespace E4S.Services
   {
     SmtpClient SmtpServer;
     string MailerResponse;
+  
     string apiKey = "";
 
-
-    public EmailSender()
+        public EmailSender()
     {
 
       SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
@@ -208,7 +208,8 @@ namespace E4S.Services
         EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
         var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", domain + message).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#EmployeeFirstname", leave.EmployeeDetail.FirstName + " " + leave.EmployeeDetail.LastName).Replace("#LeaveTitle", leave.LeaveTitle).Replace("#StartDate", leave.StartDate.ToString("dd MMM, yy")).Replace("#EndDate", leave.EndDate.ToString("dd MMM, yy"));
-       
+           
+
         var client = new SendGridClient(apiKey);
         var msg = new SendGridMessage()
         {
@@ -224,6 +225,57 @@ namespace E4S.Services
         //var response = 
     }
 
-        
-  }
+        public async Task SendGridLeaveDeclinedAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
+        {
+
+            string domain = "http://erp4smes.azurewebsites.net";
+
+            EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
+
+            var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#ResetLink", domain + message).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#EmployeeFirstname", leave.EmployeeDetail.FirstName + " " + leave.EmployeeDetail.LastName).Replace("#LeaveTitle", leave.LeaveTitle).Replace("#StartDate", leave.StartDate.ToString("dd MMM, yyyy")).Replace("#EndDate", leave.EndDate.ToString("dd MMM, yyyy"));
+       
+
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("no-reply@erp4sme.ng", "ERP4SME"),
+                Subject = "New Leave Declined on ERP4SME.",
+                //PlainTextContent = "You have been registered on ERP4SME platform. Kindly use the link below to create your account.",
+                HtmlContent = body
+
+
+            };
+            msg.AddTo(new EmailAddress(emailAdd, emailAdd));
+            await client.SendEmailAsync(msg);
+            //var response = 
+        }
+
+        public async Task SendGridLeaveApplicationAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
+        {
+
+            string domain = "http://erp4smes.azurewebsites.net";
+
+            EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
+
+            var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#EmployeeFirstname", leave.EmployeeDetail.FirstName + " " + leave.EmployeeDetail.LastName).Replace("#LeaveTitle", leave.LeaveTitle).Replace("#StartDate", leave.StartDate.ToString("dd MMM, yyyy")).Replace("#EndDate", leave.EndDate.ToString("dd MMM, yyyy"));
+
+            //string apiKey 
+
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress("no-reply@erp4sme.ng", "ERP4SME"),
+                Subject = "New Leave Application on ERP4SME.",
+                //PlainTextContent = "You have been registered on ERP4SME platform. Kindly use the link below to create your account.",
+                HtmlContent = body
+
+
+            };
+            msg.AddTo(new EmailAddress(emailAdd, emailAdd));
+            await client.SendEmailAsync(msg);
+            //var response = 
+        }
+
+
+    }
 }
