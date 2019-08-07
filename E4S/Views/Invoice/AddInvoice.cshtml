@@ -164,15 +164,9 @@
                   <img src="~/assets/img/user22.png" height="20" width="20" /> Add a customer
                 </button>
                 <div class="dropdown-menu">
-                  <input class="dropdown-item form-control col-md-12" placeholder="type a customer name" id="tags">
-
+                  <input class="dropdown-item form-control col-md-12" placeholder="type a customer name" id="tags" autocomplete="on" autofocus name="firstName">
                   <hr />
                   <p class="adddcustomer text-center"> + Add new Customer </p>
-
-
-
-
-
                 </div>
               </div>
 
@@ -282,9 +276,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script>
-
-
-
+      $('input[name=firstName]').focus();
   </script>
 
 }
