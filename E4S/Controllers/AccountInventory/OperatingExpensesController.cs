@@ -9,6 +9,7 @@ using E4S.Models.AccountInventory;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace E4S.Controllers.AccountInventory
 {
@@ -43,7 +44,8 @@ namespace E4S.Controllers.AccountInventory
     {
       var orgId = getOrg();
 
-      return View();
+      ViewData["ExpenseType"] = new SelectList(_context.Expenses.Where(x => x.OrganisationId == orgId), "Id", "ExpenseType");
+      return View(_context.OperatingExpenses.Where(x => x.OrganisationId == orgId).ToList());
     }
 
     public IActionResult ExpenseType()
@@ -88,12 +90,8 @@ namespace E4S.Controllers.AccountInventory
 
         }
 
-
-        //StatusMessage = "Expense successfully created.";
       }
 
-      //StatusMessage = "Error! Check fields...";
-      //ViewData["StatusMessage"] = StatusMessage;
       return Json(new
       {
         msg = "No Data"
@@ -101,6 +99,82 @@ namespace E4S.Controllers.AccountInventory
 
     }
 
+    [HttpPost]
+    public async Task<IActionResult> AddOperatingExpense([FromBody]OperatingExpense operatingExpense)
+    {
+      var orgId = getOrg();
+
+      if (operatingExpense != null)
+      {
+
+        operatingExpense.Id = Guid.NewGuid();
+        operatingExpense.OrganisationId = orgId;
+
+        var expenseType = _context.Expenses.Where(x => x.Id == operatingExpense.ExpenseId).FirstOrDefault().ExpenseType;
+        if (expenseType == null)
+        {
+          expenseType = "Others";
+        }
+
+
+        try
+        {
+          _context.Add(operatingExpense);
+          _context.SaveChanges();
+
+          Cashflow credit = new Cashflow()
+          {
+            Id = Guid.NewGuid(),
+            FlowType = "OE",
+            FlowTypeId = operatingExpense.Id,
+            DebitCredit = "C",
+            FlowDetails = "Operating Expenses - " + expenseType + " " + operatingExpense.Description,
+            Amount = operatingExpense.Amount,
+            OrganisationId = orgId
+          };
+
+          _context.Add(credit);
+          await _context.SaveChangesAsync();
+
+          Transaction tCredit = new Transaction()
+          {
+            Id = Guid.NewGuid(),
+            TransactionType = "OE",
+            TransactionId = operatingExpense.Id,
+            DebitCredit = "C",
+            TransactionDetails = "Operating Expenses - " + expenseType + " " + operatingExpense.Description,
+            Amount = operatingExpense.Amount,
+            OrganisationId = orgId
+          };
+
+          _context.Add(tCredit);
+          await _context.SaveChangesAsync();
+
+
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+          return Json(new
+          {
+            msg = "Failed"
+          });
+
+        }
+
+      }
+
+      return Json(new
+      {
+        msg = "No Data"
+      });
+
+    }
 
 
   }

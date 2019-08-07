@@ -4,14 +4,16 @@ using E4S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190806123939_expenseTypeot")]
+    partial class expenseTypeot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,40 +49,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AccountBanks");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.Cashflow", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<Guid>("BankId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("DebitCredit");
-
-                    b.Property<string>("FlowDetails");
-
-                    b.Property<string>("FlowType");
-
-                    b.Property<Guid>("FlowTypeId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<float>("Tax");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cashflows");
                 });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.Customer", b =>
@@ -285,40 +253,6 @@ namespace E4S.Data.Migrations
                     b.HasIndex("ProductServiceId");
 
                     b.ToTable("StockRecords");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.Transaction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<Guid>("BankId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("DebitCredit");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<string>("TransactionDetails");
-
-                    b.Property<Guid>("TransactionId");
-
-                    b.Property<string>("TransactionType");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.Vendor", b =>
