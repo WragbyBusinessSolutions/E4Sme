@@ -190,7 +190,7 @@ namespace E4S.Controllers.AccountInventory
         return RedirectToAction("AddQuote", new { id = qr.Id });
 
       }
-      var cQuoteRecord = _context.QuoteRecords.Where(x => x.Id == id).FirstOrDefault();
+      var cQuoteRecord = quo.Where(x => x.Id == id).FirstOrDefault();
 
       QuoteViewModel qVM = new QuoteViewModel();
 

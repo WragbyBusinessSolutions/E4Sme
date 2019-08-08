@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.AccountInventory;
+using E4S.ViewModel.AccountVM;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -43,12 +45,56 @@ namespace E4S.Controllers.AccountInventory
 
     public IActionResult Index()
         {
-            return View();
+      var orgId = getOrg();
+      var allInvoices = _context.InvoiceRecords.Where(x => x.OrganisationId == orgId).ToList();
+      var customer = _context.Customers.Where(x => x.OrganisationId == orgId).ToList();
+
+      List<InvoiceListViewModel> listIVM = new List<InvoiceListViewModel>();
+      InvoiceListViewModel iVM;
+
+      foreach (var item in allInvoices)
+      {
+        iVM = new InvoiceListViewModel();
+        iVM.InvoiceRecord = item;
+        iVM.Customer = customer.Where(x => x.Id == item.CustomerId).FirstOrDefault();
+
+        listIVM.Add(iVM);
+      }
+
+      return View(listIVM);
         }
 
-        public IActionResult AddInvoice()
+        public IActionResult AddInvoice(Guid? id)
         {
       var orgId = getOrg();
+      var inv = _context.InvoiceRecords.Where(x => x.OrganisationId == orgId).OrderByDescending(x => x.DateCreated).ToList();
+
+      if (id == null)
+      {
+        InvoiceRecord ir = new InvoiceRecord()
+        {
+          Id = Guid.NewGuid(),
+          OrganisationId = orgId
+        };
+
+        if (inv.Count > 0)
+        {
+          ir.InvoiceNo = inv.FirstOrDefault().InvoiceNo + 1;
+        }
+        else
+        {
+          ir.InvoiceNo = 1;
+        }
+
+        _context.Add(ir);
+        _context.SaveChanges();
+
+        id = ir.Id;
+
+        return RedirectToAction("AddInvoice", new { id = ir.Id });
+
+      }
+
 
       return View();
         }

@@ -79,8 +79,8 @@ namespace E4S.Data
     public DbSet<Cashflow> Cashflows { get; set; }
     public DbSet<QuoteRecord> QuoteRecords { get; set; }
     public DbSet<QuoteItem> QuoteItems { get; set; }
-    //public DbSet<>
-
+    public DbSet<InvoiceRecord> InvoiceRecords { get; set; }
+    public DbSet<InvoiceItem> InvoiceItems { get; set; }
 
 
   }
