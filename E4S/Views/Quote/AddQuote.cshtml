@@ -10,8 +10,19 @@
 <style>
   .invoice-body {
     margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
-
+  .info-body{
+       padding-left: 20px;
+       padding-right: 20px;
+  }
+  .display{
+      padding-left: 10px;
+  }
+.quoteno{
+    height: 20px !important;
+}
   .invoice-card {
     margin-left: 3%;
     margin-right: 3%;
@@ -120,27 +131,30 @@
 
           <hr />
 
-          <div class="row">
-            <div class="col-lg-12">
-              <h5 class="pull-right">
-                <b class="text-danger spanlabel">
-                  @Model.Organisation.OrganisationName
-                </b>
-              </h5>
-              <br />
-              <p class="pull-right">
-                <br />@Model.Organisation.Address
-                <br />@Model.Organisation.City
-                <br />@Model.Organisation.State
-                <br />@Model.Organisation.Country
-              </p>
+          <div class="row info-body">
+            <div class="col-md-12">
+                <div class="col-md-4 pull-right">
+                    <h5 class="text-right">
+                        <b class="text-danger spanlabel">
+                            @Model.Organisation.OrganisationName
+                        </b>
+                    </h5>
+                    
+                    <p class="text-right">
+                        @Model.Organisation.Address
+                        <br />@Model.Organisation.City
+                        <br />@Model.Organisation.State
+                        <br />@Model.Organisation.Country
+                    </p>
+                </div>
+              
             </div>
           </div>
           <br />
 
           <div>
-            <div class="col-lg-12">
-              <div class="pull-right text-right col-md-3">
+            <div class="col-md-12">
+              <div class="pull-right text-right col-md-2">
                 <p>
                   <b>Quote Date:</b>
                   <input type="date" class="form-control" />
@@ -205,11 +219,11 @@
                 @if (Model.Customer != null)
                 {
                   <input id="autoCustomer" name="autoCustomer" asp-for="Customer.CustomerName" type="text" class="form-control" placeholder="Search Customer">
-                  <textarea id="cusAddress" name="cusAddress" class="form-control">
-@Model.Customer.City,
-@Model.Customer.Email,
+                  <div id="cusAddress" name="cusAddress" class="display">
+@Model.Customer.City,<br />
+@Model.Customer.Email,<br />
 @Model.Customer.Phone
-</textarea>
+</div>
 
                 }
                 else
@@ -320,7 +334,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 total-section">
+          <div class="col-md-12 total-section invoice-body">
             <div class="pull-right text-right">
               <h4>Sub - Total:  ₦@Model.SubTotal.ToString("C")</h4>
               <p>
