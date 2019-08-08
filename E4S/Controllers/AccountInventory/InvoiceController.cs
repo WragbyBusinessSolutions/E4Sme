@@ -61,7 +61,8 @@ namespace E4S.Controllers.AccountInventory
         listIVM.Add(iVM);
       }
 
-      return View(listIVM);
+      ViewData["StatusMessage"] = StatusMessage;
+      return View(listIVM.OrderByDescending(x => x.InvoiceRecord.DateCreated));
         }
 
         public IActionResult AddInvoice(Guid? id)
@@ -95,9 +96,120 @@ namespace E4S.Controllers.AccountInventory
 
       }
 
+      var cInvoiceRecord = inv.Where(x => x.Id == id).FirstOrDefault();
 
-      return View();
+      InvoiceViewModel iVM = new InvoiceViewModel();
+
+      iVM.Id = cInvoiceRecord.Id;
+      iVM.InvoiceNo = cInvoiceRecord.InvoiceNo;
+      iVM.InoviceTitle = cInvoiceRecord.InvoiceTitle;
+      iVM.Customer = _context.Customers.Where(x => x.Id == cInvoiceRecord.CustomerId).FirstOrDefault();
+      iVM.Organisation = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      iVM.Tax = cInvoiceRecord.Tax;
+      iVM.SubTotal = cInvoiceRecord.SubTotal;
+      iVM.Total = cInvoiceRecord.Total;
+      iVM.InvoiceItems = _context.InvoiceItems.Where(x => x.InvoiceRecordId == id).Include(x => x.ProductService).ToList();
+      iVM.DateCreated = cInvoiceRecord.DateCreated;
+
+
+
+      return View(iVM);
         }
+
+    public IActionResult InvoiceDone(Guid id)
+    {
+      var orgId = getOrg();
+      var inv = _context.InvoiceRecords.Where(x => x.Id == id).FirstOrDefault();
+
+      var debit = _context.Transactions.Where(x => x.TransactionId == inv.Id).FirstOrDefault();
+
+      if (debit != null)
+      {
+        debit.Amount = inv.Total;
+
+        _context.Update(debit);
+        _context.SaveChanges();
+
+      }
+      else
+      {
+        Transaction tDebit = new Transaction()
+        {
+          Id = Guid.NewGuid(),
+          TransactionType = "IN",
+          TransactionId = inv.Id,
+          DebitCredit = "D",
+          TransactionDetails = "Invoice - No" + inv.InvoiceNo, // + " " + operatingExpense.Description,
+          Amount = inv.Total,
+          OrganisationId = orgId
+        };
+
+        _context.Add(tDebit);
+        _context.SaveChanges();
+
+      }
+
+      StatusMessage = "Invoice saved and processed.";
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddProduct([FromBody]InvoiceItem invoiceItem)
+    {
+      var orgId = getOrg();
+
+      if (invoiceItem != null)
+      {
+
+        invoiceItem.Id = Guid.NewGuid();
+        invoiceItem.OrganisationId = orgId;
+
+        invoiceItem.TotalCost = invoiceItem.UnitCost * invoiceItem.Quantity;
+
+
+        try
+        {
+          _context.Add(invoiceItem);
+          _context.SaveChanges();
+
+          var items = _context.InvoiceItems.Where(x => x.InvoiceRecordId == invoiceItem.InvoiceRecordId).ToList();
+          var qr = _context.InvoiceRecords.Where(x => x.Id == invoiceItem.InvoiceRecordId).FirstOrDefault();
+
+          qr.SubTotal = items.Sum(x => x.TotalCost);
+          qr.Tax = qr.SubTotal * 0.05f;
+          qr.Total = qr.SubTotal + qr.Tax;
+
+          _context.Update(qr);
+          _context.SaveChanges();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+          return Json(new
+          {
+            msg = "Failed"
+          });
+
+        }
+
+
+        //StatusMessage = "New Vendor successfully created.";
+      }
+
+      //StatusMessage = "Error! Check fields...";
+      //ViewData["StatusMessage"] = StatusMessage;
+      return Json(new
+      {
+        msg = "No Data"
+      });
+
+    }
+
 
     [Produces("application/json")]
     [HttpGet("search")]
@@ -138,6 +250,29 @@ namespace E4S.Controllers.AccountInventory
       }
 
     }
+
+    [HttpPost]
+    public IActionResult GetCustomer([FromBody]AutoCus tag)
+    {
+      var orgId = getOrg();
+
+      var customer = _context.Customers.Where(x => x.OrganisationId == orgId).Where(x => x.CustomerName == tag.Name).FirstOrDefault();
+      if (customer != null)
+      {
+        var quoterec = _context.InvoiceRecords.Where(x => x.Id == tag.QuoteId).FirstOrDefault();
+
+        quoterec.CustomerId = customer.Id;
+
+        //quoterec.QuoteNo = 0;
+
+        _context.Update(quoterec);
+        _context.SaveChanges();
+      }
+
+      return Json(customer);
+
+    }
+
 
     [Produces("application/json")]
     [HttpGet("search")]

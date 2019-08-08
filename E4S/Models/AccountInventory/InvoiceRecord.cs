@@ -20,5 +20,7 @@ namespace E4S.Models.AccountInventory
 
     public string InvoiceTitle { get; set; }
     public DateTime DueDate { get; set; }
+
+    public string PaymentStatus { get; set; }
   }
 }

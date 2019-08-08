@@ -21,5 +21,7 @@ namespace E4S.ViewModel.AccountVM
     public float SubTotal { get; set; }
     public float Total { get; set; }
 
+    public DateTime DateCreated { get; set; }
+
   }//UNCLE JUNIOR IS A BOMBASTIC RASCALMONIAL ELEMENT
 }

@@ -48,8 +48,70 @@ namespace E4S.Controllers.AccountInventory
       var orgId = getOrg();
 
       var allquotes = _context.QuoteRecords.Where(x => x.OrganisationId == orgId).Where(x => x.DateCreated.Month == DateTime.Now.Month).OrderByDescending(x => x.DateCreated).ToList();
+
+      ViewData["StatusMessage"] = StatusMessage;
+
       return View(allquotes);
         }
+
+    public IActionResult ConvertToInvoice(Guid id)
+    {
+      var orgId = getOrg();
+      var inv = _context.InvoiceRecords.Where(x => x.OrganisationId == orgId).OrderByDescending(x => x.DateCreated).ToList();
+
+      var quote = _context.QuoteRecords.Where(x => x.Id == id).FirstOrDefault();
+      var quoteList = _context.QuoteItems.Where(x => x.QuoteRecordId == id).ToList();
+      InvoiceRecord inR = new InvoiceRecord()
+      {
+        Id = Guid.NewGuid(),
+        CustomerId = quote.CustomerId,
+        QuoteNo = quote.QuoteNo,
+        OrganisationId = orgId,
+        SubTotal = quote.SubTotal,
+        Tax = quote.Tax,
+        Total = quote.Total
+        
+      };
+
+      if (inv.Count > 0)
+      {
+        inR.InvoiceNo = inv.FirstOrDefault().InvoiceNo + 1;
+      }
+      else
+      {
+        inR.InvoiceNo = 1;
+      }
+
+      _context.Add(inR);
+      _context.SaveChanges();
+
+
+      InvoiceItem invoiceItem;
+      
+      foreach (var item in quoteList)
+      {
+
+        invoiceItem = new InvoiceItem()
+        {
+          Id = Guid.NewGuid(),
+          InvoiceRecordId = inR.Id,
+          OrganisationId = orgId,
+          ProductServiceId = item.ProductServiceId,
+          Quantity = item.Quantity,
+          UnitCost = item.UnitCost,
+          TotalCost = item.TotalCost,
+          
+        };
+
+        _context.Add(invoiceItem);
+        _context.SaveChanges();
+      }
+
+
+      StatusMessage = "Conversion successful. Check your Invoice List.";
+      return RedirectToAction("Index");
+
+    }
 
     [HttpPost]
     public IActionResult GetCustomer([FromBody]AutoCus tag)
@@ -202,9 +264,10 @@ namespace E4S.Controllers.AccountInventory
       qVM.SubTotal = cQuoteRecord.SubTotal;
       qVM.Total = cQuoteRecord.Total;
       qVM.QuoteItems = _context.QuoteItems.Where(x => x.QuoteRecordId == id).Include(x => x.ProductService).ToList();
-      qVM.SubTotal = cQuoteRecord.SubTotal;
-      qVM.Tax = cQuoteRecord.Tax;
-      qVM.Total = cQuoteRecord.Total;
+      qVM.DateCreated = cQuoteRecord.DateCreated;
+      //qVM.SubTotal = cQuoteRecord.SubTotal;
+      //qVM.Tax = cQuoteRecord.Tax;
+      //qVM.Total = cQuoteRecord.Total;
 
       return View(qVM);
     }
