@@ -8,6 +8,7 @@ using E4S.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.AccountInventory
 {
@@ -91,6 +92,40 @@ namespace E4S.Controllers.AccountInventory
       }
 
     }
+
+    [Produces("application/json")]
+    [HttpGet("search")]
+    [Route("/api/Invoice/Product")]
+    public async Task<IActionResult> SearchProduct()
+    {
+      var orgId = getOrg();
+
+      try
+      {
+        string term = HttpContext.Request.Query["term"].ToString();
+        var names = _context.StockRecords.Where(x => x.OrganisationId == orgId).Where(p => p.ProductService.ProductServiceName.Contains(term)).Select(p => p.ProductService.ProductServiceName).ToList();
+        return Ok(names);
+      }
+      catch
+      {
+        return BadRequest();
+      }
+
+    }
+
+
+    [HttpPost]
+    public IActionResult GetProduct([FromBody]AutoCus tag)
+    {
+      var orgId = getOrg();
+
+      var produc = _context.StockRecords.Where(x => x.OrganisationId == orgId).Where(x => x.ProductService.ProductServiceName == tag.Name).Include(x => x.ProductService).FirstOrDefault();
+
+      return Json(produc);
+
+    }
+
+
 
   }
 }

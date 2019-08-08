@@ -82,7 +82,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\AccountVM\" />
     <Folder Include="wwwroot\images\employeeImage\" />
     <Folder Include="wwwroot\images\qualificationImage\" />
   </ItemGroup>

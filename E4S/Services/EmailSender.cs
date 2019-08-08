@@ -16,10 +16,9 @@ namespace E4S.Services
   {
     SmtpClient SmtpServer;
     string MailerResponse;
-  
     string apiKey = "";
 
-        public EmailSender()
+    public EmailSender()
     {
 
       SmtpClient smtpClient = new SmtpClient("smtp.office365.com");

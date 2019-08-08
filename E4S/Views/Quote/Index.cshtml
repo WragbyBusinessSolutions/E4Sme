@@ -1,4 +1,5 @@
-﻿
+﻿@model  IEnumerable<E4S.Models.AccountInventory.QuoteRecord>
+
 @{
     ViewData["Title"] = "Quotes";
     Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
@@ -62,39 +63,32 @@
                             <div class="table-responsive" style="overflow:auto;">
                                 <table id="datatable compact" class="table table-hover">
                                     <thead>
-                                        <tr>
-                                            <th><strong>ID</strong></th>
-                                            <th scope="col"><strong>Customer Name</strong></th>
-                                            <th scope="col"><strong>Date Created </strong></th>
-                                            <th scope="col"><strong>Amount</strong></th>
-                                            <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-                                        </tr>
+                                      <tr>
+                                        <th scope="col"><strong>Date </strong></th>
+                                        <th><strong>ID</strong></th>
+                                        <th scope="col"><strong>Customer Name</strong></th>
+                                        <th scope="col"><strong>Amount</strong></th>
+                                        <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                                      </tr>
                                     </thead>
                                     <tbody class="fontweight">
-                                        <tr>
-                                            <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            <td scope="row">2-10-2019</td>
-                                            <td scope="row">20000</td>
 
-                                            <td class="">
-                                                <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
-                                                <a href="#" class="btn btn-success btn-icon btn-sm edit"  data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
-                                                <a href="#" class="btn btn-primary btn-icon btn-sm remove"  data-toggle="tooltip" data-placement="top" title="Convert to Invoice"><i class="far fa-file-alt"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Olivia Liang</td>
-                                            <td>3-12-1657</td>
-                                            <td>2333</td>
+                                      @foreach (var item in Model)
+                                      {
+                                      <tr>
+                                        <td scope="row">@item.DateCreated.ToString("dd MMM, yy")</td>
+                                        <td scope="row" class="table-font">@item.QuoteNo</td>
+                                        <td scope="row">@item.CustomerId</td>
+                                        <td scope="row">@item.Total</td>
 
-                                            <td class="">
-                                                <a href="#" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
-                                                <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
-                                                <a href="#" class="btn btn-primary btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Convert to Invoice"><i class="far fa-file-alt"></i></a>
-                                            </td>
-                                        </tr>
+                                        <td class="">
+                                          <a asp-route-id="@item.Id" asp-action="AddQuote" class="btn btn-md btn-info btn-sm like" data-toggle="tooltip" data-placement="top" title="View/Update"><i class="fas fa-eye"></i></a>
+                                          <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
+                                          <a href="#" class="btn btn-primary btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Convert to Invoice"><i class="far fa-file-alt"></i></a>
+                                        </td>
+                                      </tr>
+
+                                      }
                                     </tbody>
                                 </table>
                             </div>

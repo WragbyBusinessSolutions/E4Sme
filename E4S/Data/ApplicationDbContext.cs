@@ -77,6 +77,9 @@ namespace E4S.Data
     public DbSet<OperatingExpense> OperatingExpenses { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Cashflow> Cashflows { get; set; }
+    public DbSet<QuoteRecord> QuoteRecords { get; set; }
+    public DbSet<QuoteItem> QuoteItems { get; set; }
+    //public DbSet<>
 
 
 
