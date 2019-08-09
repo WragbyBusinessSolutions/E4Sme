@@ -62,51 +62,134 @@
       </div>
       <div class="card-body body-card">
 
-        <div class="table-responsive" style="overflow: auto;">
-          <table id="datatable" class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col"><strong>Date</strong></th>
-                <th><strong>InvoiceNo</strong></th>
-                <th scope="col"><strong>Customer Name</strong></th>
-                @*<th scope="col"><strong>Title</strong></th>*@
+          <div class="table-responsive" style="overflow: auto;">
+              <table id="datatable" class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th scope="col"><strong>Date</strong></th>
+                          <th><strong>InvoiceNo</strong></th>
+                          <th scope="col"><strong>Customer Name</strong></th>
+                          @*<th scope="col"><strong>Title</strong></th>*@
 
-                <th class="text-right" scope="col"><strong>Amount</strong></th>
-                <th class="text-center" scope="col"><strong>Status</strong></th>
-                <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-              </tr>
-            </thead>
-            <tbody class="fontweight">
-              @foreach (var item in Model)
-              {
-                <tr>
-                  <td>@item.InvoiceRecord.DateCreated.ToString("dd MMM, yy")</td>
-                  <td>@item.InvoiceRecord.InvoiceNo</td>
-                  <td>
-                    @try
-                    {
-                      @item.Customer.CustomerName
-                    }
-                    catch
-                    {
-                      <p>---</p>
-                    }
-                  </td>
-                  @*<td>@item.InvoiceRecord.InvoiceTitle</td>*@
-                  <td class="text-right"> @item.InvoiceRecord.Total.ToString("N2")</td>
-                  <td class="text-center" scope="row"><button class="btn btn-danger">Not paid</button></td>
+                          <th class="text-right" scope="col"><strong>Amount</strong></th>
+                          <th class="text-center" scope="col"><strong>Status</strong></th>
+                          <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                      </tr>
+                  </thead>
+                  <tbody class="fontweight">
+                      @foreach (var item in Model)
+                      {
+                          <tr>
+                              <td>@item.InvoiceRecord.DateCreated.ToString("dd MMM, yy")</td>
+                              <td>@item.InvoiceRecord.InvoiceNo</td>
+                              <td>
+                                  @try
+                                  {
+                                      @item.Customer.CustomerName
+                                  }
+                                  catch
+                                  {
+                                      <p>---</p>
+                                  }
+                              </td>
+                              @*<td>@item.InvoiceRecord.InvoiceTitle</td>*@
+                              <td class="text-right"> @item.InvoiceRecord.Total.ToString("N2")</td>
+                              <td class="text-center" scope="row"><button class="btn btn-danger">Not paid</button></td>
 
-                  <td class="">
-                    <a asp-action="AddInvoice" asp-route-id="@item.InvoiceRecord.Id" class="btn btn-icon btn-info btn-sm" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"><i class="fa fa-credit-card"></i></a>
-                    <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><i class="fas fa-paper-plane"></i></a>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
+                              <td class="">
+                                  <a asp-action="AddInvoice" asp-route-id="@item.InvoiceRecord.Id" class="btn btn-icon btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                                  <button type="button" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"><span data-toggle="modal" data-target="#exampledal"><i class="fa fa-credit-card"></i></span></button>
 
+                                  <button type="button" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><span data-toggle="modal" data-target="#ccc"><i class="fas fa-paper-plane"></i></span></button>
+                              </td>
+                          </tr>
+                      }
+                  </tbody>
+
+              </table>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampledal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampledalLabel">Payment</h5>
+
+
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <label>Customer Name</label><input type="text" class="form-control" /><br />
+                              <label>Total Amount</label><input type="text" class="form-control" /><br />
+                              <label>Amount Paid</label><input type="text" class="form-control" /><br />
+                              <label>Select File</label><br /><input type="file" /><br />
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-info">Make Payment</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="ccc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampledalLabel">Send As</h5>
+
+
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox">
+                                      <span class="form-check-sign"></span>
+                                      Mail
+                                  </label>
+                              </div>
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox">
+                                      <span class="form-check-sign"></span>
+                                      Text
+                                  </label>
+                              </div>
+
+                              <label>Customer Name</label>
+                              <div class="form-group">
+                                  <input type="text" class="form-control">
+                              </div>
+                              <label>Phone Number </label>
+                              <div class="form-group">
+                                  <input type="tel" class="form-control">
+                              </div>
+                              <label>Email address</label>
+                              <div class="form-group">
+                                  <input type="email" class="form-control">
+                              </div>
+                              <label>Total Amount</label>
+                              <div class="form-group">
+                                  <input type="text" class="form-control">
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-info">Send Message</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
       </div>
     </div>

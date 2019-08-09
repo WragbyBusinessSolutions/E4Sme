@@ -67,6 +67,9 @@
     <Content Update="Views\Employees\CheckData.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_LayoutAccountInventoryEmpty.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutWragbyAdmin.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
