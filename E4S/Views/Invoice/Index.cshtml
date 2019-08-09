@@ -71,8 +71,8 @@
                 <th scope="col"><strong>Customer Name</strong></th>
                 @*<th scope="col"><strong>Title</strong></th>*@
 
-                <th scope="col"><strong>Amount</strong></th>
-                <th scope="col"><strong>Status</strong></th>
+                <th class="text-right" scope="col"><strong>Amount</strong></th>
+                <th class="text-center" scope="col"><strong>Status</strong></th>
                 <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
               </tr>
             </thead>
@@ -93,8 +93,8 @@
                     }
                   </td>
                   @*<td>@item.InvoiceRecord.InvoiceTitle</td>*@
-                  <td>@item.InvoiceRecord.Total.ToString("C")</td>
-                  <td scope="row"><button class="btn btn-danger">Not paid</button></td>
+                  <td class="text-right"> @item.InvoiceRecord.Total.ToString("N2")</td>
+                  <td class="text-center" scope="row"><button class="btn btn-danger">Not paid</button></td>
 
                   <td class="">
                     <a asp-action="AddInvoice" asp-route-id="@item.InvoiceRecord.Id" class="btn btn-icon btn-info btn-sm" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>

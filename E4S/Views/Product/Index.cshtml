@@ -110,9 +110,9 @@
                   <th><strong>S/N</strong></th>
                   <th><strong>Products</strong></th>
                   <th scope="col"><strong>Description</strong></th>
-                  <th scope="col"><strong>Cost Price</strong></th>
-                  <th scope="col"><strong>Available Quantity</strong></th>
-                  <th scope="col"><strong>Quantity Sold</strong></th>
+                  <th  scope="col"><strong>Cost Price</strong></th>
+                  <th class="text-center" scope="col"><strong>Available Quantity</strong></th>
+                  <th class="text-center" scope="col"><strong>Quantity Sold</strong></th>
                   <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
                 </tr>
               </thead>
@@ -127,9 +127,9 @@
                       <td scope="row" class="table-font">@i</td>
                       <td scope="row">@item.ProductService.ProductServiceName</td>
                       <td scope="row">@item.ProductService.Description</td>
-                      <td scope="row">@item.CostPrice</td>
-                      <td scope="row">@item.QuantityRemain</td>
-                      <td scope="row">@item.QuantitySold</td>
+                      <td class="text-right" scope="row">@item.CostPrice.ToString("N2")</td>
+                      <td class="text-center" scope="row">@item.QuantityRemain</td>
+                      <td class="text-center" scope="row">@item.QuantitySold</td>
                       <td class="">
                         <a href="#" class="btn btn-warning btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
                         <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>

@@ -120,9 +120,9 @@ namespace E4S.Controllers.AccountInventory
     {
       var orgId = getOrg();
       var inv = _context.InvoiceRecords.Where(x => x.Id == id).FirstOrDefault();
-
       var debit = _context.Transactions.Where(x => x.TransactionId == inv.Id).FirstOrDefault();
-
+      var stocks = _context.StockRecords.Where(x => x.OrganisationId == orgId).ToList();
+      var invlist = _context.InvoiceItems.Where(x => x.InvoiceRecordId == id).ToList();
       if (debit != null)
       {
         debit.Amount = inv.Total;
@@ -148,6 +148,37 @@ namespace E4S.Controllers.AccountInventory
         _context.SaveChanges();
 
       }
+
+      var cOG = _context.CostOfGoods.Where(x => x.InvoiceId == id).FirstOrDefault();
+      float costofG = 0f;
+
+      foreach (var item in invlist)
+      {
+        costofG = costofG + (stocks.Where(x => x.ProductServiceId == item.ProductServiceId).FirstOrDefault().CostPrice * item.Quantity);
+      }
+
+      if (cOG != null)
+      {
+        cOG.TotalCost = costofG;
+
+        _context.Update(cOG);
+        _context.SaveChanges();
+      }
+      else
+      {
+        cOG = new CostOfGood()
+        {
+          Id = Guid.NewGuid(),
+          OrganisationId = orgId,
+          InvoiceId = id,
+          TotalCost = costofG
+        };
+
+        _context.Add(cOG);
+        _context.SaveChanges();
+      }
+
+
 
       StatusMessage = "Invoice saved and processed.";
       return RedirectToAction("Index");

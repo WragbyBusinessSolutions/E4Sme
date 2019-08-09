@@ -279,12 +279,12 @@
                         </td>
                         <td class="text-right">
                           <p type="text">
-                            @item.UnitCost
+                            @item.UnitCost.ToString("N2")
                           </p>
                         </td>
                         <td class="text-right">
                           <p type="text">
-                            @item.TotalCost
+                            @item.TotalCost.ToString("N2")
                           </p>
                         </td>
                         <td>
@@ -326,13 +326,13 @@
           </div>
           <div class="col-md-12 total-section invoice-body">
             <div class="pull-right text-right">
-              <h4>Sub - Total:  ₦@Model.SubTotal.ToString("C")</h4>
+              <h4>Sub - Total:  ₦ @Model.SubTotal.ToString("N2")</h4>
               <p>
-                <input class="check" checked disabled type="checkbox" /> vat (5%) : ₦@Model.Tax.ToString("C")
+                <input class="check" checked disabled type="checkbox" /> vat (5%) : ₦@Model.Tax.ToString("N2")
               </p>
               <hr>
               <h3>
-                <b>Total :</b> ₦@Model.Total.ToString("C")
+                <b>Total :</b> ₦ @Model.Total.ToString("N2")
               </h3>
             </div>
             <div class="clearfix"></div>
