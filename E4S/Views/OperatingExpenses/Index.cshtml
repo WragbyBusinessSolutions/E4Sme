@@ -1,202 +1,386 @@
-﻿
+﻿@model IEnumerable<E4S.Models.AccountInventory.OperatingExpense>
+
 @{
-  ViewData["Title"] = "Operating Expenses";
-  Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
+    ViewData["Title"] = "Operating Expenses";
+    Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
 
 <style>
-  .body-card {
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 1%;
-    margin-bottom: 2%;
-  }
+    .body-card {
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-top: 1%;
+        margin-bottom: 2%;
+    }
 
-  .table-font {
-    font-weight: 500;
-  }
+    .table-font {
+        font-weight: 500;
+    }
+
+    #chartdives {
+        width: 100%;
+        height: 500px;
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
 </style>
 
 <div class="content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
 
-        <div class="card-header body-card">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6 pull-left">
-                <h4 class="card-title">Operating Expenses</h4>
-              </div>
+                <div class="card-header body-card">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6 pull-left">
+                                <h4 class="card-title">Operating Expenses</h4>
+                            </div>
 
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Export Data
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Copy</a>
-                  <a class="dropdown-item" href="#">CSV</a>
-                  <a class="dropdown-item" href="#">Excel</a>
-                  <a class="dropdown-item" href="#">PDF</a>
-                  <a class="dropdown-item" href="#">Print</a>
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Export Data
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Copy</a>
+                                    <a class="dropdown-item" href="#">CSV</a>
+                                    <a class="dropdown-item" href="#">Excel</a>
+                                    <a class="dropdown-item" href="#">PDF</a>
+                                    <a class="dropdown-item" href="#">Print</a>
+
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+
+                                Add New Expenses
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Add New Expenses</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form>
+                                                <label class="pull-left">Title</label>
+                                                <select id="expenseTitle" name="expenseTitle" type="text" asp-items="@ViewBag.ExpenseType" class="form-control"></select>
+                                                <br />
+                                                <label class="pull-left">Description</label>
+                                                <input id="description" name="description" type="text" class="form-control" />
+                                                <br />
+                                                <label class="pull-left">Amount</label>
+                                                <input id="amount" name="amount" type="number" class="form-control text-right" />
+                                                <br />
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button id="btnOperatingExpense" name="btnOperatingExpense" type="button" class="btn btn-info">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
-              </div>
+                @*<div class="row body-card">
+                    <div class="col-md-6">
+                        <div class="card-header ">
+                            <h4 class="body-card">Yearly Expenses</h4>
 
-              <button class="btn btn-info btn-md pull-right btn-responsive" data-toggle="modal" data-target="#exampleModalLong">
+                        </div>
+                        <div class="card-body ">
 
-                <span class="btn-label">
-                  <i class="now-ui-icons travel_info"></i>
-                </span>
-
-                Add New Expenses
-
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Add New Expenses</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                            <div id="chartdiv"></div>
+                        </div>
                     </div>
 
-                    <div class="modal-body">
-                      <form>
-                        <label class="pull-left">Title</label>
-                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" />
-                        <br />
-                        <label class="pull-left">Description</label>
-                        <input type="text" class="form-control" />
-                        <br />
-                        <label class="pull-left">Amount</label>
-                        <input type="text" class="form-control" />
-                        <br />
-                      </form>
+                    <div class="col-md-6">
+                        <div class="card-header ">
+                            <h4 class="body-card">Monthly Expenses</h4>
 
+                        </div>
+                        <div class="card-body ">
+
+                            <div id="chartdives"></div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button id="btnAddExpense" name="btnAddExpense" type="button" class="btn btn-info">Add</button>
+                </div>*@
+
+                <div class="card-body body-card">
+
+
+                    <div class="table-responsive-sm">
+                        <table id="datatable" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><strong>Date</strong></th>
+                                    <th scope="col"><strong>Expense Type</strong></th>
+                                    <th scope="col"><strong>Description</strong></th>
+
+                                    <th scope="col"><strong>Amount</strong></th>
+                                    <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="fontweight">
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.DateCreated.ToString("dd MMM, yy")</td>
+                                        <td>@item.Expense.ExpenseType</td>
+                                        <td>@item.Description</td>
+
+                                        <td>@item.Amount</td>
+                                        <td class="">
+                                            <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
                     </div>
-                  </div>
+
+
                 </div>
-              </div>
-
             </div>
-          </div>
 
         </div>
-
-        <div class="card-body body-card">
-
-          <div class="table-responsive-sm">
-            <table id="datatable" class="table table-hover">
-              <thead>
-                <tr>
-                  <th><strong>S/N</strong></th>
-                  <th scope="col"><strong>Date</strong></th>
-                  <th scope="col"><strong>Description</strong></th>
-
-                  <th scope="col"><strong>Amount</strong></th>
-                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-                </tr>
-              </thead>
-              <tbody class="fontweight">
-
-                <tr>
-                  <td>1</td>
-                  <td>Olivia Liang</td>
-                  <td>Support Engineer</td>
-
-                  <td>64</td>
-                  <td class="">
-                    <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-
-        </div>
-      </div>
-
     </div>
-  </div>
 </div>
 
 @section Scripts {
 
-  <script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-     $("#btnAddExpense").click(function (event) {
+            $("#btnOperatingExpense").click(function (event) {
 
-      event.preventDefault();
+                event.preventDefault();
 
-      //$("#loading-overlay").show();
+                //$("#loading-overlay").show();
 
-      var Expense = {
-        ExpenseType: $("#productName").val(),
-        Description: $("#unitprice").val(),
-      };
+                var OperatingExpense = {
+                    ExpenseId: $("#expenseTitle").val(),
+                    Description: $("#description").val(),
+                    Amount: $("#amount").val(),
+                };
 
 
-      console.log(NewInventory);
+                console.log(OperatingExpense);
 
-      $.ajax({
-        type: "POST",
-        url: "/NewStock/AddNewStock",
-        data: JSON.stringify(NewInventory),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          RequestVerificationToken:
-            $('input:hidden[name="__RequestVerificationToken"]').val()
-        },
-        success: function (r) {
+                $.ajax({
+                    type: "POST",
+                    url: "/OperatingExpenses/AddOperatingExpense",
+                    data: JSON.stringify(OperatingExpense),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                        RequestVerificationToken:
+                            $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
 
-          if (r.msg == "Success") {
+                        if (r.msg == "Success") {
 
-        	swal({
-                title: "Success!",
-                text: "Product Added!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-            type: "success"
-          }).then(function () {
-            window.location.reload();
-          }).catch(swal.noop);
+                            swal({
+                                title: "Success!",
+                                text: "Expense Added!",
+                                buttonsStyling: false,
+                                confirmButtonClass: "btn btn-success",
+                                type: "success"
+                            }).then(function () {
+                                window.location.reload();
+                            }).catch(swal.noop);
 
-          } else if (r.msg == "Fail") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+                        } else if (r.msg == "Fail") {
+                            $("#loading-overlay").hide();
+                            alert(r.msg);
 
-          } else if (r.msg == "No Data") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+                        } else if (r.msg == "No Data") {
+                            $("#loading-overlay").hide();
+                            alert(r.msg);
 
-          } else {
-            $("#loading-overlay").hide();
-            alert(r.msg);
-          }
+                        } else {
+                            $("#loading-overlay").hide();
+                            alert(r.msg);
+                        }
 
-        },
-        error: function () {
-          $("#loading-overlay").hide();
-          alert(r.msg);
-        }
-      });
-    });
+                    },
+                    error: function () {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+                    }
+                });
+            });
 
-})
-  </script>
+        })
+    </script>
 
 }
 
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("chartdives", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.data = [
+            {
+                country: "Lithuania",
+                litres: 501.9
+            },
+            {
+                country: "Czech Republic",
+                litres: 301.9
+            },
+            {
+                country: "Ireland",
+                litres: 201.1
+            },
+            {
+                country: "Germany",
+                litres: 165.8
+            },
+            {
+                country: "Australia",
+                litres: 139.9
+            },
+            {
+                country: "Austria",
+                litres: 128.3
+            }
+        ];
+
+        chart.innerRadius = am4core.percent(40);
+        chart.depth = 120;
+
+        chart.legend = new am4charts.Legend();
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "litres";
+        series.dataFields.depthValue = "litres";
+        series.dataFields.category = "country";
+        series.slices.template.cornerRadius = 5;
+        series.colors.step = 3;
+
+    }); // end am4core.ready()
+</script>
+
+!-- Chart code -->
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // Create chart instance
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+        // Add data
+        chart.data = [{
+            "country": "Jan 18",
+            "visits": 2025
+        }, {
+            "country": "Feb 18",
+            "visits": 1882
+        }, {
+            "country": "Mar 18",
+            "visits": 1809
+        }, {
+            "country": "Apr 18",
+            "visits": 1322
+        }, {
+            "country": "May 18",
+            "visits": 1122
+        }, {
+            "country": "Jun 18",
+            "visits": 1114
+        }, {
+            "country": "Jul 18",
+            "visits": 984
+        }, {
+            "country": "Aug 18",
+            "visits": 711
+        }, {
+            "country": "Sept 18",
+            "visits": 665
+        }, {
+            "country": "Oct 18",
+            "visits": 580
+        }, {
+            "country": "Nov 19",
+            "visits": 443
+        }, {
+            "country": "Dec 18",
+            "visits": 441
+        }, {
+            "country": "Jan 19",
+            "visits": 395
+        }];
+
+        // Create axes
+
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "country";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+
+        categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+            if (target.dataItem && target.dataItem.index & 2 == 2) {
+                return dy + 25;
+            }
+            return dy;
+        });
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+        // Create series
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "visits";
+        series.dataFields.categoryX = "country";
+        series.name = "Visits";
+        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+        series.columns.template.fillOpacity = .8;
+
+        var columnTemplate = series.columns.template;
+        columnTemplate.strokeWidth = 2;
+        columnTemplate.strokeOpacity = 1;
+
+    }); // end am4core.ready()
+</script>
 

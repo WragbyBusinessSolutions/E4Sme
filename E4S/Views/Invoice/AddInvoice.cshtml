@@ -1,13 +1,29 @@
-﻿
+﻿@model  E4S.ViewModel.AccountVM.InvoiceViewModel
+
 @{
   ViewData["Title"] = "Add Invoice";
   Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
 }
+
+
 <style>
-
-
   .invoice-body {
     margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .info-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .display {
+    padding-left: 10px;
+  }
+
+  .quoteno {
+    height: 20px !important;
   }
 
   .invoice-card {
@@ -67,9 +83,9 @@
     background-clip: padding-box;
     *border-right-width: 2px;
     *border-bottom-width: 2px;
-    .ui-menu-item > a.ui-corner-all
+  }
 
-  {
+  .ui-menu-item > a.ui-corner-all {
     display: block;
     padding: 3px 15px;
     clear: both;
@@ -77,9 +93,9 @@
     line-height: 18px;
     color: #555555;
     white-space: nowrap;
-    &.ui-state-hover, &.ui-state-active
+  }
 
-  {
+  &.ui-state-hover, &.ui-state-active {
     color: #ffffff;
     text-decoration: none;
     background-color: #0088cc;
@@ -88,281 +104,441 @@
     -moz-border-radius: 0px;
     background-image: none;
   }
-
-  }
-  }
 </style>
 
 
 <div class="content">
-
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
+
     </div>
+    <div class="col-md-10">
+      <div class="card invoice-card">
 
-    <div class="col-md-8 ">
-      <div class="card card-body printableArea invoice-card">
+        <div class="card-header">
 
-
-
-        <div class="row">
-          <div class="row pull-left invoice-card">
+          <div class="row invoice-card">
             <h5>Invoice No:</h5>
 
             <div class="">
 
-              <div class="col-lg-12">
-                <input type="number" class="form-control" placeholder="#" />
+              <div class="col-md-12">
+                <label type="number" class="form-control">
+                  @Model.InvoiceNo
+                </label>
+                <input asp-for="Id" hidden />
               </div>
 
             </div>
           </div>
 
-          <div class="col-lg-12">
-            <hr />
-          </div>
+          <hr />
 
-
-
-          <div class="col-md-4 pull-right">
-
-            <p class="">
-              <b class="text-danger spanlabel">Organisation Name</b>
-              <br />
-              .Organisation.Address
-              <br /> Organisation.City,
-              <br /> Organisation.State,
-              <br /> Organisation.Country
-              <br />Organisation.ZipCode
-            </p>
-          </div>
-
-
-          <div class="row invoice-card">
+          <div class="row info-body">
             <div class="col-md-12">
-              <div class="pull-right text-right col-md-4">
+              <div class="col-md-4 pull-right">
+                <h5 class="text-right">
+                  <b class="text-danger spanlabel">
+                    @Model.Organisation.OrganisationName
+                  </b>
+                </h5>
 
+                <p class="text-right">
+                  @Model.Organisation.Address
+                  <br />@Model.Organisation.City
+                  <br />@Model.Organisation.State
+                  <br />@Model.Organisation.Country
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <br />
+
+          <div>
+            <div class="col-md-12">
+              <div class="pull-right text-right col-md-2">
                 <p>
-
                   <b>Invoice Date:</b>
-
-                  <input type="date" class="form-control" />
-
+                  <input asp-for="DateCreated" type="date" class="form-control" />
                 </p>
-                <p>
-                  <b>Due Date :</b>
-
-                  <input type="date" class="form-control" />
-                  <span class="text-danger"></span>
-                </p>
-
               </div>
-
-
-              <div class="dropdown col-md-8">
-                <button type="button" class="form-control customer-button dropright dropdown-toggle" id="dropdownMenuLink hide-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="~/assets/img/user22.png" height="20" width="20" /> Add a customer
-                </button>
-                <div class="dropdown-menu">
-                  <input class="dropdown-item form-control col-md-12" placeholder="type a customer name" id="tags">
-
-                  <hr />
-                  <p class="adddcustomer text-center"> + Add new Customer </p>
-
-
-
-
-
-                </div>
-              </div>
-
 
             </div>
 
-            <div class="col-md-12 align-items-center invoice-body">
-
-              <input class="form-control text-center" placeholder="INVOICE TITLE" />
-
-            </div>
-
-            <div class="row">
-              <div class="col-md-12 invoice-body">
-                <div class="table-responsive-sm" style="overflow:auto;">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="table-item"><strong>Item</strong></th>
-                        <th><strong>Description</strong></th>
-                        <th><strong>Quantity</strong></th>
-                        <th><strong>Unit Cost</strong></th>
-                        <th><strong>Total</strong></th>
-                        <th>+/-</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <tr>
-
-                        <td>
-
-                          <input type="text" class="form-control dropdown-item" placeholder="Item/Service" id="tag">
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" placeholder="Description">
-                        </td>
-                        <td class="text-right">
-                          <input type="number" class="form-control text-right" placeholder="0">
-                        </td>
-                        <td class="text-right">
-                          <input type="number" class="form-control text-right" placeholder="0.00">
-                        </td>
-                        <td class="text-right">
-                          <input disabled type="number" class="form-control text-right" placeholder="0">
-                        </td>
-                        <td>
-                          <button class="btn btn-sm btn-success">+</button>
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 total-section">
-              <div class="pull-right text-right">
-                <p>Sub - Total amount:  ₦0.00</p>
-                <p>
-                  <input type="checkbox" checked disabled /> vat (5%) : ₦0.00
-                </p>
-                <hr>
-                <h3>
-                  <b>Total :</b> ₦0.00
-                </h3>
-              </div>
-              <div class="clearfix"></div>
-              <hr>
-              <div class="text-right">
-                <button class="btn btn-success" type="submit"> Done  </button>
-                <button id="print" class="btn btn-info btn-outline" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
-              </div>
-            </div>
           </div>
 
 
+
+
+          <div class="card-body">
+            <div class="row invoice-card">
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Add New Customer</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form>
+                        <label class="pull-left">Customer name</label>
+                        <input type="text" class="form-control" />
+                        <br />
+                        <label class="pull-left">Email Address</label>
+                        <input type="text" class="form-control" />
+                        <br />
+                        <label class="pull-left">Phone Number</label>
+                        <input type="number" class="form-control" />
+                        <br />
+                      </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-info">Add Customer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <br />
+
+
+          <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+
+                    @if (Model.Customer != null)
+                    {
+                        <input id="autoCustomer" name="autoCustomer" asp-for="Customer.CustomerName" type="text" class="form-control" placeholder="Search Customer">
+                        <div id="cusAddress" name="cusAddress" class="display">
+                            @Model.Customer.City,<br />
+                            @Model.Customer.Email,<br />
+                            @Model.Customer.Phone
+                        </div>
+
+                    }
+                    else
+                    {
+                        <button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button> <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
+                        <textarea id="cusAddress" name="cusAddress" class="form-control"></textarea>
+
+                    }
+                    <input id="cusId" hidden />
+                </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12 invoice-body">
+              <div class="table-responsive-sm" style="overflow:auto;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="table-item"><strong>Item</strong></th>
+                      <th><strong>Description</strong></th>
+                      <th class="text-right"><strong>Quantity</strong></th>
+                      <th class="text-right"><strong>Unit Cost</strong></th>
+                      <th class="text-right"><strong>Total Cost</strong></th>
+                      <th>+/-</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    @foreach (var item in Model.InvoiceItems)
+                    {
+                      <tr>
+
+                        <td>
+                          <p type="text">
+                            @item.ProductService.ProductServiceName
+                          </p>
+                        </td>
+                        <td>
+                          <p type="text">
+                            @item.ProductService.Description
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.Quantity
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.UnitCost.ToString("N2")
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.TotalCost.ToString("N2")
+                          </p>
+                        </td>
+                        <td>
+                          <button class="btn btn-sm btn-danger">-</button>
+                        </td>
+
+                      </tr>
+
+                    }
+
+
+                    <tr>
+                      <td>
+                        <input id="proItemId" name="proItemId" hidden />
+                        <input id="proItem" name="proItem" type="text" class="form-control" placeholder="Item/Service">
+                      </td>
+                      <td>
+                        <input id="proDes" name="proDes" type="text" class="form-control" placeholder="Description">
+                      </td>
+                      <td class="text-right">
+                        <input id="proQuantity" name="proQuantity" type="number" class="form-control text-right" placeholder="0">
+                      </td>
+                      <td class="text-right">
+                        <input id="proCostPrice" name="proCostPrice" type="number" class="form-control text-right" placeholder="0.00">
+                      </td>
+                      <td class="text-right">
+                        <input id="proTotal" name="proTotal" type="number" class="form-control text-right" placeholder="0" />
+                      </td>
+                      <td>
+                        <button id="addItem" class="btn btn-sm btn-success">+</button>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 total-section invoice-body">
+            <div class="pull-right text-right">
+              <h4>Sub - Total:  ₦ @Model.SubTotal.ToString("N2")</h4>
+              <p>
+                <input class="check" checked disabled type="checkbox" /> vat (5%) :  ₦@Model.Tax.ToString("N2")
+              </p>
+              <hr>
+              <h3>
+                <b>Total :</b> ₦ @Model.Total.ToString("N2")
+              </h3>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="text-right">
+              <a asp-action="index" id="print" class="btn btn-info btn-outline"> <span><i class="fa fa-save"></i> Save</span> </a>
+              <a asp-action="InvoiceDone" asp-route-id="@Model.Id" class="btn btn-success"> Done  </a>
+            </div>
+          </div>
 
         </div>
-      </div>
 
-      <div class="col-md-2">
       </div>
-
     </div>
 
+    <div class="col-md-1">
 
+    </div>
   </div>
 </div>
-
-
-<script>
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
-
-  var instance = M.Dropdown.getInstance(elem);
-
-</script>
 
 @section Scripts {
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script>
+    $(document).ready(function () {
+      $('#autocom').autocomplete({
 
+        source: '/api/Invoice/Search'
+
+      });
+
+      $('#autoCustomer').autocomplete({
+
+        source: '/api/Invoice/Customers',
+        select: function (event, ui) {
+
+          var tag = ui.item.value;
+
+          var AutoCus = {
+            Name: ui.item.value,
+            QuoteId: $("#Id").val()
+
+          };
+
+          console.log(AutoCus);
+
+          $.ajax({
+            type: "POST",
+            url: "/Invoice/GetCustomer",
+            data: JSON.stringify(AutoCus),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              document.getElementById("cusAddress").value = r.city + "\n" + r.email + "\n" + r.phone;
+              document.getElementById("cusId").value = r.Id;
+
+            },
+            error: function () {
+              alert("Error occured!!")
+            }
+          });
+
+
+        }
+
+      });
+
+      $('#proItem').autocomplete({
+
+        source: '/api/Invoice/Product',
+        select: function (event, ui) {
+
+          var tag = ui.item.value;
+
+          var AutoCus = {
+            Name: ui.item.value,
+          };
+
+          console.log(AutoCus);
+
+          $.ajax({
+            type: "POST",
+            url: "/Invoice/GetProduct",
+            data: JSON.stringify(AutoCus),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              document.getElementById("proDes").value = r.productService.description;
+              document.getElementById("proItemId").value = r.productService.id;
+              document.getElementById("proQuantity").value = r.quantityRemain;
+              document.getElementById("proCostPrice").value = r.costPrice;
+              document.getElementById("proTotal").value = r.quantityRemain * r.costPrice;
+              //document.getElementById("cusId").value = r.Id;
+
+              console.log(r);
+            },
+            error: function () {
+              alert("Error occured!!")
+            }
+          });
+
+
+        }
+
+      });
+
+      $("#addItem").click(function (event) {
+
+        event.preventDefault();
+
+        //$("#loading-overlay").show();
+
+        var InvoiceItem = {
+          ProductServiceId: $("#proItemId").val(),
+          InvoiceRecordId: $("#Id").val(),
+          Quantity: $("#proQuantity").val(),
+          UnitCost: $("#proCostPrice").val(),
+          TotalCost: $("#proTotal").val(),
+        };
+
+
+        console.log(InvoiceItem);
+
+        $.ajax({
+          type: "POST",
+          url: "/Invoice/AddProduct",
+          data: JSON.stringify(InvoiceItem),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              window.location.reload();
+
+
+            } else if (r.msg == "Fail") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+            }
+
+          },
+          error: function () {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+        });
+      });
+
+
+      $("#show-button").click(function () {
+        $("#hide-button").show()
+        $("#show-button").hide()
+      });
+
+      $("#hide-button").click(function () {
+        $("#show-button").show()
+        $("#hide-button").hide()
+      });
+
+    })
+
+    $('#proQuantity').keyup(function () {
+      $('#proTotal').val($(this).val() * $('#proCostPrice').val());
+    });
+
+    $('#proCostPrice').keyup(function () {
+      $('#proTotal').val($(this).val() * $('#proQuantity').val());
+    });
+
+    $('#proQuantity').change(function () {
+      $('#proTotal').val($(this).val() * $('#proCostPrice').val());
+    });
+
+    $('#proCostPrice').change(function () {
+      $('#proTotal').val($(this).val() * $('#proQuantity').val());
+    });
 
 
   </script>
 
 }
-
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $(function () {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#tags").autocomplete({
-      source: availableTags
-    });
-  });
-
-  $(function () {
-    var availableTag = [
-      "ActionScript ",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#tag").autocomplete({
-      source: availableTag
-    });
-  });
-
-  $(document).ready(function () {
-    $("#show-button").click(function () {
-      $("#hide-button").show()
-      $("#show-button").hide()
-    });
-    $("#hide-button").click(function () {
-      $("#show-button").show()
-      $("#hide-button").hide()
-    });
-  });
-
-</script>
-

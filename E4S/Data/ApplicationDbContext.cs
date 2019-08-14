@@ -74,6 +74,14 @@ namespace E4S.Data
     public DbSet<StockRecord> StockRecords { get; set; }
     public DbSet<AccountBank> AccountBanks { get; set; }
     public DbSet<Expense> Expenses { get; set; }
+    public DbSet<OperatingExpense> OperatingExpenses { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<Cashflow> Cashflows { get; set; }
+    public DbSet<QuoteRecord> QuoteRecords { get; set; }
+    public DbSet<QuoteItem> QuoteItems { get; set; }
+    public DbSet<InvoiceRecord> InvoiceRecords { get; set; }
+    public DbSet<InvoiceItem> InvoiceItems { get; set; }
+    public DbSet<CostOfGood> CostOfGoods { get; set; }
 
   }
 }

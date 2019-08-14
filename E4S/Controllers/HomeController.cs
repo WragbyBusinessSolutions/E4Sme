@@ -11,6 +11,8 @@ using E4S.Data;
 using Microsoft.AspNetCore.Identity;
 using E4S.Services;
 using E4S.ViewModel;
+using E4S.ViewModel.AccountVM;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers
 {
@@ -164,10 +166,66 @@ namespace E4S.Controllers
     public IActionResult DashboardAC()
     {
       var orgId = getOrg();
+      var allyearexpense = _context.OperatingExpenses.Where(x => x.OrganisationId == orgId);
+      var allyearsales = _context.Transactions.Where(x => x.OrganisationId == orgId);
+      var allyearCostOfGoods = _context.CostOfGoods.Where(x => x.OrganisationId == orgId);
+
+      List<ExpenseBD> expenseList = new List<ExpenseBD>();
+      List<ProfitLossBD> prolossList = new List<ProfitLossBD>();
+
+      DashboardACViewModel dbAcVM = new DashboardACViewModel();
+
+      dbAcVM.Customers = _context.Customers.Where(x => x.OrganisationId == orgId).Count();
+      dbAcVM.Sales = allyearsales
+                        .Where(x => x.TransactionType == "IN")
+                        .Where(x => x.DateCreated.Year == DateTime.Now.Year)
+                        .Where(x => x.DateCreated.Month == DateTime.Now.Month).Sum(x => x.Amount) * 100 / 105;
+
+      dbAcVM.Expenses = allyearsales
+                        .Where(x => x.DebitCredit == "C")
+                        .Where(x => x.DateCreated.Year == DateTime.Now.Year)
+                        .Where(x => x.DateCreated.Month == DateTime.Now.Month).Sum(x => x.Amount);
 
 
 
-      return View();
+      var allexpense = allyearexpense
+                        .Where(x => x.DateCreated.Year == DateTime.Now.Year)
+                        .Where(x => x.DateCreated.Month == DateTime.Now.Month).Include(x => x.Expense).ToList();
+
+      ExpenseBD exp;
+      foreach (var item in allexpense.Select(x => x.Expense.ExpenseType).Distinct())
+      {
+        exp = new ExpenseBD();
+        exp.ExpenseName = item;
+        exp.Amount = allexpense.Where(x => x.Expense.ExpenseType == item).Sum(x => x.Amount);
+
+        expenseList.Add(exp);
+      }
+
+      ProfitLossBD pl;
+      for (int i = 0; i < 6; i++)
+      {
+        pl = new ProfitLossBD();
+        pl.Date = DateTime.Now.AddMonths(-i).ToString("MMM yy");
+        pl.Income = allyearsales.Where(x => x.DebitCredit == "D")
+                      .Where(x => x.DateCreated.Month == DateTime.Now.AddMonths(-i).Month && x.DateCreated.Year == DateTime.Now.AddMonths(-i).Year)
+                      .Sum(x => x.Amount) * 100/105;
+        pl.Expenses = allyearexpense
+                        .Where(x => x.DateCreated.Month == DateTime.Now.AddMonths(-i).Month && x.DateCreated.Year == DateTime.Now.AddMonths(-i).Year)
+                        .Sum(x => x.Amount) + 
+                      
+                        allyearCostOfGoods
+                        .Where(x => x.DateCreated.Month == DateTime.Now.AddMonths(-i).Month && x.DateCreated.Year == DateTime.Now.AddMonths(-i).Year)
+                        .Sum(x => x.TotalCost);
+
+        prolossList.Add(pl);
+
+      }
+
+      dbAcVM.ProfitLossChart = prolossList;
+      dbAcVM.ExpenseChart = expenseList;
+
+      return View(dbAcVM);
     }
 
     

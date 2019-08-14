@@ -4,14 +4,16 @@ using E4S.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E4S.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190806123939_expenseTypeot")]
+    partial class expenseTypeot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,64 +49,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AccountBanks");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.Cashflow", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<Guid>("BankId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("DebitCredit");
-
-                    b.Property<string>("FlowDetails");
-
-                    b.Property<string>("FlowType");
-
-                    b.Property<Guid>("FlowTypeId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<float>("Tax");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cashflows");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.CostOfGood", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<Guid>("InvoiceId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<float>("TotalCost");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CostOfGoods");
                 });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.Customer", b =>
@@ -181,78 +125,6 @@ namespace E4S.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.InvoiceItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<Guid>("InvoiceRecordId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<Guid>("ProductServiceId");
-
-                    b.Property<float>("Quantity");
-
-                    b.Property<float>("TotalCost");
-
-                    b.Property<float>("UnitCost");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceRecordId");
-
-                    b.HasIndex("ProductServiceId");
-
-                    b.ToTable("InvoiceItems");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.InvoiceRecord", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("CustomerId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<DateTime>("DueDate");
-
-                    b.Property<int>("InvoiceNo");
-
-                    b.Property<string>("InvoiceTitle");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<string>("PaymentStatus");
-
-                    b.Property<int>("QuoteNo");
-
-                    b.Property<float>("SubTotal");
-
-                    b.Property<float>("Tax");
-
-                    b.Property<float>("Total");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InvoiceRecords");
                 });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.NewInventory", b =>
@@ -351,72 +223,6 @@ namespace E4S.Data.Migrations
                     b.ToTable("ProductServices");
                 });
 
-            modelBuilder.Entity("E4S.Models.AccountInventory.QuoteItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<Guid>("ProductServiceId");
-
-                    b.Property<float>("Quantity");
-
-                    b.Property<Guid>("QuoteRecordId");
-
-                    b.Property<float>("TotalCost");
-
-                    b.Property<float>("UnitCost");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductServiceId");
-
-                    b.HasIndex("QuoteRecordId");
-
-                    b.ToTable("QuoteItems");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.QuoteRecord", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("CustomerId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<DateTime>("QuoteDate");
-
-                    b.Property<int>("QuoteNo");
-
-                    b.Property<float>("SubTotal");
-
-                    b.Property<float>("Tax");
-
-                    b.Property<float>("Total");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuoteRecords");
-                });
-
             modelBuilder.Entity("E4S.Models.AccountInventory.StockRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -447,40 +253,6 @@ namespace E4S.Data.Migrations
                     b.HasIndex("ProductServiceId");
 
                     b.ToTable("StockRecords");
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.Transaction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Amount");
-
-                    b.Property<Guid>("BankId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("DateUpdated");
-
-                    b.Property<string>("DebitCredit");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("OrganisationId");
-
-                    b.Property<string>("TransactionDetails");
-
-                    b.Property<Guid>("TransactionId");
-
-                    b.Property<string>("TransactionType");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("E4S.Models.AccountInventory.Vendor", b =>
@@ -1944,19 +1716,6 @@ namespace E4S.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("E4S.Models.AccountInventory.InvoiceItem", b =>
-                {
-                    b.HasOne("E4S.Models.AccountInventory.InvoiceRecord", "InvoiceRecord")
-                        .WithMany()
-                        .HasForeignKey("InvoiceRecordId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.AccountInventory.ProductService", "ProductService")
-                        .WithMany()
-                        .HasForeignKey("ProductServiceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("E4S.Models.AccountInventory.NewInventory", b =>
                 {
                     b.HasOne("E4S.Models.AccountInventory.ProductService", "ProductService")
@@ -1970,19 +1729,6 @@ namespace E4S.Data.Migrations
                     b.HasOne("E4S.Models.AccountInventory.Expense", "Expense")
                         .WithMany()
                         .HasForeignKey("ExpenseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("E4S.Models.AccountInventory.QuoteItem", b =>
-                {
-                    b.HasOne("E4S.Models.AccountInventory.ProductService", "ProductService")
-                        .WithMany()
-                        .HasForeignKey("ProductServiceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("E4S.Models.AccountInventory.QuoteRecord", "QuoteRecord")
-                        .WithMany()
-                        .HasForeignKey("QuoteRecordId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

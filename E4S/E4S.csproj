@@ -67,6 +67,9 @@
     <Content Update="Views\Employees\CheckData.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_LayoutAccountInventoryEmpty.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutWragbyAdmin.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -82,7 +85,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\AccountVM\" />
     <Folder Include="wwwroot\images\employeeImage\" />
     <Folder Include="wwwroot\images\qualificationImage\" />
   </ItemGroup>

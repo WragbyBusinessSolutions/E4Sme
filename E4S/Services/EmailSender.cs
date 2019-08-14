@@ -16,7 +16,6 @@ namespace E4S.Services
   {
     SmtpClient SmtpServer;
     string MailerResponse;
-  
     string apiKey = "";
 
     public EmailSender()
