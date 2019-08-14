@@ -19,7 +19,7 @@ namespace E4S.Services
   
     string apiKey = "";
 
-        public EmailSender()
+    public EmailSender()
     {
 
       SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
