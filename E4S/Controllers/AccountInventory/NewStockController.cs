@@ -64,6 +64,7 @@ namespace E4S.Controllers.AccountInventory
         newInventory.Id = Guid.NewGuid();
         newInventory.OrganisationId = orgId;
 
+        var product = _context.ProductServices.Where(x => x.Id == newInventory.ProductServiceId).FirstOrDefault();
 
         try
         {
@@ -79,6 +80,34 @@ namespace E4S.Controllers.AccountInventory
           stockRecord.CostPrice = (totalprice + (newInventory.TotalPrice)) / stockRecord.QuantityRemain;
 
           _context.Update(stockRecord);
+          await _context.SaveChangesAsync();
+
+          Transaction tCredit = new Transaction()
+          {
+            Id = Guid.NewGuid(),
+            TransactionType = "IT",
+            TransactionId = newInventory.Id,
+            DebitCredit = "C",
+            TransactionDetails = "Inventory - " + newInventory.Quantity + " pcs " + product.ProductServiceName,
+            Amount = newInventory.TotalPrice,
+            OrganisationId = orgId
+          };
+
+          _context.Add(tCredit);
+          await _context.SaveChangesAsync();
+
+          Cashflow credit = new Cashflow()
+          {
+            Id = Guid.NewGuid(),
+            FlowType = "IT",
+            FlowTypeId = newInventory.Id,
+            DebitCredit = "C",
+            FlowDetails = "Inventory - " + newInventory.Quantity + " pcs " + product.ProductServiceName,
+            Amount = newInventory.TotalPrice,
+            OrganisationId = orgId
+          };
+
+          _context.Add(credit);
           await _context.SaveChangesAsync();
 
 

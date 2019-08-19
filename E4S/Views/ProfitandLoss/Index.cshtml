@@ -1,4 +1,5 @@
-﻿
+﻿@model  E4S.ViewModel.AccountVM.ProfitLossViewModel
+
 @{
     ViewData["Title"] = "Profit and Loss";
     Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
@@ -91,21 +92,21 @@
 
                         <div class="col-md-3 space">
                             <h6 style="text-align:center;">Income</h6>
-                            <h4 style="text-align:center;">₦ 0<span class="pull-right">-</span></h4>
+                            <h4 style="text-align:center;">₦  @Model.TotalIncome.ToString("N2")<span class="pull-right">-</span></h4>
                         </div>
                         <div class="col-md-3 space">
                             <h6 style="text-align:center;">Cost of goods sold</h6>
-                            <h4 style="text-align:center;">₦ 0 <span class="pull-right">-</span></h4>
+                            <h4 style="text-align:center;">₦  @Model.CostOfGoods.ToString("N2") <span class="pull-right">-</span></h4>
                         </div>
 
                         <div class="col-md-3 space">
                             <h6 style="text-align:center;">Operating Expenses</h6>
-                            <h4 style="text-align:center;">₦ 0 <span class="pull-right">=</span></h4>
+                            <h4 style="text-align:center;">₦  @Model.OperatingExpenses.ToString("N2") <span class="pull-right">=</span></h4>
                         </div>
 
                         <div class="col-md-3 space">
                             <h6 style="text-align:center;">Net Profit</h6>
-                            <h4 style="text-align:center;">₦ 0</h4>
+                            <h4 style="text-align:center;">₦  @Model.NetProfit.ToString("N2")</h4>
 
                         </div>
                     </div>
@@ -153,32 +154,32 @@
 
                                     <tr>
                                         <td class="table-font"><strong>Total Income</strong></td>
-                                        <td style="text-align:right;">NGN0.00</td>
+                                        <td style="text-align:right;">NGN @Model.TotalIncome.ToString("N2")</td>
 
 
                                     </tr>
 
                                     <tr>
                                         <td class="table-font"><strong>Total Cost of Goods Sold</strong></td>
-                                        <td style="text-align:right;">NGN0.00</td>
+                                        <td style="text-align:right;">NGN  @Model.CostOfGoods.ToString("N2")</td>
 
 
                                     </tr>
 
                                     <tr>
                                         <td><strong>Gross Profit</strong><p>As a percentage of total income</p></td>
-                                        <td style="text-align:right;">NGN0.00 <p>0.00%</p></td>
+                                        <td style="text-align:right;">NGN  @Model.GrossProfit.ToString("N2") <p>0.00%</p></td>
 
                                     </tr>
                                     <tr>
                                         <td><strong>Total Operating Expenses</strong></td>
-                                        <td style="text-align:right;">NGN0.00</td>
+                                        <td style="text-align:right;">NGN  @Model.OperatingExpenses.ToString("N2")</td>
 
                                     </tr>
 
                                     <tr>
                                         <td><strong>Net Profit</strong> <p>As a percentage of total income</p></td>
-                                        <td style="text-align:right;">NGN0.00 <p>0.00%</p></td>
+                                        <td style="text-align:right;">NGN  @Model.NetProfit.ToString("N2") <p>0.00%</p></td>
 
                                     </tr>
 

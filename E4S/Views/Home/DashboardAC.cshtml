@@ -1,4 +1,5 @@
-﻿
+﻿@model  E4S.ViewModel.AccountVM.DashboardACViewModel
+
 @{
     ViewData["Title"] = "Account Dashboard";
     Layout = "~/Views/Shared/_LayoutAccountInventory.cshtml";
@@ -65,7 +66,7 @@
                                         <i class="now-ui-icons users_single-02"></i>
                                     </div>
 
-                                    <h3 class="info-title">859</h3>
+                                    <h3 class="info-title">@Model.Customers</h3>
                                     <h6 class="stats-title">Customers</h6>
                                 </div>
                             </div>
@@ -77,7 +78,7 @@
                                         <i class="now-ui-icons business_money-coins"></i>
                                     </div>
 
-                                    <h3 class="info-title"><small>₦</small>859</h3>
+                                    <h3 class="info-title"><small>₦ </small>@Model.Sales.ToString("N2")</h3>
                                     <h6 class="stats-title">Sales</h6>
                                 </div>
                             </div>
@@ -90,8 +91,8 @@
                                         <i class="now-ui-icons objects_support-17"></i>
                                     </div>
 
-                                    <h3 class="info-title"><small>₦</small>859</h3>
-                                    <h6 class="stats-title">Purchase</h6>
+                                    <h3 class="info-title"><small>₦ </small>@Model.Expenses.ToString("N2")</h3>
+                                    <h6 class="stats-title">Expenses</h6>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +119,7 @@
                         </div>
 
                         <div class="col-md-10">
-                            <h5><a asp-action="Index" asp-controller="ProfitandLoss" class="link">Add a Customer</a></h5>
+                            <h5><a asp-action="Index" asp-controller="Customer" class="link">Add a Customer</a></h5>
                             <p class="col-md-12">A great way to start is to add your customers info.</p>
 
                         </div>
@@ -130,7 +131,7 @@
                         </div>
 
                         <div class="col-md-9">
-                            <h5><a asp-action="Index" asp-controller="ReportAccountTransaction" class="link">Add a vendor</a></h5>
+                            <h5><a asp-action="Index" asp-controller="Vendor" class="link">Add a vendor</a></h5>
                             <p class="col-md-12">You dont want to miss out your reliable vendors</p>
 
                         </div>
@@ -142,7 +143,7 @@
                         </div>
 
                         <div class="col-md-9">
-                            <h5><a asp-action="Index" asp-controller="BalanceSheet" class="link">Customize your invoice</a></h5>
+                            <h5><a asp-action="Index" asp-controller="Invoice" class="link">Create an invoice</a></h5>
                             <p class="col-md-12">Ready to invoice your clients? Use our easy to use invoice to get started</p>
                         </div>
 
@@ -154,7 +155,7 @@
                         </div>
 
                         <div class="col-md-9">
-                            <h5><a asp-action="Index" asp-controller="AccountCashFlow" class="link">Customize your quote</a></h5>
+                            <h5><a asp-action="Index" asp-controller="Quote" class="link">Create a quote</a></h5>
                             <p class="col-md-12">Now you can make a beautiful, well designed quotes</p>
                         </div>
 
@@ -354,31 +355,15 @@
         var chart = am4core.create("chartdiv", am4charts.PieChart3D);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-        chart.data = [
-            {
-                country: "Lithuania",
-                litres: 501.9
-            },
-            {
-                country: "Czech Republic",
-                litres: 301.9
-            },
-            {
-                country: "Ireland",
-                litres: 201.1
-            },
-            {
-                country: "Germany",
-                litres: 165.8
-            },
-            {
-                country: "Australia",
-                litres: 139.9
-            },
-            {
-                country: "Austria",
-                litres: 128.3
-            }
+      chart.data = [
+          @foreach (var item in Model.ExpenseChart)
+          {
+            @:{
+            @: "country": "@item.ExpenseName",
+            @: "litres" : @item.Amount,
+            @:},
+
+          }
         ];
 
         chart.innerRadius = am4core.percent(40);
@@ -397,11 +382,6 @@
 </script>
 
 
-<!-- Resources -->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
 <!-- Chart code -->
 <script>
     am4core.ready(function () {
@@ -414,34 +394,19 @@
         var chart = am4core.create("chartdivs", am4charts.XYChart);
 
         // Add percent sign to all numbers
-        chart.numberFormatter.numberFormat = "200'₦'";
+        chart.numberFormatter.numberFormat = "'₦' 000,000";
 
         // Add data
-        chart.data = [{
-            "month": "Aug 18",
-            "year2004": 3.5,
-            "year2005": 4.2
-        }, {
-            "month": "Sept 18",
-            "year2004": 1.7,
-            "year2005": 3.1
-        }, {
-            "month": "Oct 18",
-            "year2004": 2.8,
-            "year2005": 2.9
-        }, {
-            "month": "Novv 18",
-            "year2004": 2.6,
-            "year2005": 2.3
-        }, {
-            "month": "Dec 18",
-            "year2004": 1.4,
-            "year2005": 2.1
-        }, {
-            "month": "Jan 19",
-            "year2004": 1.6,
-            "year2005": 4.9
-        }];
+      chart.data = [
+        @foreach (var item in Model.ProfitLossChart)
+        {
+          @:{
+          @:"month": "@item.Date",
+          @:"Expenses": @item.Expenses,
+          @:"Income": @item.Income
+          @:},
+        }
+      ];
 
         // Create axes
         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -455,13 +420,13 @@
 
         // Create series
         var series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.valueY = "year2004";
+        series.dataFields.valueY = "Expenses";
         series.dataFields.categoryX = "month";
         series.clustered = false;
         series.tooltipText = "Expenses in  {categoryX}: [bold]{valueY}[/]";
 
         var series2 = chart.series.push(new am4charts.ColumnSeries());
-        series2.dataFields.valueY = "year2005";
+        series2.dataFields.valueY = "Income";
         series2.dataFields.categoryX = "month";
         series2.clustered = false;
         series2.columns.template.width = am4core.percent(50);

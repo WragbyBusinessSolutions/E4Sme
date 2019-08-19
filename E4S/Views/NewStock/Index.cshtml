@@ -99,9 +99,9 @@
                   <th scope="col"><strong>Description</strong></th>
 
                   <th scope="col"><strong>Quantity</strong></th>
-                  <th scope="col"><strong>Unit Price</strong></th>
-                  <th scope="col"><strong>Total Price</strong></th>
-                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                  <th class="text-right" scope="col"><strong>Unit Price</strong></th>
+                  <th class="text-right" scope="col"><strong>Total Price</strong></th>
+                  <th class="text-right disabled-sorting" scope="col" ><strong>Actions</strong></th>
                 </tr>
               </thead>
               <tbody class="fontweight">
@@ -116,10 +116,10 @@
                   <td>@item.ProductService.ProductServiceName</td>
                   <td>@item.ProductService.Description</td>
                   <td>@item.Quantity</td>
-                  <td>@item.UnitPrice.ToString("C")</td>
+                  <td class="text-right">@item.UnitPrice.ToString("N2")</td>
 
-                  <td>@item.TotalPrice.ToString("C")</td>
-                  <td class="">
+                  <td class="text-right">@item.TotalPrice.ToString("N2")</td>
+                  <td class="text-right">
                     <a href="#" class="btn btn-warning btn-icon btn-sm edit"><i class="fas fa-edit"></i></a>
                     <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                   </td>
