@@ -140,5 +140,47 @@ namespace E4S.Controllers.AccountInventory
       return _context.Customers.Any(e => e.Id == id);
     }
 
+        // Ednf of Edit for Job Title
+
+
+
+        [HttpPost]
+        public IActionResult DeleteCustomer([FromBody]string customerId)
+        {
+            if (customerId == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            try
+            {
+                var customr = _context.Customers.SingleOrDefault(m => m.Id == Guid.Parse(customerId));
+                _context.Customers.Remove(customr);
+                _context.SaveChanges();
+
+                return Json(new
+                {
+                    msg = "Success"
+                });
+
+            }
+            catch
+            {
+
+            }
+
+            return Json(new
+            {
+                msg = "Fail"
+            });
+
+
+        }
+
+
   }
 }
