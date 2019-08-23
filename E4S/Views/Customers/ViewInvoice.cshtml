@@ -1,6 +1,8 @@
-﻿
+﻿@model E4S.ViewModel.AccountVM.InvoiceViewModel
+
+
 @{
-  ViewData["Title"] = "Index";
+  ViewData["Title"] = "View Invoice";
   Layout = "~/Views/Shared/_LayoutAccountInventoryEmpty.cshtml";
 }
 
@@ -125,10 +127,10 @@
             <div class="">
 
               <div class="col-md-12">
-                <label type="number" class="form-control">
-                  Model.InvoiceNo
+                <label type="number" class="form-control" readonly>
+                  @Model.InvoiceNo
                 </label>
-                <input hidden />
+                <input input asp-for="Id" hidden />
               </div>
 
             </div>
@@ -141,15 +143,15 @@
               <div class="col-md-4 pull-right">
                 <h5 class="text-right">
                   <b class="text-danger spanlabel">
-                    Model.Organisation.OrganisationName
+                    @Model.Organisation.OrganisationName
                   </b>
                 </h5>
 
                 <p class="text-right">
-                  Model.Organisation.Address
-                  <br />Model.Organisation.City
-                  <br />Model.Organisation.State
-                  <br />Model.Organisation.Country
+                  @Model.Organisation.Address
+                  <br />@Model.Organisation.City
+                  <br />@Model.Organisation.State
+                  <br />@Model.Organisation.Country
                 </p>
               </div>
 
@@ -162,7 +164,7 @@
               <div class="pull-right text-right col-md-2">
                 <p>
                   <b>Invoice Date:</b>
-                  <input " type="date" class="form-control" />
+                  <input asp-for="DateCreated" type="date" class="form-control" readonly/>
                 </p>
               </div>
 
@@ -216,14 +218,14 @@
 
           <br />
 
-
+            
           <div class="row">
             <div class="col-md-12">
               <div class="col-md-4">
 
 
 
-                <button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button> <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
+                @*<button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button>*@ <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
                 <textarea id="cusAddress" name="cusAddress" class="form-control"></textarea>
 
 
@@ -247,50 +249,55 @@
                       <th class="text-right"><strong>Quantity</strong></th>
                       <th class="text-right"><strong>Unit Cost</strong></th>
                       <th class="text-right"><strong>Total Cost</strong></th>
-                      <th>+/-</th>
+                      @*<th>+/-</th>*@
 
                     </tr>
                   </thead>
                   <tbody>
 
 
-                    <tr>
+                    @foreach (var item in Model.InvoiceItems)
+                    {
+                      <tr>
 
-                      <td>
-                        <p type="text">
-                          item.ProductService.ProductServiceName
-                        </p>
-                      </td>
-                      <td>
-                        <p type="text">
-                          item.ProductService.Description
-                        </p>
-                      </td>
-                      <td class="text-right">
-                        <p type="text">
-                          item.Quantity
-                        </p>
-                      </td>
-                      <td class="text-right">
-                        <p type="text">
-                          item.UnitCost.ToString("N2")
-                        </p>
-                      </td>
-                      <td class="text-right">
-                        <p type="text">
-                          item.TotalCost.ToString("N2")
-                        </p>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm btn-danger">-</button>
-                      </td>
+                        <td>
+                          <p type="text">
+                            @item.ProductService.ProductServiceName
+                          </p>
+                        </td>
+                        <td>
+                          <p type="text">
+                            @item.ProductService.Description
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.Quantity
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.UnitCost.ToString("N2")
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.TotalCost.ToString("N2")
+                          </p>
+                        </td>
+                        @*<td>
+                          <button class="btn btn-sm btn-danger">-</button>
+                        </td>*@
 
-                    </tr>
+                      </tr>
+
+                    }
 
 
 
-                    <tr>
-                      <td>
+
+                    @*<tr>*@
+                      @*<td>
                         <input id="proItemId" name="proItemId" hidden />
                         <input id="proItem" name="proItem" type="text" class="form-control" placeholder="Item/Service">
                       </td>
@@ -305,12 +312,12 @@
                       </td>
                       <td class="text-right">
                         <input id="proTotal" name="proTotal" type="number" class="form-control text-right" placeholder="0" />
-                      </td>
-                      <td>
+                      </td>*@
+                      @*<td>
                         <button id="addItem" class="btn btn-sm btn-success">+</button>
-                      </td>
+                      </td>*@
 
-                    </tr>
+                    @*</tr>*@
 
                   </tbody>
                 </table>
@@ -331,8 +338,8 @@
             <div class="clearfix"></div>
             <hr>
             <div class="text-right">
-              <a asp-action="index" id="print" class="btn btn-info btn-outline"> <span><i class="fa fa-save"></i> Save</span> </a>
-              <a asp-action="InvoiceDone" asp-route-id="Model.Id" class="btn btn-success"> Done  </a>
+              <a asp-action="index" id="print" class="btn btn-info btn-outline"> <span><i class="fas fa-download"></i> Download</span> </a>
+              <a asp-action="InvoiceDone" asp-route-id="Model.Id" class="btn btn-success"><span><i class="fas fa-print"></i></span> Print  </a>
             </div>
           </div>
 
