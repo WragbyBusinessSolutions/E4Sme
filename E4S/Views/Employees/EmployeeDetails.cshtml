@@ -653,77 +653,130 @@
                                 <div class="card-body">
                                     <div class="col-lg-12">
                                         <div class="card">
-                                            <div class="card-header body-card">
-                                               
-                                                <button class="btn btn-info btn-md button-padding pull-right btn-responsive" data-toggle="modal" data-target="#noticeModalReport1">
-                                                    <span class="btn-label">
-                                                        <i class="now-ui-icons travel_info"></i>
-                                                    </span>
-                                                    Assign New
-                                                </button>
+                                          <div class="card-header body-card">
 
-                                                <div class="modal fade" id="noticeModalReport1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-notice">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                                                </button>
-                                                                <h5 class="modal-title" id="myModalLabel">Create Assign Supervisor</h5>
+                                            <button class="btn btn-info btn-md button-padding pull-right btn-responsive" data-toggle="modal" data-target="#noticeModalReport1">
+                                              <span class="btn-label">
+                                                <i class="now-ui-icons travel_info"></i>
+                                              </span>
+                                              Create New
+                                            </button>
+
+                                            <div class="modal fade" id="noticeModalReport1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog modal-notice">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                    </button>
+                                                    <h5 class="modal-title" id="myModalLabel">Create Assign Supervisor</h5>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="instruction">
+                                                      <form>
+                                                        <input asp-for="Id" id="empId" name="empId" hidden />
+                                                        <div class="row">
+                                                          <div class="col-md-12">
+                                                            <div class="form-group">
+                                                              <label>Supervisor Name</label>
+                                                              <select class="form-control" placeholder="Employee Details" id="SupervisorId" name="SupervisorId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
+                                                              </select>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <div class="instruction">
-                                                                    <form>
-                                                                      <input asp-for="Id" id="empId" hidden />
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Supervisor Name</label>
-                                                                                    <select class="form-control" placeholder="Employee Details" id="SupervisorId" asp-items="ViewBag.EmployeeDetails" required>
-                                                                                        @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>Report Methods</label>
-                                                                                    <select class="form-control" placeholder="Report Methods" id="ReportMethod">
-                                                                                        <option> direct</option>
-                                                                                        <option> Indirect</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>                                                                        
-                                                                        <div class="form-check mt-3">
-                                                                            <label class="form-check-label">
-                                                                                Auto List
-                                                                                <input class="form-check-input" type="checkbox" id="AutoList">
-                                                                                <span class="form-check-sign"></span>
-                                                                            </label>
-                                                                        </div>
-                                                                        <hr />
-                                                                        <div class="card-footer ">
-                                                                            <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitAssignSupervisor">Create</button>
-                                                                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
+                                                          </div>
                                                         </div>
+                                                        <div class="row">
+                                                          <div class="col-md-12">
+                                                            <div class="form-group">
+                                                              <label>Report Methods</label>
+                                                              <select class="form-control" placeholder="Report Methods" id="ReportMethod" name="ReportMethod">
+                                                                <option> direct</option>
+                                                                <option> Indirect</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="form-check mt-3">
+                                                          <label class="form-check-label">
+                                                            Auto List
+                                                            <input class="form-check-input" type="checkbox" id="AutoList">
+                                                            <span class="form-check-sign"></span>
+                                                          </label>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="card-footer ">
+                                                          <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitAssignSupervisor">Create</button>
+                                                          <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </form>
                                                     </div>
+                                                  </div>
                                                 </div>
-
-
-                                                <h5 class="card-title col-md-6">Assign Supervisors</h5>
+                                              </div>
                                             </div>
+
+                                            <div class="modal fade" id="noticeModalReportEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog modal-notice">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                    </button>
+                                                    <h5 class="modal-title" id="myModalLabel">Edit Assign Supervisor</h5>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="instruction">
+                                                      <form>
+                                                        <input asp-for="Id" id="empId" name="empId" hidden />
+                                                        <div class="row">
+                                                          <div class="col-md-12">
+                                                            <div class="form-group">
+                                                              <label>Supervisor Name</label>
+                                                              <select class="form-control" placeholder="Employee Details" id="RSupervisorId" name="RSupervisorId" asp-items="ViewBag.EmployeeDetails" required>
+                                                                @*<option value="00000000-0000-0000-0000-000000000000"> --- Not Assigned --- </option>*@
+                                                              </select>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="row">
+                                                          <div class="col-md-12">
+                                                            <div class="form-group">
+                                                              <label>Report Methods</label>
+                                                              <select class="form-control" placeholder="Report Methods" id="RRReportMethod" name="RRReportMethod">
+                                                                <option> direct</option>
+                                                                <option> Indirect</option>
+                                                              </select>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="form-check mt-3">
+                                                          <label class="form-check-label">
+                                                            Auto List
+                                                            <input class="form-check-input" type="checkbox" id="RAutoList" name="RAutoList">
+                                                            <span class="form-check-sign"></span>
+                                                          </label>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="card-footer ">
+                                                          <button type="submit" class="btn btn-fill btn-primary btn-round" id="editAssignSupervisor">Create</button>
+                                                          <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+
+                                            <h5 class="card-title col-md-6">Assign Supervisors</h5>
+                                          </div>
                                             <div class="card-body body-card">
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="card-body" >
                                                             <div class="table-responsive" style="overflow:auto;">
-                                                                <table id="datatable2" class="table table-hover" cellspacing="10" width="100%">
+                                                                <table id="datatable2" class="table">
                                                                     <thead class="text-primary">
                                                                     
                                                                     <th class="text-left">
@@ -754,7 +807,7 @@
                                                                                 </td>
                                                                                
                                                                                 <td class="text-center">
-                                                                                    <span data-toggle="modal" data-target="#noticeModal1"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" title="Click to Edit" id="Editbtn" data-toggle="tooltip" data-placement="top"><i class="fas fa-edit"></i></a></span>
+                                                                                    <span data-toggle="modal" data-target="#noticeModalReportEdit"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm" id="EditSuper" EditSuperId="@item.Id" select-SupervisorId="@item.SupervisorId" Selected-ReportMethod="@item.ReportMethod" data-toggle="tooltip" data-placement="top" title="Click to Edit"><i class="far fa-calendar-alt"></i></a></span>
                                                                                     <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" SupervisorId="@item.Id" SupervisorName="@item.Supervisor.FirstName" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
                                                                                 </td>
                                                                             </tr>
@@ -785,7 +838,7 @@
                                               <span class="btn-label">
                                                 <i class="now-ui-icons travel_info"></i>
                                               </span>
-                                              Assign New
+                                              Create New
                                             </button>
 
                                             <div class="modal fade" id="noticeModalReportSub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -836,7 +889,7 @@
 
 
 
-                                            <div class="modal fade" id="noticeModalReportEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="noticeModalReportEdit2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                               <div class="modal-dialog modal-notice">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
@@ -892,7 +945,7 @@
                                                     <div class="col-md-12 ">
                                                         <div class="card-body">
                                                           <div class="table-responsive" style="overflow:auto;">
-                                                            <table id="datatable3"  class="table table-hover" cellspacing="10" width="100%">
+                                                            <table id="datatable3" class="table">
                                                               <thead class="text-primary">
 
                                                               <th class="text-left">
@@ -923,7 +976,7 @@
                                                                     </td>
 
                                                                     <td class="text-center">
-                                                                      <span data-toggle="modal" data-target="#noticeModalReportEdit"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm"  id="EditSub" EditSubId="@item.Id" select-SubordinateId="@item.SubordinateId" Selected-ReportMethod="@item.ReportMethod" data-toggle="tooltip" data-placement="top" title="Click to Edit"><i class="fas fa-edit"></i></a></span>
+                                                                      <span data-toggle="modal" data-target="#noticeModalReportEdit2"><a href="#" class="btn btn-round btn-warning btn-icon btn-sm"  id="EditSub" EditSubId="@item.Id" select-SubordinateId="@item.SubordinateId" Selected-ReportMethod="@item.ReportMethod" data-toggle="tooltip" data-placement="top" title="Click to Edit"><i class="far fa-calendar-alt"></i></a></span>
                                                                       <a href="#" class="btn btn-round btn-danger btn-icon btn-sm remove" SubordinateId="@item.Id" SubordinateName="@item.Subordinate.FirstName" data-toggle="tooltip" data-placement="top" title="Click to Delete"><i class="fas fa-times"></i></a>
                                                                     </td>
                                                                   </tr>
@@ -1679,6 +1732,28 @@
 
       });
 
+     var aEditSuperId;
+
+    $(document).delegate('#EditSuper',
+      'click',
+      function (e) {
+
+        aEditSuperId = $(this).attr('EditSuperId');
+        superName = $(this).attr('select-SupervisorId');
+        reportMethod = $(this).attr('Selected-ReportMethod');
+        autolist = $(this).attr('Selected-AutoList');
+
+        //console.log(varstartDate, varendDate);
+        //  console.log(aEditAssetId);
+
+        $('input[name=empId]').val(aEditSuperId);
+        $('select[name=RSupervisorId]').val(superName);
+        $('select[name=RRReportMethod]').val(reportMethod);
+        $('input[name=RAutoList]').val(autolist);
+
+
+      });
+
 
     $(document).ready(function () {
 
@@ -1919,6 +1994,58 @@
                 });
       });
 
+      $("#editAssignSupervisor").click(function (event) {
+
+        event.preventDefault();
+
+        var PostSuper = {
+          AId: $("#empId").val(),
+          EmployeeDetailsId: $("#Id").val(),
+          SupervisorId: $("#RSupervisorId").val(),
+          ReportMethod: $("#RRReportMethod").val(),
+          Autolist: $("#RAutoList").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(PostSuper);
+
+        $.ajax({
+          type: "POST",
+          url: "/Employees/editAssisgnedSupervisor",
+          data: JSON.stringify(PostSuper),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              demo.showSwal('success-message');
+
+            } else if (r.msg == "Fail") {
+
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            alert(r.msg);
+          }
+        });
+      });
+
       $("#SubmitAssignSubordinate").click(function (event) {
 
                 event.preventDefault();
@@ -1975,8 +2102,8 @@
         event.preventDefault();
 
         var PostSub = {
-          AId: $("#Id").val(),
-          //EmployeeDetailsId: $("#Id").val(),
+          AId: $("#SubId").val(),
+          EmployeeDetailsId: $("#Id").val(),
           SubordinateId: $("#RemployeeId").val(),
           ReportMethod: $("#RReportMethod").val(),
 
@@ -2020,7 +2147,9 @@
             alert(r.msg);
           }
         });
-      });
+       });
+
+
 
 
 
