@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.Models.AccountInventory;
+using E4S.ViewModel.AccountVM;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -180,6 +181,58 @@ namespace E4S.Controllers.AccountInventory
 
 
         }
+
+    [AllowAnonymous]
+    public IActionResult ViewInvoice(Guid? id)
+    {
+      var orgId = getOrg();
+      var inv = _context.InvoiceRecords.Where(x => x.OrganisationId == orgId).OrderByDescending(x => x.DateCreated).ToList();
+
+      if (id == null)
+      {
+        InvoiceRecord ir = new InvoiceRecord()
+        {
+          Id = Guid.NewGuid(),
+          OrganisationId = orgId
+        };
+
+        if (inv.Count > 0)
+        {
+          ir.InvoiceNo = inv.FirstOrDefault().InvoiceNo + 1;
+        }
+        else
+        {
+          ir.InvoiceNo = 1;
+        }
+
+        _context.Add(ir);
+        _context.SaveChanges();
+
+        id = ir.Id;
+
+        return RedirectToAction("ViewInvoice", new { id = ir.Id });
+
+      }
+
+      var cInvoiceRecord = inv.Where(x => x.Id == id).FirstOrDefault();
+
+      InvoiceViewModel iVM = new InvoiceViewModel();
+
+      iVM.Id = cInvoiceRecord.Id;
+      iVM.InvoiceNo = cInvoiceRecord.InvoiceNo;
+      iVM.InoviceTitle = cInvoiceRecord.InvoiceTitle;
+      iVM.Customer = _context.Customers.Where(x => x.Id == cInvoiceRecord.CustomerId).FirstOrDefault();
+      iVM.Organisation = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      iVM.Tax = cInvoiceRecord.Tax;
+      iVM.SubTotal = cInvoiceRecord.SubTotal;
+      iVM.Total = cInvoiceRecord.Total;
+      iVM.InvoiceItems = _context.InvoiceItems.Where(x => x.InvoiceRecordId == id).Include(x => x.ProductService).ToList();
+      iVM.DateCreated = cInvoiceRecord.DateCreated;
+
+
+
+      return View(iVM);
+    }
 
 
   }

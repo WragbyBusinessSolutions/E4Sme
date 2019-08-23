@@ -1,0 +1,356 @@
+﻿@model E4S.ViewModel.AccountVM.InvoiceViewModel
+
+
+@{
+  ViewData["Title"] = "View Invoice";
+  Layout = "~/Views/Shared/_LayoutAccountInventoryEmpty.cshtml";
+}
+
+<style>
+  .invoice-body {
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .printinvoice {
+    margin-top: 100px;
+  }
+
+  .info-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .display {
+    padding-left: 10px;
+  }
+
+  .quoteno {
+    height: 20px !important;
+  }
+
+  .invoice-card {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .hidden-info {
+    visibility: hidden;
+  }
+
+  .total-section {
+    margin-top: 40px;
+  }
+
+  .customer-button {
+    width: 200px;
+    height: 120px;
+    border-radius: 6px;
+    background-color: #fff;
+  }
+
+  .adddcustomer {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  .table-item {
+    font-size: 12px;
+  }
+
+  .ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    _width: 160px;
+    padding: 4px 0;
+    margin: 2px 0 0 0;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+  }
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+  }
+
+  &.ui-state-hover, &.ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+  }
+</style>
+
+
+<div class="content printinvoice">
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <div class="card invoice-card">
+
+        <div class="card-header">
+
+          <div class="row invoice-card">
+            <h5>Invoice No:</h5>
+
+            <div class="">
+
+              <div class="col-md-12">
+                <label type="number" class="form-control" readonly>
+                  @Model.InvoiceNo
+                </label>
+                <input input asp-for="Id" hidden />
+              </div>
+
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="row info-body">
+            <div class="col-md-12">
+              <div class="col-md-4 pull-right">
+                <h5 class="text-right">
+                  <b class="text-danger spanlabel">
+                    @Model.Organisation.OrganisationName
+                  </b>
+                </h5>
+
+                <p class="text-right">
+                  @Model.Organisation.Address
+                  <br />@Model.Organisation.City
+                  <br />@Model.Organisation.State
+                  <br />@Model.Organisation.Country
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <br />
+
+          <div>
+            <div class="col-md-12">
+              <div class="pull-right text-right col-md-2">
+                <p>
+                  <b>Invoice Date:</b>
+                  <input asp-for="DateCreated" type="date" class="form-control" readonly/>
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="card-body">
+            <div class="row invoice-card">
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Add New Customer</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form>
+                        <label class="pull-left">Customer name</label>
+                        <input type="text" class="form-control" />
+                        <br />
+                        <label class="pull-left">Email Address</label>
+                        <input type="text" class="form-control" />
+                        <br />
+                        <label class="pull-left">Phone Number</label>
+                        <input type="number" class="form-control" />
+                        <br />
+                      </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-info">Add Customer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <br />
+
+            
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-4">
+
+
+
+                @*<button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button>*@ <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
+                <textarea id="cusAddress" name="cusAddress" class="form-control"></textarea>
+
+
+                <input id="cusId" hidden />
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12 invoice-body">
+              <div class="table-responsive-sm" style="overflow:auto;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="table-item"><strong>Item</strong></th>
+                      <th><strong>Description</strong></th>
+                      <th class="text-right"><strong>Quantity</strong></th>
+                      <th class="text-right"><strong>Unit Cost</strong></th>
+                      <th class="text-right"><strong>Total Cost</strong></th>
+                      @*<th>+/-</th>*@
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+                    @foreach (var item in Model.InvoiceItems)
+                    {
+                      <tr>
+
+                        <td>
+                          <p type="text">
+                            @item.ProductService.ProductServiceName
+                          </p>
+                        </td>
+                        <td>
+                          <p type="text">
+                            @item.ProductService.Description
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.Quantity
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.UnitCost.ToString("N2")
+                          </p>
+                        </td>
+                        <td class="text-right">
+                          <p type="text">
+                            @item.TotalCost.ToString("N2")
+                          </p>
+                        </td>
+                        @*<td>
+                          <button class="btn btn-sm btn-danger">-</button>
+                        </td>*@
+
+                      </tr>
+
+                    }
+
+
+
+
+                    @*<tr>*@
+                      @*<td>
+                        <input id="proItemId" name="proItemId" hidden />
+                        <input id="proItem" name="proItem" type="text" class="form-control" placeholder="Item/Service">
+                      </td>
+                      <td>
+                        <input id="proDes" name="proDes" type="text" class="form-control" placeholder="Description">
+                      </td>
+                      <td class="text-right">
+                        <input id="proQuantity" name="proQuantity" type="number" class="form-control text-right" placeholder="0">
+                      </td>
+                      <td class="text-right">
+                        <input id="proCostPrice" name="proCostPrice" type="number" class="form-control text-right" placeholder="0.00">
+                      </td>
+                      <td class="text-right">
+                        <input id="proTotal" name="proTotal" type="number" class="form-control text-right" placeholder="0" />
+                      </td>*@
+                      @*<td>
+                        <button id="addItem" class="btn btn-sm btn-success">+</button>
+                      </td>*@
+
+                    @*</tr>*@
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 total-section invoice-body">
+            <div class="pull-right text-right">
+              <h4>Sub - Total:  ₦ Model.SubTotal.ToString("N2")</h4>
+              <p>
+                <input class="check" checked disabled type="checkbox" /> vat (5%) :  ₦Model.Tax.ToString("N2")
+              </p>
+              <hr>
+              <h3>
+                <b>Total :</b> ₦ Model.Total.ToString("N2")
+              </h3>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="text-right">
+              <a asp-action="index" id="print" class="btn btn-info btn-outline"> <span><i class="fas fa-download"></i> Download</span> </a>
+              <a asp-action="InvoiceDone" asp-route-id="Model.Id" class="btn btn-success"><span><i class="fas fa-print"></i></span> Print  </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
+
