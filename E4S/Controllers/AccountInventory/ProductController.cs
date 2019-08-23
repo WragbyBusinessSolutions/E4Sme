@@ -132,5 +132,47 @@ namespace E4S.Controllers.AccountInventory
 
     }
 
+    [HttpPost]
+    public async Task<IActionResult> UpdatePrice([FromBody]StockRecord product)
+    {
+      var orgId = getOrg();
+
+      if (product != null)
+      {
+
+        var prod = _context.StockRecords.Where(x => x.Id == product.Id).FirstOrDefault();
+        prod.SellingPrice = product.SellingPrice;
+        prod.ProfitPercent = product.ProfitPercent;
+
+        try
+        {
+          _context.Update(prod);
+          await _context.SaveChangesAsync();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+          return Json(new
+          {
+            msg = "Failed"
+          });
+
+        }
+
+
+      }
+
+      return Json(new
+      {
+        msg = "No Data"
+      });
+
+    }
+
   }
 }

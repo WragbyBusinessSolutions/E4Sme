@@ -218,6 +218,8 @@ namespace E4S.Controllers
                         .Where(x => x.DateCreated.Month == DateTime.Now.AddMonths(-i).Month && x.DateCreated.Year == DateTime.Now.AddMonths(-i).Year)
                         .Sum(x => x.TotalCost);
 
+        //pl.Income = pl.Income - pl.Expenses;
+
         prolossList.Add(pl);
 
       }

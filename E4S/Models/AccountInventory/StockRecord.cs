@@ -17,5 +17,8 @@ namespace E4S.Models.AccountInventory
     public float QuantityRemain { get; set; }
 
     public float CostPrice { get; set; }
+
+    public float ProfitPercent { get; set; }
+    public float SellingPrice { get; set; }
   }
 }

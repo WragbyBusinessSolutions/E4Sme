@@ -92,13 +92,50 @@
                   </div>
                 </div>
 
+
+                <div class="modal fade" id="sellingPriceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Product/Service Price</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form>
+                          <input id="proId" name="proId" hidden />
+                          <label class="pull-left">Product/Service</label>
+                          <input id="sellProductName" name="sellProductName" type="text" class="form-control" readonly />
+                          <br />
+                          <label class="pull-left">Unit Price</label>
+                          <input id="sellUnipPrice" name="sellUnipPrice" type="text" class="form-control text-right" readonly />
+                          <br />
+                          <label class="pull-left">Profit Percent</label>
+                          <input id="sellPercentage" name="sellPercentage" type="number" class="form-control text-right" />
+                          <br />
+                          <label class="pull-left">Selling Price</label>
+                          <input id="sellSellingPrice" name="sellSellingPrice" type="number" class="form-control text-right" />
+
+                          @*<input id="loadVendor" name="loadVendor" autocomplete="on" type="text" />*@
+                          <br />
+
+                        </form>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="saveSellingPrice" name="SubmitNewProduct" type="button" class="btn btn-info">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
             </div>
           </div>
-
-
-
         </div>
 
         <div class="card-body body-card">
@@ -110,10 +147,12 @@
                   <th><strong>S/N</strong></th>
                   <th><strong>Products</strong></th>
                   <th scope="col"><strong>Description</strong></th>
-                  <th  scope="col"><strong>Cost Price</strong></th>
                   <th class="text-center" scope="col"><strong>Available Quantity</strong></th>
                   <th class="text-center" scope="col"><strong>Quantity Sold</strong></th>
-                  <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                  <th class="text-right" scope="col"><strong>Unit Price</strong></th>
+                  <th class="text-right" scope="col"><strong>Profit %</strong></th>
+                  <th class="text-right" scope="col"><strong>Selling Price</strong></th>
+                  <th scope="col" class="disabled-sorting text-right"><strong>Actions</strong></th>
                 </tr>
               </thead>
               <tbody class="fontweight">
@@ -123,19 +162,21 @@
 
                   @foreach (var item in Model)
                   {
-                    <tr>
-                      <td scope="row" class="table-font">@i</td>
-                      <td scope="row">@item.ProductService.ProductServiceName</td>
-                      <td scope="row">@item.ProductService.Description</td>
-                      <td class="text-right" scope="row">@item.CostPrice.ToString("N2")</td>
-                      <td class="text-center" scope="row">@item.QuantityRemain</td>
-                      <td class="text-center" scope="row">@item.QuantitySold</td>
-                      <td class="">
-                        <a href="#" class="btn btn-warning btn-icon btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>
+                <tr>
+                  <td scope="row" class="table-font">@i</td>
+                  <td scope="row">@item.ProductService.ProductServiceName</td>
+                  <td scope="row">@item.ProductService.Description</td>
+                  <td class="text-center" scope="row">@item.QuantityRemain</td>
+                  <td class="text-center" scope="row">@item.QuantitySold</td>
+                  <td class="text-right" scope="row">@item.CostPrice.ToString("N2")</td>
+                  <td class="text-right" scope="row">@item.ProfitPercent.ToString("N2")%</td>
+                  <td class="text-right" scope="row">@item.SellingPrice.ToString("N2")</td>
+                  <td class="text-right">
+                    <a id="editprice" name="editprice" href="#" class="btn btn-warning btn-icon btn-sm" data-toggle="modal" data-target="#sellingPriceModal" title="Edit" selectedProduct="@item.ProductService.ProductServiceName" selectedUnitPrice="@item.CostPrice" selectedPercentage="@item.ProfitPercent" selectedId="@item.Id" selectedSellPrice="@item.SellingPrice"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="btn btn-danger btn-icon btn-sm remove" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-times"></i></a>
 
-                      </td>
-                    </tr>
+                  </td>
+                </tr>
 
                     i++;
                   }
@@ -160,84 +201,200 @@
   <script type="text/javascript">
     $(document).ready(function () {
 
-     $("#SubmitNewProduct").click(function (event) {
+      
 
-      event.preventDefault();
+      $("#saveSellingPrice").click(function (event) {
 
-      $("#loading-overlay").show();
+        event.preventDefault();
 
-      var ProductService = {
-        ProductServiceName: $("#productName").val(),
-        Description: $("#description").val(),
-        VendorId: $("#vendorId").val(),
-      };
+        $("#loading-overlay").show();
+
+        var StockRecord = {
+          Id: $("#proId").val(),
+          ProfitPercent: $("#sellPercentage").val(),
+          SellingPrice: $("#sellSellingPrice").val(),
+        };
 
 
-      // console.log(Items);
-      console.log(ProductService);
+        // console.log(Items);
+        console.log(StockRecord);
 
-      $.ajax({
-        type: "POST",
-        url: "/Product/AddNewProduct",
-        data: JSON.stringify(ProductService),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          RequestVerificationToken:
-            $('input:hidden[name="__RequestVerificationToken"]').val()
-        },
-        success: function (r) {
+        $.ajax({
+          type: "POST",
+          url: "/Product/UpdatePrice",
+          data: JSON.stringify(StockRecord),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
 
-          if (r.msg == "Success") {
+            if (r.msg == "Success") {
 
-        	swal({
+              swal({
+                title: "Success!",
+                text: "Price Updated!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+              }).then(function () {
+                window.location.reload();
+              }).catch(swal.noop);
+
+            } else if (r.msg == "Fail") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+        });
+      });
+
+      $("#SubmitNewProduct").click(function (event) {
+
+        event.preventDefault();
+
+        $("#loading-overlay").show();
+
+        var ProductService = {
+          ProductServiceName: $("#productName").val(),
+          Description: $("#description").val(),
+          VendorId: $("#vendorId").val(),
+        };
+
+
+        // console.log(Items);
+        console.log(ProductService);
+
+        $.ajax({
+          type: "POST",
+          url: "/Product/AddNewProduct",
+          data: JSON.stringify(ProductService),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              swal({
                 title: "Success!",
                 text: "Product Added!",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
-            type: "success"
-          }).then(function () {
-            window.location.reload();
-          }).catch(swal.noop);
+                type: "success"
+              }).then(function () {
+                window.location.reload();
+              }).catch(swal.noop);
 
-          } else if (r.msg == "Fail") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+            } else if (r.msg == "Fail") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
 
-          } else if (r.msg == "No Data") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+            } else if (r.msg == "No Data") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
 
-          } else {
+            } else {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
             $("#loading-overlay").hide();
             alert(r.msg);
           }
-          //alert(r.msg);
-          // window.location.reload();
-
-        },
-        error: function () {
-          $("#loading-overlay").hide();
-          alert(r.msg);
-        }
+        });
       });
-    });
 
 
-    $('#loadVendor').autocomplete({
+      $('#loadVendor').autocomplete({
 
         source: '/api/Vendor/search'
 
       });
 
-    $('#addItem').autocomplete({
+      $('#addItem').autocomplete({
 
-      source: '/api/Estimates/productsearch'
+        source: '/api/Estimates/productsearch'
+
+      });
+
 
     });
 
+                $(document).delegate('#editprice',
+            'click',
+            function (e) {
 
-})
+                product = $(this).attr('selectedProduct');
+                unitprice = $(this).attr('selectedUnitPrice');
+                percentage = $(this).attr('selectedPercentage');
+                sellingprice = $(this).attr('selectedSellPrice');
+                selectId = $(this).attr('selectedId');
+
+              
+                $('input[name=sellProductName]').val(product);
+                $('input[name=sellUnipPrice]').val(unitprice);
+                $('input[name=sellPercentage]').val(percentage);
+                $('input[name=sellSellingPrice]').val(sellingprice);
+                $('input[name=proId]').val(selectId);
+            });
+
+    $('#sellPercentage').keyup(function () {
+      up = $('#sellUnipPrice').val();
+      t = $(this).val();
+      c = up * ( 1 + t/100 );
+      $('#sellSellingPrice').val(c);
+    });
+
+    $('#sellSellingPrice').keyup(function () {
+      up = $('#sellUnipPrice').val();
+      t = $(this).val();
+      c = (t - up) * ( 100/up );
+      $('#sellPercentage').val(c);
+    });
+
+    $('#sellPercentage').change(function () {
+
+      up = $('#sellUnipPrice').val();
+      t = $(this).val();
+      c = up * ( 1 + t/100 );
+      $('#sellSellingPrice').val(c);
+
+    });
+
+    $('#sellSellingPrice').change(function () {
+      up = $('#sellUnipPrice').val();
+      t = $(this).val();
+      c = (t - up) * ( 100/up );
+      $('#sellPercentage').val(c);
+    });
+
+
+
   </script>
 
 }
