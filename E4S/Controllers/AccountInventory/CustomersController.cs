@@ -181,6 +181,13 @@ namespace E4S.Controllers.AccountInventory
 
         }
 
+    [AllowAnonymous]
+    public IActionResult ViewInvoice(Guid? id)
+    {
+
+      return View();
+    }
+
 
   }
 }
