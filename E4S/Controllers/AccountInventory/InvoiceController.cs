@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
 using E4S.Models.AccountInventory;
+using E4S.Services;
 using E4S.ViewModel.AccountVM;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,7 @@ namespace E4S.Controllers.AccountInventory
 {
   [Authorize]
 
+  [Authorize(Roles = "Accountant, Admin, Super Admin")]
   public class InvoiceController : Controller
     {
     [TempData]
@@ -23,11 +25,13 @@ namespace E4S.Controllers.AccountInventory
 
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-    public InvoiceController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-    {
+    public InvoiceController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+    { 
       _context = context;
       _userManager = userManager;
+      _emailSender = emailSender;
 
     }
     private Guid getOrg()
@@ -338,6 +342,56 @@ namespace E4S.Controllers.AccountInventory
     }
 
 
+        [HttpPost]
+        public async Task<IActionResult> SendInvoiceEmail([FromBody]Customer customer)
+        {
+            if (customer == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
 
-  }
+            var orgId = getOrg();
+            var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+
+            try
+            {
+                var SendInvoice = _context.Customers.Where(x => x.Id == customer.Id).FirstOrDefault();
+                SendInvoice.CustomerName = customer.CustomerName;
+                SendInvoice.Phone = customer.Phone;
+                SendInvoice.Email = customer.Email;
+
+                _context.Update(SendInvoice);
+                _context.SaveChanges();
+
+
+
+                //var response = _emailSender.SendGridInvoicesAsync(customer.Email, "Approved Invoice", "/Invoice/Index", customer.CustomerName, "invoice", organisationDetails.OrganisationName, organisationDetails.Email);
+
+
+
+                return Json(new
+                {
+                    msg = "Success"
+                }
+          );
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+
+    }
 }

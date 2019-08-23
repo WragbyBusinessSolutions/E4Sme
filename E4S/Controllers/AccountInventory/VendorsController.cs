@@ -143,6 +143,48 @@ namespace E4S.Controllers.AccountInventory
     }
 
 
+        // Delete for Vendor
 
-  }
+
+
+        [HttpPost]
+        public IActionResult DeleteVendors([FromBody]string vendorId)
+        {
+            if (vendorId == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            try
+            {
+                var vends = _context.Vendors.SingleOrDefault(m => m.Id == Guid.Parse(vendorId));
+                _context.Vendors.Remove(vends);
+                _context.SaveChanges();
+
+                return Json(new
+                {
+                    msg = "Success"
+                });
+
+            }
+            catch
+            {
+
+            }
+
+            return Json(new
+            {
+                msg = "Fail"
+            });
+
+
+        }
+
+
+
+    }
 }

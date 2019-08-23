@@ -1,8 +1,10 @@
 ﻿using E4S.Models.HumanResource;
+using E4S.Models.AccountInventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using E4S.Models;
 
 namespace E4S.Services
 {
@@ -21,6 +23,10 @@ namespace E4S.Services
     Task SendGridLeaveApprovalAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
     Task SendGridLeaveDeclinedAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
     Task SendGridLeaveApplicationAsync(string email, string subject, string message, string firstname, string template, string organisation, Leave leave);
+
+        // Account Email Templates 
+
+    Task SendGridInvoicesAsync(string email, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer, Organisation organization );
 
     }
 }
