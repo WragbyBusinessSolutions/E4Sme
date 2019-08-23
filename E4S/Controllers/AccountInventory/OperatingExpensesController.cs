@@ -177,5 +177,33 @@ namespace E4S.Controllers.AccountInventory
     }
 
 
-  }
+        // Edit the Department
+
+        [HttpPost]
+        public async Task<IActionResult> EditOperatingExpense([FromBody]OperatingExpense operatingExpense)
+        {
+            if (operatingExpense == null)
+            {
+                return Json(new
+                {
+                    msg = "No Data"
+                }
+               );
+            }
+
+            var orgId = getOrg();
+
+
+
+            return Json(
+            new
+            {
+                msg = "Fail"
+            });
+        }
+
+        // Ednf of Edit for Department
+
+
+    }
 }

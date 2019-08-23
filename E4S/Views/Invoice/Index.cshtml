@@ -19,182 +19,402 @@
 </style>
 
 <div class="content">
-  @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
+    @Html.Partial("~/Views/Manage/_StatusMessage.cshtml", ViewData["StatusMessage"])
 
 
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header body-card">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-3 pull-left">
-              <h4 class="card-title">Invoice</h4>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header body-card">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-3 pull-left">
+                            <h4 class="card-title">Invoice</h4>
+                        </div>
+
+                        <div class="btn-group col-md-5 pull-right">
+                            <a class="btn btn-success dropdown-toggle button-padding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
+                                Export Data
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Copy</a>
+                                <a class="dropdown-item" href="#">CSV</a>
+                                <a class="dropdown-item" href="#">Excel</a>
+                                <a class="dropdown-item" href="#">PDF</a>
+                                <a class="dropdown-item" href="#">Print</a>
+
+                            </div>
+
+                            <a asp-action="AddInvoice" asp-controller="Invoice" class="btn btn-info btn-md  btn-responsive" style="color: #fff;">
+                                <span class="btn-label">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </span>
+
+                                Create New
+
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
             </div>
+            <div class="card-body body-card">
 
-            <div class="btn-group col-md-5 pull-right">
-              <a class="btn btn-success dropdown-toggle button-padding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;">
-                Export Data
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Copy</a>
-                <a class="dropdown-item" href="#">CSV</a>
-                <a class="dropdown-item" href="#">Excel</a>
-                <a class="dropdown-item" href="#">PDF</a>
-                <a class="dropdown-item" href="#">Print</a>
+                <div class="table-responsive" style="overflow: auto;">
+                    <table id="datatable2" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"><strong>Date</strong></th>
+                                <th><strong>InvoiceNo</strong></th>
+                                <th scope="col"><strong>Customer Name</strong></th>
+                                @*<th scope="col"><strong>Title</strong></th>*@
 
-              </div>
+                                <th class="text-right" scope="col"><strong>Amount</strong></th>
+                                <th class="text-center" scope="col"><strong>Status</strong></th>
+                                <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody class="fontweight">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.InvoiceRecord.DateCreated.ToString("dd MMM, yy")</td>
+                                    <td>@item.InvoiceRecord.InvoiceNo</td>
+                                    <td>
+                                        @try
+                                        {
+                                            @item.Customer.CustomerName
+                                        }
+                                        catch
+                                        {
+                                            <p>---</p>
+                                        }
+                                    </td>
+                                    @*<td>@item.InvoiceRecord.InvoiceTitle</td>*@
+                                    <td class="text-right"> @item.InvoiceRecord.Total.ToString("N2")</td>
+                                    <td class="text-center" scope="row"><button class="btn btn-danger">Not paid</button></td>
 
-              <a asp-action="AddInvoice" asp-controller="Invoice" class="btn btn-info btn-md  btn-responsive" style="color: #fff;">
-                <span class="btn-label">
-                  <i class="now-ui-icons travel_info"></i>
-                </span>
+                                    <td class="">
+                                        <a asp-action="AddInvoice" asp-route-id="@item.InvoiceRecord.Id" class="btn btn-icon btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                                        <button type="button"  class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"  ><span data-toggle="modal" data-target="#exampledal"><i class="fa fa-credit-card"></i></span></button>
 
-                Create New
+                                        <button type="button" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail" id="Editbtn" InvoiceEmId="@item.InvoiceRecord.Id" Selected-CustomerName="@item.Customer.CustomerName" Selected-Phone="@item.Customer.Phone" Selected-Email="@item.Customer.Email" Selected-Amount="@item.InvoiceRecord.Total"><span data-toggle="modal" data-target="#ccc"><i class="fas fa-paper-plane"></i></span></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
 
-              </a>
+                    </table>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampledal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampledalLabel">Payment</h5>
+
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <label>Customer Name</label><input type="text" class="form-control" /><br />
+                                    <label>Total Amount</label><input type="text" class="form-control" /><br />
+                                    <label>Amount Paid</label><input type="text" class="form-control" /><br />
+                                    <label>Select File</label><br /><input type="file" /><br />
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info">Make Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Email -->
+                <div class="modal fade" id="ccc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampledalLabel">Send As</h5>
+
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox">
+                                            <span class="form-check-sign"></span>
+                                            Mail
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox">
+                                            <span class="form-check-sign"></span>
+                                            Text
+                                        </label>
+                                    </div>
+
+                                    <label>Customer Name</label>
+                                    <div class="form-group">
+                                        <input id="eCustomerName" name="eCustomerName" type="text" class="form-control" placeholder="Search Customer">
+                                    </div>
+                                    <label>Phone Number </label>
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" id="ePhoneNumber" name="ePhoneNumber">
+                                        @*<input type="hidden" class="form-control" id="eInvoiceEmId" name="eInvoiceEmId">*@
+                                    </div>
+                                    <label>Email address</label>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="eEmailAddress" name="eEmailAddress">
+                                    </div>
+                                    <label>Total Amount</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="eTotalAmount" name="eTotalAmount">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info" id="SubmitEmailInvoice">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Email-->
             </div>
-
-          </div>
         </div>
-
-
-
-      </div>
-      <div class="card-body body-card">
-
-          <div class="table-responsive" style="overflow: auto;">
-              <table id="datatable" class="table table-hover">
-                  <thead>
-                      <tr>
-                          <th scope="col"><strong>Date</strong></th>
-                          <th><strong>InvoiceNo</strong></th>
-                          <th scope="col"><strong>Customer Name</strong></th>
-                          @*<th scope="col"><strong>Title</strong></th>*@
-
-                          <th class="text-right" scope="col"><strong>Amount</strong></th>
-                          <th class="text-center" scope="col"><strong>Status</strong></th>
-                          <th scope="col" class="disabled-sorting"><strong>Actions</strong></th>
-                      </tr>
-                  </thead>
-                  <tbody class="fontweight">
-                      @foreach (var item in Model)
-                      {
-                          <tr>
-                              <td>@item.InvoiceRecord.DateCreated.ToString("dd MMM, yy")</td>
-                              <td>@item.InvoiceRecord.InvoiceNo</td>
-                              <td>
-                                  @try
-                                  {
-                                      @item.Customer.CustomerName
-                                  }
-                                  catch
-                                  {
-                                      <p>---</p>
-                                  }
-                              </td>
-                              @*<td>@item.InvoiceRecord.InvoiceTitle</td>*@
-                              <td class="text-right"> @item.InvoiceRecord.Total.ToString("N2")</td>
-                              <td class="text-center" scope="row"><button class="btn btn-danger">Not paid</button></td>
-
-                              <td class="">
-                                  <a asp-action="AddInvoice" asp-route-id="@item.InvoiceRecord.Id" class="btn btn-icon btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                                  <button type="button" class="btn btn-success btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="paid"><span data-toggle="modal" data-target="#exampledal"><i class="fa fa-credit-card"></i></span></button>
-
-                                  <button type="button" class="btn btn-warning btn-icon btn-sm edit" data-toggle="tooltip" data-placement="top" title="Send as Mail"><span data-toggle="modal" data-target="#ccc"><i class="fas fa-paper-plane"></i></span></button>
-                              </td>
-                          </tr>
-                      }
-                  </tbody>
-
-              </table>
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampledal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampledalLabel">Payment</h5>
-
-
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          <form>
-                              <label>Customer Name</label><input type="text" class="form-control" /><br />
-                              <label>Total Amount</label><input type="text" class="form-control" /><br />
-                              <label>Amount Paid</label><input type="text" class="form-control" /><br />
-                              <label>Select File</label><br /><input type="file" /><br />
-                          </form>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-info">Make Payment</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Modal -->
-          <div class="modal fade" id="ccc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="exampledalLabel">Send As</h5>
-
-
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          <form>
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                      <input class="form-check-input" type="checkbox">
-                                      <span class="form-check-sign"></span>
-                                      Mail
-                                  </label>
-                              </div>
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                      <input class="form-check-input" type="checkbox">
-                                      <span class="form-check-sign"></span>
-                                      Text
-                                  </label>
-                              </div>
-
-                              <label>Customer Name</label>
-                              <div class="form-group">
-                                  <input type="text" class="form-control">
-                              </div>
-                              <label>Phone Number </label>
-                              <div class="form-group">
-                                  <input type="tel" class="form-control">
-                              </div>
-                              <label>Email address</label>
-                              <div class="form-group">
-                                  <input type="email" class="form-control">
-                              </div>
-                              <label>Total Amount</label>
-                              <div class="form-group">
-                                  <input type="text" class="form-control">
-                              </div>
-                          </form>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-info">Send Message</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-      </div>
     </div>
-
-  </div>
-
 </div>
 
+
+@section Scripts {
+
+   
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#datatable2').DataTable({
+                "pagingType": "full_numbers",
+                dom: "Bfrtip",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+
+
+                buttons: [
+                    'copy',
+                    'excel',
+                    'csv',
+                    'pdf',
+                    'print',
+                ],
+
+
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+
+            });
+
+            var table = $('#datatable2').DataTable();
+
+
+            // Delete a record
+            table.on('click', '.remove', function (e) {
+                $tr = $(this).closest('tr');
+
+                vendorId = $(this).attr('VendorId');
+                vendorName = $(this).attr('VendorName');
+                email = $(this).attr('Email');
+                phone = $(this).attr('Phone');
+                address = $(this).attr('Address');
+                city = $(this).attr('City');
+                zipcode = $(this).attr('ZipCode');
+                state = $(this).attr('State');
+                country = $(this).attr('Country');
+
+
+
+
+                swal({
+                    title: 'Are you sure?',
+                    text: "You are about to delete '" + vendorName + "'",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    buttonsStyling: false
+                }).then(function () {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Vendors/DeleteVendors",
+                        data: JSON.stringify(vendorId),
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        headers: {
+                            RequestVerificationToken:
+                                $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (r) {
+
+                            if (r.msg == "Success") {
+
+                                swal({
+                                    title: 'Deleted!',
+                                    text: 'Your file has been deleted.',
+                                    type: 'success',
+                                    confirmButtonClass: "btn btn-success",
+                                    buttonsStyling: false
+                                });
+
+
+                            } else if (r.msg == "Fail") {
+
+                                alert(r.msg);
+
+                            } else if (r.msg == "No Data") {
+                                alert(r.msg);
+
+                            } else {
+                                alert(r.msg);
+                            }
+                            //alert(r.msg);
+                            // window.location.reload();
+
+                        },
+                        error: function () {
+                            alert(r.msg);
+                        }
+                    });
+
+
+                    table.row($tr).remove().draw();
+
+                }).catch(swal.noop);
+
+
+                e.preventDefault();
+            });
+
+            //Like record
+            table.on('click', '.like', function () {
+                alert('You clicked on Like button');
+            });
+        });
+    </script>
+
+
+    <script>
+
+
+        //Code for pulling the Records on the Table
+        var eInvoiceEmId;
+
+        $(document).delegate('#Editbtn', 'click', function (e) {
+
+            eInvoiceEmId = $(this).attr('InvoiceEmId');
+            customerName = $(this).attr('Selected-CustomerName');
+            phone = $(this).attr('Selected-Phone');
+            email = $(this).attr('Selected-Email');
+            amount = $(this).attr('Selected-Amount');
+
+
+          //console.log(description, department);
+
+            $('input[name=Id]').val(eInvoiceEmId);
+            $('input[name=eCustomerName]').val(customerName);
+            $('input[name=ePhoneNumber]').val(phone);
+            $('input[name=eEmailAddress]').val(email);
+            $('input[name=eTotalAmount]').val(amount);
+
+        });
+
+         //End of the code
+
+         $(document).ready(function () {
+
+             $("#SubmitEmailInvoice").click(function (event) {
+
+                  event.preventDefault();
+
+                  //$("#loading-overlay").show();
+
+                  var NewEmailInvoice = {
+                    customerName: $("#eCustomerName").val(),
+                    phone: $("#ePhoneNumber").val(),
+                    email: $("#eEmailAddress").val(),
+                    amount: $("#eTotalAmount").val(),
+                  };
+
+
+                  console.log(NewEmailInvoice);
+
+                  $.ajax({
+                    type: "POST",
+                    url: "/Invoice/SendInvoiceEmail",
+                    data: JSON.stringify(NewEmailInvoice),
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    headers: {
+                      RequestVerificationToken:
+                        $('input:hidden[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (r) {
+
+                      if (r.msg == "Success") {
+
+        	            swal({
+                            title: "Success!",
+                            text: "Email Sent!",
+                            buttonsStyling: false,
+                            confirmButtonClass: "btn btn-success",
+                        type: "success"
+                      }).then(function () {
+                        window.location.reload();
+                      }).catch(swal.noop);
+
+                      } else if (r.msg == "Fail") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                      } else if (r.msg == "No Data") {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+
+                      } else {
+                        $("#loading-overlay").hide();
+                        alert(r.msg);
+                      }
+
+                    },
+                    error: function () {
+                      $("#loading-overlay").hide();
+                      alert(r.msg);
+                    }
+                  });
+                });
+
+         })
+
+    </script>
+
+
+}
