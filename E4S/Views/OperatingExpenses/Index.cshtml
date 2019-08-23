@@ -179,13 +179,13 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.DateCreated.ToString("dd MMM, yy")</td>
+                                        <td>@item.DateCreated.ToString("dd MMM, yyyy")</td>
                                         <td>@item.Expense.ExpenseType</td>
                                         <td>@item.Description</td>
 
                                         <td>@item.Amount</td>
                                         <td class="">
-                                            <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="modal" data-target="#exampleModalLong1" OperatExpId="@item.Id" Selected-ExpenseTitle="@item.Expense.ExpenseType" Selected-Description="@item.Description" Selected-Amount="@item.Amount"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-warning btn-icon btn-sm edit" data-toggle="modal" data-target="#exampleModalLong1" id="Editbtn" OperatExpId="@item.Id" Selected-ExpenseTitle="@item.Expense.ExpenseType" Selected-Description="@item.Description" Selected-Amount="@item.Amount"><i class="fas fa-edit"></i></a>
                                             <a href="#" class="btn btn-danger btn-icon btn-sm remove"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
@@ -408,10 +408,63 @@
             $('input[name=edescription]').val(description);
             $('input[name=eamount]').val(amount);
 
-
         });
 
-    //End of the code
+         //End of the code
+
+            $(document).ready(function () {
+
+              $("#editJobTitle").click(function (event) {
+
+                event.preventDefault();
+
+                var PostJobTitle = {
+                  AId: $("#ejobsTid").val(),
+                  JobTitle: $("#eJobTitle").val(),
+
+                };
+
+
+                // console.log(Items);
+                console.log(PostJobTitle);
+
+                $.ajax({
+                  type: "POST",
+                  url: "/Jobs/editJobTitle",
+                  data: JSON.stringify(PostJobTitle),
+                  dataType: "json",
+                  contentType: 'application/json; charset=utf-8',
+                  headers: {
+                    RequestVerificationToken:
+                      $('input:hidden[name="__RequestVerificationToken"]').val()
+                  },
+                  success: function (r) {
+
+                    if (r.msg == "Success") {
+
+                      demo.showSwal('success-message');
+
+                    } else if (r.msg == "Fail") {
+
+                      alert(r.msg);
+
+                    } else if (r.msg == "No Data") {
+                      alert(r.msg);
+
+                    } else {
+                      alert(r.msg);
+                    }
+                    //alert(r.msg);
+                    // window.location.reload();
+
+                  },
+                  error: function () {
+                    alert(r.msg);
+                  }
+                });
+              });
+            });
+
     </script>
 
 }
