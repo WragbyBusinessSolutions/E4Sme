@@ -51,6 +51,7 @@ namespace E4S.Controllers.HumanResource
       return orgId;
     }
 
+    [Authorize(Roles = "Super Admin")]
     public IActionResult Index()
         {
       var orgId = getOrg();

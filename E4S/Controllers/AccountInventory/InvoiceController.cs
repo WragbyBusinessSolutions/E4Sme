@@ -16,6 +16,7 @@ namespace E4S.Controllers.AccountInventory
 {
   [Authorize]
 
+  [Authorize(Roles = "Accountant, Admin, Super Admin")]
   public class InvoiceController : Controller
     {
     [TempData]
