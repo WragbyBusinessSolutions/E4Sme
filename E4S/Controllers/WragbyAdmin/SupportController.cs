@@ -70,11 +70,47 @@ namespace E4S.Controllers.WragbyAdmin
     //================= User Method Ends Here =========================//
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       //Temofe
     //================= Admin Method Starts Here =======================//
 
     public IActionResult AllTickets()
     {
+       // var allOrg = _context.Support.ToList()
+
       return View();
 
     }
