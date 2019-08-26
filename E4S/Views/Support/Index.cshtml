@@ -1,6 +1,100 @@
 ﻿
 @{
+  ViewData["Title"] = "Support";
   Layout = "~/Views/Shared/_LayoutNew.cshtml";
 }
 
-<h2>Support</h2>
+<style>
+  .body-card {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
+
+  .button-padding {
+    margin-right: 10px
+  }
+
+  .button-custom {
+    width: 100px;
+  }
+</style>
+
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header body-card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6 pull-left">
+                <h4 class="card-title">Support</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body body-card">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-responsive" style="overflow:auto;">
+                <table id="datatable compact" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th><strong>Title</strong></th>
+                      <th><strong>Description</strong></th>
+                      <th><strong> Severity Level</strong></th>
+
+                      <th class="pull-right"><strong>Actions</strong></th>
+                    </tr>
+                  </thead>
+                  <tbody class="fontweight">
+                    <tr>
+                      <td class="table-font">Wragby Business Solutions Support Enquiry</td>
+                      <td>
+                        Wragby Business Solutions Support Enquiry, There was a request to
+                        set your Employee Account password from Wale Intl If did not make this request
+                        just ignore this email. Otherwise, please click the button below to set your password:
+                        Wragby Business Solutions Support Enquiry, There was a request to set your
+                        Employee Account password from Wale Intl If did not make this request, just ignore
+                        this email. Otherwise, please click the button below to set your password:
+                      </td>
+                      <td> <button class="btn btn-primary button-custom">Urgent</button></td>
+
+                      <td class="">
+                        <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td scope="row" class="table-font">1</td>
+                      <td scope="row">Jackson Bradshaw</td>
+                      <td scope="row"> <button class="btn btn-warning button-custom">Medium</button></td>
+
+                      <td class="">
+                        <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td scope="row" class="table-font">1</td>
+                      <td scope="row">Jackson Bradshaw</td>
+
+                      <td scope="row"> <button class="btn btn-light button-custom">Low</button></td>
+                      <td class="">
+                        <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right" s>View Details</a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
