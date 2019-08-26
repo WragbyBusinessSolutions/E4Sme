@@ -20,7 +20,7 @@ namespace E4S.Services
     string MailerResponse;
     string apiKey = "";
 
-    public EmailSender()
+        public EmailSender()
     {
 
       SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
@@ -282,14 +282,14 @@ namespace E4S.Services
 
         //Email Templates for Account Module,
 
-        public async Task SendGridInvoicesAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer, Organisation organization)
+        public async Task SendGridInvoicesAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer)
         {
 
             string domain = "http://erp4smes.azurewebsites.net";
 
             EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
-            var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#CustomersFirstname", customer.CustomerName ).Replace("#OrganisationEmail", organization.Email ).Replace("#DueDate", invoiceRecord.DueDate.ToString("dd MMM, yyyy")).Replace("#Logo", organization.ImageUrl).Replace("#Amount", invoiceRecord.Total.ToString());
+            var body = EmailHelper.GetTemplate(template).Replace("#FirstName", firstname).Replace("#HostDomain", domain).Replace("#Organisation", organisation).Replace("#CustomersFirstname", customer.CustomerName ).Replace("#DueDate", invoiceRecord.DueDate.ToString("dd MMM, yyyy")).Replace("#Amount", invoiceRecord.Total.ToString());
 
             //string apiKey 
 

@@ -26,7 +26,7 @@ namespace E4S.Services
 
         // Account Email Templates 
 
-    Task SendGridInvoicesAsync(string email, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer, Organisation organization );
+    Task SendGridInvoicesAsync(string email, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer );
 
     }
 }

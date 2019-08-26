@@ -343,9 +343,9 @@ namespace E4S.Controllers.AccountInventory
 
 
         [HttpPost]
-        public async Task<IActionResult> SendInvoiceEmail([FromBody]Customer customer)
+        public async Task<IActionResult> SendInvoiceEmail([FromBody] Guid id)
         {
-            if (customer == null)
+            if (id == null)
             {
                 return Json(new
                 {
@@ -357,22 +357,19 @@ namespace E4S.Controllers.AccountInventory
             var orgId = getOrg();
             var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
 
-
             try
             {
-                var SendInvoice = _context.Customers.Where(x => x.Id == customer.Id).FirstOrDefault();
-                SendInvoice.CustomerName = customer.CustomerName;
-                SendInvoice.Phone = customer.Phone;
-                SendInvoice.Email = customer.Email;
+                var SendInvoice = await _context.InvoiceRecords.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var custom = _context.Customers.Where(x => x.OrganisationId == orgId).FirstOrDefault();
+                custom.CustomerName = custom.CustomerName;
+                custom.Phone = custom.Phone;
+                custom.Email = custom.Email;
+                SendInvoice.Total = SendInvoice.Total;
+                SendInvoice.CustomerId = custom.Id;
 
-                _context.Update(SendInvoice);
                 _context.SaveChanges();
-
-
-
-                //var response = _emailSender.SendGridInvoicesAsync(customer.Email, "Approved Invoice", "/Invoice/Index", customer.CustomerName, "invoice", organisationDetails.OrganisationName, organisationDetails.Email);
-
-
+                var response = _emailSender.SendGridInvoicesAsync(custom.Email, "Approved Invoice", "/EmptyView/Index", custom.CustomerName, "invoice", organisationDetails.OrganisationName, SendInvoice, custom );
+               
 
                 return Json(new
                 {
@@ -393,5 +390,5 @@ namespace E4S.Controllers.AccountInventory
         }
 
 
-    }
+  }
 }
