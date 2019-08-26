@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using E4S.Data;
 using E4S.Models;
+using E4S.Models.WragbyAdmin;
+using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -44,18 +46,67 @@ namespace E4S.Controllers.WragbyAdmin
 //================= User Method Starts Here =========================//
     public IActionResult Index()
         {
-            return View();
-        }
+      var orgId = getOrg();
+      var support = _context.Tickets.Where(x => x.OrganisationId == orgId).ToList();
+
+      return View(support);
+    }
 
     public IActionResult NewTicket()
     {
       return View();
     }
+    
     [HttpPost]
-    public IActionResult CreateTicket()
+    public async Task<IActionResult> NewTicket([FromBody]PostNewTicket postNewTicket)
     {
-      return View();
+      if (postNewTicket == null)
+      {
+        return Json(new
+        {
+          msg = "No Data"
+        }
+       );
+      }
+
+      var orgId = getOrg();
+      var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+
+      try
+      {
+        Ticket newTicket = new Ticket()
+        {
+          Id = Guid.NewGuid(),
+          //Date = postNewTicket.Date,
+          Title = postNewTicket.Title,
+          Severity = postNewTicket.Severity,
+          Description = postNewTicket.Description,
+
+        };
+
+        _context.Add(newTicket);
+        _context.SaveChanges();
+
+
+        return Json(new
+        {
+          msg = "Success"
+        }
+     );
+      }
+      catch (Exception ee)
+      {
+
+      }
+
+      return Json(
+      new
+      {
+        msg = "Fail"
+      });
     }
+
 
     public IActionResult ViewTicket()
     {
