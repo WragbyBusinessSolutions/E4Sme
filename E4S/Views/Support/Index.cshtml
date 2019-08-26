@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<E4S.Models.WragbyAdmin.Ticket>
+
 @{
   ViewData["Title"] = "Support";
   Layout = "~/Views/Shared/_LayoutNew.cshtml";
@@ -57,15 +58,15 @@
               <div class="modal-body">
                 <div class="instruction">
                   <form>
-                    
-                    <div class="row">
+
+                    @*<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>Date</label>
                           <input type="date" class="form-control" placeholder="Brand" id="date" required>
                         </div>
                       </div>
-                    </div>
+                    </div>*@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -90,37 +91,37 @@
                         <div class="form-group">
                           <label>Severity</label>
                           <select class="form-control" placeholder="Serial Number" id="Severity" required>
-                            <option value=""> --- Not Assigned --- </option>
-                            <option value=""> --- Low --- </option>
-                            <option value=""> --- Medium --- </option>
-                            <option value=""> --- High --- </option>
-                            <option value=""> --- Urgent --- </option>
+                            <option value=""> --- Select Severity --- </option>
+                            <option value="Low"> --- Low --- </option>
+                            <option value="Medium"> --- Medium --- </option>
+                            <option value="High"> --- High --- </option>
+                            <option value="Urgent"> --- Urgent --- </option>
                           </select>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                    @*<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>Status</label>
                           <input type="text" class="form-control" placeholder="Description" id="Description" required>
                         </div>
                       </div>
-                    </div>
+                    </div>*@
 
 
 
                     <hr />
                     <div class="card-footer ">
-                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="submitAsset">Submit</button>
+                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewTicket">Submit</button>
                       <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
                     </div>
                   </form>
                 </div>
               </div>
               @*<div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
-          </div>*@
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                </div>*@
             </div>
           </div>
         </div>
@@ -198,3 +199,72 @@
     </div>
   </div>
 </div>
+
+@section Scripts {
+
+  <script type="text/javascript">
+
+
+  $(document).ready(function () {
+
+
+    $("#SubmitNewTicket").click(function (event) {
+
+      event.preventDefault();
+
+      var Ticket = {
+       // Date: $("#date").val(),
+        Title: $("#Title").val(),
+        Description: $("#Description").val(),
+        Severity: $("#Severity").val(),
+
+      };
+
+
+      // console.log(Items);
+      console.log(Ticket);
+
+      $.ajax({
+        type: "POST",
+        url: "/Support/NewTicket",
+        data: JSON.stringify(Ticket),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+            $("#loading-overlay").hide();
+            demo.showSwal('success-message');
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+          //alert(r.msg);
+          // window.location.reload();
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+  });
+
+    </script>
+
+        }
