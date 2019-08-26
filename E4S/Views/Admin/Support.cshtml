@@ -41,16 +41,21 @@
                                 <table id="datatable compact" class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th><strong>Title</strong></th>
-                                            <th><strong>Description</strong></th>
-                                            <th ><strong> Severity Level</strong></th>
-                                            
-                                            <th class="pull-right"><strong>Actions</strong></th>
+                                            <th><strong>Support ID</strong></th>
+                                            <th><strong>Date</strong></th>
+                                            <th><strong> Organisation</strong></th>
+                                            <th><strong> Description</strong></th>
+                                            <th><strong> Severity Level</strong></th>
+                                            <th><strong> Status </strong></th>
+                                            <th class="pull-right"><strong> Action</strong></th>
+
                                         </tr>
                                     </thead>
-                                    <tbody class="fontweight">
-                                        <tr>
-                                            <td class="table-font">Wragby Business Solutions Support Enquiry</td>
+                                    <tbody >
+                                        <tr class="text-center">
+                                            <td> TAC 12</td>
+                                            <td> 23 December, 2019</td>
+                                            <td class="">Wragby Business Solutions Support Enquiry</td>
                                             <td>Wragby Business Solutions Support Enquiry, There was a request to 
                                             set your Employee Account password from Wale Intl If did not make this request
                                             just ignore this email. Otherwise, please click the button below to set your password:
@@ -58,30 +63,14 @@
                                             Employee Account password from Wale Intl If did not make this request, just ignore 
                                             this email. Otherwise, please click the button below to set your password:</td>
                                             <td> <button class="btn btn-primary button-custom">Urgent</button></td>
-
-                                            <td class="">
-                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
+                                            <td></td>
+                                            <td class="inline">
+                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-sm btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
+                                                <a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            <td scope="row"> <button class="btn btn-warning button-custom">Medium</button></td>
-
-                                            <td class="">
-                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row" class="table-font">1</td>
-                                            <td scope="row">Jackson Bradshaw</td>
-                                            
-                                            <td scope="row"> <button class="btn btn-light button-custom">Low</button></td>
-                                            <td class="">
-                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right" s>View Details</a>
-                                            </td>
-                                        </tr>
+                                      
 
                                     </tbody>
                                 </table>
