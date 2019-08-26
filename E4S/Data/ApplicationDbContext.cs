@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using E4S.Models;
 using E4S.Models.HumanResource;
 using E4S.Models.AccountInventory;
+using E4S.Models.WragbyAdmin;
 
 namespace E4S.Data
 {
@@ -82,6 +83,13 @@ namespace E4S.Data
     public DbSet<InvoiceRecord> InvoiceRecords { get; set; }
     public DbSet<InvoiceItem> InvoiceItems { get; set; }
     public DbSet<CostOfGood> CostOfGoods { get; set; }
+
+
+
+    //Admin DbSet
+    public DbSet<TicketTread> TicketTreads { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
+
 
   }
 }
