@@ -82,8 +82,8 @@ namespace E4S.Controllers.WragbyAdmin
           Title = postNewTicket.Title,
           Severity = postNewTicket.Severity,
           Description = postNewTicket.Description,
-          Status = postNewTicket.Status,
-          ImageUrl = postNewTicket.ImageUrl,
+          //Status = postNewTicket.Status,
+          //ImageUrl = postNewTicket.ImageUrl,
 
         };
 
