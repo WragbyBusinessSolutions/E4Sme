@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<E4S.Models.WragbyAdmin.Ticket>
+
 @{
   ViewData["Title"] = "Support";
   Layout = "~/Views/Shared/_LayoutNew.cshtml";
@@ -27,13 +28,113 @@
       <div class="card">
         <div class="card-header body-card">
           <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6 pull-left">
+            <div class="col-md-10">
+              <div class="card-title">
                 <h4 class="card-title">Support</h4>
+              </div>
+              <div class="col-md-2">
+                @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
+                <button class="btn btn-info pull-right" data-toggle="modal" data-target="#noticeModal">
+                  <span class="btn-label">
+                    <i class="now-ui-icons travel_info"></i>
+                  </span>
+                  Create Ticket
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- notice modal -->
+        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <h5 class="modal-title" id="myModalLabel">Enter New Ticket Details</h5>
+              </div>
+              <div class="modal-body">
+                <div class="instruction">
+                  <form>
+
+                    @*<div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Date</label>
+                          <input type="date" class="form-control" placeholder="Brand" id="date" required>
+                        </div>
+                      </div>
+                    </div>*@
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Title</label>
+                          <input type="text" class="form-control" placeholder="Enter Title" id="Title" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Description</label>
+                          <input type="text" class="form-control" placeholder="Description" id="Description" required>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Severity</label>
+                          <select class="form-control" placeholder="Serial Number" id="Severity" required>
+                            <option value=""> --- Select Severity --- </option>
+                            <option value="Low"> --- Low --- </option>
+                            <option value="Medium"> --- Medium --- </option>
+                            <option value="High"> --- High --- </option>
+                            <option value="Urgent"> --- Urgent --- </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    @*<div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Status</label>
+                          <input type="text" class="form-control" placeholder="Description" id="Description" required>
+                        </div>
+                      </div>
+                    </div>*@
+
+
+
+                    <hr />
+                    <div class="card-footer ">
+                      <button type="submit" class="btn btn-fill btn-primary btn-round" id="SubmitNewTicket">Submit</button>
+                      <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              @*<div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+                </div>*@
+            </div>
+          </div>
+        </div>
+        <!-- end notice modal -->
+
+
+
+
+
+
+
+
+
         <div class="card-body body-card">
           <div class="row">
             <div class="col-lg-12">
@@ -41,49 +142,49 @@
                 <table id="datatable compact" class="table table-hover">
                   <thead>
                     <tr>
+                      <th><strong>TicketID</strong></th>
+                      <th><strong>Date</strong></th>
                       <th><strong>Title</strong></th>
                       <th><strong>Description</strong></th>
-                      <th><strong> Severity Level</strong></th>
-
+                      <th><strong>Severity Level</strong></th>
+                      <th><strong>Status</strong></th>
                       <th class="pull-right"><strong>Actions</strong></th>
                     </tr>
                   </thead>
                   <tbody class="fontweight">
                     <tr>
                       <td class="table-font">Wragby Business Solutions Support Enquiry</td>
-                      <td>
-                        Wragby Business Solutions Support Enquiry, There was a request to
-                        set your Employee Account password from Wale Intl If did not make this request
-                        just ignore this email. Otherwise, please click the button below to set your password:
-                        Wragby Business Solutions Support Enquiry, There was a request to set your
-                        Employee Account password from Wale Intl If did not make this request, just ignore
-                        this email. Otherwise, please click the button below to set your password:
-                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td> <button class="btn btn-primary button-custom">Urgent</button></td>
+                      <td></td>
+
 
                       <td class="">
                         <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
                       </td>
                     </tr>
 
+
+
                     <tr>
-                      <td scope="row" class="table-font">1</td>
-                      <td scope="row">Jackson Bradshaw</td>
-                      <td scope="row"> <button class="btn btn-warning button-custom">Medium</button></td>
+                      <td class="table-font">Wragby Business Solutions Support Enquiry</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td> <button class="btn btn-primary button-custom">Urgent</button></td>
+                      <td></td>
+
 
                       <td class="">
                         <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right">View Details</a>
                       </td>
                     </tr>
-                    <tr>
-                      <td scope="row" class="table-font">1</td>
-                      <td scope="row">Jackson Bradshaw</td>
 
-                      <td scope="row"> <button class="btn btn-light button-custom">Low</button></td>
-                      <td class="">
-                        <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-info pull-right" s>View Details</a>
-                      </td>
-                    </tr>
+
+
+
 
                   </tbody>
                 </table>
@@ -98,3 +199,72 @@
     </div>
   </div>
 </div>
+
+@section Scripts {
+
+  <script type="text/javascript">
+
+
+  $(document).ready(function () {
+
+
+    $("#SubmitNewTicket").click(function (event) {
+
+      event.preventDefault();
+
+      var Ticket = {
+       // Date: $("#date").val(),
+        Title: $("#Title").val(),
+        Description: $("#Description").val(),
+        Severity: $("#Severity").val(),
+
+      };
+
+
+      // console.log(Items);
+      console.log(Ticket);
+
+      $.ajax({
+        type: "POST",
+        url: "/Support/NewTicket",
+        data: JSON.stringify(Ticket),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        headers: {
+          RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function (r) {
+
+          if (r.msg == "Success") {
+            $("#loading-overlay").hide();
+            demo.showSwal('success-message');
+
+          } else if (r.msg == "Fail") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else if (r.msg == "No Data") {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+
+          } else {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+          //alert(r.msg);
+          // window.location.reload();
+
+        },
+        error: function () {
+          $("#loading-overlay").hide();
+          alert(r.msg);
+        }
+      });
+    });
+
+  });
+
+    </script>
+
+        }

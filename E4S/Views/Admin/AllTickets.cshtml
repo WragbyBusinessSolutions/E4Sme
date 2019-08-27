@@ -12,13 +12,7 @@
         margin-bottom: 2%;
     }
 
-    .button-padding {
-        margin-right: 10px
-    }
-
-    .button-custom{
-        width: 100px;
-    }
+  
 </style>
 
 <div class="content">
@@ -38,7 +32,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="table-responsive" style="overflow:auto;">
-                                <table id="datatable compact" class="table table-hover">
+                                <table id="datatable " class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th><strong>Support ID</strong></th>
@@ -47,31 +41,26 @@
                                             <th><strong> Description</strong></th>
                                             <th><strong> Severity Level</strong></th>
                                             <th><strong> Status </strong></th>
-                                            <th class="pull-right"><strong> Action</strong></th>
+                                            <th class="disabled-sorting text-right" ><strong> Action</strong></th>
 
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        <tr class="text-center">
+                                        <tr >
                                             <td> TAC 12</td>
                                             <td> 23 December, 2019</td>
                                             <td class="">Wragby Business Solutions Support Enquiry</td>
                                             <td>Wragby Business Solutions Support Enquiry, There was a request to 
                                             set your Employee Account password from Wale Intl If did not make this request
-                                            just ignore this email. Otherwise, please click the button below to set your password:
-                                            Wragby Business Solutions Support Enquiry, There was a request to set your
-                                            Employee Account password from Wale Intl If did not make this request, just ignore 
-                                            this email. Otherwise, please click the button below to set your password:</td>
+                                            </td>
                                             <td> <button class="btn btn-primary button-custom">Urgent</button></td>
-                                            <td></td>
-                                            <td class="inline">
-                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-sm btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
+                                            <td>Pending</td>
+                                            <td>
+                                                <a asp-action="SupportDetails" asp-controller="Admin" class="btn btn-icon btn-sm  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
                                                 <a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>
                                             </td>
                                         </tr>
-
-                                      
-
+                                   
                                     </tbody>
                                 </table>
                             </div>
