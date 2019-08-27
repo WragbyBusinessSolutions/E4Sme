@@ -15,14 +15,14 @@
             <div class="card-body ">
               <form method="post" asp-action="CreateTicket" class="form-horizontal">
                 <div asp-validation-summary="All"></div>
-                <div class="row">
+                @*<div class="row">
                   <label class="col-md-3 col-form-label">Support ID</label>
                   <div class="col-md-9">
                     <div class="form-group">
                       <input asp-for="SupportId" type="text" class="form-control" placeholder="Enter Title">
                     </div>
                   </div>
-                </div>
+                </div>*@
 
 
                 <div class="row">
@@ -60,7 +60,7 @@
                   <div class="col-md-9">
                     <div class="form-group">
                       <select asp-for="Status" class="form-control" placeholder="Severity" required>
-                        <option value=""> --- Select Severity --- </option>
+                        <option value=""> --- Select Status --- </option>
                         <option value="Low"> --- Open --- </option>
                         <option value="Medium"> --- Closed --- </option>
                         <option value="High"> --- Pending --- </option>

@@ -78,7 +78,7 @@ namespace E4S.Controllers.WragbyAdmin
         Ticket newTicket = new Ticket()
         {
           Id = Guid.NewGuid(),
-          SupportId = postNewTicket.SupportId,
+          //SupportId = postNewTicket.SupportId,
           Title = postNewTicket.Title,
           Severity = postNewTicket.Severity,
           Description = postNewTicket.Description,
@@ -124,7 +124,7 @@ namespace E4S.Controllers.WragbyAdmin
         var tick = new Ticket()
         {
           Id = Guid.NewGuid(),
-          SupportId = ticket.SupportId,
+          //SupportId = ticket.SupportId,
           Title = ticket.Title,
           Severity = ticket.Severity,
           Description = ticket.Description,
