@@ -1,4 +1,6 @@
-﻿
+﻿@model IEnumerable<E4S.Models.WragbyAdmin.TicketTread>
+
+
 @{
     ViewData["Title"] = "AllTickets";
     Layout = "~/Views/Shared/_LayoutWragbyAdmin.cshtml";
@@ -34,6 +36,7 @@
                                 <table id="datatable " class="table table-hover">
                                     <thead>
                                         <tr>
+                                            
                                             <th><strong>Support ID</strong></th>
                                             <th><strong>Date</strong></th>
                                             <th><strong> Organisation</strong></th>
@@ -53,15 +56,31 @@
                                                 Wragby Business Solutions Support Enquiry, There was a request to
                                                 set your Employee Account password from Wale Intl If did not make this request
                                             </td>
-                                            <td> <button class="btn btn-primary button-custom">Urgent</button></td>
+                                            <td><p>Urgent</p></td>
                                             <td>Pending</td>
                                             <td>
-                                                <a asp-action="AdminViewTicket" asp-controller="Support" class="btn btn-icon btn-sm  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
-                                                <a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>
+                                                <a asp-action="AdminViewTicket" asp-controller="Support" class="btn btn-icon btn-md  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
+                                                @*<a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>*@
                                             </td>
                                         </tr>
 
-                                    </tbody>
+
+                                        @*@foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.TicketId</td>
+                                                <td>@item.DateCreated.ToString("dd, mm, yyy")</td>
+                                                <td>@item.OrganisationId</td>
+                                                <td>@item.Ticket.Title</td>
+                                                <td>@item.Ticket.Description</td>
+                                                <td>@item.Ticket.Severity</td>
+                                                <td>
+                                                    <a asp-action="AdminViewTicket" asp-controller="Support" class="btn btn-icon btn-sm  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                         }*@
+                                        </tbody>
                                 </table>
                             </div>
                         </div>

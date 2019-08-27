@@ -10,6 +10,7 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace E4S.Controllers.WragbyAdmin
 {
@@ -52,10 +53,7 @@ namespace E4S.Controllers.WragbyAdmin
       return View(support);
     }
 
-    public IActionResult NewTicket()
-    {
-      return View();
-    }
+  
     
     [HttpPost]
     public async Task<IActionResult> NewTicket([FromBody]PostNewTicket postNewTicket)
@@ -71,20 +69,19 @@ namespace E4S.Controllers.WragbyAdmin
 
       var orgId = getOrg();
       var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
-      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
       try
       {
         Ticket newTicket = new Ticket()
         {
           Id = Guid.NewGuid(),
-          //SupportId = postNewTicket.SupportId,
+          UserId = Guid.Parse(userId),
+          OrganisationId = orgId,
           Title = postNewTicket.Title,
           Severity = postNewTicket.Severity,
           Description = postNewTicket.Description,
-          //Status = postNewTicket.Status,
-          //ImageUrl = postNewTicket.ImageUrl,
-
+          SupportId = int.Parse(DateTime.Now.ToString("yyyymmddss"))
         };
 
         _context.Add(newTicket);
@@ -197,21 +194,48 @@ public IActionResult ViewTicket()
 
     public IActionResult AllTickets()
     {
-       // var allOrg = _context.Support.ToList()
 
-      return View();
+        var allOrg = _context.Tickets.ToList();
+
+        return View(allOrg);
 
     }
 
     public IActionResult AdminViewTicket()
     {
-      return View();
+        var orgId = getOrg();
+        ViewData["Title"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id" , "Title");
+        ViewData["Description"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id", "Description");
+        ViewData["Severity"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id", "Severity");
+
+        var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+
+            return View();
     }
     [HttpPost]
-    public IActionResult AdminReplyTicket()
+    public IActionResult AdminReplyTicket(TicketTread ticketTread)
     {
-      return View();
+        
+        var orgId = getOrg();
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        if (ModelState.IsValid)
+        {
+            ticketTread.Id = Guid.NewGuid();
+            ticketTread.OrganisationId = orgId;
+
+
+            _context.Add(ticketTread);
+            _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(ticketTread);
+
     }
+
+
     [HttpPost]
     public IActionResult AdminCloseTicket()
     {
