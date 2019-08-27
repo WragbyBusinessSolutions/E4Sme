@@ -225,42 +225,39 @@
       console.log(Ticket);
 
       $.ajax({
-        type: "POST",
-        url: "/Support/NewTicket",
-        data: JSON.stringify(Ticket),
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        headers: {
-          RequestVerificationToken:
-            $('input:hidden[name="__RequestVerificationToken"]').val()
-        },
-        success: function (r) {
+          type: "POST",
+          url: "/Support/NewTicket",
+          data: JSON.stringify(Ticket),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
 
-          if (r.msg == "Success") {
-            $("#loading-overlay").hide();
-            demo.showSwal('success-message');
+            if (r.msg == "Success") {
 
-          } else if (r.msg == "Fail") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+              demo.showSwal('success-message');
 
-          } else if (r.msg == "No Data") {
-            $("#loading-overlay").hide();
-            alert(r.msg);
+            } else if (r.msg == "Fail") {
 
-          } else {
-            $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              alert(r.msg);
+
+            } else {
+              alert(r.msg);
+            }
+            //alert(r.msg);
+            // window.location.reload();
+
+          },
+          error: function () {
             alert(r.msg);
           }
-          //alert(r.msg);
-          // window.location.reload();
-
-        },
-        error: function () {
-          $("#loading-overlay").hide();
-          alert(r.msg);
-        }
-      });
+        });
     });
 
   });
