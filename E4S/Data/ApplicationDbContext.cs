@@ -83,6 +83,8 @@ namespace E4S.Data
     public DbSet<InvoiceRecord> InvoiceRecords { get; set; }
     public DbSet<InvoiceItem> InvoiceItems { get; set; }
     public DbSet<CostOfGood> CostOfGoods { get; set; }
+    public DbSet<OtherItem> OtherItems { get; set; }
+    public DbSet<InvoiceOtherItem> InvoiceOtherItems { get; set; }
 
 
 

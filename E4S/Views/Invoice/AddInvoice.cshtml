@@ -333,6 +333,26 @@
               <p>
                 <input class="check" checked disabled type="checkbox" /> vat (5%) :  ₦@Model.Tax.ToString("N2")
               </p>
+              <p>
+                <div class="row total-section">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <input class="form-control" type="text" placeholder="Add Items (Workmanship)" />
+                        </td>
+                        <td>:</td>
+                        <td>
+                          <input class="form-control text-right" type="number" placeholder="0"/>
+                        </td>
+                        <td>
+                          <button id="addItem" class="btn btn-sm btn-success">+</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </p>
               <hr>
               <h3>
                 <b>Total :</b> ₦ @Model.Total.ToString("N2")

@@ -46,12 +46,26 @@ namespace E4S.Controllers.AccountInventory
     public IActionResult Index()
         {
       var orgId = getOrg();
-
       var allquotes = _context.QuoteRecords.Where(x => x.OrganisationId == orgId).Where(x => x.DateCreated.Month == DateTime.Now.Month).OrderByDescending(x => x.DateCreated).ToList();
+      var customer = _context.Customers.Where(x => x.OrganisationId == orgId).ToList();
 
       ViewData["StatusMessage"] = StatusMessage;
 
-      return View(allquotes);
+      List<QuoteListViewModel> listQVM = new List<QuoteListViewModel>();
+      QuoteListViewModel qVM;
+
+      foreach (var item in allquotes)
+      {
+        qVM = new QuoteListViewModel();
+        qVM.QuoteRecord = item;
+        qVM.Customer = customer.Where(x => x.Id == item.CustomerId).FirstOrDefault();
+
+        listQVM.Add(qVM);
+      }
+
+
+
+      return View(listQVM.OrderByDescending(x => x.QuoteRecord.DateCreated));
         }
 
     public IActionResult ConvertToInvoice(Guid id)
