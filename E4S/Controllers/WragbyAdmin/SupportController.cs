@@ -69,18 +69,19 @@ namespace E4S.Controllers.WragbyAdmin
 
       var orgId = getOrg();
       var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
-      int noOfEmployee = _context.Users.Where(x => x.OrganisationId == orgId).Count();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
       try
       {
         Ticket newTicket = new Ticket()
         {
           Id = Guid.NewGuid(),
-          //Date = postNewTicket.Date,
+          UserId = Guid.Parse(userId),
+          OrganisationId = orgId,
           Title = postNewTicket.Title,
           Severity = postNewTicket.Severity,
           Description = postNewTicket.Description,
-
+          SupportId = int.Parse(DateTime.Now.ToString("yyyymmddss"))
         };
 
         _context.Add(newTicket);
@@ -105,8 +106,43 @@ namespace E4S.Controllers.WragbyAdmin
       });
     }
 
+    public IActionResult CreateTicket()
+    {
+      return View();
+    }
 
-    public IActionResult ViewTicket()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateTicket(Ticket ticket)
+    {
+
+      if (ModelState.IsValid)
+      {
+        var tick = new Ticket()
+        {
+          Id = Guid.NewGuid(),
+          //SupportId = ticket.SupportId,
+          Title = ticket.Title,
+          Severity = ticket.Severity,
+          Description = ticket.Description,
+          Status = ticket.Status,
+          ImageUrl = ticket.ImageUrl,
+
+
+        };
+
+
+        _context.Add(tick);
+        await _context.SaveChangesAsync();
+
+      }
+      ModelState.Clear();
+      return View(ticket);
+    }
+ 
+
+
+public IActionResult ViewTicket()
     {
       return View();
     }

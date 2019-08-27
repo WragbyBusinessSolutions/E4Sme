@@ -35,6 +35,7 @@
               <div class="col-md-2">
                 @*<a asp-action="AddEmployee" asp-controller="Employees" class="btn btn-fill btn-info">Add New Employee</a>*@
                 <button class="btn btn-info pull-right" data-toggle="modal" data-target="#noticeModal">
+                @*<button class="btn btn-info pull-right" asp-action="CreateTicket" asp-controller="Support">*@
                   <span class="btn-label">
                     <i class="now-ui-icons travel_info"></i>
                   </span>
@@ -62,8 +63,8 @@
                     @*<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Date</label>
-                          <input type="date" class="form-control" placeholder="Brand" id="date" required>
+                          <label>Support ID</label>
+                          <input type="text" class="form-control" placeholder="Brand" id="SupportID" required>
                         </div>
                       </div>
                     </div>*@
@@ -100,14 +101,30 @@
                         </div>
                       </div>
                     </div>
+
                     @*<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>Status</label>
-                          <input type="text" class="form-control" placeholder="Description" id="Description" required>
+                          <select class="form-control" placeholder="Serial Number" id="Status" required>
+                            <option value=""> --- Select Severity --- </option>
+                            <option value="Low"> --- Open --- </option>
+                            <option value="Medium"> --- Closed --- </option>
+                            <option value="High"> --- Pending --- </option>
+                            <option value="Urgent"> --- Resolved --- </option>
+                          </select>
                         </div>
                       </div>
                     </div>*@
+
+                    @*<div class="row">
+       <div class="col-md-12">
+        <div class="form-group">
+          <label>ImageUrl</label>
+          <input type="text" class="form-control" placeholder="Enter ImageUrl" id="ImageUrl" required>
+        </div>
+      </div>
+    </div>*@
 
 
 
@@ -213,16 +230,19 @@
       event.preventDefault();
 
       var Ticket = {
-       // Date: $("#date").val(),
+        SupportID: $("#SupportID").val(),
         Title: $("#Title").val(),
         Description: $("#Description").val(),
         Severity: $("#Severity").val(),
+        Status: $("#Status").val(),
+        ImageUrl: $("#ImageUrl").val(),
 
       };
 
 
       // console.log(Items);
       console.log(Ticket);
+      console.log(typeof(JSON.stringify(Ticket)));
 
       $.ajax({
           type: "POST",

@@ -1,0 +1,106 @@
+﻿@model E4S.Models.WragbyAdmin.Ticket
+
+@{
+  ViewData["Title"] = "Add Support Ticket";
+}
+
+
+<div class="content">
+  <div class="row">
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-header ">
+                  <h4 class="card-title">Create Support Ticket</h4>
+            </div>
+            <div class="card-body ">
+              <form method="post" asp-action="CreateTicket" class="form-horizontal">
+                <div asp-validation-summary="All"></div>
+                @*<div class="row">
+                  <label class="col-md-3 col-form-label">Support ID</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <input asp-for="SupportId" type="text" class="form-control" placeholder="Enter Title">
+                    </div>
+                  </div>
+                </div>*@
+
+
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Title</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <input asp-for="Title" type="text" class="form-control" placeholder="Enter Title">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Description</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <textarea asp-for="Description" type="text" class="form-control" placeholder="Enter a Description Of The Problem"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Severity</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <select asp-for="Severity" class="form-control" placeholder="Severity" required>
+                        <option value=""> --- Select Severity --- </option>
+                        <option value="Low"> --- Low --- </option>
+                        <option value="Medium"> --- Medium --- </option>
+                        <option value="High"> --- High --- </option>
+                        <option value="Urgent"> --- Urgent --- </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">Status</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <select asp-for="Status" class="form-control" placeholder="Severity" required>
+                        <option value=""> --- Select Status --- </option>
+                        <option value="Low"> --- Open --- </option>
+                        <option value="Medium"> --- Closed --- </option>
+                        <option value="High"> --- Pending --- </option>
+                        <option value="Urgent"> --- Resolved --- </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-3 col-form-label">ImageUrl</label>
+                  <div class="col-md-9">
+                    <div class="form-group">
+                      <input asp-for="ImageUrl" type="text" class="form-control" placeholder="Enter Url">
+                    </div>
+                  </div>
+                </div>
+                @*<div class="row">
+    <label class="col-md-3 col-form-label">Country</label>
+    <div class="col-md-9">
+        <div class="form-group">
+        <input asp-for="Country" type="text" class="form-control" placeholder="Country">
+        </div>
+    </div>
+    </div>*@
+                <div class="card-footer ">
+                  <div class="row">
+                    <label class="col-md-3"></label>
+                    <div class="col-md-9">
+                      <button type="submit" class="btn btn-fill btn-primary">Create Ticket</button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
