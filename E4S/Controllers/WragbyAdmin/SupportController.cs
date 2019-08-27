@@ -78,10 +78,12 @@ namespace E4S.Controllers.WragbyAdmin
         Ticket newTicket = new Ticket()
         {
           Id = Guid.NewGuid(),
-          //Date = postNewTicket.Date,
+          SupportId = postNewTicket.SupportId,
           Title = postNewTicket.Title,
           Severity = postNewTicket.Severity,
           Description = postNewTicket.Description,
+          Status = postNewTicket.Status,
+          ImageUrl = postNewTicket.ImageUrl,
 
         };
 
@@ -107,8 +109,43 @@ namespace E4S.Controllers.WragbyAdmin
       });
     }
 
+    public IActionResult CreateTicket()
+    {
+      return View();
+    }
 
-    public IActionResult ViewTicket()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateTicket(Ticket ticket)
+    {
+
+      if (ModelState.IsValid)
+      {
+        var tick = new Ticket()
+        {
+          Id = Guid.NewGuid(),
+          SupportId = ticket.SupportId,
+          Title = ticket.Title,
+          Severity = ticket.Severity,
+          Description = ticket.Description,
+          Status = ticket.Status,
+          ImageUrl = ticket.ImageUrl,
+
+
+        };
+
+
+        _context.Add(tick);
+        await _context.SaveChangesAsync();
+
+      }
+      ModelState.Clear();
+      return View(ticket);
+    }
+ 
+
+
+public IActionResult ViewTicket()
     {
       return View();
     }
