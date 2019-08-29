@@ -1,6 +1,8 @@
-﻿
+﻿@model List<E4S.Models.WragbyAdmin.Ticket>
+
+
 @{
-    ViewData["Title"] = "AllTickets";
+    ViewData["Title"] = "All Tickets";
     Layout = "~/Views/Shared/_LayoutWragbyAdmin.cshtml";
 }
 
@@ -34,34 +36,37 @@
                                 <table id="datatable " class="table table-hover">
                                     <thead>
                                         <tr>
+
                                             <th><strong>Support ID</strong></th>
                                             <th><strong>Date</strong></th>
                                             <th><strong> Organisation</strong></th>
+                                            <th><strong> Title</strong></th>
                                             <th><strong> Description</strong></th>
                                             <th><strong> Severity Level</strong></th>
                                             <th><strong> Status </strong></th>
-                                            <th class="disabled-sorting text-right"><strong> Action</strong></th>
+                                            <th class="disabled-sorting "><strong> Action</strong></th>
 
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td> TAC 12</td>
-                                            <td> 23 December, 2019</td>
-                                            <td class="">Wragby Business Solutions Support Enquiry</td>
-                                            <td>
-                                                Wragby Business Solutions Support Enquiry, There was a request to
-                                                set your Employee Account password from Wale Intl If did not make this request
-                                            </td>
-                                            <td> <button class="btn btn-primary button-custom">Urgent</button></td>
-                                            <td>Pending</td>
-                                            <td>
-                                                <a asp-action="AdminViewTicket" asp-controller="Support" class="btn btn-icon btn-sm  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
-                                                <a href="#" class="btn btn-danger btn-icon btn-sm remove "><i class="fas fa-times"></i></a>
-                                            </td>
-                                        </tr>
+                                    <tbody>                                       
 
-                                    </tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.SupportId</td>
+                                                <td>@item.DateCreated.ToString("dd, MMM, yyy")</td>
+                                                <td>@item.OrganisationId</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.Severity</td>
+                                                <th>@item.Status</th>
+                                                <td>
+                                                    <a asp-action="AdminViewTicket" asp-controller="Support" asp-route-id="@item.Id" class="btn btn-icon btn-sm  btn-info" title=" View Details" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-icon btn-sm remove " title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                         }
+                                        </tbody>
                                 </table>
                             </div>
                         </div>

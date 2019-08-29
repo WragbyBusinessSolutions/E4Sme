@@ -10,6 +10,8 @@ using E4S.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace E4S.Controllers.WragbyAdmin
 {
@@ -52,10 +54,7 @@ namespace E4S.Controllers.WragbyAdmin
       return View(support);
     }
 
-    public IActionResult NewTicket()
-    {
-      return View();
-    }
+  
     
     [HttpPost]
     public async Task<IActionResult> NewTicket([FromBody]PostNewTicket postNewTicket)
@@ -196,21 +195,47 @@ public IActionResult ViewTicket()
 
     public IActionResult AllTickets()
     {
-       // var allOrg = _context.Support.ToList()
 
-      return View();
+        var allOrgTicket = _context.Tickets.Include(x => x.Organisation ).ToList();
+
+        return View(allOrgTicket);
 
     }
 
-    public IActionResult AdminViewTicket()
+    public IActionResult AdminViewTicket(Guid id)
     {
-      return View();
+        
+        var viewTickets = _context.TicketTreads.Where(x => x.TicketId == id ).FirstOrDefault();
+
+        //ViewData["Ticket"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id" , "Ticket");      
+
+         return View(viewTickets);
     }
     [HttpPost]
-    public IActionResult AdminReplyTicket()
+    public IActionResult AdminReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)
     {
-      return View();
+        
+        var orgId = getOrg();
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+           
+        if (ModelState.IsValid)
+        {
+            ticketTread.Id = Guid.NewGuid();          
+            ticketTread.OrganisationId = orgId;
+
+
+            _context.Add(ticketTread);
+            _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(ticketTread);
+
     }
+
+
     [HttpPost]
     public IActionResult AdminCloseTicket()
     {

@@ -1,4 +1,5 @@
-﻿
+﻿@model List<E4S.Models.WragbyAdmin.TicketTread>
+
 @{
     ViewData["Title"] = "Admin View Ticket";
     Layout = "~/Views/Shared/_LayoutWragbyAdmin.cshtml";
@@ -47,9 +48,9 @@
                         <div class="col-md-12">
                             <div class="col-md-8 support-title">
                                 <h6>Support ID: </h6>
-                                <p> TAC 12</p>
+                                <p></p>
                                 <h6>Date: </h6>
-                                <p> 23 December, 2019</p>
+                                <p></p>
                             </div>
                             <div class="col-md-8 support-title">
                                 <h6>Organisation Name: </h6>
@@ -73,36 +74,66 @@
 
                             <div class="col-md-8 support-title">
                                 <h6>Severity Level: </h6>
-                                <button class="btn btn-primary"> Urgent </button>
+                                <p> Urgent </p>
                             </div>
-                            <table>
 
+                            <hr />
+                            <div class="col-md-12">
+                                <div class="row info-body">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3 pull-right">
+                                            <h5 class="text-right">
+                                                <h6> Wragby Business Admin</h6>
+                                                <p>Please give us some tine while we upgrade our system</p>
 
-                            </table>
-                            <form>
-                                <div class="col-md-8">
-                                    <h6>Reply to Customer: </h6>
-                                    <textarea class="form-control" rows="15" cols="50"></textarea>
-
-                                    <a asp-action="AdminReplyTicket" asp-controller="Support" class="btn btn-info">Reply</a>
-
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                                <br />
+                            </div>
+                            <div class="col-md-8">
+                                <h6> Tims Tech Global</h6>
+                                <p>Okay!!!.......we will be patient</p>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row info-body">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3 pull-right">
+                                            <h5 class="text-right">
+                                                <h6> Wragby Business Admin</h6>
+                                                <p>The problem has been fixed now. Thank you for you patience</p>
+
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <br />
+
+                            <div>
+
+                                <form method="post" asp-action="AdminReplyTicket">
+                                    <div class="col-md-12">
+                                        <label></label>
+                                        <textarea class="form-control" asp-for="Thread" rows="2" cols="10" placeholder="Please reply here !!!"></textarea>
+
+                                        <button type="submit" class="btn btn-info">Reply</button>
+                                        <button type="submit" class="btn btn-danger">Close Ticket</button>
+
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-
-
                     </div>
-
-
-
                 </div>
+
             </div>
+            <div class="col-md-2">
 
-        </div>
-        <div class="col-md-2">
-
+            </div>
         </div>
     </div>
-</div>
 
 
