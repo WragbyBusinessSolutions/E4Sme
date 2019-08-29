@@ -143,10 +143,30 @@ namespace E4S.Controllers.WragbyAdmin
  
 
 
-public IActionResult ViewTicket()
+//public IActionResult ViewTicket()
+//    {
+//      return View();
+//    }
+
+    //public IActionResult ViewTicket()
+    //{
+    //  return View();
+    //}
+
+    public async Task<IActionResult> ViewTicket(Guid? id)
     {
-      return View();
+      if (id == null)
+      {
+        return NotFound();
+      }
+      var ticketDetails = await _context.Tickets.SingleOrDefaultAsync(i => i.Id == id);
+
+
+      return View(ticketDetails);
     }
+
+
+
     [HttpPost]
     public IActionResult ReplyTicket()
     {

@@ -1,8 +1,75 @@
-﻿
+﻿@model E4S.Models.WragbyAdmin.Ticket
+
 @{
-    ViewData["Title"] = "ViewTicket";
-    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+  ViewData["Title"] = "Support Details";
 }
 
-<h2>ViewTicket</h2>
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card ">
+        <div class="card-header ">
+          <h4 class="card-title">Support Details</h4>
+        </div>
+        <div class="card-body ">
+          <form method="post" asp-action="createbranch" class="form-horizontal">
+            <div class="row">
+              <label class="col-md-3 col-form-label">Ticket ID</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" value="@Model.SupportId" class="form-control" placeholder="Branch Name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Title</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" value="@Model.Title" class="form-control" placeholder="Email">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Description</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" value="@Model.Description" class="form-control" placeholder="Phone Number">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 col-form-label">Severity</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input type="text" value="@Model.Severity" class="form-control" placeholder="City">
+                </div>
+              </div>
+            </div>
+            @*<div class="row">
+              <label class="col-md-3 col-form-label">Country</label>
+              <div class="col-md-9">
+                <div class="form-group">
+                  <input asp-for="Country" type="text" class="form-control" placeholder="Country">
+                </div>
+              </div>
+            </div>*@
+            <div class="card-footer ">
+              <div class="row">
+                <label class="col-md-3"></label>
+                <div class="col-md-9">
+                  <button type="submit" class="btn btn-fill btn-primary">Reply</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
