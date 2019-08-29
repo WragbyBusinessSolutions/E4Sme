@@ -216,33 +216,32 @@ namespace E4S.Controllers.WragbyAdmin
     public IActionResult AllTickets()
     {
 
-        var allOrg = _context.Tickets.ToList();
+        var allOrgTicket = _context.Tickets.Include(x => x.Organisation ).ToList();
 
-        return View(allOrg);
+        return View(allOrgTicket);
 
     }
 
-    public IActionResult AdminViewTicket()
+    public IActionResult AdminViewTicket(Guid id)
     {
-        var orgId = getOrg();
-        ViewData["Title"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id" , "Title");
-        ViewData["Description"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id", "Description");
-        ViewData["Severity"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id", "Severity");
+        
+        var viewTickets = _context.TicketTreads.Where(x => x.TicketId == id ).FirstOrDefault();
 
-        var organisationDetails = _context.Organisations.Where(x => x.Id == orgId).FirstOrDefault();
+        //ViewData["Ticket"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id" , "Ticket");      
 
-            return View();
+         return View(viewTickets);
     }
     [HttpPost]
-    public IActionResult AdminReplyTicket(TicketTread ticketTread)
+    public IActionResult AdminReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)
     {
         
         var orgId = getOrg();
         var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+           
         if (ModelState.IsValid)
         {
-            ticketTread.Id = Guid.NewGuid();
+            ticketTread.Id = Guid.NewGuid();          
             ticketTread.OrganisationId = orgId;
 
 
