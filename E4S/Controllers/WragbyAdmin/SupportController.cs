@@ -155,14 +155,7 @@ namespace E4S.Controllers.WragbyAdmin
 
     public async Task<IActionResult> ViewTicket(Guid? id)
     {
-      if (id == null)
-      {
-        return NotFound();
-      }
-      var ticketDetails = await _context.Tickets.SingleOrDefaultAsync(i => i.Id == id);
-
-
-      return View(ticketDetails);
+      return View();
     }
 
 
@@ -222,14 +215,16 @@ namespace E4S.Controllers.WragbyAdmin
 
     }
 
-    public IActionResult AdminViewTicket(Guid id)
+    public async Task<IActionResult> AdminViewTicket(Guid id)
     {
-        
-        var viewTickets = _context.TicketTreads.Where(x => x.TicketId == id ).FirstOrDefault();
+      if (id == null)
+      {
+        return NotFound();
+      }
+      var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
 
-        //ViewData["Ticket"] = new SelectList(_context.Tickets.Where(x => x.OrganisationId == orgId).ToList(), "Id" , "Ticket");      
 
-         return View(viewTickets);
+      return View(ticketDetails);
     }
     [HttpPost]
     public IActionResult AdminReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)

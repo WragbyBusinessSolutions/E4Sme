@@ -13,6 +13,7 @@ namespace E4S.Models.WragbyAdmin
     public virtual Ticket Ticket { get; set; }
     public string Thread { get; set; }
     public string ImageUrl { get; set; }
+    public string ResponseType { get; set; }
 
   }
 }

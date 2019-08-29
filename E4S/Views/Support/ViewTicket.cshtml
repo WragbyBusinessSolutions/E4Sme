@@ -1,74 +1,135 @@
 ﻿@model E4S.Models.WragbyAdmin.Ticket
 
+
 @{
-  ViewData["Title"] = "Support Details";
+  ViewData["Title"] = "View Ticket";
 }
 
+<style>
+  .body-card {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
+
+  .button-padding {
+    margin-right: 10px
+  }
+
+  .support-title {
+    margin-bottom: 40px;
+  }
+</style>
 
 <div class="content">
   <div class="row">
-    <div class="col-md-6">
-      <div class="card ">
-        <div class="card-header ">
-          <h4 class="card-title">Support Details</h4>
-        </div>
-        <div class="card-body ">
-          <form method="post" asp-action="createbranch" class="form-horizontal">
-            <div class="row">
-              <label class="col-md-3 col-form-label">Ticket ID</label>
-              <div class="col-md-9">
-                <div class="form-group">
-                  <input type="text" value="@Model.SupportId" class="form-control" placeholder="Branch Name">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">Title</label>
-              <div class="col-md-9">
-                <div class="form-group">
-                  <input type="text" value="@Model.Title" class="form-control" placeholder="Email">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">Description</label>
-              <div class="col-md-9">
-                <div class="form-group">
-                  <input type="text" value="@Model.Description" class="form-control" placeholder="Phone Number">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-md-3 col-form-label">Severity</label>
-              <div class="col-md-9">
-                <div class="form-group">
-                  <input type="text" value="@Model.Severity" class="form-control" placeholder="City">
-                </div>
-              </div>
-            </div>
-            @*<div class="row">
-              <label class="col-md-3 col-form-label">Country</label>
-              <div class="col-md-9">
-                <div class="form-group">
-                  <input asp-for="Country" type="text" class="form-control" placeholder="Country">
-                </div>
-              </div>
-            </div>*@
-            <div class="card-footer ">
-              <div class="row">
-                <label class="col-md-3"></label>
-                <div class="col-md-9">
-                  <button type="submit" class="btn btn-fill btn-primary">Reply</button>
-                </div>
-              </div>
-            </div>
+    <div class="col-md-2">
 
-          </form>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header body-card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6 pull-left">
+                <h4 class="card-title">Ticket Details</h4>
+              </div>
+
+            </div>
+          </div>
+
+
+
         </div>
+        <hr />
+        <div class="card-body body-card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-8 support-title">
+                <h6>Support ID: </h6>
+                <p>@Model.SupportId</p>
+                <h6>Date: </h6>
+                <p>@Model.DateCreated.ToString("dd, MMM, yyyy")</p>
+              </div>
+              <div class="col-md-8 support-title">
+                <h6>Title </h6>
+                <p>@Model.Title</p>
+              </div>
+
+              <div class="col-md-8 support-title">
+                <h6>Description: </h6>
+                <p style="text-align:justify;">
+                  @Model.Description
+                </p>
+              </div>
+
+              <div class="col-md-8 support-title">
+                <h6>Severity Level: </h6>
+                <p> @Model.Severity </p>
+              </div>
+
+              <hr />
+              <div class="col-md-12">
+                <div class="row info-body">
+                  <div class="col-md-12">
+                    <div class="col-md-6 pull-right">
+
+                      <h6 class="text-right"> Wragby Business Admin</h6>
+                      <p class="text-right">Please give us some tine while we upgrade our system</p>
+
+
+                    </div>
+                  </div>
+                </div>
+                <br />
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="row info-body">
+                  <div class="col-md-12">
+                    <div class="col-md-6 pull-left">
+
+                      <h6 class="text-left"> @Model.Organisation.OrganisationName</h6>
+                      <p class="text-left">Please give us some tine while we upgrade our system</p>
+
+
+                    </div>
+                  </div>
+                </div>
+                <br />
+              </div>
+
+              <br />
+
+              <div>
+
+                <form method="post" asp-action="AdminReplyTicket">
+                  <div class="col-md-12">
+                    <input asp-for="Id" hidden />
+                    
+                    <label></label>
+                    <textarea class="form-control" rows="2" cols="10" placeholder="Please reply here !!!"></textarea>
+
+                    <button type="submit" class="btn btn-info">Reply</button>
+                    <button type="submit" class="btn btn-danger">Close Ticket</button>
+
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-2">
+
       </div>
     </div>
   </div>
-</div>
+
 
 
 
