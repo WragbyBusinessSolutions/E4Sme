@@ -17,7 +17,7 @@ namespace E4S.Controllers.WragbyAdmin
 {
   [Authorize]
   public class SupportController : Controller
-    {
+  {
 
     [TempData]
     public string StatusMessage { get; set; }
@@ -45,17 +45,17 @@ namespace E4S.Controllers.WragbyAdmin
     }
 
     //Damilare
-//================= User Method Starts Here =========================//
+    //================= User Method Starts Here =========================//
     public IActionResult Index()
-        {
+    {
       var orgId = getOrg();
       var support = _context.Tickets.Where(x => x.OrganisationId == orgId).ToList();
 
       return View(support);
     }
 
-  
-    
+
+
     [HttpPost]
     public async Task<IActionResult> NewTicket([FromBody]PostNewTicket postNewTicket)
     {
@@ -140,31 +140,78 @@ namespace E4S.Controllers.WragbyAdmin
       ModelState.Clear();
       return View(ticket);
     }
- 
 
 
-//public IActionResult ViewTicket()
-//    {
-//      return View();
-//    }
+
+    //public IActionResult ViewTicket()
+    //    {
+    //      return View();
+    //    }
 
     //public IActionResult ViewTicket()
     //{
     //  return View();
     //}
 
-    public async Task<IActionResult> ViewTicket(Guid? id)
+    //public async Task<IActionResult> ViewTicket(Guid? id)
+    //{
+    //  return View();
+    //}
+
+    public async Task<IActionResult> ViewTicket(Guid id)
     {
-      return View();
+      if (id == null)
+      {
+        return NotFound();
+      }
+      var ticketDetails = await _context.TicketTreads.Include(x => x.Ticket).SingleOrDefaultAsync(i => i.Id == id);
+      //var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
+
+
+      return View(ticketDetails);
     }
 
+
+
+    //[HttpPost]
+    //public IActionResult ReplyTicket()
+    //{
+    //  return View();
+    //}
 
 
     [HttpPost]
-    public IActionResult ReplyTicket()
+    public IActionResult ReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)
     {
-      return View();
+
+      var orgId = getOrg();
+      var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+
+      if (ModelState.IsValid)
+      {
+        var tickthr = new TicketTread()
+        {
+          Id = Guid.NewGuid(),
+          TicketId = ticketTread.Id,
+          Thread = ticketTread.Thread,
+          ResponseType = userId,
+          OrganisationId = orgId,
+
+
+      };
+
+     
+      _context.Add(tickthr);
+      _context.SaveChangesAsync();
+
+      //return RedirectToAction(nameof(Index));
     }
+
+      ModelState.Clear();
+      return View(ticketTread);
+    }
+    
 
     //================= User Method Ends Here =========================//
 
@@ -203,7 +250,7 @@ namespace E4S.Controllers.WragbyAdmin
 
 
 
-      //Temofe
+    //Temofe
     //================= Admin Method Starts Here =======================//
 
     public IActionResult AllTickets()
@@ -221,45 +268,66 @@ namespace E4S.Controllers.WragbyAdmin
       {
         return NotFound();
       }
-      var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
+      var ticketDetails = await _context.TicketTreads.Include(x => x.OrganisationId).SingleOrDefaultAsync(i => i.Id == id);
 
+            //PostThreads pTDS = new PostThreads();
+            //pTDS.Thread = ticketDetails.Thread;
 
       return View(ticketDetails);
     }
+
+
     [HttpPost]
-    public IActionResult AdminReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)
+    public IActionResult AdminReplyTicket(TicketTread ticketTread)
     {
-        
-        var orgId = getOrg();
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-           
-        if (ModelState.IsValid)
+           // var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
+
+        if (ticketTread == null)
         {
-            ticketTread.Id = Guid.NewGuid();          
-            ticketTread.OrganisationId = orgId;
-
-
-            _context.Add(ticketTread);
-            _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
+             return View();
         }
 
-        return View(ticketTread);
+        ticketTread.Id = Guid.NewGuid();
+        
 
+        _context.Add(ticketTread);
+        _context.SaveChangesAsync();
+
+        return RedirectToAction("AllTickets");
+        
     }
 
+        public IActionResult createbranch(Branch branch)
+        {
+            var orgId = getOrg();
 
-    [HttpPost]
-    public IActionResult AdminCloseTicket()
-    {
-      return View();
-    }
-    public IActionResult AdminDeleteTicket()
-    {
-      return View();
-    }
+            if (branch == null)
+            {
+                return View();
+            }
+
+            branch.OrganisationId = orgId;
+            branch.Id = Guid.NewGuid();
+
+            _context.Add(branch);
+            _context.SaveChanges();
+
+            StatusMessage = "New branch successfully created.";
+
+            return RedirectToAction("Branch");
+        }
+
+
+        [HttpPost]
+        public IActionResult AdminCloseTicket()
+        {
+          return View();
+        }
+        public IActionResult AdminDeleteTicket()
+        {
+          return View();
+        }
 
     //================= Admin Method Ends Here =======================//
 
