@@ -114,7 +114,7 @@ namespace E4S.Controllers.AccountInventory
       iVM.Total = cInvoiceRecord.Total;
       iVM.InvoiceItems = _context.InvoiceItems.Where(x => x.InvoiceRecordId == id).Include(x => x.ProductService).ToList();
       iVM.DateCreated = cInvoiceRecord.DateCreated;
-
+      iVM.InvoiceOtherItems = _context.InvoiceOtherItems.Where(x => x.InvoiceRecordId == id).Include(x => x.OtherItem).ToList();
 
 
       return View(iVM);
@@ -245,6 +245,77 @@ namespace E4S.Controllers.AccountInventory
 
     }
 
+    [HttpPost]
+    public async Task<IActionResult> AddOtherItem([FromBody]OtherItemVM otherItem)
+    {
+      var orgId = getOrg();
+
+      if (otherItem != null)
+      {
+
+        if(otherItem.Id == Guid.Empty)
+        {
+
+          OtherItem newItem = new OtherItem()
+          {
+            Id = Guid.NewGuid(),
+            Item = otherItem.Item,
+            Amount = otherItem.Amount,
+            OrganisationId = orgId
+          };
+
+          _context.Add(newItem);
+          _context.SaveChanges();
+
+          otherItem.Id = newItem.Id;
+
+        }
+
+        InvoiceOtherItem invoiceOtherItem = new InvoiceOtherItem()
+        {
+          Id = Guid.NewGuid(),
+          InvoiceRecordId = otherItem.InvoiceId,
+          OtherItemId = otherItem.Id,
+          OrganisationId = orgId,
+          Amount = otherItem.Amount
+
+        };
+
+
+
+
+        try
+        {
+          _context.Add(invoiceOtherItem);
+          _context.SaveChanges();
+
+          return Json(new
+          {
+            msg = "Success"
+          });
+
+        }
+        catch
+        {
+          return Json(new
+          {
+            msg = "Failed"
+          });
+
+        }
+
+
+        //StatusMessage = "New Vendor successfully created.";
+      }
+
+      //StatusMessage = "Error! Check fields...";
+      //ViewData["StatusMessage"] = StatusMessage;
+      return Json(new
+      {
+        msg = "No Data"
+      });
+
+    }
 
     [Produces("application/json")]
     [HttpGet("search")]
@@ -326,6 +397,37 @@ namespace E4S.Controllers.AccountInventory
       {
         return BadRequest();
       }
+
+    }
+
+    [Produces("application/json")]
+    [HttpGet("search")]
+    [Route("/api/Invoice/OtherItem")]
+    public async Task<IActionResult> SearchOtherItem()
+    {
+      var orgId = getOrg();
+
+      try
+      {
+        string term = HttpContext.Request.Query["term"].ToString();
+        var names = _context.OtherItems.Where(x => x.OrganisationId == orgId).Where(p => p.Item.Contains(term)).Select(p => p.Item).ToList();
+        return Ok(names);
+      }
+      catch
+      {
+        return BadRequest();
+      }
+
+    }
+
+    [HttpPost]
+    public IActionResult GetOtherItem([FromBody]AutoCus tag)
+    {
+      var orgId = getOrg();
+
+      var otherItem = _context.OtherItems.Where(x => x.OrganisationId == orgId).Where(x => x.Item == tag.Name).FirstOrDefault();
+
+      return Json(otherItem);
 
     }
 

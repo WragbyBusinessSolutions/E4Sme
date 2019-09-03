@@ -16,6 +16,7 @@ namespace E4S.ViewModel.AccountVM
     public Organisation Organisation { get; set; }
 
     public List<InvoiceItem> InvoiceItems { get; set; }
+    public List<InvoiceOtherItem> InvoiceOtherItems { get; set; }
 
     public string InoviceTitle { get; set; }
     public float Tax { get; set; }

@@ -217,29 +217,35 @@
 
           <div class="row">
             <div class="col-md-12">
-                <div class="col-md-4">
+              <div class="col-md-4">
 
-                    @if (Model.Customer != null)
-                    {
-                        <input id="autoCustomer" name="autoCustomer" asp-for="Customer.CustomerName" type="text" class="form-control" placeholder="Search Customer">
-                        <div id="cusAddress" name="cusAddress" class="display">
-                            @Model.Customer.City,<br />
-                            @Model.Customer.Email,<br />
-                            @Model.Customer.Phone
-                        </div>
+                @if (Model.Customer != null)
+                {
+                  <input id="autoCustomer" name="autoCustomer" asp-for="Customer.CustomerName" type="text" class="form-control" placeholder="Search Customer">
+                  <div id="cusAddress" name="cusAddress" class="display">
+                    @Model.Customer.City,<br />
+                    @Model.Customer.Email,<br />
+                    @Model.Customer.Phone
+                  </div>
 
-                    }
-                    else
-                    {
-                        <button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button> <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
-                        <textarea id="cusAddress" name="cusAddress" class="form-control"></textarea>
+                }
+                else
+                {
+                  <button class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">+ Add Customer</button> <input id="autoCustomer" name="autoCustomer" type="text" class="form-control" placeholder="Search Customer">
+                  <textarea id="cusAddress" name="cusAddress" class="form-control"></textarea>
 
-                    }
-                    <input id="cusId" hidden />
-                </div>
+                }
+                <input id="cusId" hidden />
+              </div>
 
             </div>
 
+
+          </div>
+
+          <div class="col-md-12 align-items-center invoice-body">
+
+            <input class="form-control text-center" placeholder="INVOICE TITLE" />
 
           </div>
 
@@ -333,25 +339,60 @@
               <p>
                 <input class="check" checked disabled type="checkbox" /> vat (5%) :  ₦@Model.Tax.ToString("N2")
               </p>
+
               <p>
                 <div class="row total-section">
+                  <input value="00000000-0000-0000-0000-000000000000" id="otherItemId" name="otherItemId" hidden />
+
                   <table>
                     <tbody>
+
+                      @foreach (var item in Model.InvoiceOtherItems)
+                      {
+                        <tr>
+
+                          <td>
+                <h5>
+                  <b>
+                      @item.OtherItem.Item
+                  </b>
+                </h5>
+
+                </td>
+
+                <td></td>
+
+                <td>
+                  <h5 class="text-right">
+                    ₦  @item.Amount.ToString("N2")
+                  </h5>
+                </td>
+
+                <td>
+                  <button class="btn btn-sm btn-danger">-</button>
+                </td>
+
+                </tr>
+
+              }
+
+
                       <tr>
+
                         <td>
-                          <input class="form-control" type="text" placeholder="Add Items (Workmanship)" />
+                          <input id="otherItemName" autocomplete="on" name="otherItemName" class="form-control" type="text" placeholder="Add Items (Workmanship)" />
                         </td>
                         <td>:</td>
                         <td>
-                          <input class="form-control text-right" type="number" placeholder="0"/>
+                          <input id="otherItemAmount" name="otherItemAmount" class="form-control text-right" type="number" placeholder="0" />
                         </td>
                         <td>
-                          <button id="addItem" class="btn btn-sm btn-success">+</button>
+                          <button id="addOtherItem" class="btn btn-sm btn-success">+</button>
                         </td>
                       </tr>
-                    </tbody>
-                  </table>
-                </div>
+                      </tbody>
+                      </table>
+                    </div>
               </p>
               <hr>
               <h3>
@@ -474,6 +515,49 @@
 
       });
 
+      $('#otherItemName').autocomplete({
+
+        source: '/api/Invoice/OtherItem',
+        select: function (event, ui) {
+
+          var tag = ui.item.value;
+
+          var AutoCus = {
+            Name: ui.item.value,
+          };
+
+          console.log(AutoCus);
+
+          $.ajax({
+            type: "POST",
+            url: "/Invoice/GetOtherItem",
+            data: JSON.stringify(AutoCus),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+              RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (r) {
+
+              document.getElementById("otherItemId").value = r.id;
+              document.getElementById("otherItemName").value = r.item;
+              document.getElementById("otherItemAmount").value = r.amount;
+              //document.getElementById("cusId").value = r.Id;
+
+              console.log(r);
+            },
+            error: function () {
+              alert("Error occured!!")
+            }
+          });
+
+
+        }
+
+      });
+
+
       $("#addItem").click(function (event) {
 
         event.preventDefault();
@@ -495,6 +579,60 @@
           type: "POST",
           url: "/Invoice/AddProduct",
           data: JSON.stringify(InvoiceItem),
+          dataType: "json",
+          contentType: 'application/json; charset=utf-8',
+          headers: {
+            RequestVerificationToken:
+              $('input:hidden[name="__RequestVerificationToken"]').val()
+          },
+          success: function (r) {
+
+            if (r.msg == "Success") {
+
+              window.location.reload();
+
+
+            } else if (r.msg == "Fail") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else if (r.msg == "No Data") {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+
+            } else {
+              $("#loading-overlay").hide();
+              alert(r.msg);
+            }
+
+          },
+          error: function () {
+            $("#loading-overlay").hide();
+            alert(r.msg);
+          }
+        });
+      });
+
+      $("#addOtherItem").click(function (event) {
+
+        event.preventDefault();
+
+        //$("#loading-overlay").show();
+
+        var OtherVM = {
+          Id: $("#otherItemId").val(),
+          Item: $("#otherItemName").val(),
+          Amount: $("#otherItemAmount").val(),
+          InvoiceId: $("#Id").val(),
+        };
+
+
+        console.log(OtherVM);
+
+        $.ajax({
+          type: "POST",
+          url: "/Invoice/AddOtherItem",
+          data: JSON.stringify(OtherVM),
           dataType: "json",
           contentType: 'application/json; charset=utf-8',
           headers: {

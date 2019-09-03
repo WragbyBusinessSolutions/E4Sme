@@ -18,7 +18,7 @@ namespace E4S.Services
   {
     SmtpClient SmtpServer;
     string MailerResponse;
-    string apiKey = "";
+    string apiKey = "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";
 
         public EmailSender()
     {
@@ -99,7 +99,7 @@ namespace E4S.Services
     async Task IEmailSender.SendGridEmailAsync(string emailAdd, string subject, string message, string organisation, string firstname, string template)
     {
 
-      string domain = "http://erp4smes.azurewebsites.net";
+      string domain = "http://erp4sme.azurewebsites.net";
 
       EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -127,7 +127,7 @@ namespace E4S.Services
     async Task IEmailSender.SendGridEmailConfrimationAsync(string emailAdd, string subject, string message, string firstname)
     {
 
-      string domain = "http://erp4smes.azurewebsites.net";
+      string domain = "http://erp4sme.azurewebsites.net";
       
       EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -177,7 +177,7 @@ namespace E4S.Services
     public async Task SendGridLeaveRequestAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
     {
 
-      string domain = "http://erp4smes.azurewebsites.net";
+      string domain = "http://erp4sme.azurewebsites.net";
 
       EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -204,7 +204,7 @@ namespace E4S.Services
     public async Task SendGridLeaveApprovalAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
     {
 
-        string domain = "http://erp4smes.azurewebsites.net";
+        string domain = "http://erp4sme.azurewebsites.net";
 
         EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -229,7 +229,7 @@ namespace E4S.Services
         public async Task SendGridLeaveDeclinedAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
         {
 
-            string domain = "http://erp4smes.azurewebsites.net";
+            string domain = "http://erp4sme.azurewebsites.net";
 
             EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -254,7 +254,7 @@ namespace E4S.Services
         public async Task SendGridLeaveApplicationAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, Leave leave)
         {
 
-            string domain = "http://erp4smes.azurewebsites.net";
+            string domain = "http://erp4sme.azurewebsites.net";
 
             EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
@@ -285,7 +285,7 @@ namespace E4S.Services
         public async Task SendGridInvoicesAsync(string emailAdd, string subject, string message, string firstname, string template, string organisation, InvoiceRecord invoiceRecord, Customer customer)
         {
 
-            string domain = "http://erp4smes.azurewebsites.net";
+            string domain = "http://erp4sme.azurewebsites.net";
 
             EmailTemplateHelper EmailHelper = new EmailTemplateHelper();
 
