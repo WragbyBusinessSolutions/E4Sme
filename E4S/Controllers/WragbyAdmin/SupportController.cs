@@ -221,45 +221,66 @@ namespace E4S.Controllers.WragbyAdmin
       {
         return NotFound();
       }
-      var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
+      var ticketDetails = await _context.TicketTreads.Include(x => x.OrganisationId).SingleOrDefaultAsync(i => i.Id == id);
 
+            //PostThreads pTDS = new PostThreads();
+            //pTDS.Thread = ticketDetails.Thread;
 
       return View(ticketDetails);
     }
+
+
     [HttpPost]
-    public IActionResult AdminReplyTicket([Bind("id", "Thread")]TicketTread ticketTread)
+    public IActionResult AdminReplyTicket(TicketTread ticketTread)
     {
-        
-        var orgId = getOrg();
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-           
-        if (ModelState.IsValid)
+           // var ticketDetails = await _context.Tickets.Include(x => x.Organisation).SingleOrDefaultAsync(i => i.Id == id);
+
+        if (ticketTread == null)
         {
-            ticketTread.Id = Guid.NewGuid();          
-            ticketTread.OrganisationId = orgId;
-
-
-            _context.Add(ticketTread);
-            _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
+             return View();
         }
 
-        return View(ticketTread);
+        ticketTread.Id = Guid.NewGuid();
+        
 
+        _context.Add(ticketTread);
+        _context.SaveChangesAsync();
+
+        return RedirectToAction("AllTickets");
+        
     }
 
+        public IActionResult createbranch(Branch branch)
+        {
+            var orgId = getOrg();
 
-    [HttpPost]
-    public IActionResult AdminCloseTicket()
-    {
-      return View();
-    }
-    public IActionResult AdminDeleteTicket()
-    {
-      return View();
-    }
+            if (branch == null)
+            {
+                return View();
+            }
+
+            branch.OrganisationId = orgId;
+            branch.Id = Guid.NewGuid();
+
+            _context.Add(branch);
+            _context.SaveChanges();
+
+            StatusMessage = "New branch successfully created.";
+
+            return RedirectToAction("Branch");
+        }
+
+
+        [HttpPost]
+        public IActionResult AdminCloseTicket()
+        {
+          return View();
+        }
+        public IActionResult AdminDeleteTicket()
+        {
+          return View();
+        }
 
     //================= Admin Method Ends Here =======================//
 
