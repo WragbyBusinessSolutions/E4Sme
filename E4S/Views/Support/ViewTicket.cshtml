@@ -1,5 +1,5 @@
 ﻿@*@model E4S.ViewModel.TicketThreadVM*@
-@*@model E4S.Models.WragbyAdmin.Ticket*@
+@model E4S.Models.WragbyAdmin.Ticket
 
 
 @{
@@ -49,13 +49,13 @@
             <div class="col-md-12">
               <div class="col-md-8 support-title">
                 <h6>Support ID: </h6>
-                <p>@Model.Ticket.SupportId</p>
+                <p>@Model.SupportId</p>
                 <h6>Date: </h6>
                 <p>@Model.DateCreated.ToString("dd, MMM, yyyy")</p>
               </div>
               <div class="col-md-8 support-title">
                 <h6>Title </h6>
-                <p>@Model.Ticket.Title</p>
+                <p>@Model.Title</p>
               </div>
 
               <div class="col-md-8 support-title">
@@ -111,7 +111,7 @@
                     <input asp-for="Id" hidden />
                     
                     <label></label>
-                    <textarea asp-for="Thread" class="form-control" rows="2" cols="10" placeholder="Please reply here !!!"></textarea>
+                    @*<textarea asp-for="Thread" class="form-control" rows="2" cols="10" placeholder="Please reply here !!!"></textarea>*@
 
                     <button type="submit" class="btn btn-info">Reply</button>
                     <button type="submit" class="btn btn-danger">Close Ticket</button>
